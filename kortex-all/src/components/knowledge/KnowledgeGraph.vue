@@ -329,7 +329,7 @@ const getChartOption = (graphData = { nodes: [], links: [] }) => {
       orient: 'horizontal',
       left: 'center',
       bottom: '5%',
-      data: CATEGORIES,
+      data: CATEGORIES.filter((cat) => cat.name === 'entity'),
       textStyle: {
         fontSize: 12,
       },
