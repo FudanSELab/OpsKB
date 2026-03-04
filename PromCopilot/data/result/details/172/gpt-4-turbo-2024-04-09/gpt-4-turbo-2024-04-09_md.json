@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "bytes written to the dm-0 device disk",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"bytes written to the dm-0 device disk\", \"node\")]"
+}

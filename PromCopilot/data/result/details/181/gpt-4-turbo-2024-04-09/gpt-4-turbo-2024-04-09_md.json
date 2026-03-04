@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "p80 latency for APIs over a 5-minute window",
+      "API"
+    ],
+    [
+      "difference in p80 latency from one week ago",
+      "API"
+    ]
+  ],
+  "response_text": "[(\"p80 latency for APIs over a 5-minute window\", \"API\"), (\"difference in p80 latency from one week ago\", \"API\")]"
+}

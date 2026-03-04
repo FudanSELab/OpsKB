@@ -1,0 +1,14 @@
+statefulset,pod
+alertmanager-prometheus-kube-prometheus-alertmanager,alertmanager-prometheus-kube-prometheus-alertmanager-0
+loki,loki-0
+nacos,nacos-0
+nacos,nacos-1
+nacos,nacos-2
+nacosdb-mysql,nacosdb-mysql-0
+nacosdb-mysql,nacosdb-mysql-1
+nacosdb-mysql,nacosdb-mysql-2
+prometheus-prometheus-kube-prometheus-prometheus,prometheus-prometheus-kube-prometheus-prometheus-0
+tempo,tempo-0
+tsdb-mysql,tsdb-mysql-0
+tsdb-mysql,tsdb-mysql-1
+tsdb-mysql,tsdb-mysql-2

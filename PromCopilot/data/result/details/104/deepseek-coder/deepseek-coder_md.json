@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "total number of processes currently running",
+      "container"
+    ],
+    [
+      "decrease in the total number of processes",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"total number of processes currently running\", \"container\"), (\"decrease in the total number of processes\", \"container\")]"
+}

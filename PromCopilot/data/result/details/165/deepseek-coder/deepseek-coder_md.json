@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "disk usage",
+      "node"
+    ],
+    [
+      "filesystem size",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"disk usage\", \"node\"), (\"filesystem size\", \"node\")]"
+}

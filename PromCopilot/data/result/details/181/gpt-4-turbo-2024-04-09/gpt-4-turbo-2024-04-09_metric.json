@@ -1,0 +1,116 @@
+{
+  "relevant_metrics": [
+    {
+      "name": "traces_spanmetrics_latency_bucket",
+      "type": "histogram",
+      "description": "The distribution of latencies across spans for operations associated with the application's API."
+    }
+  ],
+  "details": {
+    "extracted_text": "- {\"name\": \"traces_spanmetrics_latency_bucket\", \"type\": \"histogram\", \"description\": \"The distribution of latencies across spans for operations associated with the application's API.\"}",
+    "response_text": "Step 1. Analyze the question and identify the relevant metrics:\nThe relevant metrics for calculating the p80 latency for APIs in the food service over a 5-minute window and comparing it with the value from one week ago are:\n- The metric \"traces_spanmetrics_latency_bucket\" is a histogram that includes the distribution of latencies across spans for operations associated with the application's API. This metric is essential for calculating percentile latencies such as p80.\n\nStep 2. Relevant Metrics List:\n```\n- {\"name\": \"traces_spanmetrics_latency_bucket\", \"type\": \"histogram\", \"description\": \"The distribution of latencies across spans for operations associated with the application's API.\"}\n```",
+    "model": "gpt-4-turbo-2024-04-09",
+    "temperature": 0.3,
+    "messages": [
+      {
+        "role": "system",
+        "content": "Please filter and return the relevant metrics from the provided metrics list that pertains to the given question. These metrics will be used to construct Prometheus Query Language (PromQL) queries corresponding to the question.\nInstructions:\nStep 1. Analyze the question to determine which metrics from the provided Metrics List are related to the query.\nStep 2. Return a list of these relevant metrics. Ensure that the list of returned metrics is enclosed in triple backticks (```).\n"
+      },
+      {
+        "role": "user",
+        "content": "Metrics List:\n- {\"name\": \"container_ulimits_soft\", \"type\": \"gauge\", \"description\": \"Soft ulimit values for the container root process.\"}\n- {\"name\": \"container_fs_usage_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that are consumed by the container on this filesystem.\"}\n- {\"name\": \"container_spec_memory_limit_bytes\", \"type\": \"gauge\", \"description\": \"Memory limit for the container.\"}\n- {\"name\": \"container_fs_limit_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that can be consumed by the container on this filesystem.\"}\n- {\"name\": \"container_memory_usage_bytes\", \"type\": \"gauge\", \"description\": \"Current memory usage in bytes, including all memory regardless of when it was accessed\"}\nQuestion: Show the filesystem usage and limit bytes for all containers of the auth service."
+      },
+      {
+        "role": "assistant",
+        "content": "Step 1. Analyze the question and identify the relevant metrics:\nThe relevant metrics for the filesystem usage and limit bytes for all containers of the auth service are:\n- The metric \"container_fs_usage_bytes\" indicates the number of bytes currently consumed by the container on the filesystem. This measures the actual filesystem usage by the container.\n- The metric \"container_fs_limit_bytes\" denotes the maximum number of bytes that can be consumed by the container on this filesystem. This represents the limit set for filesystem usage by the container.\nStep 2. Relevant Metrics List:\n```\n- {\"name\": \"container_fs_usage_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that are consumed by the container on this filesystem.\"}\n- {\"name\": \"container_fs_limit_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that can be consumed by the container on this filesystem.\"}\n```\n"
+      },
+      {
+        "role": "user",
+        "content": "Metrics List:\n- {\"name\": \"traces_spanmetrics_latency_bucket\", \"type\": \"histogram\", \"description\": \"The distribution of latencies across spans for operations associated with the application\"s API.\"}\n- {\"name\": \"traces_spanmetrics_latency_sum\", \"type\": \"counter\", \"description\": \"The total sum of durations, measured in seconds, of all spans associated with API operations.\"}\n- {\"name\": \"traces_spanmetrics_latency_count\", \"type\": \"counter\", \"description\": \"The total number of spans observed for API operations\"}\n- {\"name\": \"traces_spanmetrics_calls_total\", \"type\": \"counter\", \"description\": \"The total number of spans observed for API operations\"}\nQuestion: Identify all APIs available in the food service. Calculate the p80 latency for these APIs over a 5-minute window and calculate the difference between the current value and the value from one week ago.\n"
+      }
+    ],
+    "retrieved_metrics": {
+      "('difference in p80 latency from one week ago', 'api')": [
+        {
+          "_index": "metric",
+          "_id": "QNI-048BMiz5NO5fftgG",
+          "_score": 3.8967738,
+          "_source": {
+            "name": "traces_spanmetrics_latency_bucket",
+            "type": "histogram",
+            "description": "The distribution of latencies across spans for operations associated with the application's API.",
+            "keywords": "traces span metrics latency bucket"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "QdI-048BMiz5NO5fftgG",
+          "_score": 3.8750358,
+          "_source": {
+            "name": "traces_spanmetrics_latency_count",
+            "type": "counter",
+            "description": "The total number of spans observed for API operations",
+            "keywords": "traces span metrics latency count"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "QtI-048BMiz5NO5fftgG",
+          "_score": 3.8750358,
+          "_source": {
+            "name": "traces_spanmetrics_latency_sum",
+            "type": "counter",
+            "description": "The total sum of durations, measured in seconds, of all spans associated with API operations.",
+            "keywords": "traces span metrics latency sum"
+          }
+        }
+      ],
+      "('p80 latency for APIs over a 5-minute window', 'api')": [
+        {
+          "_index": "metric",
+          "_id": "QNI-048BMiz5NO5fftgG",
+          "_score": 6.927228,
+          "_source": {
+            "name": "traces_spanmetrics_latency_bucket",
+            "type": "histogram",
+            "description": "The distribution of latencies across spans for operations associated with the application's API.",
+            "keywords": "traces span metrics latency bucket"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "QdI-048BMiz5NO5fftgG",
+          "_score": 3.8750358,
+          "_source": {
+            "name": "traces_spanmetrics_latency_count",
+            "type": "counter",
+            "description": "The total number of spans observed for API operations",
+            "keywords": "traces span metrics latency count"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "QtI-048BMiz5NO5fftgG",
+          "_score": 3.8750358,
+          "_source": {
+            "name": "traces_spanmetrics_latency_sum",
+            "type": "counter",
+            "description": "The total sum of durations, measured in seconds, of all spans associated with API operations.",
+            "keywords": "traces span metrics latency sum"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "P9I-048BMiz5NO5fftgG",
+          "_score": 3.4973845,
+          "_source": {
+            "name": "traces_spanmetrics_calls_total",
+            "type": "counter",
+            "description": "The total number of spans observed for API operations",
+            "keywords": "traces span metrics calls total"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "number of network packet receive errors",
+      "pod"
+    ],
+    [
+      "interface eth0",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"number of network packet receive errors\", \"pod\"), (\"interface eth0\", \"node\")]"
+}

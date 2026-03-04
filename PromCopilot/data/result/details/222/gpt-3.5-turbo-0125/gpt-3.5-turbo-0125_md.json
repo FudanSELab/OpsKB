@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "total network packet drops",
+      "node"
+    ],
+    [
+      "total network packets received",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"total network packet drops\", \"node\"), (\"total network packets received\", \"node\")]"
+}

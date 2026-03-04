@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "current failure ratio of requests",
+      "service"
+    ],
+    [
+      "value from the same time one day ago",
+      "service"
+    ]
+  ],
+  "response_text": "[(\"current failure ratio of requests\", \"service\"), (\"value from the same time one day ago\", \"service\")]"
+}

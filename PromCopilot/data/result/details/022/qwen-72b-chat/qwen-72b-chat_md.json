@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "memory cache data",
+      "container"
+    ],
+    [
+      "page cache memory usage in bytes",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"memory cache data\", \"container\"), (\"page cache memory usage in bytes\", \"container\")]"
+}

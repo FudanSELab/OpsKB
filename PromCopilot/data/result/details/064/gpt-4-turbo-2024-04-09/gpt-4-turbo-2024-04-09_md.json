@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "number of memory usage hits limits",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"number of memory usage hits limits\", \"container\")]"
+}

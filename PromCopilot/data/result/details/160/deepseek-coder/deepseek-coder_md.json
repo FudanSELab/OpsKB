@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "peak number of orphan TCP sockets",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"peak number of orphan TCP sockets\", \"node\")]"
+}

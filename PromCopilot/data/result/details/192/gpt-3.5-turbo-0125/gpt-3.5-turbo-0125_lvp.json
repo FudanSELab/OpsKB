@@ -1,0 +1,50 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_filesystem_avail_bytes",
+        "type": "gauge",
+        "description": "Filesystem space available to non-root users in bytes."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "device=/dev/sda2",
+        "label": "device",
+        "value": "/dev/sda2"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_disk_writes_merged_total",
+        "type": "counter",
+        "description": "The number of writes merged."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "device=/dev/sda2",
+        "label": "device",
+        "value": "/dev/sda2"
+      }
+    }
+  ]
+]

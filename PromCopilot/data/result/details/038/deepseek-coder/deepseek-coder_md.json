@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "total number of block IO device bytes",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"total number of block IO device bytes\", \"container\")]"
+}

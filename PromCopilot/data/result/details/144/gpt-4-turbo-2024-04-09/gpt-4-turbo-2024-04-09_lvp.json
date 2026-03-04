@@ -1,0 +1,26 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_network_receive_errs_total",
+        "type": "counter",
+        "description": "Network device statistic receive_errs."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "device=docker0",
+        "label": "device",
+        "value": "docker0"
+      }
+    }
+  ]
+]

@@ -1,0 +1,50 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_usage_seconds_total",
+        "type": "counter",
+        "description": "Cumulative cpu time consumed in seconds."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "name=k8s_POD_ts-assurance-service-75857d4f45-b28xp_default_98b3a73c-c524-4738-9dc9-085a7fb18076_0",
+        "label": "name",
+        "value": "k8s_POD_ts-assurance-service-75857d4f45-b28xp_default_98b3a73c-c524-4738-9dc9-085a7fb18076_0"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_usage_seconds_total",
+        "type": "counter",
+        "description": "Cumulative cpu time consumed in seconds."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "cpu=0",
+        "label": "cpu",
+        "value": "0"
+      }
+    }
+  ]
+]

@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "APIs in the ts-user-service",
+      "API"
+    ],
+    [
+      "highest average latency",
+      "API"
+    ]
+  ],
+  "response_text": "[(\"APIs in the ts-user-service\", \"API\"), (\"highest average latency\", \"API\")]"
+}

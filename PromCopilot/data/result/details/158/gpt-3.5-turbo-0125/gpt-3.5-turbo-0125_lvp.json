@@ -1,0 +1,26 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_memory_max_usage_bytes",
+        "type": "gauge",
+        "description": "Maximum memory usage recorded in bytes"
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "name=k8s_ts-cancel-service_ts-cancel-service-74d57dff8d-dz4hz_default_471674ba-a87b-44a5-8437-564cb015d0d6_0",
+        "label": "name",
+        "value": "k8s_ts-cancel-service_ts-cancel-service-74d57dff8d-dz4hz_default_471674ba-a87b-44a5-8437-564cb015d0d6_0"
+      }
+    }
+  ]
+]

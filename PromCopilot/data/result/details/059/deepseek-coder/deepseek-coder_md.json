@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "amount of memory mapped bytes",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"amount of memory mapped bytes\", \"node\")]"
+}

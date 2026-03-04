@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "number of times the delivery service requested access to the ts database",
+      "service"
+    ]
+  ],
+  "response_text": "[(\"number of times the delivery service requested access to the ts database\", \"service\")]"
+}

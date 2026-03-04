@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "number of memory allocation failures",
+      "pod"
+    ],
+    [
+      "called by the ts-execute-service",
+      "service"
+    ]
+  ],
+  "response_text": "[(\"number of memory allocation failures\", \"pod\"), (\"called by the ts-execute-service\", \"service\")]"
+}

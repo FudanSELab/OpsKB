@@ -1,0 +1,50 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "traces_spanmetrics_latency_bucket",
+        "type": "histogram",
+        "description": "The distribution of latencies across spans for operations associated with the application's API."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "le=+Inf",
+        "label": "le",
+        "value": "+Inf"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "traces_spanmetrics_latency_bucket",
+        "type": "histogram",
+        "description": "The distribution of latencies across spans for operations associated with the application's API."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "le=+Inf",
+        "label": "le",
+        "value": "+Inf"
+      }
+    }
+  ]
+]

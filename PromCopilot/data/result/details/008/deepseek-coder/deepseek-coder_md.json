@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "highest amount of inactive anonymous memory",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"highest amount of inactive anonymous memory\", \"node\")]"
+}

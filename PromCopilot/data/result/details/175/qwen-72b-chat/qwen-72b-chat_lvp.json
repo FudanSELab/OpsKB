@@ -1,0 +1,74 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_memory_cache",
+        "type": "gauge",
+        "description": "Number of bytes of page cache memory."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "name=k8s_ts-train-food-service_ts-train-food-service-6cc445bdd5-cgng6_default_c827ee67-e430-4e97-84ef-e4109b3b7239_0",
+        "label": "name",
+        "value": "k8s_ts-train-food-service_ts-train-food-service-6cc445bdd5-cgng6_default_c827ee67-e430-4e97-84ef-e4109b3b7239_0"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_memory_cache",
+        "type": "gauge",
+        "description": "Number of bytes of page cache memory."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-train-food-service",
+        "label": "container",
+        "value": "ts-train-food-service"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_memory_Cached_bytes",
+        "type": "gauge",
+        "description": "Memory information field Cached_bytes."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-train-food-service",
+        "label": "container",
+        "value": "ts-train-food-service"
+      }
+    }
+  ]
+]

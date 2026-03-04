@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "total number of restarts",
+      "pod"
+    ],
+    [
+      "upstream services",
+      "service"
+    ]
+  ],
+  "response_text": "[(\"total number of restarts\", \"pod\"), (\"upstream services\", \"service\")]"
+}

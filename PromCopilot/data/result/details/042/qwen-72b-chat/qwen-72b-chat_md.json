@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "transmission rate of bytes by the network interfaces",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"transmission rate of bytes by the network interfaces\", \"node\")]"
+}

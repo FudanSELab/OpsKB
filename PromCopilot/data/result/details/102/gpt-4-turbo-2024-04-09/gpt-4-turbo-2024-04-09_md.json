@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "average request duration over a 5-minute window",
+      "service"
+    ]
+  ],
+  "response_text": "[(\"average request duration over a 5-minute window\", \"service\")]"
+}

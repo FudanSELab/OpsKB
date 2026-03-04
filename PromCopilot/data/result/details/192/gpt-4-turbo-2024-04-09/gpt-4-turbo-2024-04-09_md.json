@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "free space less than 5 GB on the sda2 device",
+      "node"
+    ],
+    [
+      "average disk write speed that exceeds 10 MB/s",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"free space less than 5 GB on the sda2 device\", \"node\"), (\"average disk write speed that exceeds 10 MB/s\", \"node\")]"
+}

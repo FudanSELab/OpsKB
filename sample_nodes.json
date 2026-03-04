@@ -1,0 +1,32 @@
+[
+  {
+    "labels": ["entity", "探测类"],
+    "properties": {
+      "name": "PTZ-09",
+      "type": "探测类",
+      "功能描述": "光电红外云台探测设备"
+    }
+  },
+  {
+    "labels": ["entity", "系统类"],
+    "properties": {
+      "name": "ATC-Link",
+      "type": "空管设备类",
+      "功能描述": "空管联络通信设备"
+    }
+  },
+  {
+    "labels": ["model", "算法模型类"],
+    "properties": {
+      "name": "Trajectory-KF",
+      "type": "算法模型类",
+      "模型描述": "基于卡尔曼滤波的轨迹预测算法"
+    }
+  },
+  {
+    "labels": ["event", "关键资源失效类"],
+    "properties": {
+      "name": "机场进近高空闯入"
+    }
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "90th percentile of request durations",
+      "service"
+    ]
+  ],
+  "response_text": "[(\"90th percentile of request durations\", \"service\")]"
+}

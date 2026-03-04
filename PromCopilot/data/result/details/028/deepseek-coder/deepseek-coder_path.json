@@ -1,0 +1,4046 @@
+{
+  "query": "Identify the top 5 containers on node k8s-node1 in the obs namespace that hit the most memory usage limits in the past hour, and report their total number of hits.",
+  "meta_paths": [
+    [
+      [
+        "namespace",
+        "obs"
+      ],
+      [
+        "encapsulates",
+        "->"
+      ],
+      [
+        "pod",
+        "?"
+      ],
+      [
+        "hosts",
+        "<-"
+      ],
+      [
+        "node",
+        "k8s-node1"
+      ]
+    ],
+    [
+      [
+        "namespace",
+        "obs"
+      ],
+      [
+        "encapsulates",
+        "->"
+      ],
+      [
+        "pod",
+        "?"
+      ],
+      [
+        "contains",
+        "->"
+      ],
+      [
+        "container",
+        "?"
+      ]
+    ]
+  ],
+  "desc_entities": {
+    "('namespace', 'obs')": [
+      {
+        "_index": "namespace",
+        "_id": "Qz5Nx5IB_Vubjq2t4eri",
+        "_score": 2.2524977,
+        "_source": {
+          "name": "obs"
+        }
+      }
+    ],
+    "('node', 'k8s-node1')": [
+      {
+        "_index": "node",
+        "_id": "Rj5Nx5IB_Vubjq2t4uoG",
+        "_score": 1.614553,
+        "_source": {
+          "name": "k8s-node1",
+          "ip": "10.176.122.151"
+        }
+      }
+    ]
+  },
+  "extracted_meta_paths": [
+    [
+      [
+        "namespace",
+        "obs"
+      ],
+      [
+        "encapsulates",
+        "->"
+      ],
+      [
+        "pod",
+        "?"
+      ],
+      [
+        "hosts",
+        "<-"
+      ],
+      [
+        "node",
+        "k8s-node1"
+      ]
+    ],
+    [
+      [
+        "namespace",
+        "obs"
+      ],
+      [
+        "encapsulates",
+        "->"
+      ],
+      [
+        "pod",
+        "?"
+      ],
+      [
+        "contains",
+        "->"
+      ],
+      [
+        "container",
+        "?"
+      ]
+    ]
+  ],
+  "filtered_kg_paths": [
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "loki-promtail-jsf7b",
+          "ip": "10.244.1.33"
+        }
+      },
+      {
+        "type": "hosts",
+        "start_node_type": "node",
+        "end_node_type": "pod",
+        "reverse": true
+      },
+      {
+        "type": "node",
+        "properties": {
+          "name": "k8s-node1",
+          "ip": "10.176.122.151"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "prometheus-prometheus-node-exporter-zv29v",
+          "ip": "10.176.122.151"
+        }
+      },
+      {
+        "type": "hosts",
+        "start_node_type": "node",
+        "end_node_type": "pod",
+        "reverse": true
+      },
+      {
+        "type": "node",
+        "properties": {
+          "name": "k8s-node1",
+          "ip": "10.176.122.151"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "otelcol-opentelemetry-collector-84d9789ddb-dh77j",
+          "ip": "10.244.1.3"
+        }
+      },
+      {
+        "type": "hosts",
+        "start_node_type": "node",
+        "end_node_type": "pod",
+        "reverse": true
+      },
+      {
+        "type": "node",
+        "properties": {
+          "name": "k8s-node1",
+          "ip": "10.176.122.151"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "tempo-0",
+          "ip": "10.244.1.58"
+        }
+      },
+      {
+        "type": "hosts",
+        "start_node_type": "node",
+        "end_node_type": "pod",
+        "reverse": true
+      },
+      {
+        "type": "node",
+        "properties": {
+          "name": "k8s-node1",
+          "ip": "10.176.122.151"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "prometheus-prometheus-kube-prometheus-prometheus-0",
+          "ip": "10.244.2.66"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "prometheus",
+          "id": "docker://bc4bc389b46a3d0887935898d9e57b155993f38d23ea4671464b1d08169fa371"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "prometheus-prometheus-kube-prometheus-prometheus-0",
+          "ip": "10.244.2.66"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "config-reloader",
+          "id": "docker://009b7e86b6f5960f3355373ad8fd3706d09f7d3c2a5e9b6e43f661ca391209e2"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "otelcol-opentelemetry-collector-84d9789ddb-phrkl",
+          "ip": "10.244.2.4"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "opentelemetry-collector",
+          "id": "docker://e40ff7d853435dd82e06b643910655dce621fcf93286d4574cc6f2493fa0d5af"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "loki-promtail-jsf7b",
+          "ip": "10.244.1.33"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "promtail",
+          "id": "docker://9b99632bf94b400d5f75d1823185b134ed4e8464e999d297d192de48797c5492"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "otelcol-opentelemetry-collector-84d9789ddb-2s6tt",
+          "ip": "10.244.5.4"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "opentelemetry-collector",
+          "id": "docker://f1923473ebcc138b5826075f3801e3ea0e066d1bb404ebd7988b8febea18e065"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "prometheus-prometheus-node-exporter-h4zj5",
+          "ip": "10.176.122.162"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "node-exporter",
+          "id": "docker://3d4474bf2ebf1f06a9a913424ae35ed402e6eb86d22a4508b3f0c40fd4031457"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "prometheus-prometheus-node-exporter-zv29v",
+          "ip": "10.176.122.151"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "node-exporter",
+          "id": "docker://5375b779297aaa6973c6777952a379fbed8050184a8d2b660bd1792898e06026"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "prometheus-prometheus-node-exporter-qp66q",
+          "ip": "10.176.122.152"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "node-exporter",
+          "id": "docker://bc55ca8881d488f07f36d29c3c237cdaaa280725825b1caca8fbc70104583c4e"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "prometheus-prometheus-node-exporter-g5ds2",
+          "ip": "10.176.122.161"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "node-exporter",
+          "id": "docker://b7bfc0aa9888a13916ffd45ee6cf79fb409e0cf775d233b6b2bc9fa051e1f10d"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "otelcol-opentelemetry-collector-84d9789ddb-dh77j",
+          "ip": "10.244.1.3"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "opentelemetry-collector",
+          "id": "docker://521c7157db259e326867b15dec348668689bb52c57f53fca65a245f5ec3fd29d"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "prometheus-prometheus-node-exporter-6gwxh",
+          "ip": "10.176.122.154"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "node-exporter",
+          "id": "docker://6347e5d26932281b186471a4df34a7408f9319116acfa0e52ce45130967c01b7"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "otelcol-opentelemetry-collector-84d9789ddb-8ghcp",
+          "ip": "10.244.5.3"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "opentelemetry-collector",
+          "id": "docker://17d11537c72f065fd28c6b345746eeb662b109de1fb927f662f700737662bfcd"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "alertmanager-prometheus-kube-prometheus-alertmanager-0",
+          "ip": "10.244.3.35"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "alertmanager",
+          "id": "docker://bd386b3c4033cd9b98fbdc1591ec326606b98202d9422d44cf1c9b22ec694af2"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "alertmanager-prometheus-kube-prometheus-alertmanager-0",
+          "ip": "10.244.3.35"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "config-reloader",
+          "id": "docker://28ea6f5c2565a39471fd7722cb226cb80a422a10b903bddcdc52853d50b82ba3"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "tempo-0",
+          "ip": "10.244.1.58"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "tempo",
+          "id": "docker://9853ad57f4d76a0fe7b87bc177cbbdf71a5b158d423c80197152e61d5565a84e"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "tempo-0",
+          "ip": "10.244.1.58"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "tempo-query",
+          "id": "docker://a9c73ea4944355187118a14d92639048c605daf6c4e96506d3d0f0210d3bdedf"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "prometheus-prometheus-node-exporter-ffb65",
+          "ip": "10.176.122.153"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "node-exporter",
+          "id": "docker://150f0d5c8c6199a6daaa81d4e91d7cd84d5a90ee81d4a75a10d3ed582a899fad"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "otelcol-opentelemetry-collector-84d9789ddb-bx8vq",
+          "ip": "10.244.3.3"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "opentelemetry-collector",
+          "id": "docker://a2a531b6d7dfdc8cc9c19e03a3ceb825747f0dfecbb3627ea04278d930c31152"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "loki-promtail-x2qwc",
+          "ip": "10.244.3.32"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "promtail",
+          "id": "docker://95a813f6ff3f2ebd4ded3fdd189a4369b0d27e540bc9ad174fe68228df318c4d"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "loki-promtail-sl5mq",
+          "ip": "10.244.5.23"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "promtail",
+          "id": "docker://5e2dc00236b934f638c8b85102df69707b676a62f35276637d31cd84855f112e"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "loki-promtail-z5x7x",
+          "ip": "10.244.2.35"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "promtail",
+          "id": "docker://3b208bc15490b3a91b3b805c06ef495928c1f86cf00a6ca869446676a796a513"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "prometheus-kube-prometheus-operator-bbb4b878f-dmjgq",
+          "ip": "10.244.3.34"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "kube-prometheus-stack",
+          "id": "docker://981622523af7e3669d69c18e890eeb695770c82bf3ddf7529e6d4120d3b9cdba"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "loki-promtail-zfhsm",
+          "ip": "10.244.4.23"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "promtail",
+          "id": "docker://c66e562efb5457c1dbcf1cbb888c2e1cdc3e98d691ba6676a22e37fbefd7c53d"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "otelcol-opentelemetry-collector-84d9789ddb-hgdq5",
+          "ip": "10.244.2.3"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "opentelemetry-collector",
+          "id": "docker://bf834559bb1190702e48e54ac76d005c0509a847989b6fb4e8b5e9526debc5b5"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "loki-promtail-zc75c",
+          "ip": "10.244.0.4"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "promtail",
+          "id": "docker://de4554724a3e45af6b76f73de790e278588a0cc252a426a87678e6d51042cb23"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "prometheus-kube-state-metrics-6dd9d4d94f-pm8k4",
+          "ip": "10.244.5.24"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "kube-state-metrics",
+          "id": "docker://610fb37aeba18afc8376ba8bd49ef33b38be7638822344081df608434a799413"
+        }
+      }
+    ],
+    [
+      {
+        "type": "namespace",
+        "properties": {
+          "name": "obs"
+        }
+      },
+      {
+        "type": "encapsulates",
+        "start_node_type": "namespace",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "loki-0",
+          "ip": "10.244.4.22"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "loki",
+          "id": "docker://01b1d6b94ef36e51f87e7be88e9585e71c6757f45f844deb34b46b4fa4b0b9cb"
+        }
+      }
+    ]
+  ],
+  "kg_paths": [
+    [
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-kube-prometheus-prometheus-0",
+            "ip": "10.244.2.66"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-phrkl",
+            "ip": "10.244.2.4"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-jsf7b",
+            "ip": "10.244.1.33"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-2s6tt",
+            "ip": "10.244.5.4"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-h4zj5",
+            "ip": "10.176.122.162"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-zv29v",
+            "ip": "10.176.122.151"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-qp66q",
+            "ip": "10.176.122.152"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-g5ds2",
+            "ip": "10.176.122.161"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-dh77j",
+            "ip": "10.244.1.3"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-6gwxh",
+            "ip": "10.176.122.154"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-8ghcp",
+            "ip": "10.244.5.3"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "alertmanager-prometheus-kube-prometheus-alertmanager-0",
+            "ip": "10.244.3.35"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "tempo-0",
+            "ip": "10.244.1.58"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-ffb65",
+            "ip": "10.176.122.153"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-bx8vq",
+            "ip": "10.244.3.3"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-x2qwc",
+            "ip": "10.244.3.32"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-sl5mq",
+            "ip": "10.244.5.23"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-z5x7x",
+            "ip": "10.244.2.35"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-kube-prometheus-operator-bbb4b878f-dmjgq",
+            "ip": "10.244.3.34"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-zfhsm",
+            "ip": "10.244.4.23"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-hgdq5",
+            "ip": "10.244.2.3"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-zc75c",
+            "ip": "10.244.0.4"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-kube-state-metrics-6dd9d4d94f-pm8k4",
+            "ip": "10.244.5.24"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-0",
+            "ip": "10.244.4.22"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-kube-prometheus-prometheus-0",
+            "ip": "10.244.2.66"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node2",
+            "ip": "10.176.122.152"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-phrkl",
+            "ip": "10.244.2.4"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node2",
+            "ip": "10.176.122.152"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-jsf7b",
+            "ip": "10.244.1.33"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-2s6tt",
+            "ip": "10.244.5.4"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node3",
+            "ip": "10.176.122.153"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-h4zj5",
+            "ip": "10.176.122.162"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node5",
+            "ip": "10.176.122.162"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-zv29v",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-qp66q",
+            "ip": "10.176.122.152"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node2",
+            "ip": "10.176.122.152"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-g5ds2",
+            "ip": "10.176.122.161"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node4",
+            "ip": "10.176.122.161"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-dh77j",
+            "ip": "10.244.1.3"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-6gwxh",
+            "ip": "10.176.122.154"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-master",
+            "ip": "10.176.122.154"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-8ghcp",
+            "ip": "10.244.5.3"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node3",
+            "ip": "10.176.122.153"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "alertmanager-prometheus-kube-prometheus-alertmanager-0",
+            "ip": "10.244.3.35"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node4",
+            "ip": "10.176.122.161"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "tempo-0",
+            "ip": "10.244.1.58"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-ffb65",
+            "ip": "10.176.122.153"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node3",
+            "ip": "10.176.122.153"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-bx8vq",
+            "ip": "10.244.3.3"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node4",
+            "ip": "10.176.122.161"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-x2qwc",
+            "ip": "10.244.3.32"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node4",
+            "ip": "10.176.122.161"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-sl5mq",
+            "ip": "10.244.5.23"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node3",
+            "ip": "10.176.122.153"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-z5x7x",
+            "ip": "10.244.2.35"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node2",
+            "ip": "10.176.122.152"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-kube-prometheus-operator-bbb4b878f-dmjgq",
+            "ip": "10.244.3.34"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node4",
+            "ip": "10.176.122.161"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-zfhsm",
+            "ip": "10.244.4.23"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node5",
+            "ip": "10.176.122.162"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-hgdq5",
+            "ip": "10.244.2.3"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node2",
+            "ip": "10.176.122.152"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-zc75c",
+            "ip": "10.244.0.4"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-master",
+            "ip": "10.176.122.154"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-kube-state-metrics-6dd9d4d94f-pm8k4",
+            "ip": "10.244.5.24"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node3",
+            "ip": "10.176.122.153"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-0",
+            "ip": "10.244.4.22"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": true
+        },
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node5",
+            "ip": "10.176.122.162"
+          }
+        }
+      ]
+    ],
+    [
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-kube-prometheus-prometheus-0",
+            "ip": "10.244.2.66"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-phrkl",
+            "ip": "10.244.2.4"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-jsf7b",
+            "ip": "10.244.1.33"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-2s6tt",
+            "ip": "10.244.5.4"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-h4zj5",
+            "ip": "10.176.122.162"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-zv29v",
+            "ip": "10.176.122.151"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-qp66q",
+            "ip": "10.176.122.152"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-g5ds2",
+            "ip": "10.176.122.161"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-dh77j",
+            "ip": "10.244.1.3"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-6gwxh",
+            "ip": "10.176.122.154"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-8ghcp",
+            "ip": "10.244.5.3"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "alertmanager-prometheus-kube-prometheus-alertmanager-0",
+            "ip": "10.244.3.35"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "tempo-0",
+            "ip": "10.244.1.58"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-ffb65",
+            "ip": "10.176.122.153"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-bx8vq",
+            "ip": "10.244.3.3"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-x2qwc",
+            "ip": "10.244.3.32"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-sl5mq",
+            "ip": "10.244.5.23"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-z5x7x",
+            "ip": "10.244.2.35"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-kube-prometheus-operator-bbb4b878f-dmjgq",
+            "ip": "10.244.3.34"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-zfhsm",
+            "ip": "10.244.4.23"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-hgdq5",
+            "ip": "10.244.2.3"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-zc75c",
+            "ip": "10.244.0.4"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-kube-state-metrics-6dd9d4d94f-pm8k4",
+            "ip": "10.244.5.24"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-0",
+            "ip": "10.244.4.22"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-kube-prometheus-prometheus-0",
+            "ip": "10.244.2.66"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "prometheus",
+            "id": "docker://bc4bc389b46a3d0887935898d9e57b155993f38d23ea4671464b1d08169fa371"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-kube-prometheus-prometheus-0",
+            "ip": "10.244.2.66"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "config-reloader",
+            "id": "docker://009b7e86b6f5960f3355373ad8fd3706d09f7d3c2a5e9b6e43f661ca391209e2"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-phrkl",
+            "ip": "10.244.2.4"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "opentelemetry-collector",
+            "id": "docker://e40ff7d853435dd82e06b643910655dce621fcf93286d4574cc6f2493fa0d5af"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-jsf7b",
+            "ip": "10.244.1.33"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "promtail",
+            "id": "docker://9b99632bf94b400d5f75d1823185b134ed4e8464e999d297d192de48797c5492"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-2s6tt",
+            "ip": "10.244.5.4"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "opentelemetry-collector",
+            "id": "docker://f1923473ebcc138b5826075f3801e3ea0e066d1bb404ebd7988b8febea18e065"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-h4zj5",
+            "ip": "10.176.122.162"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "node-exporter",
+            "id": "docker://3d4474bf2ebf1f06a9a913424ae35ed402e6eb86d22a4508b3f0c40fd4031457"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-zv29v",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "node-exporter",
+            "id": "docker://5375b779297aaa6973c6777952a379fbed8050184a8d2b660bd1792898e06026"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-qp66q",
+            "ip": "10.176.122.152"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "node-exporter",
+            "id": "docker://bc55ca8881d488f07f36d29c3c237cdaaa280725825b1caca8fbc70104583c4e"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-g5ds2",
+            "ip": "10.176.122.161"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "node-exporter",
+            "id": "docker://b7bfc0aa9888a13916ffd45ee6cf79fb409e0cf775d233b6b2bc9fa051e1f10d"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-dh77j",
+            "ip": "10.244.1.3"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "opentelemetry-collector",
+            "id": "docker://521c7157db259e326867b15dec348668689bb52c57f53fca65a245f5ec3fd29d"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-6gwxh",
+            "ip": "10.176.122.154"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "node-exporter",
+            "id": "docker://6347e5d26932281b186471a4df34a7408f9319116acfa0e52ce45130967c01b7"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-8ghcp",
+            "ip": "10.244.5.3"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "opentelemetry-collector",
+            "id": "docker://17d11537c72f065fd28c6b345746eeb662b109de1fb927f662f700737662bfcd"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "alertmanager-prometheus-kube-prometheus-alertmanager-0",
+            "ip": "10.244.3.35"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "alertmanager",
+            "id": "docker://bd386b3c4033cd9b98fbdc1591ec326606b98202d9422d44cf1c9b22ec694af2"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "alertmanager-prometheus-kube-prometheus-alertmanager-0",
+            "ip": "10.244.3.35"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "config-reloader",
+            "id": "docker://28ea6f5c2565a39471fd7722cb226cb80a422a10b903bddcdc52853d50b82ba3"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "tempo-0",
+            "ip": "10.244.1.58"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "tempo",
+            "id": "docker://9853ad57f4d76a0fe7b87bc177cbbdf71a5b158d423c80197152e61d5565a84e"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "tempo-0",
+            "ip": "10.244.1.58"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "tempo-query",
+            "id": "docker://a9c73ea4944355187118a14d92639048c605daf6c4e96506d3d0f0210d3bdedf"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-ffb65",
+            "ip": "10.176.122.153"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "node-exporter",
+            "id": "docker://150f0d5c8c6199a6daaa81d4e91d7cd84d5a90ee81d4a75a10d3ed582a899fad"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-bx8vq",
+            "ip": "10.244.3.3"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "opentelemetry-collector",
+            "id": "docker://a2a531b6d7dfdc8cc9c19e03a3ceb825747f0dfecbb3627ea04278d930c31152"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-x2qwc",
+            "ip": "10.244.3.32"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "promtail",
+            "id": "docker://95a813f6ff3f2ebd4ded3fdd189a4369b0d27e540bc9ad174fe68228df318c4d"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-sl5mq",
+            "ip": "10.244.5.23"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "promtail",
+            "id": "docker://5e2dc00236b934f638c8b85102df69707b676a62f35276637d31cd84855f112e"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-z5x7x",
+            "ip": "10.244.2.35"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "promtail",
+            "id": "docker://3b208bc15490b3a91b3b805c06ef495928c1f86cf00a6ca869446676a796a513"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-kube-prometheus-operator-bbb4b878f-dmjgq",
+            "ip": "10.244.3.34"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "kube-prometheus-stack",
+            "id": "docker://981622523af7e3669d69c18e890eeb695770c82bf3ddf7529e6d4120d3b9cdba"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-zfhsm",
+            "ip": "10.244.4.23"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "promtail",
+            "id": "docker://c66e562efb5457c1dbcf1cbb888c2e1cdc3e98d691ba6676a22e37fbefd7c53d"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-hgdq5",
+            "ip": "10.244.2.3"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "opentelemetry-collector",
+            "id": "docker://bf834559bb1190702e48e54ac76d005c0509a847989b6fb4e8b5e9526debc5b5"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-zc75c",
+            "ip": "10.244.0.4"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "promtail",
+            "id": "docker://de4554724a3e45af6b76f73de790e278588a0cc252a426a87678e6d51042cb23"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-kube-state-metrics-6dd9d4d94f-pm8k4",
+            "ip": "10.244.5.24"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "kube-state-metrics",
+            "id": "docker://610fb37aeba18afc8376ba8bd49ef33b38be7638822344081df608434a799413"
+          }
+        }
+      ],
+      [
+        {
+          "type": "namespace",
+          "properties": {
+            "name": "obs"
+          }
+        },
+        {
+          "type": "encapsulates",
+          "start_node_type": "namespace",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-0",
+            "ip": "10.244.4.22"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "loki",
+            "id": "docker://01b1d6b94ef36e51f87e7be88e9585e71c6757f45f844deb34b46b4fa4b0b9cb"
+          }
+        }
+      ]
+    ]
+  ],
+  "expand_details": [
+    {
+      "cypher": "MATCH (start:namespace {name: 'obs'})\nCALL apoc.path.expandConfig(start, {\n    sequence: 'namespace,encapsulates,pod,hosts,node',\n    minLevel: 0,\n    maxLevel: 2,\n    bfs: true\n})\nYIELD path\nRETURN path, length(path) AS hops\nORDER BY hops;",
+      "meta_path": [
+        [
+          "namespace",
+          "obs"
+        ],
+        [
+          "encapsulates",
+          "->"
+        ],
+        [
+          "pod",
+          "?"
+        ],
+        [
+          "hosts",
+          "<-"
+        ],
+        [
+          "node",
+          "k8s-node1"
+        ]
+      ]
+    },
+    {
+      "cypher": "MATCH (start:namespace {name: 'obs'})\nCALL apoc.path.expandConfig(start, {\n    sequence: 'namespace,encapsulates,pod,contains,container',\n    minLevel: 0,\n    maxLevel: 2,\n    bfs: true\n})\nYIELD path\nRETURN path, length(path) AS hops\nORDER BY hops;",
+      "meta_path": [
+        [
+          "namespace",
+          "obs"
+        ],
+        [
+          "encapsulates",
+          "->"
+        ],
+        [
+          "pod",
+          "?"
+        ],
+        [
+          "contains",
+          "->"
+        ],
+        [
+          "container",
+          "?"
+        ]
+      ]
+    }
+  ],
+  "details": {
+    "extracted_text": "- (namespace: obs) --encapsulates-> (pod: ?) <-hosts-- (node: k8s-node1)\n- (namespace: obs) --encapsulates-> (pod: ?) --contains-> (container: ?)",
+    "response_text": "Step 1. Think step by step:\n- First, identify the pods in the \"obs\" namespace that are hosted on the node \"k8s-node1\". This involves constructing a meta-path that connects the namespace to its pods on a specific node: (namespace: obs) --encapsulates-> (pod: ?) <-hosts-- (node: k8s-node1), where \"?\" signifies the unknown pod names.\n- Next, we aim to identify containers within these specific pods. This requires an additional meta-path that describes the relationship between pods and their contained containers: (namespace: obs) --encapsulates-> (pod: ?) --contains-> (container: ?).\nStep 2. meta-path list:\n```\n- (namespace: obs) --encapsulates-> (pod: ?) <-hosts-- (node: k8s-node1)\n- (namespace: obs) --encapsulates-> (pod: ?) --contains-> (container: ?)\n```",
+    "model": "deepseek-coder",
+    "temperature": 0.3,
+    "messages": [
+      {
+        "role": "system",
+        "content": "Task Description:\nThis task aims to utilize the knowledge graph to obtain relevant domain knowledge to generate a Prometheus Query Language (PromQL) corresponding to a question. Please based on the given knowledge graph schema (including an entity list and a relationship list), analyze the entities contained in the provided question and the relationships between them, and generate meta-paths to represent them to help retrieve the domain knowledge from the knowledge graph to answer the question.\n\nKnowledge Graph Schema:\n1. Entity List:\n- container: A docker container, managed within Kubernetes.\n- deployment: A Kubernetes resource for managing automated deployment.\n- namespace: A Kubernetes feature that partitions cluster resources.\n- node: A worker machine in Kubernetes that hosts Pods.\n- pod: The smallest deployable unit in Kubernetes, containing one or more containers.\n- replicaset: A Kubernetes resource for managing a specified number of pod replicas.\n- service: A Kubernetes abstraction that defines a set of Pods and policies for accessing them.\n- api: An interface of a service, designed to provide functionalities to other services within the system.\n- statefulset: A Kubernetes resource for managing stateful Pods in Kubernetes.\n2. Relationship List:\n- node--hosts->pod: A node hosts multiple pods.\n- namespace--encapsulates->deployment: A namespace encapsulates multiple deployments.\n- namespace--encapsulates->pod: A namespace encapsulates multiple pods.\n- namespace--encapsulates->replicaset: A namespace encapsulates multiple replicasets.\n- namespace--encapsulates->service: A namespace encapsulates multiple services.\n- namespace--encapsulates->statefulset: A namespace encapsulates multiple statefulsets.\n- replicaset--manages->pod: A replicaset manages multiple pods.\n- deployment--controls->replicaset: A deployment controls one or more replicasets.\n- statefulset--manages->pod: A statefulset manages multiple pods.\n- pod--contains->container: A pod contains one or more containers.\n- service--requests->service: A service sends requests to other services in order to fulfill its operations or to obtain necessary data for processing.\n- service--targets->pod: A service targets one or more pods.\n- service--provides->api: A service provides multiple APIs, each offering different functionalities.\n- api--calls->api: An API calls other APIs during execution.\n\nInstructions:\nStep 1. Analyze the query to identify the necessary entities and relationships, and construct meta-paths that logically connect these based on the provided schema, in order to explore the knowledge in the knowledge graph needed to answer the query.\nStep 2. Merge any paths that can be combined from the results of the Step 1 analysis. List each meta-path clearly, indicating the involved entities and their relationships.\n\nMeta-Path Formats:\n1. Meta-paths are formatted as sequences of entities connected by relationships. In some instances, a meta-path may consist only of a single entity. These paths map out routes in the knowledge graph to locate and extract relevant data.\n2. Each entity is defined by its type and either specified by a description from the query or denoted by a placeholder ('?'). The placeholder '?' indicates that the information for that entity is unknown and requires further exploration within the knowledge graph.\n3. Relationships are directional, marked by arrows.\n\nNotes:\n1. You should not invent or fabricate entities or relationships that do not exist in the given Knowledge Graph Schema.\n2. The extracted entity description should specifically refer to a single, distinct entity within the knowledge graph.\n3. The description of the first entity in each meta-path should not be a question mark placeholder ('?')."
+      },
+      {
+        "role": "user",
+        "content": "Query: Show the total memory allocation for the pods of the admin user service on node k8s-node3 or k8s-node4 over the last hour."
+      },
+      {
+        "role": "assistant",
+        "content": "Step 1. Think step by step:\n- We need to know which pods of the admin user service are on either of the specified nodes, \"k8s-node3\" or \"k8s-node4\". To obtain this information, according to the given knowledge graph schema, we can construct two meta-paths to explore the knowledge graph: (service: admin user service) --targets-> (pod: ?) <-hosts-- (node: k8s-node3) and (service: admin user service) --targets-> (pod: ?) <-hosts-- (node: k8s-node4). Here, the names of the pods are unknown, so we use a question mark (?) to indicate this.\nStep 2. meta-path list:\n```\n- (service: admin user service) --targets-> (pod: ?) <-hosts-- (node: k8s-node3)\n- (service: admin user service) --targets-> (pod: ?) <-hosts-- (node: k8s-node4)\n```"
+      },
+      {
+        "role": "user",
+        "content": "Query: What are the memory limits and usage values for the top three memory consuming containers in the food delivery service on node k8s-node4?"
+      },
+      {
+        "role": "assistant",
+        "content": "Step 1. Think step by step:\n- First, we need to determine which pods are part of the \"food delivery service\" and hosted on the node \"k8s-node4\". This involves constructing a meta-path that connects the service to its pods on a specific node: (service: food delivery service) --targets-> (pod: ?) <-hosts-- (node: k8s-node4), where \"?\" signifies the unknown pod names.\n- Next, we aim to identify containers within these specific pods. This requires an additional meta-path that describes the relationship between pods and their contained containers: (service: food delivery service) --targets-> (pod: ?) --contains-> (container: ?).\nStep 2. meta-path list:\n```\n- (service: food delivery service) --targets-> (pod: ?) <-hosts-- (node: k8s-node4)\n- (service: food delivery service) --targets-> (pod: ?) --contains-> (container: ?)\n```"
+      },
+      {
+        "role": "user",
+        "content": "Query: Calculate the sum of the number of Inodes for all pods of the service that has the API for creating new stations."
+      },
+      {
+        "role": "assistant",
+        "content": "Step 1. Think step by step:\n- First, identify the service that provides the API for creating new stations. This involves a meta-path that connects the specific API to its service: (api: API for creating new stations) <-provides-- (service: ?). The \"?\" represents the unknown service that offers this specific API.\n- Next, determine which pods are part of this service. This requires extending the meta-path to include the pods targeted by this service: (service: ?) --targets-> (pod: ?).\nStep 2. meta-path list:\n```\n- (api: API for creating new stations) <-provides-- (service: ?) --targets-> (pod: ?)\n```"
+      },
+      {
+        "role": "user",
+        "content": "Query: Show the total disk I/O operations for all pods of services that call the ts-rebook-service in the last hour."
+      },
+      {
+        "role": "assistant",
+        "content": "Step 1. Think step by step:\n- We need to identify which services are making requests to the \"ts-rebook-service\". This involves creating a meta-path to show the interaction between services: (service: ts-rebook-service) <-requests-- (service: ?), where \"?\" represents the unknown services that are dependent on or interact with the \"ts-rebook-service\". We also need to establish which pods are targeted by these services. This requires an extension of the previous meta-path to include pods: (service: ?) --targets-> (pod: ?), with \"?\" indicating unknown pod names that are part of the services making requests to \"ts-rebook-service\".\nStep 2. meta-path list:\n```\n- (service: ts-rebook-service) <-requests-- (service: ?) --targets-> (pod: ?)\n```"
+      },
+      {
+        "role": "user",
+        "content": "Query: Calculate the average CPU usage for all nodes hosting the order service over the last week."
+      },
+      {
+        "role": "assistant",
+        "content": "Step 1. Think step by step:\n- We need to identify which nodes are hosting the pods of the \"order service\". This involves using a meta-path that connects the service to its pods and then identifies the nodes hosting these pods: (service: order service) --targets-> (pod: ?) <-hosts-- (node: ?), where \"?\" represents unknown pod names and the nodes they are hosted on.\nStep 2. meta-path list:\n```\n- (service: order service) --targets-> (pod: ?) <-hosts-- (node: ?)\n```"
+      },
+      {
+        "role": "user",
+        "content": "Query: Identify the top 5 containers on node k8s-node1 in the obs namespace that hit the most memory usage limits in the past hour, and report their total number of hits."
+      }
+    ]
+  }
+}

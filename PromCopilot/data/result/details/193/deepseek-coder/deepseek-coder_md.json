@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "time spent on filesystem write operations",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"time spent on filesystem write operations\", \"container\")]"
+}

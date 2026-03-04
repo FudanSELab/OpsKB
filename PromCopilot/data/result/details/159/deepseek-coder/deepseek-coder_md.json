@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "write operations completed",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"write operations completed\", \"container\")]"
+}

@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "current working set size of memory (in bytes)",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"current working set size of memory (in bytes)\", \"pod\")]"
+}

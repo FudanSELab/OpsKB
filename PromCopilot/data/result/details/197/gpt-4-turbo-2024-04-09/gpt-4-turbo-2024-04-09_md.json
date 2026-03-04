@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "average request duration as a client",
+      "service"
+    ],
+    [
+      "average request duration as a server",
+      "service"
+    ]
+  ],
+  "response_text": "[(\"average request duration as a client\", \"service\"), (\"average request duration as a server\", \"service\")]"
+}

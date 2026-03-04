@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "TCP sockets in the orphan state",
+      "node"
+    ],
+    [
+      "ratio of this number to that from one week ago",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"TCP sockets in the orphan state\", \"node\"), (\"ratio of this number to that from one week ago\", \"node\")]"
+}

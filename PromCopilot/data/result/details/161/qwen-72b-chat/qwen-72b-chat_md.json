@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "network transmission error rate",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"network transmission error rate\", \"container\")]"
+}

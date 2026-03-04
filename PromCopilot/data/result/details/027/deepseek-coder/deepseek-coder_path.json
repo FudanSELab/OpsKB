@@ -1,0 +1,1909 @@
+{
+  "query": "Based on the last hour's data, perform a linear prediction of the memory usage in bytes for the Tempo container on k8s-node1 over the next 15 minutes.",
+  "meta_paths": [
+    [
+      [
+        "node",
+        "k8s-node1"
+      ],
+      [
+        "hosts",
+        "->"
+      ],
+      [
+        "pod",
+        "?"
+      ],
+      [
+        "contains",
+        "->"
+      ],
+      [
+        "container",
+        "Tempo"
+      ]
+    ]
+  ],
+  "desc_entities": {
+    "('node', 'k8s-node1')": [
+      {
+        "_index": "node",
+        "_id": "Rj5Nx5IB_Vubjq2t4uoG",
+        "_score": 1.614553,
+        "_source": {
+          "name": "k8s-node1",
+          "ip": "10.176.122.151"
+        }
+      }
+    ],
+    "('container', 'Tempo')": [
+      {
+        "_index": "container",
+        "_id": "GT5Nx5IB_Vubjq2t29-f",
+        "_score": 5.591689,
+        "_source": {
+          "name": "tempo",
+          "id": "docker://9853ad57f4d76a0fe7b87bc177cbbdf71a5b158d423c80197152e61d5565a84e"
+        }
+      }
+    ]
+  },
+  "extracted_meta_paths": [
+    [
+      [
+        "node",
+        "k8s-node1"
+      ],
+      [
+        "hosts",
+        "->"
+      ],
+      [
+        "pod",
+        "?"
+      ],
+      [
+        "contains",
+        "->"
+      ],
+      [
+        "container",
+        "Tempo"
+      ]
+    ]
+  ],
+  "filtered_kg_paths": [
+    [
+      {
+        "type": "node",
+        "properties": {
+          "name": "k8s-node1",
+          "ip": "10.176.122.151"
+        }
+      },
+      {
+        "type": "hosts",
+        "start_node_type": "node",
+        "end_node_type": "pod",
+        "reverse": false
+      },
+      {
+        "type": "pod",
+        "properties": {
+          "name": "tempo-0",
+          "ip": "10.244.1.58"
+        }
+      },
+      {
+        "type": "contains",
+        "start_node_type": "pod",
+        "end_node_type": "container",
+        "reverse": false
+      },
+      {
+        "type": "container",
+        "properties": {
+          "name": "tempo",
+          "id": "docker://9853ad57f4d76a0fe7b87bc177cbbdf71a5b158d423c80197152e61d5565a84e"
+        }
+      }
+    ]
+  ],
+  "kg_paths": [
+    [
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-route-plan-service-55ffcdf865-hbkmh",
+            "ip": "10.244.1.51"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "nacosdb-mysql-2",
+            "ip": "10.244.1.34"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-admin-order-service-68f76f4775-pfq9j",
+            "ip": "10.244.1.36"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "kube-proxy-277dm",
+            "ip": "10.176.122.151"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-execute-service-76584dd465-c7628",
+            "ip": "10.244.1.42"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-dh77j",
+            "ip": "10.244.1.3"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-config-service-56756cd4b7-6hmbl",
+            "ip": "10.244.1.47"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-admin-basic-info-service-768df9d645-49bxh",
+            "ip": "10.244.1.35"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-admin-order-service-68f76f4775-r4tgh",
+            "ip": "10.244.1.37"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-basic-service-6f7d85c664-lkwnv",
+            "ip": "10.244.1.40"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-delivery-service-796698457f-zqrkr",
+            "ip": "10.244.1.43"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-jsf7b",
+            "ip": "10.244.1.33"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-route-plan-service-55ffcdf865-tpc98",
+            "ip": "10.244.1.49"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-preserve-service-f67995894-27flb",
+            "ip": "10.244.1.44"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "cert-manager-webhook-64d775b48f-vlmc9",
+            "ip": "10.244.1.2"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "kube-flannel-ds-6zgn6",
+            "ip": "10.176.122.151"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-seat-service-5b97bc9fb5-fj26r",
+            "ip": "10.244.1.50"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-payment-service-bcd86c6d7-lrq7v",
+            "ip": "10.244.1.45"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-delivery-service-796698457f-p6887",
+            "ip": "10.244.1.46"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-basic-service-6f7d85c664-p9vcx",
+            "ip": "10.244.1.38"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-contacts-service-7598b8f96f-qqxqm",
+            "ip": "10.244.1.48"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-news-service-867fc4cb4f-xd62r",
+            "ip": "10.244.1.41"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-station-food-service-b974d49f7-m82zg",
+            "ip": "10.244.1.52"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-travel-service-c598b7879-6mllj",
+            "ip": "10.244.1.53"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-zv29v",
+            "ip": "10.176.122.151"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-config-service-56756cd4b7-kxz4r",
+            "ip": "10.244.1.39"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "tempo-0",
+            "ip": "10.244.1.58"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-voucher-service-66786949b4-gldl5",
+            "ip": "10.244.1.54"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-route-plan-service-55ffcdf865-hbkmh",
+            "ip": "10.244.1.51"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "ts-route-plan-service",
+            "id": "docker://42f44b9a354c4beacb63c1c3867804b760ebfdf15529bfba2317cf01589634b9"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "nacosdb-mysql-2",
+            "ip": "10.244.1.34"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "xenon",
+            "id": "docker://5bb3d239e0d979c61599b77cf8fe0b9b0ca3f67c54b28e45a05c403e261d51db"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "nacosdb-mysql-2",
+            "ip": "10.244.1.34"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "mysql",
+            "id": "docker://5da4935e2e23308fe20eba87c180fb91fd91ba4b0c4e7323d643c2d822da4b0c"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "nacosdb-mysql-2",
+            "ip": "10.244.1.34"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "slowlog",
+            "id": "docker://b2f21914fc887db2546501a32e7a577c20ab40618ce51461f26ae35c5dee4953"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-admin-order-service-68f76f4775-pfq9j",
+            "ip": "10.244.1.36"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "ts-admin-order-service",
+            "id": "docker://714a60024f40629fee4ec70bb5bc90d18b09f40d385433c41c42c6d70c06f61b"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "kube-proxy-277dm",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "kube-proxy",
+            "id": "docker://1d272ea32098aaa82c1959b3e47ee7a623f488e336de5e0d128a1d6fcf9a19a6"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-execute-service-76584dd465-c7628",
+            "ip": "10.244.1.42"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "ts-execute-service",
+            "id": "docker://6f3552d32bd237bee78f5eb3fcb869802251088b49b5ba08496cbdf78f897476"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "otelcol-opentelemetry-collector-84d9789ddb-dh77j",
+            "ip": "10.244.1.3"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "opentelemetry-collector",
+            "id": "docker://521c7157db259e326867b15dec348668689bb52c57f53fca65a245f5ec3fd29d"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-config-service-56756cd4b7-6hmbl",
+            "ip": "10.244.1.47"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "ts-config-service",
+            "id": "docker://03b4ebc6bb4938af2e34735eee923fb42c8683eab0485c7e5a9ff462adf55de6"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-admin-basic-info-service-768df9d645-49bxh",
+            "ip": "10.244.1.35"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "ts-admin-basic-info-service",
+            "id": "docker://c7e0dd826319a69072b6f43dce3d8d9d02af1f9d423f175c6a8fd6efcdb66529"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-admin-order-service-68f76f4775-r4tgh",
+            "ip": "10.244.1.37"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "ts-admin-order-service",
+            "id": "docker://215bc1c73c172c7b93b509b2aba1a521b8f065999129a6bb06fef8ea906ed269"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-basic-service-6f7d85c664-lkwnv",
+            "ip": "10.244.1.40"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "ts-basic-service",
+            "id": "docker://296f8b19852beeabacf7241364a0510111a1ad80bfe017cc6eea24454db5ea54"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-delivery-service-796698457f-zqrkr",
+            "ip": "10.244.1.43"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "ts-delivery-service",
+            "id": "docker://a705fb654ed4d62716c7883c01f7c7d787330ba357704d453ce82b96a3242864"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "loki-promtail-jsf7b",
+            "ip": "10.244.1.33"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "promtail",
+            "id": "docker://9b99632bf94b400d5f75d1823185b134ed4e8464e999d297d192de48797c5492"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-route-plan-service-55ffcdf865-tpc98",
+            "ip": "10.244.1.49"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "ts-route-plan-service",
+            "id": "docker://fde587753c4134903d0a85639ff95941100bac5ff9bf5cc750b0c07a875eda38"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-preserve-service-f67995894-27flb",
+            "ip": "10.244.1.44"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "ts-preserve-service",
+            "id": "docker://1d424d78114fde384fe7847cd052367d1d23de805662fb84ac00547efbb7fd88"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "cert-manager-webhook-64d775b48f-vlmc9",
+            "ip": "10.244.1.2"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "cert-manager-webhook",
+            "id": "docker://bf0a98b79315b64374744362646e574000a67a07c2ccd85ec07253e36dee40f6"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "kube-flannel-ds-6zgn6",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "kube-flannel",
+            "id": "docker://eed04920b1d514ac022c9cecac6496203f8847489e84a7361713a40170af0c80"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-seat-service-5b97bc9fb5-fj26r",
+            "ip": "10.244.1.50"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "ts-seat-service",
+            "id": "docker://7d7906e4b0e72d3c603fb70c4ab52b4cda09878d12b1085f4a7b397828e5a378"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-payment-service-bcd86c6d7-lrq7v",
+            "ip": "10.244.1.45"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "ts-payment-service",
+            "id": "docker://7b1a626119c006f49556f1e4abcbe300ce3aa3138e98eed49008866bca8a2a02"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-delivery-service-796698457f-p6887",
+            "ip": "10.244.1.46"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "ts-delivery-service",
+            "id": "docker://5c3a667ef11b1da3e11cd75ca430aa771eee7a196d4483951e237cf0dcdacb1b"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-basic-service-6f7d85c664-p9vcx",
+            "ip": "10.244.1.38"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "ts-basic-service",
+            "id": "docker://43cc77591ef94e094779908670ef9c0548347f428661aabac2d3aa173f6beb2e"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-contacts-service-7598b8f96f-qqxqm",
+            "ip": "10.244.1.48"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "ts-contacts-service",
+            "id": "docker://ab870ee8e58ff493cb1be600d89e57258920ca02b335e324d82398523164f21b"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-news-service-867fc4cb4f-xd62r",
+            "ip": "10.244.1.41"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "ts-news-service",
+            "id": "docker://1fbec77e5a980f947fc9444d21d531ca428451a2cbc1b649cefd33bb0014e5ff"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-station-food-service-b974d49f7-m82zg",
+            "ip": "10.244.1.52"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "ts-station-food-service",
+            "id": "docker://e6e4e515f0ad51d2747abe5dc00d31547fa8841d5d96a62c5899f9413ffd75e4"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-travel-service-c598b7879-6mllj",
+            "ip": "10.244.1.53"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "ts-travel-service",
+            "id": "docker://85290b56f2bb82f75cb5df4c422e1e89a26ddb07eb04e28e810999534bcdcbdb"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "prometheus-prometheus-node-exporter-zv29v",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "node-exporter",
+            "id": "docker://5375b779297aaa6973c6777952a379fbed8050184a8d2b660bd1792898e06026"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-config-service-56756cd4b7-kxz4r",
+            "ip": "10.244.1.39"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "ts-config-service",
+            "id": "docker://ee87c1874e6e4a503abdd3fb31b0f3a3b2a638f5239811efc49ec72e469f5dc7"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "tempo-0",
+            "ip": "10.244.1.58"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "tempo",
+            "id": "docker://9853ad57f4d76a0fe7b87bc177cbbdf71a5b158d423c80197152e61d5565a84e"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "tempo-0",
+            "ip": "10.244.1.58"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "tempo-query",
+            "id": "docker://a9c73ea4944355187118a14d92639048c605daf6c4e96506d3d0f0210d3bdedf"
+          }
+        }
+      ],
+      [
+        {
+          "type": "node",
+          "properties": {
+            "name": "k8s-node1",
+            "ip": "10.176.122.151"
+          }
+        },
+        {
+          "type": "hosts",
+          "start_node_type": "node",
+          "end_node_type": "pod",
+          "reverse": false
+        },
+        {
+          "type": "pod",
+          "properties": {
+            "name": "ts-voucher-service-66786949b4-gldl5",
+            "ip": "10.244.1.54"
+          }
+        },
+        {
+          "type": "contains",
+          "start_node_type": "pod",
+          "end_node_type": "container",
+          "reverse": false
+        },
+        {
+          "type": "container",
+          "properties": {
+            "name": "ts-voucher-service",
+            "id": "docker://4cecc43eb9df396f7406d3300bef40d2d24eb30c68b8f803fde0157b0b22fe05"
+          }
+        }
+      ]
+    ]
+  ],
+  "expand_details": [
+    {
+      "cypher": "MATCH (start:node {name: 'k8s-node1'})\nCALL apoc.path.expandConfig(start, {\n    sequence: 'node,hosts,pod,contains,container',\n    minLevel: 0,\n    maxLevel: 2,\n    bfs: true\n})\nYIELD path\nRETURN path, length(path) AS hops\nORDER BY hops;",
+      "meta_path": [
+        [
+          "node",
+          "k8s-node1"
+        ],
+        [
+          "hosts",
+          "->"
+        ],
+        [
+          "pod",
+          "?"
+        ],
+        [
+          "contains",
+          "->"
+        ],
+        [
+          "container",
+          "Tempo"
+        ]
+      ]
+    }
+  ],
+  "details": {
+    "extracted_text": "- (node: k8s-node1) --hosts-> (pod: ?) --contains-> (container: Tempo)",
+    "response_text": "Step 1. Think step by step:\n- We need to identify the specific container named \"Tempo\" on the node \"k8s-node1\". This involves constructing a meta-path that connects the node to its hosted pods and then to the specific container within those pods: (node: k8s-node1) --hosts-> (pod: ?) --contains-> (container: Tempo), where \"?\" represents unknown pod names that host the \"Tempo\" container.\nStep 2. meta-path list:\n```\n- (node: k8s-node1) --hosts-> (pod: ?) --contains-> (container: Tempo)\n```",
+    "model": "deepseek-coder",
+    "temperature": 0.3,
+    "messages": [
+      {
+        "role": "system",
+        "content": "Task Description:\nThis task aims to utilize the knowledge graph to obtain relevant domain knowledge to generate a Prometheus Query Language (PromQL) corresponding to a question. Please based on the given knowledge graph schema (including an entity list and a relationship list), analyze the entities contained in the provided question and the relationships between them, and generate meta-paths to represent them to help retrieve the domain knowledge from the knowledge graph to answer the question.\n\nKnowledge Graph Schema:\n1. Entity List:\n- container: A docker container, managed within Kubernetes.\n- deployment: A Kubernetes resource for managing automated deployment.\n- namespace: A Kubernetes feature that partitions cluster resources.\n- node: A worker machine in Kubernetes that hosts Pods.\n- pod: The smallest deployable unit in Kubernetes, containing one or more containers.\n- replicaset: A Kubernetes resource for managing a specified number of pod replicas.\n- service: A Kubernetes abstraction that defines a set of Pods and policies for accessing them.\n- api: An interface of a service, designed to provide functionalities to other services within the system.\n- statefulset: A Kubernetes resource for managing stateful Pods in Kubernetes.\n2. Relationship List:\n- node--hosts->pod: A node hosts multiple pods.\n- namespace--encapsulates->deployment: A namespace encapsulates multiple deployments.\n- namespace--encapsulates->pod: A namespace encapsulates multiple pods.\n- namespace--encapsulates->replicaset: A namespace encapsulates multiple replicasets.\n- namespace--encapsulates->service: A namespace encapsulates multiple services.\n- namespace--encapsulates->statefulset: A namespace encapsulates multiple statefulsets.\n- replicaset--manages->pod: A replicaset manages multiple pods.\n- deployment--controls->replicaset: A deployment controls one or more replicasets.\n- statefulset--manages->pod: A statefulset manages multiple pods.\n- pod--contains->container: A pod contains one or more containers.\n- service--requests->service: A service sends requests to other services in order to fulfill its operations or to obtain necessary data for processing.\n- service--targets->pod: A service targets one or more pods.\n- service--provides->api: A service provides multiple APIs, each offering different functionalities.\n- api--calls->api: An API calls other APIs during execution.\n\nInstructions:\nStep 1. Analyze the query to identify the necessary entities and relationships, and construct meta-paths that logically connect these based on the provided schema, in order to explore the knowledge in the knowledge graph needed to answer the query.\nStep 2. Merge any paths that can be combined from the results of the Step 1 analysis. List each meta-path clearly, indicating the involved entities and their relationships.\n\nMeta-Path Formats:\n1. Meta-paths are formatted as sequences of entities connected by relationships. In some instances, a meta-path may consist only of a single entity. These paths map out routes in the knowledge graph to locate and extract relevant data.\n2. Each entity is defined by its type and either specified by a description from the query or denoted by a placeholder ('?'). The placeholder '?' indicates that the information for that entity is unknown and requires further exploration within the knowledge graph.\n3. Relationships are directional, marked by arrows.\n\nNotes:\n1. You should not invent or fabricate entities or relationships that do not exist in the given Knowledge Graph Schema.\n2. The extracted entity description should specifically refer to a single, distinct entity within the knowledge graph.\n3. The description of the first entity in each meta-path should not be a question mark placeholder ('?')."
+      },
+      {
+        "role": "user",
+        "content": "Query: Show the total memory allocation for the pods of the admin user service on node k8s-node3 or k8s-node4 over the last hour."
+      },
+      {
+        "role": "assistant",
+        "content": "Step 1. Think step by step:\n- We need to know which pods of the admin user service are on either of the specified nodes, \"k8s-node3\" or \"k8s-node4\". To obtain this information, according to the given knowledge graph schema, we can construct two meta-paths to explore the knowledge graph: (service: admin user service) --targets-> (pod: ?) <-hosts-- (node: k8s-node3) and (service: admin user service) --targets-> (pod: ?) <-hosts-- (node: k8s-node4). Here, the names of the pods are unknown, so we use a question mark (?) to indicate this.\nStep 2. meta-path list:\n```\n- (service: admin user service) --targets-> (pod: ?) <-hosts-- (node: k8s-node3)\n- (service: admin user service) --targets-> (pod: ?) <-hosts-- (node: k8s-node4)\n```"
+      },
+      {
+        "role": "user",
+        "content": "Query: What are the memory limits and usage values for the top three memory consuming containers in the food delivery service on node k8s-node4?"
+      },
+      {
+        "role": "assistant",
+        "content": "Step 1. Think step by step:\n- First, we need to determine which pods are part of the \"food delivery service\" and hosted on the node \"k8s-node4\". This involves constructing a meta-path that connects the service to its pods on a specific node: (service: food delivery service) --targets-> (pod: ?) <-hosts-- (node: k8s-node4), where \"?\" signifies the unknown pod names.\n- Next, we aim to identify containers within these specific pods. This requires an additional meta-path that describes the relationship between pods and their contained containers: (service: food delivery service) --targets-> (pod: ?) --contains-> (container: ?).\nStep 2. meta-path list:\n```\n- (service: food delivery service) --targets-> (pod: ?) <-hosts-- (node: k8s-node4)\n- (service: food delivery service) --targets-> (pod: ?) --contains-> (container: ?)\n```"
+      },
+      {
+        "role": "user",
+        "content": "Query: Calculate the sum of the number of Inodes for all pods of the service that has the API for creating new stations."
+      },
+      {
+        "role": "assistant",
+        "content": "Step 1. Think step by step:\n- First, identify the service that provides the API for creating new stations. This involves a meta-path that connects the specific API to its service: (api: API for creating new stations) <-provides-- (service: ?). The \"?\" represents the unknown service that offers this specific API.\n- Next, determine which pods are part of this service. This requires extending the meta-path to include the pods targeted by this service: (service: ?) --targets-> (pod: ?).\nStep 2. meta-path list:\n```\n- (api: API for creating new stations) <-provides-- (service: ?) --targets-> (pod: ?)\n```"
+      },
+      {
+        "role": "user",
+        "content": "Query: Show the total disk I/O operations for all pods of services that call the ts-rebook-service in the last hour."
+      },
+      {
+        "role": "assistant",
+        "content": "Step 1. Think step by step:\n- We need to identify which services are making requests to the \"ts-rebook-service\". This involves creating a meta-path to show the interaction between services: (service: ts-rebook-service) <-requests-- (service: ?), where \"?\" represents the unknown services that are dependent on or interact with the \"ts-rebook-service\". We also need to establish which pods are targeted by these services. This requires an extension of the previous meta-path to include pods: (service: ?) --targets-> (pod: ?), with \"?\" indicating unknown pod names that are part of the services making requests to \"ts-rebook-service\".\nStep 2. meta-path list:\n```\n- (service: ts-rebook-service) <-requests-- (service: ?) --targets-> (pod: ?)\n```"
+      },
+      {
+        "role": "user",
+        "content": "Query: Calculate the average CPU usage for all nodes hosting the order service over the last week."
+      },
+      {
+        "role": "assistant",
+        "content": "Step 1. Think step by step:\n- We need to identify which nodes are hosting the pods of the \"order service\". This involves using a meta-path that connects the service to its pods and then identifies the nodes hosting these pods: (service: order service) --targets-> (pod: ?) <-hosts-- (node: ?), where \"?\" represents unknown pod names and the nodes they are hosted on.\nStep 2. meta-path list:\n```\n- (service: order service) --targets-> (pod: ?) <-hosts-- (node: ?)\n```"
+      },
+      {
+        "role": "user",
+        "content": "Query: Based on the last hour's data, perform a linear prediction of the memory usage in bytes for the Tempo container on k8s-node1 over the next 15 minutes."
+      }
+    ]
+  }
+}

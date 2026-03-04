@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "failure ratio for requests",
+      "service"
+    ],
+    [
+      "difference in failure ratio",
+      "service"
+    ]
+  ],
+  "response_text": "[(\"failure ratio for requests\", \"service\"), (\"difference in failure ratio\", \"service\")]"
+}

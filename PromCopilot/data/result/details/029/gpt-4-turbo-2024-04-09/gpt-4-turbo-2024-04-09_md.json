@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "per-second call rate for the GET /api/v1/orderservice/order",
+      "API"
+    ]
+  ],
+  "response_text": "[(\"per-second call rate for the GET /api/v1/orderservice/order\", \"API\")]"
+}

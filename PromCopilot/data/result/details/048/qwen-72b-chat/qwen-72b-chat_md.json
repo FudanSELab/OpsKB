@@ -1,0 +1,17 @@
+{
+  "metrics_description": [
+    [
+      "current memory limit",
+      "container"
+    ],
+    [
+      "used by the service",
+      "service"
+    ],
+    [
+      "for getting routes in the cheapest order",
+      "API"
+    ]
+  ],
+  "response_text": "[(\"current memory limit\", \"container\"), (\"used by the service\", \"service\"), (\"for getting routes in the cheapest order\", \"API\")]"
+}

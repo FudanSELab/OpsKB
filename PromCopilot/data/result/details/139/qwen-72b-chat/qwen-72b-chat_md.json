@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "total page cache memory used",
+      "container"
+    ],
+    [
+      "used by all containers",
+      "service"
+    ]
+  ],
+  "response_text": "[(\"total page cache memory used\", \"container\"), (\"used by all containers\", \"service\")]"
+}

@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "number of processes blocked waiting for I/O completion",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"number of processes blocked waiting for I/O completion\", \"node\")]"
+}

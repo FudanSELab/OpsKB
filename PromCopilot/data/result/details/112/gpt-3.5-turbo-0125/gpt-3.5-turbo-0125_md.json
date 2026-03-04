@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "root filesystem free space",
+      "node"
+    ],
+    [
+      "average disk write speed",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"root filesystem free space\", \"node\"), (\"average disk write speed\", \"node\")]"
+}

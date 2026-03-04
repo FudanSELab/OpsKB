@@ -1,0 +1,17 @@
+{
+  "metrics_description": [
+    [
+      "CPU usage",
+      "node"
+    ],
+    [
+      "5m load average",
+      "node"
+    ],
+    [
+      "memory usage",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"CPU usage\", \"node\"), (\"5m load average\", \"node\"), (\"memory usage\", \"node\")]"
+}

@@ -1,0 +1,98 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_usage_seconds_total",
+        "type": "counter",
+        "description": "Cumulative cpu time consumed in seconds."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-route-service",
+        "label": "container",
+        "value": "ts-route-service"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_cfs_periods_total",
+        "type": "counter",
+        "description": "Number of elapsed enforcement period intervals."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-route-service",
+        "label": "container",
+        "value": "ts-route-service"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_cfs_periods_total",
+        "type": "counter",
+        "description": "Number of elapsed enforcement period intervals."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "name=k8s_ts-basic-service_ts-basic-service-6f7d85c664-lkwnv_default_c902c9c4-68ec-44d3-8a04-73bec44bf4fb_0",
+        "label": "name",
+        "value": "k8s_ts-basic-service_ts-basic-service-6f7d85c664-lkwnv_default_c902c9c4-68ec-44d3-8a04-73bec44bf4fb_0"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_cfs_periods_total",
+        "type": "counter",
+        "description": "Number of elapsed enforcement period intervals."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "name=k8s_ts-route-service_ts-route-service-54d744ccc9-2t4gh_default_2d6258a9-a0ec-4315-8fb2-da9e0d64ada8_0",
+        "label": "name",
+        "value": "k8s_ts-route-service_ts-route-service-54d744ccc9-2t4gh_default_2d6258a9-a0ec-4315-8fb2-da9e0d64ada8_0"
+      }
+    }
+  ]
+]

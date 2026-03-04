@@ -1,0 +1,98 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_cfs_periods_total",
+        "type": "counter",
+        "description": "Number of elapsed enforcement period intervals."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-gateway-service",
+        "label": "container",
+        "value": "ts-gateway-service"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_cfs_periods_total",
+        "type": "counter",
+        "description": "Number of elapsed enforcement period intervals."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-order-service",
+        "label": "container",
+        "value": "ts-order-service"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_cfs_periods_total",
+        "type": "counter",
+        "description": "Number of elapsed enforcement period intervals."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-order-other-service",
+        "label": "container",
+        "value": "ts-order-other-service"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_cfs_periods_total",
+        "type": "counter",
+        "description": "Number of elapsed enforcement period intervals."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "job=kubelet",
+        "label": "job",
+        "value": "kubelet"
+      }
+    }
+  ]
+]

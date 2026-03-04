@@ -1,0 +1,152 @@
+{
+  "relevant_metrics": [
+    {
+      "name": "node_filesystem_free_bytes",
+      "type": "gauge",
+      "description": "Filesystem free space in bytes."
+    },
+    {
+      "name": "node_filesystem_size_bytes",
+      "type": "gauge",
+      "description": "Filesystem size in bytes."
+    }
+  ],
+  "details": {
+    "extracted_text": "- {\"name\": \"node_filesystem_free_bytes\", \"type\": \"gauge\", \"description\": \"Filesystem free space in bytes.\"}\n- {\"name\": \"node_filesystem_size_bytes\", \"type\": \"gauge\", \"description\": \"Filesystem size in bytes.\"}",
+    "response_text": "Step 1. Analyze the question and identify the relevant metrics:\nThe relevant metrics for determining the node with the most free space on its filesystem for the /dev/sda2 device are:\n- The metric \"node_filesystem_free_bytes\" indicates the filesystem free space in bytes, which is directly related to the free space available on the filesystem.\n- The metric \"node_filesystem_size_bytes\" denotes the total size of the filesystem in bytes, which can be used to calculate the percentage of free space if needed.\n\nStep 2. Relevant Metrics List:\n```\n- {\"name\": \"node_filesystem_free_bytes\", \"type\": \"gauge\", \"description\": \"Filesystem free space in bytes.\"}\n- {\"name\": \"node_filesystem_size_bytes\", \"type\": \"gauge\", \"description\": \"Filesystem size in bytes.\"}\n```",
+    "model": "deepseek-coder",
+    "temperature": 0.3,
+    "messages": [
+      {
+        "role": "system",
+        "content": "Please filter and return the relevant metrics from the provided metrics list that pertains to the given question. These metrics will be used to construct Prometheus Query Language (PromQL) queries corresponding to the question.\nInstructions:\nStep 1. Analyze the question to determine which metrics from the provided Metrics List are related to the query.\nStep 2. Return a list of these relevant metrics. Ensure that the list of returned metrics is enclosed in triple backticks (```).\n"
+      },
+      {
+        "role": "user",
+        "content": "Metrics List:\n- {\"name\": \"container_ulimits_soft\", \"type\": \"gauge\", \"description\": \"Soft ulimit values for the container root process.\"}\n- {\"name\": \"container_fs_usage_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that are consumed by the container on this filesystem.\"}\n- {\"name\": \"container_spec_memory_limit_bytes\", \"type\": \"gauge\", \"description\": \"Memory limit for the container.\"}\n- {\"name\": \"container_fs_limit_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that can be consumed by the container on this filesystem.\"}\n- {\"name\": \"container_memory_usage_bytes\", \"type\": \"gauge\", \"description\": \"Current memory usage in bytes, including all memory regardless of when it was accessed\"}\nQuestion: Show the filesystem usage and limit bytes for all containers of the auth service."
+      },
+      {
+        "role": "assistant",
+        "content": "Step 1. Analyze the question and identify the relevant metrics:\nThe relevant metrics for the filesystem usage and limit bytes for all containers of the auth service are:\n- The metric \"container_fs_usage_bytes\" indicates the number of bytes currently consumed by the container on the filesystem. This measures the actual filesystem usage by the container.\n- The metric \"container_fs_limit_bytes\" denotes the maximum number of bytes that can be consumed by the container on this filesystem. This represents the limit set for filesystem usage by the container.\nStep 2. Relevant Metrics List:\n```\n- {\"name\": \"container_fs_usage_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that are consumed by the container on this filesystem.\"}\n- {\"name\": \"container_fs_limit_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that can be consumed by the container on this filesystem.\"}\n```\n"
+      },
+      {
+        "role": "user",
+        "content": "Metrics List:\n- {\"name\": \"node_filesystem_free_bytes\", \"type\": \"gauge\", \"description\": \"Filesystem free space in bytes.\"}\n- {\"name\": \"node_filesystem_files_free\", \"type\": \"gauge\", \"description\": \"Filesystem total free file nodes.\"}\n- {\"name\": \"container_fs_inodes_free\", \"type\": \"gauge\", \"description\": \"Number of available Inodes\"}\n- {\"name\": \"node_filesystem_avail_bytes\", \"type\": \"gauge\", \"description\": \"Filesystem space available to non-root users in bytes.\"}\n- {\"name\": \"node_memory_HugePages_Free\", \"type\": \"gauge\", \"description\": \"Memory information field HugePages_Free.\"}\n- {\"name\": \"node_filesystem_size_bytes\", \"type\": \"gauge\", \"description\": \"Filesystem size in bytes.\"}\n- {\"name\": \"node_filesystem_readonly\", \"type\": \"gauge\", \"description\": \"Filesystem read-only status.\"}\n- {\"name\": \"node_filesystem_files\", \"type\": \"gauge\", \"description\": \"Filesystem total file nodes.\"}\n- {\"name\": \"container_fs_usage_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that are consumed by the container on this filesystem.\"}\n- {\"name\": \"container_fs_limit_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that can be consumed by the container on this filesystem.\"}\nQuestion: Which node hosting pods for the ts-voucher-service currently has the most free space on its filesystem on the /dev/sda2 device?\n"
+      }
+    ],
+    "retrieved_metrics": {
+      "('most free space on its filesystem', 'node')": [
+        {
+          "_index": "metric",
+          "_id": "Bz5Nx5IB_Vubjq2t3ODT",
+          "_score": 12.983729,
+          "_source": {
+            "name": "node_filesystem_free_bytes",
+            "type": "gauge",
+            "description": "Filesystem free space in bytes.",
+            "keywords": "node filesystem free bytes"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "Bj5Nx5IB_Vubjq2t3ODT",
+          "_score": 7.5310936,
+          "_source": {
+            "name": "node_filesystem_files_free",
+            "type": "gauge",
+            "description": "Filesystem total free file nodes.",
+            "keywords": "node filesystem files free"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "tz5Nx5IB_Vubjq2t3N_S",
+          "_score": 6.567942,
+          "_source": {
+            "name": "container_fs_inodes_free",
+            "type": "gauge",
+            "description": "Number of available Inodes",
+            "keywords": "container filesystem inodes free"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "Az5Nx5IB_Vubjq2t3ODT",
+          "_score": 6.4537086,
+          "_source": {
+            "name": "node_filesystem_avail_bytes",
+            "type": "gauge",
+            "description": "Filesystem space available to non-root users in bytes.",
+            "keywords": "node filesystem avail bytes"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "Hj5Nx5IB_Vubjq2t3ODT",
+          "_score": 3.9887881,
+          "_source": {
+            "name": "node_memory_HugePages_Free",
+            "type": "gauge",
+            "description": "Memory information field HugePages_Free.",
+            "keywords": "node memory HugePages Free"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "CT5Nx5IB_Vubjq2t3ODT",
+          "_score": 3.7959015,
+          "_source": {
+            "name": "node_filesystem_size_bytes",
+            "type": "gauge",
+            "description": "Filesystem size in bytes.",
+            "keywords": "node filesystem size bytes"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "BT5Nx5IB_Vubjq2t3ODT",
+          "_score": 3.4502013,
+          "_source": {
+            "name": "node_filesystem_files",
+            "type": "gauge",
+            "description": "Filesystem total file nodes.",
+            "keywords": "node filesystem files"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "CD5Nx5IB_Vubjq2t3ODT",
+          "_score": 3.4502013,
+          "_source": {
+            "name": "node_filesystem_readonly",
+            "type": "gauge",
+            "description": "Filesystem read-only status.",
+            "keywords": "node filesystem readonly"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "vT5Nx5IB_Vubjq2t3N_S",
+          "_score": 3.1622121,
+          "_source": {
+            "name": "container_fs_usage_bytes",
+            "type": "gauge",
+            "description": "Number of bytes that are consumed by the container on this filesystem.",
+            "keywords": "container filesystem usage bytes"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "uT5Nx5IB_Vubjq2t3N_S",
+          "_score": 2.9185967,
+          "_source": {
+            "name": "container_fs_limit_bytes",
+            "type": "gauge",
+            "description": "Number of bytes that can be consumed by the container on this filesystem.",
+            "keywords": "container filesystem limit bytes"
+          }
+        }
+      ]
+    }
+  }
+}

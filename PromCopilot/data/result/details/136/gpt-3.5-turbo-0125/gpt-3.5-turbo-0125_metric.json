@@ -1,0 +1,48 @@
+{
+  "relevant_metrics": [
+    {
+      "name": "kube_deployment_status_replicas_ready",
+      "type": "gauge",
+      "description": "[STABLE] The number of ready replicas per deployment."
+    }
+  ],
+  "details": {
+    "extracted_text": "- {\"name\": \"kube_deployment_status_replicas_ready\", \"type\": \"gauge\", \"description\": \"[STABLE] The number of ready replicas per deployment.\"}",
+    "response_text": "Step 1. Analyze the question and identify the relevant metrics:\nThe relevant metric for determining the percentage of the coredns deployment's replicaset that are currently ready in the cluster is:\n- The metric \"kube_deployment_status_replicas_ready\" provides the number of ready replicas per deployment, which can be used to calculate the percentage of ready replicas for a specific deployment.\n\nStep 2. Relevant Metrics List:\n```\n- {\"name\": \"kube_deployment_status_replicas_ready\", \"type\": \"gauge\", \"description\": \"[STABLE] The number of ready replicas per deployment.\"}\n```",
+    "model": "gpt-3.5-turbo-0125",
+    "temperature": 0.3,
+    "messages": [
+      {
+        "role": "system",
+        "content": "Please filter and return the relevant metrics from the provided metrics list that pertains to the given question. These metrics will be used to construct Prometheus Query Language (PromQL) queries corresponding to the question.\nInstructions:\nStep 1. Analyze the question to determine which metrics from the provided Metrics List are related to the query.\nStep 2. Return a list of these relevant metrics. Ensure that the list of returned metrics is enclosed in triple backticks (```).\n"
+      },
+      {
+        "role": "user",
+        "content": "Metrics List:\n- {\"name\": \"container_ulimits_soft\", \"type\": \"gauge\", \"description\": \"Soft ulimit values for the container root process.\"}\n- {\"name\": \"container_fs_usage_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that are consumed by the container on this filesystem.\"}\n- {\"name\": \"container_spec_memory_limit_bytes\", \"type\": \"gauge\", \"description\": \"Memory limit for the container.\"}\n- {\"name\": \"container_fs_limit_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that can be consumed by the container on this filesystem.\"}\n- {\"name\": \"container_memory_usage_bytes\", \"type\": \"gauge\", \"description\": \"Current memory usage in bytes, including all memory regardless of when it was accessed\"}\nQuestion: Show the filesystem usage and limit bytes for all containers of the auth service."
+      },
+      {
+        "role": "assistant",
+        "content": "Step 1. Analyze the question and identify the relevant metrics:\nThe relevant metrics for the filesystem usage and limit bytes for all containers of the auth service are:\n- The metric \"container_fs_usage_bytes\" indicates the number of bytes currently consumed by the container on the filesystem. This measures the actual filesystem usage by the container.\n- The metric \"container_fs_limit_bytes\" denotes the maximum number of bytes that can be consumed by the container on this filesystem. This represents the limit set for filesystem usage by the container.\nStep 2. Relevant Metrics List:\n```\n- {\"name\": \"container_fs_usage_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that are consumed by the container on this filesystem.\"}\n- {\"name\": \"container_fs_limit_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that can be consumed by the container on this filesystem.\"}\n```\n"
+      },
+      {
+        "role": "user",
+        "content": "Metrics List:\n- {\"name\": \"kube_deployment_status_replicas_ready\", \"type\": \"gauge\", \"description\": \"[STABLE] The number of ready replicas per deployment.\"}\nQuestion: What percentage of the coredns deployment's replicaset are currently ready in the cluster?\n"
+      }
+    ],
+    "retrieved_metrics": {
+      "('percentage of replicaset ready', 'deployment')": [
+        {
+          "_index": "metric",
+          "_id": "l9I-048BMiz5NO5fftcG",
+          "_score": 3.153719,
+          "_source": {
+            "name": "kube_deployment_status_replicas_ready",
+            "type": "gauge",
+            "description": "[STABLE] The number of ready replicas per deployment.",
+            "keywords": "kube deployment status replicas ready"
+          }
+        }
+      ]
+    }
+  }
+}

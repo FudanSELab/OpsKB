@@ -1,0 +1,50 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_cfs_throttled_periods_total",
+        "type": "counter",
+        "description": "Number of throttled period intervals."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-voucher-service",
+        "label": "container",
+        "value": "ts-voucher-service"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_cfs_throttled_periods_total",
+        "type": "counter",
+        "description": "Number of throttled period intervals."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=POD",
+        "label": "container",
+        "value": "POD"
+      }
+    }
+  ]
+]

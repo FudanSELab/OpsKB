@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "APIs of the rebook service",
+      "API"
+    ],
+    [
+      "API called the most frequently over the past 5 minutes",
+      "API"
+    ]
+  ],
+  "response_text": "[(\"APIs of the rebook service\", \"API\"), (\"API called the most frequently over the past 5 minutes\", \"API\")]"
+}

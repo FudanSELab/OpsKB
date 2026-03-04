@@ -1,0 +1,210 @@
+name,type,description,keywords
+container_blkio_device_usage_total,counter,Blkio Device bytes usage,container block io device usage total
+container_cpu_cfs_periods_total,counter,Number of elapsed enforcement period intervals.,container cpu cfs periods total
+container_cpu_cfs_throttled_periods_total,counter,Number of throttled period intervals.,container cpu cfs throttled periods total
+container_cpu_usage_seconds_total,counter,Cumulative cpu time consumed in seconds.,container cpu usage seconds total
+container_fs_inodes_free,gauge,Number of available Inodes,container filesystem inodes free
+container_fs_inodes_total,gauge,Number of Inodes,container filesystem inodes total
+container_fs_limit_bytes,gauge,Number of bytes that can be consumed by the container on this filesystem.,container filesystem limit bytes
+container_fs_read_seconds_total,counter,Cumulative count of seconds spent reading,container filesystem read seconds total
+container_fs_reads_bytes_total,counter,Cumulative count of bytes read,container filesystem reads bytes total
+container_fs_reads_total,counter,Cumulative count of reads completed,container filesystem reads total
+container_fs_usage_bytes,gauge,Number of bytes that are consumed by the container on this filesystem.,container filesystem usage bytes
+container_fs_write_seconds_total,counter,Cumulative count of seconds spent writing,container filesystem write seconds total
+container_fs_writes_bytes_total,counter,Cumulative count of bytes written,container filesystem writes bytes total
+container_fs_writes_total,counter,Cumulative count of writes completed,container filesystem writes total
+container_memory_cache,gauge,Number of bytes of page cache memory.,container memory cache
+container_memory_failcnt,counter,Number of memory usage hits limits,container memory failcnt
+container_memory_failures_total,counter,Cumulative count of memory allocation failures.,container memory failures total
+container_memory_max_usage_bytes,gauge,Maximum memory usage recorded in bytes,container memory max usage bytes
+container_memory_rss,gauge,Size of RSS in bytes.,container memory rss
+container_memory_usage_bytes,gauge,"Current memory usage in bytes, including all memory regardless of when it was accessed",container memory usage bytes
+container_memory_working_set_bytes,gauge,Current working set in bytes.,container memory working set bytes
+container_network_receive_bytes_total,counter,Cumulative count of bytes received,container network receive bytes total
+container_network_receive_errors_total,counter,Cumulative count of errors encountered while receiving,container network receive errors total
+container_network_receive_packets_dropped_total,counter,Cumulative count of packets dropped while receiving,container network receive packets dropped total
+container_network_receive_packets_total,counter,Cumulative count of packets received,container network receive packets total
+container_network_transmit_bytes_total,counter,Cumulative count of bytes transmitted,container network transmit bytes total
+container_network_transmit_errors_total,counter,Cumulative count of errors encountered while transmitting,container network transmit errors total
+container_network_transmit_packets_dropped_total,counter,Cumulative count of packets dropped while transmitting,container network transmit packets dropped total
+container_network_transmit_packets_total,counter,Cumulative count of packets transmitted,container network transmit packets total
+container_processes,gauge,Number of processes running inside the container.,container processes
+container_sockets,gauge,Number of open sockets for the container.,container sockets
+container_threads,gauge,Number of threads running inside the container,container threads
+container_ulimits_soft,gauge,"Soft ulimit values for the container root process. Unlimited if -1, except priority and nice",container ulimits soft
+kube_deployment_spec_paused,gauge,[STABLE] Whether the deployment is paused and will not be processed by the deployment controller.,kube deployment spec paused
+kube_deployment_spec_replicas,gauge,[STABLE] Number of desired pods for a deployment.,kube deployment spec replicas
+kube_deployment_status_replicas,gauge,[STABLE] The number of replicas per deployment.,kube deployment status replicas
+kube_deployment_status_replicas_available,gauge,[STABLE] The number of available replicas per deployment.,kube deployment status replicas available
+kube_deployment_status_replicas_ready,gauge,[STABLE] The number of ready replicas per deployment.,kube deployment status replicas ready
+kube_deployment_status_replicas_unavailable,gauge,[STABLE] The number of unavailable replicas per deployment.,kube deployment status replicas unavailable
+kube_deployment_status_replicas_updated,gauge,[STABLE] The number of updated replicas per deployment.,kube deployment status replicas updated
+kube_pod_container_resource_limits,gauge,"The number of requested limit resource by a container. It is recommended to use the kube_pod_resource_limits metric exposed by kube-scheduler instead, as it is more precise.",kube pod container resource limits
+kube_pod_container_resource_requests,gauge,"The number of requested request resource by a container. It is recommended to use the kube_pod_resource_requests metric exposed by kube-scheduler instead, as it is more precise.",kube pod container resource requests
+kube_pod_container_status_ready,gauge,[STABLE] Describes whether the containers readiness check succeeded.,kube pod container status ready
+kube_pod_container_status_restarts_total,counter,[STABLE] The number of container restarts per container.,kube pod container status restarts total
+kube_pod_container_status_running,gauge,[STABLE] Describes whether the container is currently in running state.,kube pod container status running
+kube_pod_container_status_terminated,gauge,[STABLE] Describes whether the container is currently in terminated state.,kube pod container status terminated
+kube_pod_container_status_waiting,gauge,[STABLE] Describes whether the container is currently in waiting state.,kube pod container status waiting
+kube_pod_status_container_ready_time,gauge,Readiness achieved time in unix timestamp for a pod containers.,kube pod status container ready time
+kube_pod_status_ready,gauge,[STABLE] Describes whether the pod is ready to serve requests.,kube pod status ready
+kube_pod_status_ready_time,gauge,Readiness achieved time in unix timestamp for a pod.,kube pod status ready time
+kube_replicaset_created,gauge,[STABLE] Unix creation timestamp,kube replicaset created
+kube_replicaset_spec_replicas,gauge,[STABLE] Number of desired pods for a ReplicaSet.,kube replicaset spec replicas
+kube_replicaset_status_ready_replicas,gauge,[STABLE] The number of ready replicas per ReplicaSet.,kube replicaset status ready replicas
+kube_replicaset_status_replicas,gauge,[STABLE] The number of replicas per ReplicaSet.,kube replicaset status replicas
+kube_service_created,gauge,[STABLE] Unix creation timestamp,kube service created
+kube_statefulset_created,gauge,[STABLE] Unix creation timestamp,kube statefulset created
+kube_statefulset_status_replicas,gauge,[STABLE] The number of replicas per StatefulSet.,kube statefulset status replicas
+kube_statefulset_status_replicas_available,gauge,The number of available replicas per StatefulSet.,kube statefulset status replicas available
+kube_statefulset_status_replicas_current,gauge,[STABLE] The number of current replicas per StatefulSet.,kube statefulset status replicas current
+kube_statefulset_status_replicas_ready,gauge,[STABLE] The number of ready replicas per StatefulSet.,kube statefulset status replicas ready
+kube_statefulset_status_replicas_updated,gauge,[STABLE] The number of updated replicas per StatefulSet.,kube statefulset status replicas updated
+machine_cpu_cores,gauge,Number of logical CPU cores.,machine cpu cores
+machine_cpu_physical_cores,gauge,Number of physical CPU cores.,machine cpu physical cores
+machine_cpu_sockets,gauge,Number of CPU sockets.,machine cpu sockets
+machine_memory_bytes,gauge,Amount of memory installed on the machine.,machine memory bytes
+node_context_switches_total,counter,Total number of context switches.,node context switches total
+node_cpu_guest_seconds_total,counter,Seconds the CPUs spent in guests (VMs) for each mode.,node cpu guest seconds total
+node_cpu_seconds_total,counter,Seconds the CPUs spent in each mode.,node cpu seconds total
+node_disk_io_now,gauge,The number of I/Os currently in progress.,node disk io now
+node_disk_io_time_seconds_total,counter,Total seconds spent doing I/Os.,node disk io time seconds total
+node_disk_read_bytes_total,counter,The total number of bytes read successfully.,node disk read bytes total
+node_disk_read_time_seconds_total,counter,The total number of seconds spent by all reads.,node disk read time seconds total
+node_disk_reads_completed_total,counter,The total number of reads completed successfully.,node disk reads completed total
+node_disk_reads_merged_total,counter,The total number of reads merged.,node disk reads merged total
+node_disk_write_time_seconds_total,counter,This is the total number of seconds spent by all writes.,node disk write time seconds total
+node_disk_writes_completed_total,counter,The total number of writes completed successfully.,node disk writes completed total
+node_disk_writes_merged_total,counter,The number of writes merged.,node disk writes merged total
+node_disk_written_bytes_total,counter,The total number of bytes written successfully.,node disk written bytes total
+node_filefd_allocated,gauge,File descriptor statistics: allocated.,node filefd allocated
+node_filefd_maximum,gauge,File descriptor statistics: maximum.,node filefd maximum
+node_filesystem_avail_bytes,gauge,Filesystem space available to non-root users in bytes.,node filesystem avail bytes
+node_filesystem_device_error,gauge,Whether an error occurred while getting statistics for the given device.,node filesystem device error
+node_filesystem_files,gauge,Filesystem total file nodes.,node filesystem files
+node_filesystem_files_free,gauge,Filesystem total free file nodes.,node filesystem files free
+node_filesystem_free_bytes,gauge,Filesystem free space in bytes.,node filesystem free bytes
+node_filesystem_readonly,gauge,Filesystem read-only status.,node filesystem readonly
+node_filesystem_size_bytes,gauge,Filesystem size in bytes.,node filesystem size bytes
+node_forks_total,counter,Total number of forks.,node forks total
+node_load1,gauge,1m load average.,node load1
+node_load15,gauge,15m load average.,node load15
+node_load5,gauge,5m load average.,node load5
+node_memory_Active_anon_bytes,gauge,Memory information field Active_anon_bytes.,node memory Active anon bytes
+node_memory_Active_bytes,gauge,Memory information field Active_bytes.,node memory Active bytes
+node_memory_Active_file_bytes,gauge,Memory information field Active_file_bytes.,node memory Active file bytes
+node_memory_AnonHugePages_bytes,gauge,Memory information field AnonHugePages_bytes.,node memory AnonHugePages bytes
+node_memory_AnonPages_bytes,gauge,Memory information field AnonPages_bytes.,node memory AnonPages bytes
+node_memory_Bounce_bytes,gauge,Memory information field Bounce_bytes.,node memory Bounce bytes
+node_memory_Buffers_bytes,gauge,Memory information field Buffers_bytes.,node memory Buffers bytes
+node_memory_Cached_bytes,gauge,Memory information field Cached_bytes.,node memory Cached bytes
+node_memory_CommitLimit_bytes,gauge,Memory information field CommitLimit_bytes.,node memory CommitLimit bytes
+node_memory_Committed_AS_bytes,gauge,Memory information field Committed_AS_bytes.,node memory Committed AS bytes
+node_memory_DirectMap2M_bytes,gauge,Memory information field DirectMap2M_bytes.,node memory DirectMap2M bytes
+node_memory_DirectMap4k_bytes,gauge,Memory information field DirectMap4k_bytes.,node memory DirectMap4k bytes
+node_memory_Dirty_bytes,gauge,Memory information field Dirty_bytes.,node memory Dirty bytes
+node_memory_FileHugePages_bytes,gauge,Memory information field FileHugePages_bytes.,node memory FileHugePages bytes
+node_memory_FilePmdMapped_bytes,gauge,Memory information field FilePmdMapped_bytes.,node memory FilePmdMapped bytes
+node_memory_HardwareCorrupted_bytes,gauge,Memory information field HardwareCorrupted_bytes.,node memory HardwareCorrupted bytes
+node_memory_HugePages_Free,gauge,Memory information field HugePages_Free.,node memory HugePages Free
+node_memory_HugePages_Rsvd,gauge,Memory information field HugePages_Rsvd.,node memory HugePages Rsvd
+node_memory_HugePages_Surp,gauge,Memory information field HugePages_Surp.,node memory HugePages Surp
+node_memory_HugePages_Total,gauge,Memory information field HugePages_Total.,node memory HugePages Total
+node_memory_Hugepagesize_bytes,gauge,Memory information field Hugepagesize_bytes.,node memory Hugepagesize bytes
+node_memory_Hugetlb_bytes,gauge,Memory information field Hugetlb_bytes.,node memory Hugetlb bytes
+node_memory_Inactive_anon_bytes,gauge,Memory information field Inactive_anon_bytes.,node memory Inactive anon bytes
+node_memory_Inactive_bytes,gauge,Memory information field Inactive_bytes.,node memory Inactive bytes
+node_memory_Inactive_file_bytes,gauge,Memory information field Inactive_file_bytes.,node memory Inactive file bytes
+node_memory_KReclaimable_bytes,gauge,Memory information field KReclaimable_bytes.,node memory KReclaimable bytes
+node_memory_KernelStack_bytes,gauge,Memory information field KernelStack_bytes.,node memory KernelStack bytes
+node_memory_Mapped_bytes,gauge,Memory information field Mapped_bytes.,node memory Mapped bytes
+node_memory_MemAvailable_bytes,gauge,Memory information field MemAvailable_bytes.,node memory MemAvailable bytes
+node_memory_MemFree_bytes,gauge,Memory information field MemFree_bytes.,node memory MemFree bytes
+node_memory_MemTotal_bytes,gauge,Memory information field MemTotal_bytes.,node memory MemTotal bytes
+node_memory_Mlocked_bytes,gauge,Memory information field Mlocked_bytes.,node memory Mlocked bytes
+node_memory_NFS_Unstable_bytes,gauge,Memory information field NFS_Unstable_bytes.,node memory NFS Unstable bytes
+node_memory_PageTables_bytes,gauge,Memory information field PageTables_bytes.,node memory PageTables bytes
+node_memory_Percpu_bytes,gauge,Memory information field Percpu_bytes.,node memory Percpu bytes
+node_memory_SReclaimable_bytes,gauge,Memory information field SReclaimable_bytes.,node memory SReclaimable bytes
+node_memory_SUnreclaim_bytes,gauge,Memory information field SUnreclaim_bytes.,node memory SUnreclaim bytes
+node_memory_ShmemHugePages_bytes,gauge,Memory information field ShmemHugePages_bytes.,node memory ShmemHugePages bytes
+node_memory_ShmemPmdMapped_bytes,gauge,Memory information field ShmemPmdMapped_bytes.,node memory ShmemPmdMapped bytes
+node_memory_Shmem_bytes,gauge,Memory information field Shmem_bytes.,node memory Shmem bytes
+node_memory_Slab_bytes,gauge,Memory information field Slab_bytes.,node memory Slab bytes
+node_memory_SwapCached_bytes,gauge,Memory information field SwapCached_bytes.,node memory SwapCached bytes
+node_memory_SwapFree_bytes,gauge,Memory information field SwapFree_bytes.,node memory SwapFree bytes
+node_memory_SwapTotal_bytes,gauge,Memory information field SwapTotal_bytes.,node memory SwapTotal bytes
+node_memory_Unevictable_bytes,gauge,Memory information field Unevictable_bytes.,node memory Unevictable bytes
+node_memory_VmallocChunk_bytes,gauge,Memory information field VmallocChunk_bytes.,node memory VmallocChunk bytes
+node_memory_VmallocTotal_bytes,gauge,Memory information field VmallocTotal_bytes.,node memory VmallocTotal bytes
+node_memory_VmallocUsed_bytes,gauge,Memory information field VmallocUsed_bytes.,node memory VmallocUsed bytes
+node_memory_WritebackTmp_bytes,gauge,Memory information field WritebackTmp_bytes.,node memory WritebackTmp bytes
+node_memory_Writeback_bytes,gauge,Memory information field Writeback_bytes.,node memory Writeback bytes
+node_network_address_assign_type,gauge,Network device property: address_assign_type,node network address assign type
+node_network_carrier,gauge,Network device property: carrier,node network carrier
+node_network_carrier_changes_total,counter,Network device property: carrier_changes_total,node network carrier changes total
+node_network_carrier_down_changes_total,counter,Network device property: carrier_down_changes_total,node network carrier down changes total
+node_network_carrier_up_changes_total,counter,Network device property: carrier_up_changes_total,node network carrier up changes total
+node_network_dormant,gauge,Network device property: dormant,node network dormant
+node_network_flags,gauge,Network device property: flags,node network flags
+node_network_iface_id,gauge,Network device property: iface_id,node network iface id
+node_network_iface_link,gauge,Network device property: iface_link,node network iface link
+node_network_iface_link_mode,gauge,Network device property: iface_link_mode,node network iface link mode
+node_network_info,gauge,"Non-numeric data from /sys/class/net/<iface>, value is always 1.",node network info
+node_network_mtu_bytes,gauge,Network device property: mtu_bytes,node network mtu bytes
+node_network_name_assign_type,gauge,Network device property: name_assign_type,node network name assign type
+node_network_net_dev_group,gauge,Network device property: net_dev_group,node network net dev group
+node_network_protocol_type,gauge,Network device property: protocol_type,node network protocol type
+node_network_receive_bytes_total,counter,Network device statistic receive_bytes.,node network receive bytes total
+node_network_receive_compressed_total,counter,Network device statistic receive_compressed.,node network receive compressed total
+node_network_receive_drop_total,counter,Network device statistic receive_drop.,node network receive drop total
+node_network_receive_errs_total,counter,Network device statistic receive_errs.,node network receive errors total
+node_network_receive_fifo_total,counter,Network device statistic receive_fifo.,node network receive fifo total
+node_network_receive_frame_total,counter,Network device statistic receive_frame.,node network receive frame total
+node_network_receive_multicast_total,counter,Network device statistic receive_multicast.,node network receive multicast total
+node_network_receive_nohandler_total,counter,Network device statistic receive_nohandler.,node network receive nohandler total
+node_network_receive_packets_total,counter,Network device statistic receive_packets.,node network receive packets total
+node_network_speed_bytes,gauge,Network device property: speed_bytes,node network speed bytes
+node_network_transmit_bytes_total,counter,Network device statistic transmit_bytes.,node network transmit bytes total
+node_network_transmit_carrier_total,counter,Network device statistic transmit_carrier.,node network transmit carrier total
+node_network_transmit_colls_total,counter,Network device statistic transmit_colls.,node network transmit colls total
+node_network_transmit_compressed_total,counter,Network device statistic transmit_compressed.,node network transmit compressed total
+node_network_transmit_drop_total,counter,Network device statistic transmit_drop.,node network transmit drop total
+node_network_transmit_errs_total,counter,Network device statistic transmit_errs.,node network transmit errs total
+node_network_transmit_fifo_total,counter,Network device statistic transmit_fifo.,node network transmit fifo total
+node_network_transmit_packets_total,counter,Network device statistic transmit_packets.,node network transmit packets total
+node_network_transmit_queue_length,gauge,Network device property: transmit_queue_length,node network transmit queue length
+node_procs_blocked,gauge,Number of processes blocked waiting for I/O to complete.,node procs blocked
+node_procs_running,gauge,Number of processes in runnable state.,node procs running
+node_sockstat_FRAG_inuse,gauge,Number of FRAG sockets in state inuse.,node sockstat FRAG inuse
+node_sockstat_FRAG_memory,gauge,Number of FRAG sockets in state memory.,node sockstat FRAG memory
+node_sockstat_RAW_inuse,gauge,Number of RAW sockets in state inuse.,node sockstat RAW inuse
+node_sockstat_TCP_alloc,gauge,Number of TCP sockets in state alloc.,node sockstat TCP alloc
+node_sockstat_TCP_inuse,gauge,Number of TCP sockets in state inuse.,node sockstat TCP inuse
+node_sockstat_TCP_mem,gauge,Number of TCP sockets in state mem.,node sockstat TCP mem
+node_sockstat_TCP_mem_bytes,gauge,Number of TCP sockets in state mem_bytes.,node sockstat TCP mem bytes
+node_sockstat_TCP_orphan,gauge,Number of TCP sockets in state orphan.,node sockstat TCP orphan
+node_sockstat_TCP_tw,gauge,Number of TCP sockets in state tw.,node sockstat TCP tw
+node_sockstat_UDPLITE_inuse,gauge,Number of UDPLITE sockets in state inuse.,node sockstat UDPLITE inuse
+node_sockstat_UDP_inuse,gauge,Number of UDP sockets in state inuse.,node sockstat UDP inuse
+node_sockstat_UDP_mem,gauge,Number of UDP sockets in state mem.,node sockstat UDP mem
+node_sockstat_UDP_mem_bytes,gauge,Number of UDP sockets in state mem_bytes.,node sockstat UDP mem bytes
+node_sockstat_sockets_used,gauge,Number of IPv4 sockets in use.,node sockstat sockets used
+node_softnet_backlog_len,gauge,Softnet backlog status,node softnet backlog len
+node_softnet_dropped_total,counter,Number of dropped packets,node softnet dropped total
+node_softnet_processed_total,counter,Number of processed packets,node softnet processed total
+node_softnet_received_rps_total,counter,Number of times cpu woken up received_rps,node softnet received rps total
+node_softnet_times_squeezed_total,counter,Number of times processing packets ran out of quota,node softnet times squeezed total
+node_udp_queues,gauge,Number of allocated memory in the kernel for UDP datagrams in bytes.,node udp queues
+traces_service_graph_request_client_seconds_bucket,histogram,The distribution of request durations from the client's perspective.,traces service graph request client seconds bucket
+traces_service_graph_request_client_seconds_count,counter,The total number of requests from the client's perspective.,traces service graph request client seconds count
+traces_service_graph_request_client_seconds_sum,counter,The total sum of request durations measured in seconds from the client's perspective,traces service graph request client seconds sum
+traces_service_graph_request_failed_total,counter,The total number of failed requests.,traces service graph request failed total
+traces_service_graph_request_server_seconds_bucket,histogram,The distribution of request durations from the server's perspective.,traces service graph request server seconds bucket
+traces_service_graph_request_server_seconds_count,counter,The total number of requests from the server's perspective.,traces service graph request server seconds count
+traces_service_graph_request_server_seconds_sum,counter,The total sum of request durations measured in seconds from the server's perspective,traces service graph request server seconds sum
+traces_service_graph_request_total,counter,The total number of requests.,traces service graph request total
+traces_spanmetrics_calls_total,counter,The total number of spans observed for API operations,traces span metrics calls total
+traces_spanmetrics_latency_bucket,histogram,The distribution of latencies across spans for operations associated with the application's API.,traces span metrics latency bucket
+traces_spanmetrics_latency_count,counter,The total number of spans observed for API operations,traces span metrics latency count
+traces_spanmetrics_latency_sum,counter,"The total sum of durations, measured in seconds, of all spans associated with API operations.",traces span metrics latency sum

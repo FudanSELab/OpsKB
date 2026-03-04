@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "growth rate of bytes used by block devices",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"growth rate of bytes used by block devices\", \"container\")]"
+}

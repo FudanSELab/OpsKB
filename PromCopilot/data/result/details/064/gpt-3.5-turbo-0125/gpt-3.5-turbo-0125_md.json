@@ -1,0 +1,17 @@
+{
+  "metrics_description": [
+    [
+      "number of memory usage hits limits",
+      "container"
+    ],
+    [
+      "API for getting all orders",
+      "service"
+    ],
+    [
+      "node label",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"number of memory usage hits limits\", \"container\"), (\"API for getting all orders\", \"service\"), (\"node label\", \"node\")]"
+}

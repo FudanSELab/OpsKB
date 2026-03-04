@@ -1,0 +1,122 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_usage_seconds_total",
+        "type": "counter",
+        "description": "Cumulative cpu time consumed in seconds."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "name=k8s_ts-auth-service_ts-auth-service-6f695b66dc-8xx85_default_2bc59deb-14a0-4305-a85c-dfdda9d8c3ad_0",
+        "label": "name",
+        "value": "k8s_ts-auth-service_ts-auth-service-6f695b66dc-8xx85_default_2bc59deb-14a0-4305-a85c-dfdda9d8c3ad_0"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_usage_seconds_total",
+        "type": "counter",
+        "description": "Cumulative cpu time consumed in seconds."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "cpu=0",
+        "label": "cpu",
+        "value": "0"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_usage_seconds_total",
+        "type": "counter",
+        "description": "Cumulative cpu time consumed in seconds."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "cpu=0",
+        "label": "cpu",
+        "value": "0"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_usage_seconds_total",
+        "type": "counter",
+        "description": "Cumulative cpu time consumed in seconds."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "cpu=0",
+        "label": "cpu",
+        "value": "0"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_cfs_periods_total",
+        "type": "counter",
+        "description": "Number of elapsed enforcement period intervals."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-auth-service",
+        "label": "container",
+        "value": "ts-auth-service"
+      }
+    }
+  ]
+]

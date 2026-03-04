@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "pods restarted in the past hour with memory usage greater than 8GB",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"pods restarted in the past hour with memory usage greater than 8GB\", \"pod\")]"
+}

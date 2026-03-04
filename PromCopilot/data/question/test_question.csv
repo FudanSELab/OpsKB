@@ -1,0 +1,231 @@
+idx,question
+1,"Based on data from the past hour, calculate the 90th percentile request duration from the auth service to the TS database."
+2,Show the packet loss ratio for received packets for all pods of the ts-order-service in the past 1 hour.
+3, How many times was the payment creation API called in the past day?
+4,Show the number of memory allocation failures for all pods of services called by the ts-execute-service in the last 30 minutes.
+5,"In the last 30 minutes, which pod among all pods of the ts-auth-service service on the node k8s-node2 had the highest error ratio in transmit packets?"
+6,"Calculate the per-second call count for the APIs of the auth service, based on the last two samples within a 1-minute time window."
+7,"How many processes are currently blocked waiting for I/O to complete on the nodes hosting the tsdb-mysql service, and what is the ratio of this number to the number of processes in a runnable state on the same nodes?"
+8,"Among k8s-node1, k8s-node2, and k8s-node3, which currently has the highest amount of inactive anonymous memory?"
+9,How many packets have been dropped while being received by all pods of the coredns deployment on node k8s-node2 in the last 4 hours?
+10,What are the downstream APIs for the PUT /api/v1/admintravelservice/admintravel API? Show the total number of calls to these downstream APIs over the past 30 minutes.
+11,"Calculate the 95th percentile latency for the inside payment service APIs over the last 60 minutes, display only results for non-internal spans, and only keep spans whose average latency over the last hour is greater than or equal to 0.01."
+12,Show the current memory usage of all containers for the consign price service on the node k8s-node2.
+13,"Calculate the 90th percentile of request durations from the rebooking service to the seating service, from the client's perspective, based on data from the past day."
+14,What is the current number of TCP sockets in the mem state on nodes hosting the seat service?
+15,How many times has the API GET /api/v1/verifycode/generate been called in the past day?
+16,"In the last 30 minutes, in the obs namespace, which pod on node k8s-node5 had the highest total number of memory allocation failures?"
+17,What is the increase in the per-second rate of spans recorded by the auth service over the past five minutes compared to the same metric one day ago?
+18,What is the difference in the total bytes read from the disk for the dm-0 device on nodes hosting the news service in the last 5 minutes compared to the same period one day ago?
+19,"Calculate the 95th percentile of request duration (from the client's perspective) to the service which manages other order over the last 60 minutes, and only keep results whose average request duration over the last hour is greater than or equal to 0.01."
+20,Check whether the network receiving packet drop rate or network transmitting packet drop rate of the containers responsible for the admin travel management service on the k8s-node4 node exceed 1% in the past 60 minutes.
+21,What is the total number of logical CPU cores for the nodes hosting the admin basic info service?
+22,"Using the past hour's memory cache data, predict the page cache memory usage in bytes for the slowlog container of the tsdb-mysql service on k8s-node4 over the next 30 minutes using a linear model."
+23,What is the total number of network receive errors encountered by all pods of the tempo statefulset on node k8s-node1 over the past 24 hours?
+24,How many replicas are available for each StatefulSet in the default namespace?
+25,Show the maximum memory usage for all containers of the gateway service deployed on k8s-node2 and k8s-node5.
+26,"On the node k8s-node2, which three Pods have the highest packet loss rates for received packets in the last 5 minutes? Please ensure the query focuses on data from the eth0 interface and the obs namespace."
+27,"Based on the last hour's data, perform a linear prediction of the memory usage in bytes for the Tempo container on k8s-node1 over the next 15 minutes."
+28,"Identify the top 5 containers on node k8s-node1 in the obs namespace that hit the most memory usage limits in the past hour, and report their total number of hits."
+29,"In the past three minutes, what is the per-second call rate for the GET /api/v1/orderservice/order API?"
+30,Calculate the average latency for the API used to update station information over the past 30 minutes.
+31,Check the current ratio of TCP sockets in the 'tw' state to those in the 'alloc' state for all nodes running the execute service. Subtract the ratio from the same time one day ago from the current ratio to determine the change.
+32,Shows the CPU usage of the pods for the admin user service deployed on node k8s-node2 over the last 5 minutes.
+33,How many physical CPU cores do the nodes hosting the seat service have in total?
+34,"Display the average latency of the auth service's login check API, with the interval of 1-minute."
+35,What is the total number of transmission errors for all pods of the assurance service on node k8s-node2 in the last 5 minutes?
+36,"What is the per-second rate of process forks on the nodes hosting coredns deployment pods, calculated using the last two data points over the past 5 minutes?"
+37,How much time did all containers of the delivery service on node k8s-node1 spend writing to the filesystem in the past hour?
+38,What is the total number of block IO device bytes that containers in the gateway service have used on the /dev/sda device for read operations in the past 10 minutes?
+39,How many packets have all pods of the gateway service on nodes k8s-node2 and k8s-node5 dropped while receiving in the last 2 days?
+40,How much time did containers of the food service spend on fs write operations in the past hour?
+41,"Using the past hour's memory cache data, predict the page cache memory usage in bytes for the next 30 minutes for the k8snacos container of the nacos service on k8s-node2 using a linear model."
+42,"How much has the transmission rate of bytes by the network interfaces on nodes hosting the seat service changed in the last minute, by subtracting the rate of the same minute yesterday?"
+43,"Use the data from the past hour to predict the CPU usage (accounting for limit) trend of the pods of the downstream services of ts-inside-payment-service in the next 2 hours, and find the pods whose CPU usage will exceed 80% in the future."
+44,Show me the requests per second from the food service to its downstream services in the last hour.
+45,Which pod of the auth service had the highest error ratio in transmit packets in the last 5 minutes?
+46,How many throttled period intervals have the containers in the contacts service experienced in the past 24 hours?
+47,What is the failure ratio for the rebook service's requests to the seat service over the past five minutes?
+48,Query the current memory limit sizes for all containers of the service hosting the API used to get routes in the cheapest order.
+49,How much has the number of packets dropped during transmission by the ens160 device on nodes hosting the gateway service in the current 5-minute window increased compared to the same 5-minute window one day earlier?
+50,Calculate the total number of processes across all pods of the service that provides the API for creating payments.
+51,Display the number of calls to all APIs invoked by the Login Check API in the past five minutes.
+52,Did the 5-minute load average on node k8s-node1 exceed 0.5 at any point in the last 30 minutes?
+53,Calculate the difference between the current response latency of all APIs provided by the rebook service and the response latency from two hours ago.
+54,"Can you predict the CPU usage ratio of the pods for the downstream services of ts-auth-service in the next 2 hours, and identify the pods whose CPU usage will exceed 50% in the future (considering the CPU limit)?"
+55,Please find the pods of the execute service and the security service whose receiving byte rate is more than twice the transmitting byte rate in the past five minutes.
+56,Show me the total number of requests from gateway service to execute service in last 1 day.
+57,Show how many times the memory usage of all pods for the gateway service exceeded the limit in the last hour.
+58,Which containers on the node k8s-node3 are deployed with the tsdb-mysql service?  Show the growth rate of bytes used by their block devices over the past 30 minutes.
+59,"Among the nodes currently hosting the pod of execute service, which one has the least amount of memory mapped bytes?"
+60,"Using data from the last hour, predict the memory usage in bytes for the notification service containers on k8s-node5 over the next 15 minutes using a linear model."
+61,How many process forks have occurred on k8s-node1 and k8s-node2 in the past 30 minutes?
+62,Check the current thread count of all containers for the admin user service that are deployed on k8s-node2.
+63,How many times did the delivery service request access to the ts database over the past day?
+64,"Calculate the sum of the number of memory usage hits limits for all containers of the service that provides the API for getting all orders, and grouped by node label."
+65,What is the cumulative count of transmission errors for all pods of the tsdb-mysql deployment on node k8s-node3 over the last 5 minutes?
+66,"I need the CPU time proportion in different modes of k8s-node1 and k8s-node2 during the past 1 minute, excluding nodes that have less than 8 cores."
+67,Show the maximum memory usage for all containers of the auth service.
+68,What is the current working set memory size in bytes for all pods in the nacos statefulset?
+69,How many bytes has the dm-0 device on the nodes hosting the news service read from the disk in the past 5 minutes?
+70,"What is the per-second call rate for the API DELETE /api/v1/users/{userId}, calculated over a 5-minute window?"
+71,Display the difference in the number of calls between the API used to create user and the API used to delete user over the past day.
+72,What is the CPU usage rate per second for the pods of all services that were called by the seat service in the last minute?
+73,How many enforcement periods have the pods in the seat service completed in the past 5 minutes?
+74,Display the current MemTotal bytes for all nodes where the gateway service is deployed.
+75,How many CPU sockets are there in the nodes that host the tsdb-mysql service?
+76,Please calculate the change in the average request duration of ts-auth-service as a client between the current 5 minutes and the previous 5 minutes using a 5-minute window.
+77,"Filter out pods with a current CPU usage (using 1m as a window) greater than 0.002 cores/second from the pods of ts-order-service or ts-order-other-service, and predict the CPU usage for the next 10 minutes based on the CPU usage of the past 30 minutes, returning the top 3 pods with the highest predicted values."
+78,"Based on the data from the past day, calculate the 90th percentile latency for the 'SELECT Order' span."
+79,"On average, how much time per second did the containers of the security service spend writing to the filesystem in the past 5 minutes?"
+80,"What are the APIs of the verification code service? For each API, provide the difference in the number of calls between this hour and the same period last week."
+81,"Show me the top 1 CPU usages of nodes whose 1m load average is less than 0.8, only consider nodes hosting the gateway service."
+82,How many enforcement periods did the containers in the news service on node k8s-node1 complete in the past day?
+83,"Display the current failure ratio of requests from the execute service to all its downstream services, calculated over a 10-minute window, and compare this result by dividing it by the value from the same time one day ago."
+84,What is the failure ratio for the gateway service's requests to the assurance service over the past five minutes?
+85,What are the downstream APIs for the API used to 'get routes in the quickest order'? Display the total number of calls to these APIs over the past hour.
+86,Calculate the average duration of requests from the gateway service to the execute service over the past five minutes.
+87,Can you calculate the total number of dropped packets received by the ens160 device on all nodes hosting the voucher service in the last 10 minutes?
+88,Show the total number of current sockets for all pods of the gateway service.
+89,"What are the APIs of the rebook service? Among these APIs, identify the one that has been called the most frequently over the past 5 minutes."
+90,How many times was the FoodOrderRepository.findByOrderId span appeared in total in the past hour?
+91,Which node hosting the tsdb-mysql statefulset had the highest number of network receive errors on the docker0 device in the past 24 hours?
+92,"Show the average latency of spans from all downstream services of the security service, calculated over a 5-minute window."
+93,Calculate the average latency for the `GET /api/v1/verifycode/verify/{verifyCode}` API using data from the past 30 minutes. Compare this with the same period from the previous day by subtracting the earlier value from the current one.
+94,"In the past hour, how many packets have been dropped on eth0 during transmission by the pods of the tsdb-mysql statefulset on node k8s-node5?"
+95,Show me the total number of restarts for all pods of the gateway service and voucher service in the last 30 minutes.
+96,Show the filesystem bytes usage ratio for all pods of the news service deployed on nodes k8s-node1 and k8s-node4.
+97,Which node hosting the pods of tsdb-mysql statefulset currently has the most bounce memory in bytes?
+98,Show the top 5 pods with the most number of restarts in the kube-system namespace.
+99,"In the past hour, how many packets have been dropped on eth0 during transmission by the pods of the ts-verification-code-service on node k8s-node3?"
+100,I need a query that uses label_replace function to show both the 99th and 95th percentile of request duration (from the client's perspective) to ts-route-service during the past 5 minutes in the same graph.
+101,Show me the per-second call rate for the API used to create a trip in 10-minute statistical intervals.
+102,Show the average request duration over a 5-minute window for all traffic from the seat service to all its downstream services.
+103,Which node hosting the ts-wait-order-service currently has the most I/O activities in progress?
+104,Calculates the decrease in the total number of processes currently running in all containers on k8s-node3 compared to that number at the same time one day ago.
+105,Monitor whether the network inflow rate of pod of the ts-travel-service exceeds 2000 byte/s in the past five minutes at the same time some average request duration (from the client's perspective) to ts-travel-service exceeds 0.003.
+106,What are the upstream services of the auth service? Show the total number of restarts of the pods for these services over the past hour.
+107,"Consider the root partition file system of nodes with IP in the range of 10.176.122.150 ~ 10.176.122.159, use the data from the past week to predict the available space (GB) in 7 days, and only show the results of the three nodes with the highest current root file system usage."
+108,Calculate the p90 latency of the API that is related to updating station information.
+109,Which node hosting pods for the ts-voucher-service currently has the most free space on its filesystem on the /dev/sda2 device?
+110,Can you show me the number of failed requests from the gateway service to the assurance service in the past 30 minutes?
+111,How many processes are currently blocked waiting for I/O completion on nodes hosting the tsdb-mysql service?
+112,Check if any node with IP in the range of 10.176.122.154 to 10.176.122.159 has a root filesystem with less than 10 GB of free space and the average disk write speed exceeds 60 MB/s in the last 30 minutes.
+113,Calculate the 90th percentile request duration from security service to order service in last 5 minutes.
+114,Identify the top three APIs with the highest number of calls among all APIs of the price service in the past hour.
+115,What is the total amount of memory installed on the nodes hosting the nacosdb-mysql service?
+116,Which node hosting the seat service currently has the most bytes of cached memory?
+117,"Obtain the nodes whose root file system available space is predicted to be less than 3 GB in the next 4 hours (using the data from the previous 4 hours) and whose disk write rate in the last 4 hours exceeds 50 MB/s, and calculate the current usage rate of their root file systems."
+118,"Please find pods whose receiving byte rate is more than 2 times the sending byte rate in the past five minutes and whose total file system read and write rate exceeds 200 KB/s, excluding pods whose total I/O operation time is shorter than 1e-8."
+119,Which downstream service had the highest total number of failures in all requests made by the rebook service in the past 30 minutes?
+120,Show the total number of threads for all pods of the security service on k8s-node3.
+121,"Among all the pods of the ts-order-service, which pod had the highest total number of memory allocation failures in the last 30 minutes?"
+122,"Can you show me the average latencies for spans within the admin order service that are longer than 0.01 seconds, calculated over the last 5 minutes?"
+123,What was the maximum mapped memory usage on node k8s-node1 over the past 24 hours?
+124,Could you show me the number of failed requests from the rebook service to the seat service in the past hour?
+125,"What are the downstream services for the seat service? Calculate the average duration of requests from the seat service to all its downstream services over the past 5 minutes, from the client's perspective."
+126,Which downstream service was requested the most by the seat service over the past day?
+127,Which API had more calls in the past day: the API used to register users or the API used to delete users?
+128,What is the rate of bytes per second written to the filesystem by the slowlog container in the tsdb-mysql service over the past 5 minutes?
+129,What is the average of the total memory usage per container for the ts-admin-order-service deployed on the k8s-node4?
+130,"Based on data from the past hour, calculate the 90th percentile latency for the API used to create a new station."
+131,"Calculate the 90th percentile latency of the API used to create a trip, based on data from the past five minutes. Determine how this latency has changed compared to the corresponding value from the same period yesterday by calculating the difference."
+132,Show me the number of calls for each API of the ts-cancel-service in the past hour.
+133,Calculate the 90th percentile request duration from security service to its downstream services over the past hour.
+134,How many bytes have the /dev/sda block IO devices used by the containers in the auth service on node k8s-node2 in the past hour?
+135,What is the average filesystem read byte rate for all containers of the ts-train-service in the last 5 minutes?
+136,What percentage of the coredns deployment's replicaset are currently ready in the cluster?
+137,How many CPU sockets are there in the nodes that host the pods of the coredns deployment?
+138,Can you tell me if the packet drop ratio for transmitting or the packet error ratio for the voucher service containers on node1 and node2 exceeded 0.01 over the past 90 minutes?
+139,What is the total page cache memory currently used by all containers of the gateway service?
+140,"How many TCP sockets are in the orphan state on nodes running the auth service, and what is the ratio of this number to that from one week ago?"
+141,"In the past week, which pod in the default namespace, either rebook service or cancel service, had the most restarts?"
+142,How many bytes have all the containers of the tsdb-mysql service written to the filesystem in the last 3 hours?
+143,Monitor if the network packets transmission error rate for pods of the ts-basic-service exceeds 0.5% and their network bytes receive rate is above 500 KB/s in the last 10 minutes.
+144,How many network receive errors have been logged on the docker0 device of nodes hosting the tsdb-mysql statefulset in the past 24 hours?
+145,Show the percentage of the tsdb-mysql statefulset's replicas are currently ready.
+146,"Query the top 3 CPU usages of nodes whose 5m load average is less than 0.5 and whose memory usage exceeds 50%, and only consider nodes with IP in the range of 10.176.122.150 to 10.176.122.159."
+147,"What are the APIs in the ts-user-service? Among these, which one has had the highest average latency over the past 5 minutes?"
+148,"Perform a linear prediction of the number of open file descriptors on k8s-node1 and k8s-node2, respectively, based on the last hour's data and predicting forward for the next four hours."
+149,What is the difference in allocated memory for UDP datagrams in the kernel's tx queue between now and one hour ago on k8s-node1 and k8s-node2?
+150,Calculate the difference in average request duration for the security service to its downstream services over the past 5 minutes by subtracting the average duration from the same period last week from the current average.
+151,What is the current working set size of memory (in bytes) for all pods in the rabbitmq deployment?
+152,"In the past hour, which pods on node 'k8s-master' in the 'obs' namespace and using the 'eth0' interface had network transmission errors?"
+153,Use data from the past hour to perform a linear prediction of the number of UDP sockets in the mem state on nodes hosting RabbitMQ pods for the next 5 minutes.
+154,What is the total number of restarts for all pods of the seat service over the past day?
+155,How many TCP sockets are currently in the orphan state on the k8s-master and k8s-node1 nodes?
+156,How many throttling periods did the containers of the voucher service on k8s-node2 experience in the past 4 hours?
+157,Display the average latency of all downstream APIs of the 'pay for the order' API over the past 5 minutes.
+158,"Monitor the pods of the ticket cancellation service to determine if any pods were restarted in the past hour and now have memory usage greater than 8GB, while excluding pods whose memory usage is less than 60% of the requested limit resource."
+159,How many write operations have been completed by the containers of the voucher service on node k8s-node1 in the last 30 minutes?
+160,What was the peak number of orphan TCP sockets on the nodes running the news service in the past 30 minutes?
+161,Calculate the change in the network transmission error rate of the containers of service managing user informations and auth operation on the k8s-node2 node between the current 30 minutes and the previous 30 minutes.
+162,"How rapidly have the write operations increased for the containers of the voucher service on node k8s-node2, according to the last two data points from the past 5 minutes?"
+163,Show the three containers with the highest RSS usage on the node k8s-master in the obs namespace.
+164,Display the current memory dirty bytes for all nodes where the tsdb-mysql service is deployed.
+165,"Calculate the disk usage of the root partition of the node where the downstream services (pods) of ts-inside-payment-service are located, find the top three, and only display the root partitions with a filesystem size greater than 90GB."
+166,Show the filesystem bytes usage ratio for all containers that have a filesystem bytes usage ratio greater than 60% on the node k8s-master.
+167,Which APIs are provided by verification code service? Calculate the 99th percentile latency of these APIs based on data from the past five minutes.
+168,"In the past 30 minutes, how many requests did the gateway service send to the auth service and the verification code service?"
+169,Calculate the total number of TCP sockets in the 'tw' state across all nodes where the service that provides the API for creating trips is deployed.
+170,What is the per-second rate of bytes received by the lo network device on nodes hosting the gateway service over the last 5 minutes?
+171,How has the 5-minute load average on k8s-node1 and k8s-node2 changed over the past hour?
+172,How many bytes has the nodes hosting the execute service written to the dm-0 device disk in the past 24 hours?
+173,Show me the maximum memory usage of all containers for the verification code service over the past 24 hours.
+174,How has the number of runnable processes changed on the k8s-node1 and k8s-node2 nodes in the last hour?
+175,"Return the total page cache memory for all containers in the ts-train-food-service, and aggregated by node."
+176,Query the total number of processes across all containers of the service that provides the API for creating new stations.
+177,Predict the nodes with free space on the tmpfs filesystem that is less than 1 GB in the next hour (using data from the previous 2 hours) and whose disk write rate in the last 5 minutes exceeds 10 MB/s.
+178,I need the total number of failed requests from the execute service to its downstream services in the last hour.
+179,"Calculate the average latency of the UserController.registerUser API operation, based on data from the past five minutes."
+180,What percentage of replicas in the ts-voucher-service deployment are currently ready in the cluster?
+181,Identify all APIs available in the food service. Calculate the p80 latency for these APIs over a 5-minute window and calculate the difference between the current value and the value from one week ago.
+182,"Check whether the following occurs: during the past five minutes, among different pods of the same service, the longest pod CPU usage time exceeds 1.5 times the shortest pod CPU usage time. Note that only pods with names matching ts-.*-service are considered."
+183,What was the average rate of disk read time per second for the nodes hosting the tsdb-mysql service over the past 5 minutes?
+184,Display the rate per second for all spans recorded by the rebook service over the past five minutes.
+185,"Calculate the difference between the current rate of CPU usage and the rate of CPU usage from the same time one week ago for all containers of the gateway service, using a 5-minute window for the rate calculation."
+186,Calculate p99 requests latency from auth service to its downstream services in last 5 minutes.
+187,"Show the filesystem usage and limits for all containers of the ts-payment-service deployed on node k8s-node2, and calculate the free space left."
+188,What is the average of the total memory usage per container for the ts-admin-order-service?
+189,Show the network receive bytes growth rate for the pod that has the highest network receive bytes growth rate among all pods of the ts-verification-code-service.
+190,I need the number of calls in the past five minutes for all APIs invoked by the 'POST /api/v1/travel2service/trips/left' API.
+191,Show the number of network packet receive errors on the eth0 interface for all pods of the ts-order-other-service deployed on node k8s-node3 in the last hour.
+192,Are there any nodes hosting the security service that have less than 5 GB of free space on the sda2 device and an average disk write speed that exceeds 10 MB/s in the last 30 minutes?
+193,How much time did the containers of the auth service spend on filesystem write operations in the past hour?
+194,Show the total memory cache usage summarized by each pod for the verification code service.
+195,"Monitor the CPU time proportion in different modes of nodes whose ip are in the range of 10.176.122.151~10.176.122.153 during the past 1 minute, excluding nodes that have less than 16 cores."
+196,Show the average request duration over a 5-minute window from the seat service to the config service.
+197,"Check whether some average request duration (from the client's perspective) of the ts-auth-service as a client exceeds the threshold 0.003 seconds, or as a server exceeds the threshold 0.2 seconds during the past 5 minutes."
+198,Show me average latency for getting all foods API over a 5-minute window.
+199,"For the nodes hosting the gateway service, what is the rate of CPU idle time for each instance in the past 5 minutes?"
+200,Show me if the packet drop ratio for receiving or transmitting network packets of the containers for the rebook service on the k8s-node4 node exceeded 0.05 in the past 30 minutes.
+201,"Calculate the average latency for the API used to delete a trip, based on data from the past five minutes. Return the difference between this value and that from the same period a week ago."
+202,Show the total number of network packet receive errors on the eth0 for all pods of the admin user service in the last hour.
+203,Show the average ratio of used to allocated TCP sockets on k8s-node1 over the last hour.
+204,"Calculate the 80th percentile request duration from the client's perspective for calls from the auth service to the verification code service, using data from the past five minutes."
+205,"Calculate the difference in the rate of memory allocation failures for all containers of the notification service in the last hour compared to the previous hour, using a 5-minute window for the rate calculation."
+206,Calculate the change in the network receiving packet loss rate of the ts-admin-travel-service container on the k8s-node4 node between the current hour and the previous hour.
+207,What is the current total I/O in progress on each device of the node hosting the tsdb-mysql service's pods?
+208,Display the time periods when the per-second call count (calculated in 5 minutes window) for the API used to create new station was below 100.
+209,Calculate the average latency of the adding route API over a 5-minute window.
+210,How many times was the POST /api/v1/seatservice/seats API called in the past day? Calculate the increase in the number of calls compared to the same period last week.
+211,"Can you show me the failure ratio of requests from the inside payment service to its downstream services over the past 5 minutes, if it's higher than 5%?"
+212,"Show the current CPU usage of all containers in the service that provides the API for registering users, calculated over a 5-minute window."
+213,I need the total number of network packet receive errors on the eth0 and ens160 for all pods of the execute service deployed on node k8s-node5 in the last hour.
+214,"Using data from the past 30 minutes, perform a linear prediction of the page cache memory currently being used by the containers of the admin user service on k8s-node2 to forecast the next 5 minutes' usage."
+215,Show the rate of change in allocated TCP socket numbers on k8s-node1 in the last 5 minutes.
+216,Show the current 1-minute CPU load average for all nodes where the gateway service is deployed.
+217,Calculate the CPU time used by each individual pod in the services that call the ts-auth-service over the last 30 minutes.
+218,"What is the current count of TCP sockets in the mem state on nodes hosting the gateway service, and how has this count changed since the same time yesterday? Calculate the difference."
+219,Calculate the p90 latency of the APIs that are related to registering users over the past hour.
+220,How many network receive errors have all pods of the tsdb-mysql statefulset on node k8s-node3 encountered in the past 24 hours?
+221,"Checks whether the 95th percentile of the request duration from ts-basic-service to ts-route-service (from the client's perspective) is greater than 0.09 in the past 60 minutes, and the CPU usage (accounting for limit) of pods of ts-route-service is less than 3%."
+222,Could you provide the ratio of total network packet drops to total network packets received on k8s-node1 and k8s-node2 for the past hour?
+223,Display the number of calls to the creating user API in the past 5 minutes.
+224,What are the soft ulimit values for the container root processes of all pods of the tsdb-mysql service on node k8s-node5?
+225,Show the average latency of the API related to querying train types in the past 5 minutes.
+226,What was the average rate of disk read time per second for nodes hosting pods of the tsdb-mysql statefulset over the past 5 minutes?
+227,What is the total number of physical CPU cores for the nodes hosting the news service?
+228,What was the failure ratio for the gateway service's requests to the execute service over the past five minutes? Return the difference between this value and that from the same period one day ago.
+229,"Among all pods of the admin route service, which one has the highest total memory usage summed across all its containers? Show its current total memory usage."
+230,How many bytes have been written to the disk on the sda device by the node hosting the otelcol-opentelemetry-collector deployment in the past 24 hours?

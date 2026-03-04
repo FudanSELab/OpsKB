@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "failure ratio of requests",
+      "service"
+    ]
+  ],
+  "response_text": "[(\"failure ratio of requests\", \"service\")]"
+}

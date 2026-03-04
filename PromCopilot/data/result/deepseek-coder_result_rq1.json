@@ -1,0 +1,3731 @@
+{
+  "001. Based on data from the past hour, calculate the 90th percentile request duration from the auth service to the TS database.": {
+    "idx": "001",
+    "question": "Based on data from the past hour, calculate the 90th percentile request duration from the auth service to the TS database.",
+    "metrics": [
+      "traces_service_graph_request_server_seconds_bucket",
+      "traces_service_graph_request_server_seconds_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "histogram_quantile(\n  0.90,\n  sum(\n    rate(\n      traces_service_graph_request_server_seconds_bucket{client=\"ts-auth-service\", server=\"ts-auth-service\"}[1h]\n    )\n  ) by (le)\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "002. Show the packet loss ratio for received packets for all pods of the ts-order-service in the past 1 hour.": {
+    "idx": "002",
+    "question": "Show the packet loss ratio for received packets for all pods of the ts-order-service in the past 1 hour.",
+    "metrics": [
+      "container_network_receive_packets_total",
+      "container_network_receive_packets_dropped_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  rate(container_network_receive_packets_dropped_total{pod=~\"ts-order-service-.*\"}[1h])\n  /\n  rate(container_network_receive_packets_total{pod=~\"ts-order-service-.*\"}[1h])\n) * 100\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "003.  How many times was the payment creation API called in the past day?": {
+    "idx": "003",
+    "question": " How many times was the payment creation API called in the past day?",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "increase(traces_spanmetrics_calls_total{span_name=\"POST /api/v1/paymentservice/payment\"}[1d])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "004. Show the number of memory allocation failures for all pods of services called by the ts-execute-service in the last 30 minutes.": {
+    "idx": "004",
+    "question": "Show the number of memory allocation failures for all pods of services called by the ts-execute-service in the last 30 minutes.",
+    "metrics": [
+      "container_memory_failures_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(\n  rate(container_memory_failures_total{service=\"ts-execute-service\"}[30m]) * 1800\n) by (pod)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "005. In the last 30 minutes, which pod among all pods of the ts-auth-service service on the node k8s-node2 had the highest error ratio in transmit packets?": {
+    "idx": "005",
+    "question": "In the last 30 minutes, which pod among all pods of the ts-auth-service service on the node k8s-node2 had the highest error ratio in transmit packets?",
+    "metrics": [
+      "container_network_transmit_packets_total",
+      "container_network_transmit_errors_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(1, \n  (\n    rate(container_network_transmit_errors_total{node=\"k8s-node2\", pod=~\"ts-auth-service-.*\"}[30m])\n    /\n    rate(container_network_transmit_packets_total{node=\"k8s-node2\", pod=~\"ts-auth-service-.*\"}[30m])\n  )\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "006. Calculate the per-second call count for the APIs of the auth service, based on the last two samples within a 1-minute time window.": {
+    "idx": "006",
+    "question": "Calculate the per-second call count for the APIs of the auth service, based on the last two samples within a 1-minute time window.",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "rate(traces_spanmetrics_calls_total{service=\"ts-auth-service\"}[1m])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "007. How many processes are currently blocked waiting for I/O to complete on the nodes hosting the tsdb-mysql service, and what is the ratio of this number to the number of processes in a runnable state on the same nodes?": {
+    "idx": "007",
+    "question": "How many processes are currently blocked waiting for I/O to complete on the nodes hosting the tsdb-mysql service, and what is the ratio of this number to the number of processes in a runnable state on the same nodes?",
+    "metrics": [
+      "node_procs_blocked",
+      "node_procs_running"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  sum(node_procs_blocked{instance=~\"10.176.122.153:9100|10.176.122.161:9100|10.176.122.162:9100\"})\n  /\n  sum(node_procs_running{instance=~\"10.176.122.153:9100|10.176.122.161:9100|10.176.122.162:9100\"})\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "008. Among k8s-node1, k8s-node2, and k8s-node3, which currently has the highest amount of inactive anonymous memory?": {
+    "idx": "008",
+    "question": "Among k8s-node1, k8s-node2, and k8s-node3, which currently has the highest amount of inactive anonymous memory?",
+    "metrics": [
+      "node_memory_Inactive_anon_bytes"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(1, node_memory_Inactive_anon_bytes{instance=~\"10.176.122.151:9100|10.176.122.152:9100|10.176.122.153:9100\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "009. How many packets have been dropped while being received by all pods of the coredns deployment on node k8s-node2 in the last 4 hours?": {
+    "idx": "009",
+    "question": "How many packets have been dropped while being received by all pods of the coredns deployment on node k8s-node2 in the last 4 hours?",
+    "metrics": [
+      "container_network_receive_packets_dropped_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(increase(container_network_receive_packets_dropped_total{node=\"k8s-node2\", pod=~\"coredns-.*\"}[4h]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "010. What are the downstream APIs for the PUT /api/v1/admintravelservice/admintravel API? Show the total number of calls to these downstream APIs over the past 30 minutes.": {
+    "idx": "010",
+    "question": "What are the downstream APIs for the PUT /api/v1/admintravelservice/admintravel API? Show the total number of calls to these downstream APIs over the past 30 minutes.",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(increase(traces_spanmetrics_calls_total{span_name=~\"GET /api/v1/routeservice/routes/{routeId}|GET /api/v1/trainservice/trains/byName/{name}|POST /api/v1/stationservice/stations/idlist|PUT /api/v1/travelservice/trips\"}[30m])) by (span_name)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "011. Calculate the 95th percentile latency for the inside payment service APIs over the last 60 minutes, display only results for non-internal spans, and only keep spans whose average latency over the last hour is greater than or equal to 0.01.": {
+    "idx": "011",
+    "question": "Calculate the 95th percentile latency for the inside payment service APIs over the last 60 minutes, display only results for non-internal spans, and only keep spans whose average latency over the last hour is greater than or equal to 0.01.",
+    "metrics": [
+      "traces_spanmetrics_latency_bucket",
+      "traces_spanmetrics_latency_sum",
+      "traces_spanmetrics_latency_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "histogram_quantile(\n  0.95,\n  sum(rate(traces_spanmetrics_latency_bucket{service=\"ts-inside-payment-service\", span_name=~\"GET /api/v1/inside_pay_service/inside_payment/drawback/{userId}/{money}|GET /api/v1/inside_pay_service/inside_payment/{userId}/{money}|POST /api/v1/inside_pay_service/inside_payment|POST /api/v1/inside_pay_service/inside_payment/difference\"}[60m])) by (le, span_name)\n)\nand\n(\n  sum(rate(traces_spanmetrics_latency_sum{service=\"ts-inside-payment-service\", span_name=~\"GET /api/v1/inside_pay_service/inside_payment/drawback/{userId}/{money}|GET /api/v1/inside_pay_service/inside_payment/{userId}/{money}|POST /api/v1/inside_pay_service/inside_payment|POST /api/v1/inside_pay_service/inside_payment/difference\"}[60m])) by (span_name)\n  /\n  sum(rate(traces_spanmetrics_latency_count{service=\"ts-inside-payment-service\", span_name=~\"GET /api/v1/inside_pay_service/inside_payment/drawback/{userId}/{money}|GET /api/v1/inside_pay_service/inside_payment/{userId}/{money}|POST /api/v1/inside_pay_service/inside_payment|POST /api/v1/inside_pay_service/inside_payment/difference\"}[60m])) by (span_name)\n) >= 0.01\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "012. Show the current memory usage of all containers for the consign price service on the node k8s-node2.": {
+    "idx": "012",
+    "question": "Show the current memory usage of all containers for the consign price service on the node k8s-node2.",
+    "metrics": [
+      "container_memory_usage_bytes"
+    ],
+    "lvp": [
+      "container=ts-consign-price-service"
+    ],
+    "promql": [
+      "container_memory_usage_bytes{container=\"ts-consign-price-service\", node=\"k8s-node2\"}\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "013. Calculate the 90th percentile of request durations from the rebooking service to the seating service, from the client's perspective, based on data from the past day.": {
+    "idx": "013",
+    "question": "Calculate the 90th percentile of request durations from the rebooking service to the seating service, from the client's perspective, based on data from the past day.",
+    "metrics": [
+      "traces_service_graph_request_client_seconds_bucket"
+    ],
+    "lvp": [],
+    "promql": [
+      "histogram_quantile(\n  0.9,\n  sum(\n    rate(\n      traces_service_graph_request_client_seconds_bucket{client=\"ts-rebook-service\", server=\"ts-seat-service\"}[1d]\n    )\n  ) by (le)\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "014. What is the current number of TCP sockets in the mem state on nodes hosting the seat service?": {
+    "idx": "014",
+    "question": "What is the current number of TCP sockets in the mem state on nodes hosting the seat service?",
+    "metrics": [
+      "node_sockstat_TCP_mem"
+    ],
+    "lvp": [],
+    "promql": [
+      "node_sockstat_TCP_mem{instance=\"10.176.122.151:9100\"} + node_sockstat_TCP_mem{instance=\"10.176.122.153:9100\"}\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "015. How many times has the API GET /api/v1/verifycode/generate been called in the past day?": {
+    "idx": "015",
+    "question": "How many times has the API GET /api/v1/verifycode/generate been called in the past day?",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "increase(traces_spanmetrics_calls_total{service=\"ts-verification-code-service\", span_name=\"GET /api/v1/verifycode/generate\"}[1d])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "016. In the last 30 minutes, in the obs namespace, which pod on node k8s-node5 had the highest total number of memory allocation failures?": {
+    "idx": "016",
+    "question": "In the last 30 minutes, in the obs namespace, which pod on node k8s-node5 had the highest total number of memory allocation failures?",
+    "metrics": [
+      "container_memory_failures_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(1, increase(container_memory_failures_total{namespace=\"obs\", node=\"k8s-node5\"}[30m]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "017. What is the increase in the per-second rate of spans recorded by the auth service over the past five minutes compared to the same metric one day ago?": {
+    "idx": "017",
+    "question": "What is the increase in the per-second rate of spans recorded by the auth service over the past five minutes compared to the same metric one day ago?",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "rate(traces_spanmetrics_calls_total{service=\"ts-auth-service\"}[5m])\n-\nrate(traces_spanmetrics_calls_total{service=\"ts-auth-service\"}[5m] offset 1d)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "018. What is the difference in the total bytes read from the disk for the dm-0 device on nodes hosting the news service in the last 5 minutes compared to the same period one day ago?": {
+    "idx": "018",
+    "question": "What is the difference in the total bytes read from the disk for the dm-0 device on nodes hosting the news service in the last 5 minutes compared to the same period one day ago?",
+    "metrics": [
+      "node_disk_read_bytes_total"
+    ],
+    "lvp": [
+      "device=dm-0"
+    ],
+    "promql": [
+      "increase(node_disk_read_bytes_total{device=\"dm-0\", instance=~\"10.176.122.151:9100|10.176.122.161:9100\"}[5m])\n-\nincrease(node_disk_read_bytes_total{device=\"dm-0\", instance=~\"10.176.122.151:9100|10.176.122.161:9100\"}[5m] offset 1d)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "019. Calculate the 95th percentile of request duration (from the client's perspective) to the service which manages other order over the last 60 minutes, and only keep results whose average request duration over the last hour is greater than or equal to 0.01.": {
+    "idx": "019",
+    "question": "Calculate the 95th percentile of request duration (from the client's perspective) to the service which manages other order over the last 60 minutes, and only keep results whose average request duration over the last hour is greater than or equal to 0.01.",
+    "metrics": [
+      "traces_service_graph_request_client_seconds_bucket",
+      "traces_service_graph_request_client_seconds_sum",
+      "traces_service_graph_request_client_seconds_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "histogram_quantile(\n  0.95,\n  sum(\n    rate(\n      traces_service_graph_request_client_seconds_bucket{client=\"ts-order-other-service\"}[60m]\n    )\n  ) by (le, client)\n)\nand\n(\n  sum(\n    rate(\n      traces_service_graph_request_client_seconds_sum{client=\"ts-order-other-service\"}[60m]\n    )\n  ) by (client)\n  /\n  sum(\n    rate(\n      traces_service_graph_request_client_seconds_count{client=\"ts-order-other-service\"}[60m]\n    )\n  ) by (client)\n) >= 0.01\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "020. Check whether the network receiving packet drop rate or network transmitting packet drop rate of the containers responsible for the admin travel management service on the k8s-node4 node exceed 1% in the past 60 minutes.": {
+    "idx": "020",
+    "question": "Check whether the network receiving packet drop rate or network transmitting packet drop rate of the containers responsible for the admin travel management service on the k8s-node4 node exceed 1% in the past 60 minutes.",
+    "metrics": [
+      "node_network_receive_drop_total",
+      "node_network_transmit_drop_total"
+    ],
+    "lvp": [
+      "container=ts-admin-travel-service",
+      "container=ts-admin-travel-service"
+    ],
+    "promql": [
+      "(\n  rate(node_network_receive_drop_total{instance=\"10.176.122.161:9100\"}[60m]) > 0.01\n) or (\n  rate(node_network_transmit_drop_total{instance=\"10.176.122.161:9100\"}[60m]) > 0.01\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "021. What is the total number of logical CPU cores for the nodes hosting the admin basic info service?": {
+    "idx": "021",
+    "question": "What is the total number of logical CPU cores for the nodes hosting the admin basic info service?",
+    "metrics": [
+      "machine_cpu_cores"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(machine_cpu_cores{node=~\"k8s-node1|k8s-node4\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "022. Using the past hour's memory cache data, predict the page cache memory usage in bytes for the slowlog container of the tsdb-mysql service on k8s-node4 over the next 30 minutes using a linear model.": {
+    "idx": "022",
+    "question": "Using the past hour's memory cache data, predict the page cache memory usage in bytes for the slowlog container of the tsdb-mysql service on k8s-node4 over the next 30 minutes using a linear model.",
+    "metrics": [
+      "container_memory_cache"
+    ],
+    "lvp": [
+      "container=slowlog"
+    ],
+    "promql": [
+      "predict_linear(\n  container_memory_cache{container=\"slowlog\", instance=\"10.176.122.161:10250\", node=\"k8s-node4\", pod=\"tsdb-mysql-0\"}[1h],\n  30*60\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "023. What is the total number of network receive errors encountered by all pods of the tempo statefulset on node k8s-node1 over the past 24 hours?": {
+    "idx": "023",
+    "question": "What is the total number of network receive errors encountered by all pods of the tempo statefulset on node k8s-node1 over the past 24 hours?",
+    "metrics": [
+      "container_network_receive_errors_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(increase(container_network_receive_errors_total{node=\"k8s-node1\"}[24h]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "024. How many replicas are available for each StatefulSet in the default namespace?": {
+    "idx": "024",
+    "question": "How many replicas are available for each StatefulSet in the default namespace?",
+    "metrics": [
+      "kube_statefulset_status_replicas_available"
+    ],
+    "lvp": [],
+    "promql": [
+      "kube_statefulset_status_replicas_available{namespace=\"default\"}\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "025. Show the maximum memory usage for all containers of the gateway service deployed on k8s-node2 and k8s-node5.": {
+    "idx": "025",
+    "question": "Show the maximum memory usage for all containers of the gateway service deployed on k8s-node2 and k8s-node5.",
+    "metrics": [
+      "container_memory_max_usage_bytes"
+    ],
+    "lvp": [
+      "container=POD"
+    ],
+    "promql": [
+      "container_memory_max_usage_bytes{container=\"ts-gateway-service\", node=~\"k8s-node2|k8s-node5\"}\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "026. On the node k8s-node2, which three Pods have the highest packet loss rates for received packets in the last 5 minutes? Please ensure the query focuses on data from the eth0 interface and the obs namespace.": {
+    "idx": "026",
+    "question": "On the node k8s-node2, which three Pods have the highest packet loss rates for received packets in the last 5 minutes? Please ensure the query focuses on data from the eth0 interface and the obs namespace.",
+    "metrics": [
+      "container_network_receive_packets_total",
+      "container_network_receive_packets_dropped_total"
+    ],
+    "lvp": [
+      "interface=eth0",
+      "interface=eth0"
+    ],
+    "promql": [
+      "topk(3,\n  (\n    rate(container_network_receive_packets_dropped_total{node=\"k8s-node2\", interface=\"eth0\", namespace=\"obs\"}[5m])\n    /\n    rate(container_network_receive_packets_total{node=\"k8s-node2\", interface=\"eth0\", namespace=\"obs\"}[5m])\n  ) * 100\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "027. Based on the last hour's data, perform a linear prediction of the memory usage in bytes for the Tempo container on k8s-node1 over the next 15 minutes.": {
+    "idx": "027",
+    "question": "Based on the last hour's data, perform a linear prediction of the memory usage in bytes for the Tempo container on k8s-node1 over the next 15 minutes.",
+    "metrics": [
+      "container_memory_usage_bytes"
+    ],
+    "lvp": [
+      "container=tempo"
+    ],
+    "promql": [
+      "predict_linear(container_memory_usage_bytes{container=\"tempo\", instance=\"10.176.122.151:10250\"}[1h], 15*60)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "028. Identify the top 5 containers on node k8s-node1 in the obs namespace that hit the most memory usage limits in the past hour, and report their total number of hits.": {
+    "idx": "028",
+    "question": "Identify the top 5 containers on node k8s-node1 in the obs namespace that hit the most memory usage limits in the past hour, and report their total number of hits.",
+    "metrics": [
+      "container_memory_failcnt"
+    ],
+    "lvp": [
+      "container=POD"
+    ],
+    "promql": [
+      "topk(5,\n  sum by (container) (\n    increase(container_memory_failcnt{instance=\"10.176.122.151:10250\", namespace=\"obs\", node=\"k8s-node1\"}[1h])\n  )\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "029. In the past three minutes, what is the per-second call rate for the GET /api/v1/orderservice/order API?": {
+    "idx": "029",
+    "question": "In the past three minutes, what is the per-second call rate for the GET /api/v1/orderservice/order API?",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "rate(traces_spanmetrics_calls_total{service=\"ts-order-service\", span_name=\"GET /api/v1/orderservice/order\"}[3m])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "030. Calculate the average latency for the API used to update station information over the past 30 minutes.": {
+    "idx": "030",
+    "question": "Calculate the average latency for the API used to update station information over the past 30 minutes.",
+    "metrics": [
+      "traces_spanmetrics_latency_sum",
+      "traces_spanmetrics_latency_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "avg_over_time(\n  (\n    increase(traces_spanmetrics_latency_sum{service=\"ts-station-service\", span_name=\"PUT /api/v1/stationservice/stations\"}[30m])\n    /\n    increase(traces_spanmetrics_latency_count{service=\"ts-station-service\", span_name=\"PUT /api/v1/stationservice/stations\"}[30m])\n  )[30m:1m]\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "031. Check the current ratio of TCP sockets in the 'tw' state to those in the 'alloc' state for all nodes running the execute service. Subtract the ratio from the same time one day ago from the current ratio to determine the change.": {
+    "idx": "031",
+    "question": "Check the current ratio of TCP sockets in the 'tw' state to those in the 'alloc' state for all nodes running the execute service. Subtract the ratio from the same time one day ago from the current ratio to determine the change.",
+    "metrics": [
+      "node_sockstat_TCP_tw",
+      "node_sockstat_TCP_alloc"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  node_sockstat_TCP_tw{instance=~\"10.176.122.151:9100|10.176.122.162:9100\"}\n  /\n  node_sockstat_TCP_alloc{instance=~\"10.176.122.151:9100|10.176.122.162:9100\"}\n)\n-\n(\n  node_sockstat_TCP_tw{instance=~\"10.176.122.151:9100|10.176.122.162:9100\"} offset 1d\n  /\n  node_sockstat_TCP_alloc{instance=~\"10.176.122.151:9100|10.176.122.162:9100\"} offset 1d\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "032. Shows the CPU usage of the pods for the admin user service deployed on node k8s-node2 over the last 5 minutes.": {
+    "idx": "032",
+    "question": "Shows the CPU usage of the pods for the admin user service deployed on node k8s-node2 over the last 5 minutes.",
+    "metrics": [
+      "container_cpu_usage_seconds_total"
+    ],
+    "lvp": [
+      "container=ts-admin-user-service"
+    ],
+    "promql": [
+      "sum by (pod) (rate(container_cpu_usage_seconds_total{node=\"k8s-node2\", container=\"ts-admin-user-service\"}[5m]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "033. How many physical CPU cores do the nodes hosting the seat service have in total?": {
+    "idx": "033",
+    "question": "How many physical CPU cores do the nodes hosting the seat service have in total?",
+    "metrics": [
+      "machine_cpu_physical_cores"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(machine_cpu_physical_cores{node=~\"k8s-node1|k8s-node3\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "034. Display the average latency of the auth service's login check API, with the interval of 1-minute.": {
+    "idx": "034",
+    "question": "Display the average latency of the auth service's login check API, with the interval of 1-minute.",
+    "metrics": [
+      "traces_spanmetrics_latency_sum",
+      "traces_spanmetrics_latency_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "avg_over_time(\n  rate(traces_spanmetrics_latency_sum{service=\"ts-auth-service\", span_name=\"POST /api/v1/users/login\"}[1m])\n  /\n  rate(traces_spanmetrics_latency_count{service=\"ts-auth-service\", span_name=\"POST /api/v1/users/login\"}[1m])\n[1m])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "F",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "035. What is the total number of transmission errors for all pods of the assurance service on node k8s-node2 in the last 5 minutes?": {
+    "idx": "035",
+    "question": "What is the total number of transmission errors for all pods of the assurance service on node k8s-node2 in the last 5 minutes?",
+    "metrics": [
+      "container_network_transmit_errors_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(increase(container_network_transmit_errors_total{node=\"k8s-node2\"}[5m]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "036. What is the per-second rate of process forks on the nodes hosting coredns deployment pods, calculated using the last two data points over the past 5 minutes?": {
+    "idx": "036",
+    "question": "What is the per-second rate of process forks on the nodes hosting coredns deployment pods, calculated using the last two data points over the past 5 minutes?",
+    "metrics": [
+      "node_forks_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "idelta(node_forks_total{instance=~\"10.176.122.152:9100|10.176.122.161:9100\"}[5m]) / 300\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "037. How much time did all containers of the delivery service on node k8s-node1 spend writing to the filesystem in the past hour?": {
+    "idx": "037",
+    "question": "How much time did all containers of the delivery service on node k8s-node1 spend writing to the filesystem in the past hour?",
+    "metrics": [
+      "container_fs_write_seconds_total"
+    ],
+    "lvp": [
+      "container=ts-delivery-service"
+    ],
+    "promql": [
+      "sum(increase(container_fs_write_seconds_total{node=\"k8s-node1\"}[1h]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "038. What is the total number of block IO device bytes that containers in the gateway service have used on the /dev/sda device for read operations in the past 10 minutes?": {
+    "idx": "038",
+    "question": "What is the total number of block IO device bytes that containers in the gateway service have used on the /dev/sda device for read operations in the past 10 minutes?",
+    "metrics": [
+      "container_blkio_device_usage_total"
+    ],
+    "lvp": [
+      "container=POD",
+      "operation=Read",
+      "device=/dev/sda"
+    ],
+    "promql": [
+      "sum(increase(container_blkio_device_usage_total{container=\"ts-gateway-service\", device=\"/dev/sda\", operation=\"Read\"}[10m]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "039. How many packets have all pods of the gateway service on nodes k8s-node2 and k8s-node5 dropped while receiving in the last 2 days?": {
+    "idx": "039",
+    "question": "How many packets have all pods of the gateway service on nodes k8s-node2 and k8s-node5 dropped while receiving in the last 2 days?",
+    "metrics": [
+      "container_network_receive_packets_dropped_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(increase(container_network_receive_packets_dropped_total{node=~\"k8s-node2|k8s-node5\"}[2d]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "040. How much time did containers of the food service spend on fs write operations in the past hour?": {
+    "idx": "040",
+    "question": "How much time did containers of the food service spend on fs write operations in the past hour?",
+    "metrics": [
+      "container_fs_write_seconds_total"
+    ],
+    "lvp": [
+      "container=ts-food-service"
+    ],
+    "promql": [
+      "rate(container_fs_write_seconds_total{container=\"ts-food-service\"}[1h]) * 3600\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "041. Using the past hour's memory cache data, predict the page cache memory usage in bytes for the next 30 minutes for the k8snacos container of the nacos service on k8s-node2 using a linear model.": {
+    "idx": "041",
+    "question": "Using the past hour's memory cache data, predict the page cache memory usage in bytes for the next 30 minutes for the k8snacos container of the nacos service on k8s-node2 using a linear model.",
+    "metrics": [
+      "container_memory_cache"
+    ],
+    "lvp": [
+      "container=k8snacos"
+    ],
+    "promql": [
+      "predict_linear(\n  container_memory_cache{container=\"k8snacos\", instance=\"10.176.122.152:10250\", node=\"k8s-node2\"}[1h],\n  30*60\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "042. How much has the transmission rate of bytes by the network interfaces on nodes hosting the seat service changed in the last minute, by subtracting the rate of the same minute yesterday?": {
+    "idx": "042",
+    "question": "How much has the transmission rate of bytes by the network interfaces on nodes hosting the seat service changed in the last minute, by subtracting the rate of the same minute yesterday?",
+    "metrics": [
+      "container_network_transmit_bytes_total"
+    ],
+    "lvp": [
+      "interface=cni0"
+    ],
+    "promql": [
+      "(\n  rate(container_network_transmit_bytes_total{pod=~\"ts-seat-service-.*\"}[1m])\n  -\n  rate(container_network_transmit_bytes_total{pod=~\"ts-seat-service-.*\"}[1m] offset 1d)\n)\n"
+    ],
+    "metrics_right": "F",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "043. Use the data from the past hour to predict the CPU usage (accounting for limit) trend of the pods of the downstream services of ts-inside-payment-service in the next 2 hours, and find the pods whose CPU usage will exceed 80% in the future.": {
+    "idx": "043",
+    "question": "Use the data from the past hour to predict the CPU usage (accounting for limit) trend of the pods of the downstream services of ts-inside-payment-service in the next 2 hours, and find the pods whose CPU usage will exceed 80% in the future.",
+    "metrics": [
+      "container_cpu_usage_seconds_total",
+      "kube_pod_container_resource_limits"
+    ],
+    "lvp": [
+      "cpu=0",
+      "resource=cpu"
+    ],
+    "promql": [
+      "(\n  predict_linear(rate(container_cpu_usage_seconds_total{pod=~\"ts-order-other-service-599787b58b-.*|ts-order-service-5cffbb94fd-.*|ts-payment-service-bcd86c6d7-.*\"}[1h]), 2 * 3600)\n  /\n  kube_pod_container_resource_limits{resource=\"cpu\", pod=~\"ts-order-other-service-599787b58b-.*|ts-order-service-5cffbb94fd-.*|ts-payment-service-bcd86c6d7-.*\"}\n) * 100 > 80\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "F",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "044. Show me the requests per second from the food service to its downstream services in the last hour.": {
+    "idx": "044",
+    "question": "Show me the requests per second from the food service to its downstream services in the last hour.",
+    "metrics": [
+      "traces_service_graph_request_client_seconds_count",
+      "traces_service_graph_request_client_seconds_sum"
+    ],
+    "lvp": [],
+    "promql": [
+      "rate(traces_service_graph_request_client_seconds_count{client=\"ts-food-service\"}[1h])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "045. Which pod of the auth service had the highest error ratio in transmit packets in the last 5 minutes?": {
+    "idx": "045",
+    "question": "Which pod of the auth service had the highest error ratio in transmit packets in the last 5 minutes?",
+    "metrics": [
+      "container_network_transmit_errors_total",
+      "container_network_transmit_packets_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(1, \n  rate(container_network_transmit_errors_total{pod=~\"ts-auth-service-.*\"}[5m]) \n  / \n  rate(container_network_transmit_packets_total{pod=~\"ts-auth-service-.*\"}[5m])\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "046. How many throttled period intervals have the containers in the contacts service experienced in the past 24 hours?": {
+    "idx": "046",
+    "question": "How many throttled period intervals have the containers in the contacts service experienced in the past 24 hours?",
+    "metrics": [
+      "container_cpu_cfs_throttled_periods_total"
+    ],
+    "lvp": [
+      "container=ts-contacts-service"
+    ],
+    "promql": [
+      "sum(increase(container_cpu_cfs_throttled_periods_total{container=\"ts-contacts-service\"}[24h]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "047. What is the failure ratio for the rebook service's requests to the seat service over the past five minutes?": {
+    "idx": "047",
+    "question": "What is the failure ratio for the rebook service's requests to the seat service over the past five minutes?",
+    "metrics": [
+      "container_memory_failures_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  rate(container_memory_failures_total{service=\"ts-rebook-service\", destination_service=\"ts-seat-service\"}[5m])\n  /\n  rate(total_requests_total{service=\"ts-rebook-service\", destination_service=\"ts-seat-service\"}[5m])\n)\n"
+    ],
+    "metrics_right": "F",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "048. Query the current memory limit sizes for all containers of the service hosting the API used to get routes in the cheapest order.": {
+    "idx": "048",
+    "question": "Query the current memory limit sizes for all containers of the service hosting the API used to get routes in the cheapest order.",
+    "metrics": [
+      "kube_pod_container_resource_limits"
+    ],
+    "lvp": [
+      "container=POD",
+      "resource=memory"
+    ],
+    "promql": [
+      "kube_pod_container_resource_limits{container=\"ts-route-plan-service\", resource=\"memory\"}\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "049. How much has the number of packets dropped during transmission by the ens160 device on nodes hosting the gateway service in the current 5-minute window increased compared to the same 5-minute window one day earlier?": {
+    "idx": "049",
+    "question": "How much has the number of packets dropped during transmission by the ens160 device on nodes hosting the gateway service in the current 5-minute window increased compared to the same 5-minute window one day earlier?",
+    "metrics": [
+      "node_network_transmit_drop_total"
+    ],
+    "lvp": [
+      "device=ens160"
+    ],
+    "promql": [
+      "increase(node_network_transmit_drop_total{device=\"ens160\", instance=~\"10.176.122.152:9100|10.176.122.162:9100\"}[5m])\n-\nincrease(node_network_transmit_drop_total{device=\"ens160\", instance=~\"10.176.122.152:9100|10.176.122.162:9100\"}[5m] offset 1d)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "050. Calculate the total number of processes across all pods of the service that provides the API for creating payments.": {
+    "idx": "050",
+    "question": "Calculate the total number of processes across all pods of the service that provides the API for creating payments.",
+    "metrics": [
+      "container_processes"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(container_processes{pod=~\"ts-payment-service-.*\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "051. Display the number of calls to all APIs invoked by the Login Check API in the past five minutes.": {
+    "idx": "051",
+    "question": "Display the number of calls to all APIs invoked by the Login Check API in the past five minutes.",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(rate(traces_spanmetrics_calls_total{span_name=\"GET /api/v1/verifycode/verify/{verifyCode}\"}[5m])) * 300\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "052. Did the 5-minute load average on node k8s-node1 exceed 0.5 at any point in the last 30 minutes?": {
+    "idx": "052",
+    "question": "Did the 5-minute load average on node k8s-node1 exceed 0.5 at any point in the last 30 minutes?",
+    "metrics": [
+      "node_load5"
+    ],
+    "lvp": [],
+    "promql": [
+      "max_over_time(node_load5{instance=\"10.176.122.151:9100\"}[30m]) > 0.5\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "053. Calculate the difference between the current response latency of all APIs provided by the rebook service and the response latency from two hours ago.": {
+    "idx": "053",
+    "question": "Calculate the difference between the current response latency of all APIs provided by the rebook service and the response latency from two hours ago.",
+    "metrics": [
+      "traces_spanmetrics_latency_sum",
+      "traces_spanmetrics_latency_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  sum(rate(traces_spanmetrics_latency_sum{service=\"ts-rebook-service\"}[5m]))\n  /\n  sum(rate(traces_spanmetrics_latency_count{service=\"ts-rebook-service\"}[5m]))\n)\n-\n(\n  sum(rate(traces_spanmetrics_latency_sum{service=\"ts-rebook-service\"}[5m] offset 2h))\n  /\n  sum(rate(traces_spanmetrics_latency_count{service=\"ts-rebook-service\"}[5m] offset 2h))\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "054. Can you predict the CPU usage ratio of the pods for the downstream services of ts-auth-service in the next 2 hours, and identify the pods whose CPU usage will exceed 50% in the future (considering the CPU limit)?": {
+    "idx": "054",
+    "question": "Can you predict the CPU usage ratio of the pods for the downstream services of ts-auth-service in the next 2 hours, and identify the pods whose CPU usage will exceed 50% in the future (considering the CPU limit)?",
+    "metrics": [
+      "container_cpu_usage_seconds_total",
+      "container_cpu_cfs_periods_total"
+    ],
+    "lvp": [
+      "container=ts-auth-service",
+      "cpu=0",
+      "cpu=0"
+    ],
+    "promql": [
+      "(\n  predict_linear(container_cpu_usage_seconds_total{pod=~\"ts-verification-code-service-6445455b6c-.*\"}[1h], 7200)\n  /\n  <CPU_LIMIT>\n) > 0.5\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "F",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "055. Please find the pods of the execute service and the security service whose receiving byte rate is more than twice the transmitting byte rate in the past five minutes.": {
+    "idx": "055",
+    "question": "Please find the pods of the execute service and the security service whose receiving byte rate is more than twice the transmitting byte rate in the past five minutes.",
+    "metrics": [
+      "container_network_receive_bytes_total",
+      "container_network_transmit_bytes_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  rate(container_network_receive_bytes_total{pod=~\"ts-execute-service-.*|ts-security-service-.*\"}[5m])\n  >\n  2 * rate(container_network_transmit_bytes_total{pod=~\"ts-execute-service-.*|ts-security-service-.*\"}[5m])\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "056. Show me the total number of requests from gateway service to execute service in last 1 day.": {
+    "idx": "056",
+    "question": "Show me the total number of requests from gateway service to execute service in last 1 day.",
+    "metrics": [
+      "traces_service_graph_request_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "increase(traces_service_graph_request_total{client=\"ts-gateway-service\", server=\"ts-execute-service\"}[1d])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "057. Show how many times the memory usage of all pods for the gateway service exceeded the limit in the last hour.": {
+    "idx": "057",
+    "question": "Show how many times the memory usage of all pods for the gateway service exceeded the limit in the last hour.",
+    "metrics": [
+      "container_memory_failcnt"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(increase(container_memory_failcnt{pod=~\"ts-gateway-service-.*\"}[1h]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "058. Which containers on the node k8s-node3 are deployed with the tsdb-mysql service?  Show the growth rate of bytes used by their block devices over the past 30 minutes.": {
+    "idx": "058",
+    "question": "Which containers on the node k8s-node3 are deployed with the tsdb-mysql service?  Show the growth rate of bytes used by their block devices over the past 30 minutes.",
+    "metrics": [
+      "container_blkio_device_usage_total"
+    ],
+    "lvp": [
+      "container=POD",
+      "device=cni0"
+    ],
+    "promql": [
+      "rate(container_blkio_device_usage_total{node=\"k8s-node3\", pod=~\"tsdb-mysql-.*\", container=~\"mysql|slowlog|xenon\"}[30m])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "059. Among the nodes currently hosting the pod of execute service, which one has the least amount of memory mapped bytes?": {
+    "idx": "059",
+    "question": "Among the nodes currently hosting the pod of execute service, which one has the least amount of memory mapped bytes?",
+    "metrics": [
+      "node_memory_Mapped_bytes"
+    ],
+    "lvp": [],
+    "promql": [
+      "bottomk(1, node_memory_Mapped_bytes{instance=~\"10.176.122.151:9100|10.176.122.162:9100\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "060. Using data from the last hour, predict the memory usage in bytes for the notification service containers on k8s-node5 over the next 15 minutes using a linear model.": {
+    "idx": "060",
+    "question": "Using data from the last hour, predict the memory usage in bytes for the notification service containers on k8s-node5 over the next 15 minutes using a linear model.",
+    "metrics": [
+      "container_memory_usage_bytes"
+    ],
+    "lvp": [
+      "container=ts-notification-service"
+    ],
+    "promql": [
+      "predict_linear(container_memory_usage_bytes{container=\"ts-notification-service\", node=\"k8s-node5\"}[1h], 15*60)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "061. How many process forks have occurred on k8s-node1 and k8s-node2 in the past 30 minutes?": {
+    "idx": "061",
+    "question": "How many process forks have occurred on k8s-node1 and k8s-node2 in the past 30 minutes?",
+    "metrics": [
+      "node_forks_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(increase(node_forks_total{instance=~\"10.176.122.151:9100|10.176.122.152:9100\"}[30m]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "062. Check the current thread count of all containers for the admin user service that are deployed on k8s-node2.": {
+    "idx": "062",
+    "question": "Check the current thread count of all containers for the admin user service that are deployed on k8s-node2.",
+    "metrics": [
+      "container_threads"
+    ],
+    "lvp": [
+      "container=ts-admin-user-service"
+    ],
+    "promql": [
+      "container_threads{container=\"ts-admin-user-service\", node=\"k8s-node2\"}\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "063. How many times did the delivery service request access to the ts database over the past day?": {
+    "idx": "063",
+    "question": "How many times did the delivery service request access to the ts database over the past day?",
+    "metrics": [
+      "traces_service_graph_request_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "increase(traces_service_graph_request_total{client=\"ts-delivery-service\", server=\"ts-database\"}[1d])\n",
+      "rate(traces_service_graph_request_total{client=\"ts-delivery-service\", server=\"ts-database\"}[1d]) * 86400\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "064. Calculate the sum of the number of memory usage hits limits for all containers of the service that provides the API for getting all orders, and grouped by node label.": {
+    "idx": "064",
+    "question": "Calculate the sum of the number of memory usage hits limits for all containers of the service that provides the API for getting all orders, and grouped by node label.",
+    "metrics": [
+      "container_memory_failcnt"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(container_memory_failcnt{container=\"ts-admin-order-service\"}) by (node)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "065. What is the cumulative count of transmission errors for all pods of the tsdb-mysql deployment on node k8s-node3 over the last 5 minutes?": {
+    "idx": "065",
+    "question": "What is the cumulative count of transmission errors for all pods of the tsdb-mysql deployment on node k8s-node3 over the last 5 minutes?",
+    "metrics": [
+      "container_network_transmit_errors_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(increase(container_network_transmit_errors_total{node=\"k8s-node3\"}[5m]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "066. I need the CPU time proportion in different modes of k8s-node1 and k8s-node2 during the past 1 minute, excluding nodes that have less than 8 cores.": {
+    "idx": "066",
+    "question": "I need the CPU time proportion in different modes of k8s-node1 and k8s-node2 during the past 1 minute, excluding nodes that have less than 8 cores.",
+    "metrics": [
+      "node_cpu_seconds_total",
+      "machine_cpu_cores"
+    ],
+    "lvp": [
+      "mode=idle"
+    ],
+    "promql": [
+      "(\n  sum by (node, mode) (\n    rate(node_cpu_seconds_total{instance=~\"10.176.122.15[12]:9100\"}[1m])\n    * on (instance) group_left(node) (\n      machine_cpu_cores{instance=~\"10.176.122.15[12]:10250\"} >= 8\n    )\n  )\n)\n/\n(\n  sum by (node) (\n    sum by (node, mode) (\n      rate(node_cpu_seconds_total{instance=~\"10.176.122.15[12]:9100\"}[1m])\n      * on (instance) group_left(node) (\n        machine_cpu_cores{instance=~\"10.176.122.15[12]:10250\"} >= 8\n      )\n    )\n  )\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "067. Show the maximum memory usage for all containers of the auth service.": {
+    "idx": "067",
+    "question": "Show the maximum memory usage for all containers of the auth service.",
+    "metrics": [
+      "container_memory_max_usage_bytes"
+    ],
+    "lvp": [
+      "container=ts-auth-service"
+    ],
+    "promql": [
+      "max(container_memory_max_usage_bytes{container=\"ts-auth-service\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "068. What is the current working set memory size in bytes for all pods in the nacos statefulset?": {
+    "idx": "068",
+    "question": "What is the current working set memory size in bytes for all pods in the nacos statefulset?",
+    "metrics": [
+      "container_memory_working_set_bytes"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(container_memory_working_set_bytes{pod=~\"nacos-.*\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "069. How many bytes has the dm-0 device on the nodes hosting the news service read from the disk in the past 5 minutes?": {
+    "idx": "069",
+    "question": "How many bytes has the dm-0 device on the nodes hosting the news service read from the disk in the past 5 minutes?",
+    "metrics": [
+      "node_disk_read_bytes_total"
+    ],
+    "lvp": [
+      "device=dm-0"
+    ],
+    "promql": [
+      "sum(increase(node_disk_read_bytes_total{device=\"dm-0\", instance=~\"10.176.122.151:9100|10.176.122.161:9100\"}[5m]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "070. What is the per-second call rate for the API DELETE /api/v1/users/{userId}, calculated over a 5-minute window?": {
+    "idx": "070",
+    "question": "What is the per-second call rate for the API DELETE /api/v1/users/{userId}, calculated over a 5-minute window?",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "rate(traces_spanmetrics_calls_total{service=\"ts-auth-service\", span_name=\"DELETE /api/v1/users/{userId}\"}[5m])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "071. Display the difference in the number of calls between the API used to create user and the API used to delete user over the past day.": {
+    "idx": "071",
+    "question": "Display the difference in the number of calls between the API used to create user and the API used to delete user over the past day.",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "increase(traces_spanmetrics_calls_total{span_name=\"POST /api/v1/auth\"}[1d])\n-\nincrease(traces_spanmetrics_calls_total{span_name=\"DELETE /api/v1/users/{userId}\"}[1d])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "072. What is the CPU usage rate per second for the pods of all services that were called by the seat service in the last minute?": {
+    "idx": "072",
+    "question": "What is the CPU usage rate per second for the pods of all services that were called by the seat service in the last minute?",
+    "metrics": [
+      "container_cpu_usage_seconds_total"
+    ],
+    "lvp": [
+      "cpu=0"
+    ],
+    "promql": [
+      "rate(container_cpu_usage_seconds_total{service=\"seat\"}[1m])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "073. How many enforcement periods have the pods in the seat service completed in the past 5 minutes?": {
+    "idx": "073",
+    "question": "How many enforcement periods have the pods in the seat service completed in the past 5 minutes?",
+    "metrics": [
+      "container_cpu_cfs_periods_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(increase(container_cpu_cfs_periods_total{pod=~\"ts-seat-service-.*\"}[5m]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "074. Display the current MemTotal bytes for all nodes where the gateway service is deployed.": {
+    "idx": "074",
+    "question": "Display the current MemTotal bytes for all nodes where the gateway service is deployed.",
+    "metrics": [
+      "node_memory_MemTotal_bytes"
+    ],
+    "lvp": [],
+    "promql": [
+      "node_memory_MemTotal_bytes{instance=~\"10.176.122.152:9100|10.176.122.162:9100\"}\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "075. How many CPU sockets are there in the nodes that host the tsdb-mysql service?": {
+    "idx": "075",
+    "question": "How many CPU sockets are there in the nodes that host the tsdb-mysql service?",
+    "metrics": [
+      "machine_cpu_sockets"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(machine_cpu_sockets{node=~\"k8s-node3|k8s-node4|k8s-node5\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "076. Please calculate the change in the average request duration of ts-auth-service as a client between the current 5 minutes and the previous 5 minutes using a 5-minute window.": {
+    "idx": "076",
+    "question": "Please calculate the change in the average request duration of ts-auth-service as a client between the current 5 minutes and the previous 5 minutes using a 5-minute window.",
+    "metrics": [
+      "traces_service_graph_request_client_seconds_sum",
+      "traces_service_graph_request_client_seconds_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  rate(traces_service_graph_request_client_seconds_sum{client=\"ts-auth-service\"}[5m])\n  /\n  rate(traces_service_graph_request_client_seconds_count{client=\"ts-auth-service\"}[5m])\n)\n-\n(\n  rate(traces_service_graph_request_client_seconds_sum{client=\"ts-auth-service\"}[5m] offset 5m)\n  /\n  rate(traces_service_graph_request_client_seconds_count{client=\"ts-auth-service\"}[5m] offset 5m)\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "077. Filter out pods with a current CPU usage (using 1m as a window) greater than 0.002 cores/second from the pods of ts-order-service or ts-order-other-service, and predict the CPU usage for the next 10 minutes based on the CPU usage of the past 30 minutes, returning the top 3 pods with the highest predicted values.": {
+    "idx": "077",
+    "question": "Filter out pods with a current CPU usage (using 1m as a window) greater than 0.002 cores/second from the pods of ts-order-service or ts-order-other-service, and predict the CPU usage for the next 10 minutes based on the CPU usage of the past 30 minutes, returning the top 3 pods with the highest predicted values.",
+    "metrics": [
+      "container_cpu_usage_seconds_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(\n  3,\n  predict_linear(\n    rate(container_cpu_usage_seconds_total{pod=~\"ts-order-service.*|ts-order-other-service.*\"}[1m])[30m:1m],\n    600\n  )\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "078. Based on the data from the past day, calculate the 90th percentile latency for the 'SELECT Order' span.": {
+    "idx": "078",
+    "question": "Based on the data from the past day, calculate the 90th percentile latency for the 'SELECT Order' span.",
+    "metrics": [
+      "traces_spanmetrics_latency_bucket",
+      "traces_spanmetrics_latency_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "histogram_quantile(0.90, \n  sum(rate(traces_spanmetrics_latency_bucket{service=\"ts-execute-service\", span_name=\"GET /api/v1/executeservice/execute/collected/{orderId}\"}[1d])) by (le)\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "079. On average, how much time per second did the containers of the security service spend writing to the filesystem in the past 5 minutes?": {
+    "idx": "079",
+    "question": "On average, how much time per second did the containers of the security service spend writing to the filesystem in the past 5 minutes?",
+    "metrics": [
+      "container_fs_write_seconds_total",
+      "container_fs_writes_total"
+    ],
+    "lvp": [
+      "container=ts-security-service",
+      "container=ts-security-service"
+    ],
+    "promql": [
+      "avg(rate(container_fs_write_seconds_total{container=\"ts-security-service\"}[5m]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "080. What are the APIs of the verification code service? For each API, provide the difference in the number of calls between this hour and the same period last week.": {
+    "idx": "080",
+    "question": "What are the APIs of the verification code service? For each API, provide the difference in the number of calls between this hour and the same period last week.",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  increase(traces_spanmetrics_calls_total{service=\"ts-verification-code-service\", span_name=\"GET /api/v1/verifycode/generate\"}[1h])\n  -\n  increase(traces_spanmetrics_calls_total{service=\"ts-verification-code-service\", span_name=\"GET /api/v1/verifycode/generate\"}[1h] offset 1w)\n)\nor\n(\n  increase(traces_spanmetrics_calls_total{service=\"ts-verification-code-service\", span_name=\"GET /api/v1/verifycode/verify/{verifyCode}\"}[1h])\n  -\n  increase(traces_spanmetrics_calls_total{service=\"ts-verification-code-service\", span_name=\"GET /api/v1/verifycode/verify/{verifyCode}\"}[1h] offset 1w)\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "081. Show me the top 1 CPU usages of nodes whose 1m load average is less than 0.8, only consider nodes hosting the gateway service.": {
+    "idx": "081",
+    "question": "Show me the top 1 CPU usages of nodes whose 1m load average is less than 0.8, only consider nodes hosting the gateway service.",
+    "metrics": [
+      "node_load1",
+      "node_cpu_seconds_total"
+    ],
+    "lvp": [
+      "cpu=1"
+    ],
+    "promql": [
+      "topk(1, \n  sort_desc(\n    sum by (instance) (\n      rate(node_cpu_seconds_total{mode!=\"idle\"}[5m])\n    )\n    and\n    node_load1 < 0.8\n    and\n    on (instance) (\n      kube_pod_info{pod=~\"ts-gateway-service-.*\"}\n    )\n  )\n)\n"
+    ],
+    "metrics_right": "F",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "082. How many enforcement periods did the containers in the news service on node k8s-node1 complete in the past day?": {
+    "idx": "082",
+    "question": "How many enforcement periods did the containers in the news service on node k8s-node1 complete in the past day?",
+    "metrics": [
+      "container_cpu_cfs_periods_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(increase(container_cpu_cfs_periods_total{node=\"k8s-node1\", container=\"ts-news-service\"}[1d]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "083. Display the current failure ratio of requests from the execute service to all its downstream services, calculated over a 10-minute window, and compare this result by dividing it by the value from the same time one day ago.": {
+    "idx": "083",
+    "question": "Display the current failure ratio of requests from the execute service to all its downstream services, calculated over a 10-minute window, and compare this result by dividing it by the value from the same time one day ago.",
+    "metrics": [
+      "traces_service_graph_request_total",
+      "traces_service_graph_request_failed_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  rate(traces_service_graph_request_failed_total{client=\"ts-execute-service\"}[10m])\n  /\n  rate(traces_service_graph_request_total{client=\"ts-execute-service\"}[10m])\n)\n/\n(\n  rate(traces_service_graph_request_failed_total{client=\"ts-execute-service\"}[10m] offset 1d)\n  /\n  rate(traces_service_graph_request_total{client=\"ts-execute-service\"}[10m] offset 1d)\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "084. What is the failure ratio for the gateway service's requests to the assurance service over the past five minutes?": {
+    "idx": "084",
+    "question": "What is the failure ratio for the gateway service's requests to the assurance service over the past five minutes?",
+    "metrics": [],
+    "lvp": [],
+    "promql": [
+      "(\n  sum(rate(http_requests_total{service=\"ts-gateway-service\", target_service=\"ts-assurance-service\", status_code=~\"4..|5..\"}[5m]))\n  /\n  sum(rate(http_requests_total{service=\"ts-gateway-service\", target_service=\"ts-assurance-service\"}[5m]))\n)\n"
+    ],
+    "metrics_right": "F",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "085. What are the downstream APIs for the API used to 'get routes in the quickest order'? Display the total number of calls to these APIs over the past hour.": {
+    "idx": "085",
+    "question": "What are the downstream APIs for the API used to 'get routes in the quickest order'? Display the total number of calls to these APIs over the past hour.",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(increase(traces_spanmetrics_calls_total{span_name=~\"GET /api/v1/travel2service/routes/{tripId}|GET /api/v1/travelservice/routes/{tripId}|POST /api/v1/travel2service/trips/left|POST /api/v1/travelservice/trips/left\"}[1h])) by (span_name)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "086. Calculate the average duration of requests from the gateway service to the execute service over the past five minutes.": {
+    "idx": "086",
+    "question": "Calculate the average duration of requests from the gateway service to the execute service over the past five minutes.",
+    "metrics": [],
+    "lvp": [],
+    "promql": [
+      "avg_over_time(\n  http_request_duration_seconds{source_service=\"ts-gateway-service\", destination_service=\"ts-execute-service\"}[5m]\n)\n"
+    ],
+    "metrics_right": "F",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "087. Can you calculate the total number of dropped packets received by the ens160 device on all nodes hosting the voucher service in the last 10 minutes?": {
+    "idx": "087",
+    "question": "Can you calculate the total number of dropped packets received by the ens160 device on all nodes hosting the voucher service in the last 10 minutes?",
+    "metrics": [
+      "node_network_receive_drop_total"
+    ],
+    "lvp": [
+      "device=ens160"
+    ],
+    "promql": [
+      "sum(increase(node_network_receive_drop_total{device=\"ens160\"}[10m]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "088. Show the total number of current sockets for all pods of the gateway service.": {
+    "idx": "088",
+    "question": "Show the total number of current sockets for all pods of the gateway service.",
+    "metrics": [
+      "container_sockets"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(container_sockets) by (pod)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "089. What are the APIs of the rebook service? Among these APIs, identify the one that has been called the most frequently over the past 5 minutes.": {
+    "idx": "089",
+    "question": "What are the APIs of the rebook service? Among these APIs, identify the one that has been called the most frequently over the past 5 minutes.",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(1, sum by (span_name) (rate(traces_spanmetrics_calls_total{service=\"ts-rebook-service\"}[5m])))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "090. How many times was the FoodOrderRepository.findByOrderId span appeared in total in the past hour?": {
+    "idx": "090",
+    "question": "How many times was the FoodOrderRepository.findByOrderId span appeared in total in the past hour?",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "increase(traces_spanmetrics_calls_total{span_name=\"FoodOrderRepository.findByOrderId\"}[1h])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "091. Which node hosting the tsdb-mysql statefulset had the highest number of network receive errors on the docker0 device in the past 24 hours?": {
+    "idx": "091",
+    "question": "Which node hosting the tsdb-mysql statefulset had the highest number of network receive errors on the docker0 device in the past 24 hours?",
+    "metrics": [
+      "node_network_receive_errs_total"
+    ],
+    "lvp": [
+      "device=docker0"
+    ],
+    "promql": [
+      "topk(1,\n  increase(\n    node_network_receive_errs_total{device=\"docker0\", instance=~\"10.176.122.153:9100|10.176.122.161:9100|10.176.122.162:9100\"}[24h]\n  )\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "092. Show the average latency of spans from all downstream services of the security service, calculated over a 5-minute window.": {
+    "idx": "092",
+    "question": "Show the average latency of spans from all downstream services of the security service, calculated over a 5-minute window.",
+    "metrics": [
+      "traces_spanmetrics_latency_sum",
+      "traces_spanmetrics_latency_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(\n  rate(traces_spanmetrics_latency_sum{service=~\"ts-order-other-service|ts-order-service\"}[5m])\n  /\n  rate(traces_spanmetrics_latency_count{service=~\"ts-order-other-service|ts-order-service\"}[5m])\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "093. Calculate the average latency for the `GET /api/v1/verifycode/verify/{verifyCode}` API using data from the past 30 minutes. Compare this with the same period from the previous day by subtracting the earlier value from the current one.": {
+    "idx": "093",
+    "question": "Calculate the average latency for the `GET /api/v1/verifycode/verify/{verifyCode}` API using data from the past 30 minutes. Compare this with the same period from the previous day by subtracting the earlier value from the current one.",
+    "metrics": [
+      "traces_spanmetrics_latency_sum",
+      "traces_spanmetrics_latency_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  increase(traces_spanmetrics_latency_sum{service=\"ts-verification-code-service\", span_name=\"GET /api/v1/verifycode/verify/{verifyCode}\"}[30m])\n  /\n  increase(traces_spanmetrics_latency_count{service=\"ts-verification-code-service\", span_name=\"GET /api/v1/verifycode/verify/{verifyCode}\"}[30m])\n)\n-\n(\n  increase(traces_spanmetrics_latency_sum{service=\"ts-verification-code-service\", span_name=\"GET /api/v1/verifycode/verify/{verifyCode}\"}[30m] offset 1d)\n  /\n  increase(traces_spanmetrics_latency_count{service=\"ts-verification-code-service\", span_name=\"GET /api/v1/verifycode/verify/{verifyCode}\"}[30m] offset 1d)\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "094. In the past hour, how many packets have been dropped on eth0 during transmission by the pods of the tsdb-mysql statefulset on node k8s-node5?": {
+    "idx": "094",
+    "question": "In the past hour, how many packets have been dropped on eth0 during transmission by the pods of the tsdb-mysql statefulset on node k8s-node5?",
+    "metrics": [
+      "container_network_transmit_packets_dropped_total"
+    ],
+    "lvp": [
+      "interface=eth0"
+    ],
+    "promql": [
+      "sum(increase(container_network_transmit_packets_dropped_total{node=\"k8s-node5\", interface=\"eth0\"}[1h])) by (pod)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "095. Show me the total number of restarts for all pods of the gateway service and voucher service in the last 30 minutes.": {
+    "idx": "095",
+    "question": "Show me the total number of restarts for all pods of the gateway service and voucher service in the last 30 minutes.",
+    "metrics": [
+      "kube_pod_container_status_restarts_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(increase(kube_pod_container_status_restarts_total{pod=~\"ts-gateway-service.*|ts-voucher-service.*\"}[30m]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "096. Show the filesystem bytes usage ratio for all pods of the news service deployed on nodes k8s-node1 and k8s-node4.": {
+    "idx": "096",
+    "question": "Show the filesystem bytes usage ratio for all pods of the news service deployed on nodes k8s-node1 and k8s-node4.",
+    "metrics": [
+      "container_fs_usage_bytes",
+      "container_fs_limit_bytes"
+    ],
+    "lvp": [
+      "container=ts-news-service"
+    ],
+    "promql": [
+      "(\n  container_fs_usage_bytes{node=~\"k8s-node1|k8s-node4\", pod=~\"ts-news-service-.*\"}\n  /\n  container_fs_limit_bytes{node=~\"k8s-node1|k8s-node4\", pod=~\"ts-news-service-.*\"}\n) * 100\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "097. Which node hosting the pods of tsdb-mysql statefulset currently has the most bounce memory in bytes?": {
+    "idx": "097",
+    "question": "Which node hosting the pods of tsdb-mysql statefulset currently has the most bounce memory in bytes?",
+    "metrics": [
+      "node_memory_Bounce_bytes"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(1, node_memory_Bounce_bytes{instance=~\"10.176.122.153:9100|10.176.122.161:9100|10.176.122.162:9100\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "098. Show the top 5 pods with the most number of restarts in the kube-system namespace.": {
+    "idx": "098",
+    "question": "Show the top 5 pods with the most number of restarts in the kube-system namespace.",
+    "metrics": [
+      "kube_pod_container_status_restarts_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(5, kube_pod_container_status_restarts_total{namespace=\"kube-system\"} by (pod))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "F",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "099. In the past hour, how many packets have been dropped on eth0 during transmission by the pods of the ts-verification-code-service on node k8s-node3?": {
+    "idx": "099",
+    "question": "In the past hour, how many packets have been dropped on eth0 during transmission by the pods of the ts-verification-code-service on node k8s-node3?",
+    "metrics": [
+      "container_network_transmit_packets_dropped_total"
+    ],
+    "lvp": [
+      "interface=eth0"
+    ],
+    "promql": [
+      "increase(\n  container_network_transmit_packets_dropped_total{node=\"k8s-node3\", interface=\"eth0\", pod=~\"ts-verification-code-service-.*\"}[1h]\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "100. I need a query that uses label_replace function to show both the 99th and 95th percentile of request duration (from the client's perspective) to ts-route-service during the past 5 minutes in the same graph.": {
+    "idx": "100",
+    "question": "I need a query that uses label_replace function to show both the 99th and 95th percentile of request duration (from the client's perspective) to ts-route-service during the past 5 minutes in the same graph.",
+    "metrics": [
+      "traces_service_graph_request_client_seconds_bucket"
+    ],
+    "lvp": [],
+    "promql": [
+      "label_replace(\n  histogram_quantile(0.99, sum(rate(traces_service_graph_request_client_seconds_bucket{client=\"ts-route-service\"}[5m])) by (le)),\n  \"percentile\", \"99th\", \"\", \"\"\n) or label_replace(\n  histogram_quantile(0.95, sum(rate(traces_service_graph_request_client_seconds_bucket{client=\"ts-route-service\"}[5m])) by (le)),\n  \"percentile\", \"95th\", \"\", \"\"\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "101. Show me the per-second call rate for the API used to create a trip in 10-minute statistical intervals.": {
+    "idx": "101",
+    "question": "Show me the per-second call rate for the API used to create a trip in 10-minute statistical intervals.",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "rate(traces_spanmetrics_calls_total{service=\"ts-travel-service\", span_name=\"POST /api/v1/travelservice/trips\"}[10m])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "102. Show the average request duration over a 5-minute window for all traffic from the seat service to all its downstream services.": {
+    "idx": "102",
+    "question": "Show the average request duration over a 5-minute window for all traffic from the seat service to all its downstream services.",
+    "metrics": [],
+    "lvp": [],
+    "promql": [
+      "avg_over_time(\n  http_request_duration_seconds{source_service=\"ts-seat-service\", destination_service=~\"ts-config-service|ts-order-other-service|ts-order-service\"}[5m]\n)\n"
+    ],
+    "metrics_right": "F",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "103. Which node hosting the ts-wait-order-service currently has the most I/O activities in progress?": {
+    "idx": "103",
+    "question": "Which node hosting the ts-wait-order-service currently has the most I/O activities in progress?",
+    "metrics": [
+      "node_disk_io_now"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(1, sum(node_disk_io_now) by (instance))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "104. Calculates the decrease in the total number of processes currently running in all containers on k8s-node3 compared to that number at the same time one day ago.": {
+    "idx": "104",
+    "question": "Calculates the decrease in the total number of processes currently running in all containers on k8s-node3 compared to that number at the same time one day ago.",
+    "metrics": [
+      "container_processes"
+    ],
+    "lvp": [
+      "container=POD"
+    ],
+    "promql": [
+      "sum(container_processes{node=\"k8s-node3\"}) - sum(container_processes{node=\"k8s-node3\"} offset 1d)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "105. Monitor whether the network inflow rate of pod of the ts-travel-service exceeds 2000 byte/s in the past five minutes at the same time some average request duration (from the client's perspective) to ts-travel-service exceeds 0.003.": {
+    "idx": "105",
+    "question": "Monitor whether the network inflow rate of pod of the ts-travel-service exceeds 2000 byte/s in the past five minutes at the same time some average request duration (from the client's perspective) to ts-travel-service exceeds 0.003.",
+    "metrics": [
+      "node_network_carrier_up_changes_total",
+      "traces_service_graph_request_client_seconds_sum",
+      "traces_service_graph_request_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "rate(node_network_receive_bytes_total{pod=~\"ts-travel-service-c598b7879-.*\"}[5m]) > 2000\nand\n(\n  rate(traces_service_graph_request_client_seconds_sum{client=\"ts-travel-service\"}[5m])\n  /\n  rate(traces_service_graph_request_total{client=\"ts-travel-service\"}[5m])\n) > 0.003\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "106. What are the upstream services of the auth service? Show the total number of restarts of the pods for these services over the past hour.": {
+    "idx": "106",
+    "question": "What are the upstream services of the auth service? Show the total number of restarts of the pods for these services over the past hour.",
+    "metrics": [
+      "kube_pod_container_status_restarts_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(\n  increase(\n    kube_pod_container_status_restarts_total{pod=~\"ts-gateway-service-.*|ts-user-service-.*\"}[1h]\n  )\n) by (pod)\n* on(pod) group_left(service)\nlabel_replace(\n  kube_pod_container_status_restarts_total{pod=~\"ts-gateway-service-.*|ts-user-service-.*\"},\n  \"service\", \"$1\", \"pod\", \"ts-(gateway|user)-service-.*\"\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "107. Consider the root partition file system of nodes with IP in the range of 10.176.122.150 ~ 10.176.122.159, use the data from the past week to predict the available space (GB) in 7 days, and only show the results of the three nodes with the highest current root file system usage.": {
+    "idx": "107",
+    "question": "Consider the root partition file system of nodes with IP in the range of 10.176.122.150 ~ 10.176.122.159, use the data from the past week to predict the available space (GB) in 7 days, and only show the results of the three nodes with the highest current root file system usage.",
+    "metrics": [
+      "node_filesystem_avail_bytes",
+      "node_filesystem_free_bytes"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(3, \n  sort_desc(\n    node_filesystem_avail_bytes{instance=~\"10.176.122.15[0-9]:.*\", mountpoint=\"/\"}\n  )\n) * on(instance, mountpoint) group_left()\npredict_linear(\n  node_filesystem_avail_bytes{instance=~\"10.176.122.15[0-9]:.*\", mountpoint=\"/\"}[1w], \n  7 * 24 * 60 * 60\n) / 1e9\n"
+    ],
+    "metrics_right": "F",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "108. Calculate the p90 latency of the API that is related to updating station information.": {
+    "idx": "108",
+    "question": "Calculate the p90 latency of the API that is related to updating station information.",
+    "metrics": [
+      "traces_spanmetrics_latency_bucket",
+      "traces_spanmetrics_latency_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "histogram_quantile(\n  0.90,\n  sum(rate(traces_spanmetrics_latency_bucket{service=\"ts-station-service\", span_name=\"PUT /api/v1/stationservice/stations\"}[5m])) by (le)\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "109. Which node hosting pods for the ts-voucher-service currently has the most free space on its filesystem on the /dev/sda2 device?": {
+    "idx": "109",
+    "question": "Which node hosting pods for the ts-voucher-service currently has the most free space on its filesystem on the /dev/sda2 device?",
+    "metrics": [
+      "node_filesystem_free_bytes",
+      "node_filesystem_size_bytes"
+    ],
+    "lvp": [
+      "device=/dev/sda2",
+      "device=/dev/sda2"
+    ],
+    "promql": [
+      "topk(1, node_filesystem_free_bytes{device=\"/dev/sda2\", instance=~\"10.176.122.151:9100|10.176.122.152:9100\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "110. Can you show me the number of failed requests from the gateway service to the assurance service in the past 30 minutes?": {
+    "idx": "110",
+    "question": "Can you show me the number of failed requests from the gateway service to the assurance service in the past 30 minutes?",
+    "metrics": [
+      "traces_service_graph_request_failed_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "increase(traces_service_graph_request_failed_total{client=\"ts-gateway-service\", server=\"ts-assurance-service\"}[30m])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "111. How many processes are currently blocked waiting for I/O completion on nodes hosting the tsdb-mysql service?": {
+    "idx": "111",
+    "question": "How many processes are currently blocked waiting for I/O completion on nodes hosting the tsdb-mysql service?",
+    "metrics": [
+      "node_procs_blocked"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(node_procs_blocked{instance=~\"10.176.122.153:9100|10.176.122.161:9100|10.176.122.162:9100\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "112. Check if any node with IP in the range of 10.176.122.154 to 10.176.122.159 has a root filesystem with less than 10 GB of free space and the average disk write speed exceeds 60 MB/s in the last 30 minutes.": {
+    "idx": "112",
+    "question": "Check if any node with IP in the range of 10.176.122.154 to 10.176.122.159 has a root filesystem with less than 10 GB of free space and the average disk write speed exceeds 60 MB/s in the last 30 minutes.",
+    "metrics": [
+      "node_filesystem_free_bytes",
+      "node_disk_write_time_seconds_total",
+      "node_disk_writes_completed_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  node_filesystem_free_bytes{instance=~\"10.176.122.15[4-9]:9100\", mountpoint=\"/\"} < 10 * 1024 * 1024 * 1024\n) and (\n  (\n    rate(node_disk_write_time_seconds_total{instance=~\"10.176.122.15[4-9]:9100\"}[30m])\n    /\n    rate(node_disk_writes_completed_total{instance=~\"10.176.122.15[4-9]:9100\"}[30m])\n  ) * 1024 * 1024 > 60\n)\n"
+    ],
+    "metrics_right": "F",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "113. Calculate the 90th percentile request duration from security service to order service in last 5 minutes.": {
+    "idx": "113",
+    "question": "Calculate the 90th percentile request duration from security service to order service in last 5 minutes.",
+    "metrics": [
+      "traces_service_graph_request_server_seconds_bucket",
+      "traces_service_graph_request_client_seconds_bucket"
+    ],
+    "lvp": [],
+    "promql": [
+      "histogram_quantile(\n  0.90,\n  sum(rate(traces_service_graph_request_client_seconds_bucket{client=\"ts-security-service\", server=\"ts-order-service\"}[5m])) by (le)\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "114. Identify the top three APIs with the highest number of calls among all APIs of the price service in the past hour.": {
+    "idx": "114",
+    "question": "Identify the top three APIs with the highest number of calls among all APIs of the price service in the past hour.",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(3, increase(traces_spanmetrics_calls_total{service=\"ts-price-service\"}[1h]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "115. What is the total amount of memory installed on the nodes hosting the nacosdb-mysql service?": {
+    "idx": "115",
+    "question": "What is the total amount of memory installed on the nodes hosting the nacosdb-mysql service?",
+    "metrics": [
+      "machine_memory_bytes"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(machine_memory_bytes{node=~\"k8s-node1|k8s-node3|k8s-node5\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "116. Which node hosting the seat service currently has the most bytes of cached memory?": {
+    "idx": "116",
+    "question": "Which node hosting the seat service currently has the most bytes of cached memory?",
+    "metrics": [
+      "node_memory_Cached_bytes"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(1, node_memory_Cached_bytes{instance=~\"10.176.122.151:9100|10.176.122.153:9100\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "117. Obtain the nodes whose root file system available space is predicted to be less than 3 GB in the next 4 hours (using the data from the previous 4 hours) and whose disk write rate in the last 4 hours exceeds 50 MB/s, and calculate the current usage rate of their root file systems.": {
+    "idx": "117",
+    "question": "Obtain the nodes whose root file system available space is predicted to be less than 3 GB in the next 4 hours (using the data from the previous 4 hours) and whose disk write rate in the last 4 hours exceeds 50 MB/s, and calculate the current usage rate of their root file systems.",
+    "metrics": [
+      "node_filesystem_avail_bytes",
+      "node_disk_write_bytes_total",
+      "node_filesystem_free_bytes"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  predict_linear(node_filesystem_avail_bytes[4h], 4 * 3600) < 3 * 1024 * 1024 * 1024\n  and\n  rate(node_disk_write_bytes_total[4h]) > 50 * 1024 * 1024\n) * (\n  (node_filesystem_free_bytes - node_filesystem_avail_bytes) / node_filesystem_free_bytes\n)\n"
+    ],
+    "metrics_right": "F",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "118. Please find pods whose receiving byte rate is more than 2 times the sending byte rate in the past five minutes and whose total file system read and write rate exceeds 200 KB/s, excluding pods whose total I/O operation time is shorter than 1e-8.": {
+    "idx": "118",
+    "question": "Please find pods whose receiving byte rate is more than 2 times the sending byte rate in the past five minutes and whose total file system read and write rate exceeds 200 KB/s, excluding pods whose total I/O operation time is shorter than 1e-8.",
+    "metrics": [
+      "container_network_receive_bytes_total",
+      "container_network_transmit_bytes_total",
+      "container_fs_reads_bytes_total",
+      "container_fs_writes_bytes_total",
+      "node_disk_io_time_seconds_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  rate(container_network_receive_bytes_total[5m])\n  >\n  2 * rate(container_network_transmit_bytes_total[5m])\n)\nand\n(\n  rate(container_fs_reads_bytes_total[5m]) + rate(container_fs_writes_bytes_total[5m])\n  >\n  200 * 1024\n)\nand\n(\n  node_disk_io_time_seconds_total > 1e-8\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "119. Which downstream service had the highest total number of failures in all requests made by the rebook service in the past 30 minutes?": {
+    "idx": "119",
+    "question": "Which downstream service had the highest total number of failures in all requests made by the rebook service in the past 30 minutes?",
+    "metrics": [
+      "traces_service_graph_request_failed_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(1, sum by (server) (increase(traces_service_graph_request_failed_total{client=\"ts-rebook-service\"}[30m])))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "120. Show the total number of threads for all pods of the security service on k8s-node3.": {
+    "idx": "120",
+    "question": "Show the total number of threads for all pods of the security service on k8s-node3.",
+    "metrics": [
+      "container_threads"
+    ],
+    "lvp": [
+      "container=ts-security-service"
+    ],
+    "promql": [
+      "sum(container_threads{node=\"k8s-node3\", container=\"ts-security-service\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "121. Among all the pods of the ts-order-service, which pod had the highest total number of memory allocation failures in the last 30 minutes?": {
+    "idx": "121",
+    "question": "Among all the pods of the ts-order-service, which pod had the highest total number of memory allocation failures in the last 30 minutes?",
+    "metrics": [
+      "container_memory_failures_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(1, increase(container_memory_failures_total{pod=~\"ts-order-service-.*\"}[30m]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "122. Can you show me the average latencies for spans within the admin order service that are longer than 0.01 seconds, calculated over the last 5 minutes?": {
+    "idx": "122",
+    "question": "Can you show me the average latencies for spans within the admin order service that are longer than 0.01 seconds, calculated over the last 5 minutes?",
+    "metrics": [
+      "traces_spanmetrics_latency_bucket",
+      "traces_spanmetrics_latency_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "histogram_quantile(\n  0.99,\n  sum(\n    rate(\n      traces_spanmetrics_latency_bucket{service=\"ts-admin-order-service\", le=\"+Inf\"}[5m]\n    )\n  ) by (service, le)\n) > 0.01\n"
+    ],
+    "metrics_right": "F",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "123. What was the maximum mapped memory usage on node k8s-node1 over the past 24 hours?": {
+    "idx": "123",
+    "question": "What was the maximum mapped memory usage on node k8s-node1 over the past 24 hours?",
+    "metrics": [
+      "node_memory_Mapped_bytes"
+    ],
+    "lvp": [],
+    "promql": [
+      "max_over_time(node_memory_Mapped_bytes{instance=\"10.176.122.151:9100\"}[24h])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "124. Could you show me the number of failed requests from the rebook service to the seat service in the past hour?": {
+    "idx": "124",
+    "question": "Could you show me the number of failed requests from the rebook service to the seat service in the past hour?",
+    "metrics": [
+      "traces_service_graph_request_failed_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "increase(traces_service_graph_request_failed_total{client=\"ts-rebook-service\", server=\"ts-seat-service\"}[1h])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "125. What are the downstream services for the seat service? Calculate the average duration of requests from the seat service to all its downstream services over the past 5 minutes, from the client's perspective.": {
+    "idx": "125",
+    "question": "What are the downstream services for the seat service? Calculate the average duration of requests from the seat service to all its downstream services over the past 5 minutes, from the client's perspective.",
+    "metrics": [
+      "traces_service_graph_request_client_seconds_sum",
+      "traces_service_graph_request_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "avg(\n  sum(\n    rate(traces_service_graph_request_client_seconds_sum{client=\"ts-seat-service\"}[5m])\n  ) by (server)\n  /\n  sum(\n    rate(traces_service_graph_request_total{client=\"ts-seat-service\"}[5m])\n  ) by (server)\n) by (server)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "126. Which downstream service was requested the most by the seat service over the past day?": {
+    "idx": "126",
+    "question": "Which downstream service was requested the most by the seat service over the past day?",
+    "metrics": [
+      "traces_service_graph_request_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(1, sum(increase(traces_service_graph_request_total{client=\"ts-seat-service\"}[1d])) by (server))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "127. Which API had more calls in the past day: the API used to register users or the API used to delete users?": {
+    "idx": "127",
+    "question": "Which API had more calls in the past day: the API used to register users or the API used to delete users?",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(1, \n  increase(traces_spanmetrics_calls_total{span_name=\"DELETE /api/v1/users/{userId}\"}[1d]) \n  or \n  increase(traces_spanmetrics_calls_total{span_name=\"POST /api/v1/userservice/users/register\"}[1d])\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "128. What is the rate of bytes per second written to the filesystem by the slowlog container in the tsdb-mysql service over the past 5 minutes?": {
+    "idx": "128",
+    "question": "What is the rate of bytes per second written to the filesystem by the slowlog container in the tsdb-mysql service over the past 5 minutes?",
+    "metrics": [
+      "container_fs_writes_bytes_total"
+    ],
+    "lvp": [
+      "container=slowlog"
+    ],
+    "promql": [
+      "sum(rate(container_fs_writes_bytes_total{container=\"slowlog\"}[5m])) by (pod)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "129. What is the average of the total memory usage per container for the ts-admin-order-service deployed on the k8s-node4?": {
+    "idx": "129",
+    "question": "What is the average of the total memory usage per container for the ts-admin-order-service deployed on the k8s-node4?",
+    "metrics": [
+      "container_memory_usage_bytes"
+    ],
+    "lvp": [
+      "container=ts-admin-order-service"
+    ],
+    "promql": [
+      "avg(container_memory_usage_bytes{container=\"ts-admin-order-service\", node=\"k8s-node4\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "130. Based on data from the past hour, calculate the 90th percentile latency for the API used to create a new station.": {
+    "idx": "130",
+    "question": "Based on data from the past hour, calculate the 90th percentile latency for the API used to create a new station.",
+    "metrics": [
+      "traces_spanmetrics_latency_bucket",
+      "traces_spanmetrics_latency_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "histogram_quantile(\n  0.90,\n  sum without (le) (\n    rate(traces_spanmetrics_latency_bucket{service=\"ts-station-service\", span_name=\"POST /api/v1/stationservice/stations\"}[1h])\n  )\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "131. Calculate the 90th percentile latency of the API used to create a trip, based on data from the past five minutes. Determine how this latency has changed compared to the corresponding value from the same period yesterday by calculating the difference.": {
+    "idx": "131",
+    "question": "Calculate the 90th percentile latency of the API used to create a trip, based on data from the past five minutes. Determine how this latency has changed compared to the corresponding value from the same period yesterday by calculating the difference.",
+    "metrics": [
+      "traces_spanmetrics_latency_bucket",
+      "traces_spanmetrics_latency_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "histogram_quantile(0.90, sum(rate(traces_spanmetrics_latency_bucket{service=\"ts-travel-service\", span_name=\"POST /api/v1/travelservice/trips\"}[5m])) by (le))\n-\nhistogram_quantile(0.90, sum(rate(traces_spanmetrics_latency_bucket{service=\"ts-travel-service\", span_name=\"POST /api/v1/travelservice/trips\"}[5m] offset 1d)) by (le))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "132. Show me the number of calls for each API of the ts-cancel-service in the past hour.": {
+    "idx": "132",
+    "question": "Show me the number of calls for each API of the ts-cancel-service in the past hour.",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum by (span_name) (rate(traces_spanmetrics_calls_total{service=\"ts-cancel-service\"}[1h]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "133. Calculate the 90th percentile request duration from security service to its downstream services over the past hour.": {
+    "idx": "133",
+    "question": "Calculate the 90th percentile request duration from security service to its downstream services over the past hour.",
+    "metrics": [
+      "traces_service_graph_request_server_seconds_bucket",
+      "traces_service_graph_request_server_seconds_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "histogram_quantile(\n  0.90,\n  sum(\n    rate(\n      traces_service_graph_request_server_seconds_bucket{client=\"ts-security-service\"}[1h]\n    )\n  ) by (le, server)\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "134. How many bytes have the /dev/sda block IO devices used by the containers in the auth service on node k8s-node2 in the past hour?": {
+    "idx": "134",
+    "question": "How many bytes have the /dev/sda block IO devices used by the containers in the auth service on node k8s-node2 in the past hour?",
+    "metrics": [
+      "container_blkio_device_usage_total"
+    ],
+    "lvp": [
+      "container=ts-auth-service",
+      "device=/dev/sda"
+    ],
+    "promql": [
+      "sum(increase(container_blkio_device_usage_total{container=\"ts-auth-service\", device=\"/dev/sda\", node=\"k8s-node2\"}[1h]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "135. What is the average filesystem read byte rate for all containers of the ts-train-service in the last 5 minutes?": {
+    "idx": "135",
+    "question": "What is the average filesystem read byte rate for all containers of the ts-train-service in the last 5 minutes?",
+    "metrics": [
+      "container_fs_reads_bytes_total"
+    ],
+    "lvp": [
+      "container=ts-train-service"
+    ],
+    "promql": [
+      "avg(rate(container_fs_reads_bytes_total{container=\"ts-train-service\"}[5m])) by (container)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "136. What percentage of the coredns deployment's replicaset are currently ready in the cluster?": {
+    "idx": "136",
+    "question": "What percentage of the coredns deployment's replicaset are currently ready in the cluster?",
+    "metrics": [
+      "kube_replicaset_status_ready_replicas",
+      "kube_replicaset_spec_replicas"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  kube_replicaset_status_ready_replicas{replicaset=\"coredns-558bd4d5db\"}\n  /\n  kube_replicaset_spec_replicas{replicaset=\"coredns-558bd4d5db\"}\n) * 100\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "137. How many CPU sockets are there in the nodes that host the pods of the coredns deployment?": {
+    "idx": "137",
+    "question": "How many CPU sockets are there in the nodes that host the pods of the coredns deployment?",
+    "metrics": [
+      "machine_cpu_sockets"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(machine_cpu_sockets{node=~\"k8s-node2|k8s-node4\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "138. Can you tell me if the packet drop ratio for transmitting or the packet error ratio for the voucher service containers on node1 and node2 exceeded 0.01 over the past 90 minutes?": {
+    "idx": "138",
+    "question": "Can you tell me if the packet drop ratio for transmitting or the packet error ratio for the voucher service containers on node1 and node2 exceeded 0.01 over the past 90 minutes?",
+    "metrics": [
+      "node_network_transmit_drop_total",
+      "node_network_transmit_packets_total",
+      "node_network_receive_errs_total",
+      "node_network_receive_packets_total"
+    ],
+    "lvp": [
+      "container=ts-voucher-service",
+      "container=POD",
+      "container=POD",
+      "container=ts-voucher-service"
+    ],
+    "promql": [
+      "(\n  rate(node_network_transmit_drop_total{instance=~\"10.176.122.151:9100|10.176.122.152:9100\"}[90m])\n  /\n  rate(node_network_transmit_packets_total{instance=~\"10.176.122.151:9100|10.176.122.152:9100\"}[90m])\n) > 0.01\nor\n(\n  rate(node_network_receive_errs_total{instance=~\"10.176.122.151:9100|10.176.122.152:9100\"}[90m])\n  /\n  rate(node_network_receive_packets_total{instance=~\"10.176.122.151:9100|10.176.122.152:9100\"}[90m])\n) > 0.01\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "139. What is the total page cache memory currently used by all containers of the gateway service?": {
+    "idx": "139",
+    "question": "What is the total page cache memory currently used by all containers of the gateway service?",
+    "metrics": [
+      "container_memory_cache"
+    ],
+    "lvp": [
+      "container=POD"
+    ],
+    "promql": [
+      "sum(container_memory_cache{container=\"ts-gateway-service\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "140. How many TCP sockets are in the orphan state on nodes running the auth service, and what is the ratio of this number to that from one week ago?": {
+    "idx": "140",
+    "question": "How many TCP sockets are in the orphan state on nodes running the auth service, and what is the ratio of this number to that from one week ago?",
+    "metrics": [
+      "node_sockstat_TCP_orphan"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  sum(node_sockstat_TCP_orphan)\n  /\n  sum(node_sockstat_TCP_orphan offset 1w)\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "141. In the past week, which pod in the default namespace, either rebook service or cancel service, had the most restarts?": {
+    "idx": "141",
+    "question": "In the past week, which pod in the default namespace, either rebook service or cancel service, had the most restarts?",
+    "metrics": [
+      "kube_pod_container_status_restarts_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(1, \n  increase(\n    kube_pod_container_status_restarts_total{namespace=\"default\"}[1w]\n  )\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "142. How many bytes have all the containers of the tsdb-mysql service written to the filesystem in the last 3 hours?": {
+    "idx": "142",
+    "question": "How many bytes have all the containers of the tsdb-mysql service written to the filesystem in the last 3 hours?",
+    "metrics": [
+      "container_fs_writes_bytes_total"
+    ],
+    "lvp": [
+      "container=POD"
+    ],
+    "promql": [
+      "sum(increase(container_fs_writes_bytes_total{pod=~\"tsdb-mysql-.*\"}[3h]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "143. Monitor if the network packets transmission error rate for pods of the ts-basic-service exceeds 0.5% and their network bytes receive rate is above 500 KB/s in the last 10 minutes.": {
+    "idx": "143",
+    "question": "Monitor if the network packets transmission error rate for pods of the ts-basic-service exceeds 0.5% and their network bytes receive rate is above 500 KB/s in the last 10 minutes.",
+    "metrics": [
+      "container_network_transmit_errors_total",
+      "container_network_receive_bytes_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  rate(container_network_receive_bytes_total{pod=~\"ts-basic-service-.*\"}[10m]) > (500 * 1024)\n) and (\n  rate(container_network_transmit_errors_total{pod=~\"ts-basic-service-.*\"}[10m]) / rate(container_network_receive_bytes_total{pod=~\"ts-basic-service-.*\"}[10m]) > 0.005\n)\n"
+    ],
+    "metrics_right": "F",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "144. How many network receive errors have been logged on the docker0 device of nodes hosting the tsdb-mysql statefulset in the past 24 hours?": {
+    "idx": "144",
+    "question": "How many network receive errors have been logged on the docker0 device of nodes hosting the tsdb-mysql statefulset in the past 24 hours?",
+    "metrics": [
+      "node_network_receive_errs_total"
+    ],
+    "lvp": [
+      "device=docker0"
+    ],
+    "promql": [
+      "sum(increase(node_network_receive_errs_total{device=\"docker0\", instance=~\"10.176.122.153:9100|10.176.122.161:9100|10.176.122.162:9100\"}[24h]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "145. Show the percentage of the tsdb-mysql statefulset's replicas are currently ready.": {
+    "idx": "145",
+    "question": "Show the percentage of the tsdb-mysql statefulset's replicas are currently ready.",
+    "metrics": [
+      "kube_statefulset_status_replicas_ready",
+      "kube_statefulset_status_replicas"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  kube_statefulset_status_replicas_ready{statefulset=\"tsdb-mysql\"}\n  /\n  kube_statefulset_status_replicas{statefulset=\"tsdb-mysql\"}\n) * 100\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "146. Query the top 3 CPU usages of nodes whose 5m load average is less than 0.5 and whose memory usage exceeds 50%, and only consider nodes with IP in the range of 10.176.122.150 to 10.176.122.159.": {
+    "idx": "146",
+    "question": "Query the top 3 CPU usages of nodes whose 5m load average is less than 0.5 and whose memory usage exceeds 50%, and only consider nodes with IP in the range of 10.176.122.150 to 10.176.122.159.",
+    "metrics": [
+      "node_load5",
+      "container_cpu_usage_seconds_total",
+      "container_memory_usage_bytes",
+      "machine_memory_bytes"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(3, \n  rate(container_cpu_usage_seconds_total[1m]) \n  and \n  (node_load5 < 0.5) \n  and \n  (container_memory_usage_bytes / machine_memory_bytes > 0.5) \n  and \n  (node_ip =~ \"10.176.122.15[0-9]\")\n)\n"
+    ],
+    "metrics_right": "F",
+    "promql_syntax_valid": "F",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "147. What are the APIs in the ts-user-service? Among these, which one has had the highest average latency over the past 5 minutes?": {
+    "idx": "147",
+    "question": "What are the APIs in the ts-user-service? Among these, which one has had the highest average latency over the past 5 minutes?",
+    "metrics": [
+      "traces_spanmetrics_latency_sum",
+      "traces_spanmetrics_latency_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(1, \n  (\n    rate(traces_spanmetrics_latency_sum{service=\"ts-user-service\"}[5m])\n    /\n    rate(traces_spanmetrics_latency_count{service=\"ts-user-service\"}[5m])\n  )\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "148. Perform a linear prediction of the number of open file descriptors on k8s-node1 and k8s-node2, respectively, based on the last hour's data and predicting forward for the next four hours.": {
+    "idx": "148",
+    "question": "Perform a linear prediction of the number of open file descriptors on k8s-node1 and k8s-node2, respectively, based on the last hour's data and predicting forward for the next four hours.",
+    "metrics": [
+      "node_filefd_allocated"
+    ],
+    "lvp": [],
+    "promql": [
+      "predict_linear(node_filefd_allocated{instance=\"10.176.122.151:9100\"}[1h], 4 * 3600)\npredict_linear(node_filefd_allocated{instance=\"10.176.122.152:9100\"}[1h], 4 * 3600)\n"
+    ],
+    "metrics_right": "F",
+    "promql_syntax_valid": "F",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "149. What is the difference in allocated memory for UDP datagrams in the kernel's tx queue between now and one hour ago on k8s-node1 and k8s-node2?": {
+    "idx": "149",
+    "question": "What is the difference in allocated memory for UDP datagrams in the kernel's tx queue between now and one hour ago on k8s-node1 and k8s-node2?",
+    "metrics": [
+      "node_udp_queues"
+    ],
+    "lvp": [
+      "queue=tx"
+    ],
+    "promql": [
+      "(\n  node_udp_queues{instance=\"10.176.122.151:9100\", queue=\"tx\"}\n  -\n  node_udp_queues{instance=\"10.176.122.151:9100\", queue=\"tx\"} offset 1h\n)\n-\n(\n  node_udp_queues{instance=\"10.176.122.152:9100\", queue=\"tx\"}\n  -\n  node_udp_queues{instance=\"10.176.122.152:9100\", queue=\"tx\"} offset 1h\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "150. Calculate the difference in average request duration for the security service to its downstream services over the past 5 minutes by subtracting the average duration from the same period last week from the current average.": {
+    "idx": "150",
+    "question": "Calculate the difference in average request duration for the security service to its downstream services over the past 5 minutes by subtracting the average duration from the same period last week from the current average.",
+    "metrics": [
+      "traces_service_graph_request_server_seconds_sum",
+      "traces_service_graph_request_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  sum(rate(traces_service_graph_request_server_seconds_sum{client=\"ts-security-service\"}[5m])) by (server)\n  /\n  sum(rate(traces_service_graph_request_total{client=\"ts-security-service\"}[5m])) by (server)\n)\n-\n(\n  sum(rate(traces_service_graph_request_server_seconds_sum{client=\"ts-security-service\"}[5m] offset 1w)) by (server)\n  /\n  sum(rate(traces_service_graph_request_total{client=\"ts-security-service\"}[5m] offset 1w)) by (server)\n)\n"
+    ],
+    "metrics_right": "F",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "151. What is the current working set size of memory (in bytes) for all pods in the rabbitmq deployment?": {
+    "idx": "151",
+    "question": "What is the current working set size of memory (in bytes) for all pods in the rabbitmq deployment?",
+    "metrics": [
+      "container_memory_working_set_bytes"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(container_memory_working_set_bytes{pod=~\"rabbitmq-.*\"}) by (pod)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "152. In the past hour, which pods on node 'k8s-master' in the 'obs' namespace and using the 'eth0' interface had network transmission errors?": {
+    "idx": "152",
+    "question": "In the past hour, which pods on node 'k8s-master' in the 'obs' namespace and using the 'eth0' interface had network transmission errors?",
+    "metrics": [
+      "container_network_transmit_errors_total"
+    ],
+    "lvp": [
+      "interface=eth0"
+    ],
+    "promql": [
+      "increase(container_network_transmit_errors_total{node=\"k8s-master\", namespace=\"obs\", interface=\"eth0\"}[1h]) > 0\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "153. Use data from the past hour to perform a linear prediction of the number of UDP sockets in the mem state on nodes hosting RabbitMQ pods for the next 5 minutes.": {
+    "idx": "153",
+    "question": "Use data from the past hour to perform a linear prediction of the number of UDP sockets in the mem state on nodes hosting RabbitMQ pods for the next 5 minutes.",
+    "metrics": [
+      "node_sockstat_UDP_mem"
+    ],
+    "lvp": [],
+    "promql": [
+      "predict_linear(\n  node_sockstat_UDP_mem{instance=\"10.176.122.161:9100\"}[1h],\n  5 * 60\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "154. What is the total number of restarts for all pods of the seat service over the past day?": {
+    "idx": "154",
+    "question": "What is the total number of restarts for all pods of the seat service over the past day?",
+    "metrics": [
+      "kube_pod_container_status_restarts_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(increase(kube_pod_container_status_restarts_total{pod=~\"ts-seat-service-.*\"}[1d]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "155. How many TCP sockets are currently in the orphan state on the k8s-master and k8s-node1 nodes?": {
+    "idx": "155",
+    "question": "How many TCP sockets are currently in the orphan state on the k8s-master and k8s-node1 nodes?",
+    "metrics": [
+      "node_sockstat_TCP_orphan"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(\n  node_sockstat_TCP_orphan{instance=\"10.176.122.151:9100\"}\n  or\n  node_sockstat_TCP_orphan{instance=\"10.176.122.154:9100\"}\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "156. How many throttling periods did the containers of the voucher service on k8s-node2 experience in the past 4 hours?": {
+    "idx": "156",
+    "question": "How many throttling periods did the containers of the voucher service on k8s-node2 experience in the past 4 hours?",
+    "metrics": [
+      "container_cpu_cfs_throttled_periods_total"
+    ],
+    "lvp": [
+      "container=ts-voucher-service"
+    ],
+    "promql": [
+      "increase(container_cpu_cfs_throttled_periods_total{container=\"ts-voucher-service\", node=\"k8s-node2\"}[4h])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "157. Display the average latency of all downstream APIs of the 'pay for the order' API over the past 5 minutes.": {
+    "idx": "157",
+    "question": "Display the average latency of all downstream APIs of the 'pay for the order' API over the past 5 minutes.",
+    "metrics": [
+      "traces_spanmetrics_latency_sum",
+      "traces_spanmetrics_latency_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  sum(increase(traces_spanmetrics_latency_sum{span_name=~\"GET /api/v1/orderOtherService/orderOther/status/{orderId}/{status}|GET /api/v1/orderOtherService/orderOther/{orderId}|GET /api/v1/orderservice/order/status/{orderId}/{status}|GET /api/v1/orderservice/order/{orderId}|POST /api/v1/paymentservice/payment\"}[5m]))\n  /\n  sum(increase(traces_spanmetrics_latency_count{span_name=~\"GET /api/v1/orderOtherService/orderOther/status/{orderId}/{status}|GET /api/v1/orderOtherService/orderOther/{orderId}|GET /api/v1/orderservice/order/status/{orderId}/{status}|GET /api/v1/orderservice/order/{orderId}|POST /api/v1/paymentservice/payment\"}[5m]))\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "158. Monitor the pods of the ticket cancellation service to determine if any pods were restarted in the past hour and now have memory usage greater than 8GB, while excluding pods whose memory usage is less than 60% of the requested limit resource.": {
+    "idx": "158",
+    "question": "Monitor the pods of the ticket cancellation service to determine if any pods were restarted in the past hour and now have memory usage greater than 8GB, while excluding pods whose memory usage is less than 60% of the requested limit resource.",
+    "metrics": [
+      "container_memory_usage_bytes",
+      "kube_pod_container_resource_requests",
+      "kube_pod_container_resource_limits",
+      "kube_pod_status_ready"
+    ],
+    "lvp": [
+      "resource=memory",
+      "resource=cpu",
+      "resource=memory"
+    ],
+    "promql": [
+      "(\n  changes(kube_pod_status_ready{pod=~\"ts-cancel-service-.*\"}[1h]) > 0\n  and\n  container_memory_usage_bytes{pod=~\"ts-cancel-service-.*\"} > 8 * 1024 * 1024 * 1024\n)\nunless\n(\n  container_memory_usage_bytes{pod=~\"ts-cancel-service-.*\"} < 0.6 * kube_pod_container_resource_limits{pod=~\"ts-cancel-service-.*\",resource=\"memory\"}\n)\n"
+    ],
+    "metrics_right": "F",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "159. How many write operations have been completed by the containers of the voucher service on node k8s-node1 in the last 30 minutes?": {
+    "idx": "159",
+    "question": "How many write operations have been completed by the containers of the voucher service on node k8s-node1 in the last 30 minutes?",
+    "metrics": [
+      "container_fs_writes_total"
+    ],
+    "lvp": [
+      "container=ts-voucher-service"
+    ],
+    "promql": [
+      "sum(increase(container_fs_writes_total{container=\"ts-voucher-service\", node=\"k8s-node1\"}[30m]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "160. What was the peak number of orphan TCP sockets on the nodes running the news service in the past 30 minutes?": {
+    "idx": "160",
+    "question": "What was the peak number of orphan TCP sockets on the nodes running the news service in the past 30 minutes?",
+    "metrics": [
+      "node_sockstat_TCP_orphan"
+    ],
+    "lvp": [],
+    "promql": [
+      "max_over_time(node_sockstat_TCP_orphan{instance=~\"10.176.122.151:9100|10.176.122.161:9100\"}[30m])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "161. Calculate the change in the network transmission error rate of the containers of service managing user informations and auth operation on the k8s-node2 node between the current 30 minutes and the previous 30 minutes.": {
+    "idx": "161",
+    "question": "Calculate the change in the network transmission error rate of the containers of service managing user informations and auth operation on the k8s-node2 node between the current 30 minutes and the previous 30 minutes.",
+    "metrics": [
+      "node_network_receive_errs_total"
+    ],
+    "lvp": [
+      "container=POD"
+    ],
+    "promql": [
+      "rate(node_network_receive_errs_total{instance=\"10.176.122.152:9100\"}[30m])\n-\nrate(node_network_receive_errs_total{instance=\"10.176.122.152:9100\"}[30m] offset 30m)\n"
+    ],
+    "metrics_right": "F",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "162. How rapidly have the write operations increased for the containers of the voucher service on node k8s-node2, according to the last two data points from the past 5 minutes?": {
+    "idx": "162",
+    "question": "How rapidly have the write operations increased for the containers of the voucher service on node k8s-node2, according to the last two data points from the past 5 minutes?",
+    "metrics": [
+      "container_fs_writes_total",
+      "container_fs_write_seconds_total",
+      "container_fs_writes_bytes_total"
+    ],
+    "lvp": [
+      "container=ts-voucher-service",
+      "container=ts-voucher-service",
+      "container=ts-voucher-service"
+    ],
+    "promql": [
+      "idelta(container_fs_writes_total{node=\"k8s-node2\"}[5m])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "163. Show the three containers with the highest RSS usage on the node k8s-master in the obs namespace.": {
+    "idx": "163",
+    "question": "Show the three containers with the highest RSS usage on the node k8s-master in the obs namespace.",
+    "metrics": [
+      "container_memory_rss"
+    ],
+    "lvp": [
+      "container=POD"
+    ],
+    "promql": [
+      "topk(3, container_memory_rss{namespace=\"obs\", node=\"k8s-master\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "164. Display the current memory dirty bytes for all nodes where the tsdb-mysql service is deployed.": {
+    "idx": "164",
+    "question": "Display the current memory dirty bytes for all nodes where the tsdb-mysql service is deployed.",
+    "metrics": [
+      "node_memory_Dirty_bytes"
+    ],
+    "lvp": [],
+    "promql": [
+      "node_memory_Dirty_bytes{instance=~\"10.176.122.153:9100|10.176.122.161:9100|10.176.122.162:9100\"}\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "165. Calculate the disk usage of the root partition of the node where the downstream services (pods) of ts-inside-payment-service are located, find the top three, and only display the root partitions with a filesystem size greater than 90GB.": {
+    "idx": "165",
+    "question": "Calculate the disk usage of the root partition of the node where the downstream services (pods) of ts-inside-payment-service are located, find the top three, and only display the root partitions with a filesystem size greater than 90GB.",
+    "metrics": [
+      "node_filesystem_size_bytes",
+      "node_filesystem_free_bytes"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(3,\n  (node_filesystem_size_bytes{instance=~\"10.176.122.15[1-3]:9100|10.176.122.162:9100\", mountpoint=\"/\"} - node_filesystem_free_bytes{instance=~\"10.176.122.15[1-3]:9100|10.176.122.162:9100\", mountpoint=\"/\"})\n  /\n  node_filesystem_size_bytes{instance=~\"10.176.122.15[1-3]:9100|10.176.122.162:9100\", mountpoint=\"/\"}\n  > 0.9 * 1024^3\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "166. Show the filesystem bytes usage ratio for all containers that have a filesystem bytes usage ratio greater than 60% on the node k8s-master.": {
+    "idx": "166",
+    "question": "Show the filesystem bytes usage ratio for all containers that have a filesystem bytes usage ratio greater than 60% on the node k8s-master.",
+    "metrics": [
+      "container_fs_usage_bytes",
+      "container_fs_limit_bytes"
+    ],
+    "lvp": [
+      "container=POD",
+      "container=POD"
+    ],
+    "promql": [
+      "(\n  container_fs_usage_bytes{node=\"k8s-master\"}\n  /\n  container_fs_limit_bytes{node=\"k8s-master\"}\n) * 100 > 60\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "167. Which APIs are provided by verification code service? Calculate the 99th percentile latency of these APIs based on data from the past five minutes.": {
+    "idx": "167",
+    "question": "Which APIs are provided by verification code service? Calculate the 99th percentile latency of these APIs based on data from the past five minutes.",
+    "metrics": [
+      "traces_spanmetrics_latency_bucket"
+    ],
+    "lvp": [],
+    "promql": [
+      "histogram_quantile(\n  0.99,\n  sum(\n    rate(\n      traces_spanmetrics_latency_bucket{service=\"ts-verification-code-service\"}[5m]\n    )\n  ) by (le, span_name)\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "168. In the past 30 minutes, how many requests did the gateway service send to the auth service and the verification code service?": {
+    "idx": "168",
+    "question": "In the past 30 minutes, how many requests did the gateway service send to the auth service and the verification code service?",
+    "metrics": [
+      "traces_service_graph_request_client_seconds_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(\n  increase(\n    traces_service_graph_request_client_seconds_count{client=\"ts-gateway-service\", server=\"ts-auth-service\"}[30m]\n  )\n) or sum(\n  increase(\n    traces_service_graph_request_client_seconds_count{client=\"ts-gateway-service\", server=\"ts-verification-code-service\"}[30m]\n  )\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "169. Calculate the total number of TCP sockets in the 'tw' state across all nodes where the service that provides the API for creating trips is deployed.": {
+    "idx": "169",
+    "question": "Calculate the total number of TCP sockets in the 'tw' state across all nodes where the service that provides the API for creating trips is deployed.",
+    "metrics": [
+      "node_sockstat_TCP_tw"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(node_sockstat_TCP_tw{instance=~\"10.176.122.151:9100|10.176.122.161:9100\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "170. What is the per-second rate of bytes received by the lo network device on nodes hosting the gateway service over the last 5 minutes?": {
+    "idx": "170",
+    "question": "What is the per-second rate of bytes received by the lo network device on nodes hosting the gateway service over the last 5 minutes?",
+    "metrics": [
+      "node_network_receive_bytes_total"
+    ],
+    "lvp": [
+      "device=lo"
+    ],
+    "promql": [
+      "sum(rate(node_network_receive_bytes_total{device=\"lo\", instance=~\"10.176.122.152:9100|10.176.122.162:9100\"}[5m]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "171. How has the 5-minute load average on k8s-node1 and k8s-node2 changed over the past hour?": {
+    "idx": "171",
+    "question": "How has the 5-minute load average on k8s-node1 and k8s-node2 changed over the past hour?",
+    "metrics": [
+      "node_load5"
+    ],
+    "lvp": [],
+    "promql": [
+      "delta(node_load5{instance=~\"10.176.122.151:9100|10.176.122.152:9100\"}[1h])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "172. How many bytes has the nodes hosting the execute service written to the dm-0 device disk in the past 24 hours?": {
+    "idx": "172",
+    "question": "How many bytes has the nodes hosting the execute service written to the dm-0 device disk in the past 24 hours?",
+    "metrics": [
+      "node_disk_written_bytes_total"
+    ],
+    "lvp": [
+      "device=dm-0"
+    ],
+    "promql": [
+      "sum(increase(node_disk_written_bytes_total{device=\"dm-0\", instance=~\"10.176.122.151:9100|10.176.122.162:9100\"}[24h]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "173. Show me the maximum memory usage of all containers for the verification code service over the past 24 hours.": {
+    "idx": "173",
+    "question": "Show me the maximum memory usage of all containers for the verification code service over the past 24 hours.",
+    "metrics": [
+      "container_memory_max_usage_bytes"
+    ],
+    "lvp": [
+      "container=ts-verification-code-service"
+    ],
+    "promql": [
+      "max_over_time(container_memory_max_usage_bytes{container=\"ts-verification-code-service\"}[24h])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "174. How has the number of runnable processes changed on the k8s-node1 and k8s-node2 nodes in the last hour?": {
+    "idx": "174",
+    "question": "How has the number of runnable processes changed on the k8s-node1 and k8s-node2 nodes in the last hour?",
+    "metrics": [
+      "node_procs_running"
+    ],
+    "lvp": [],
+    "promql": [
+      "delta(node_procs_running{instance=~\"10.176.122.151:9100|10.176.122.152:9100\"}[1h])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "175. Return the total page cache memory for all containers in the ts-train-food-service, and aggregated by node.": {
+    "idx": "175",
+    "question": "Return the total page cache memory for all containers in the ts-train-food-service, and aggregated by node.",
+    "metrics": [
+      "container_memory_cache"
+    ],
+    "lvp": [
+      "container=POD"
+    ],
+    "promql": [
+      "sum(container_memory_cache{container=\"ts-train-food-service\"}) by (node)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "176. Query the total number of processes across all containers of the service that provides the API for creating new stations.": {
+    "idx": "176",
+    "question": "Query the total number of processes across all containers of the service that provides the API for creating new stations.",
+    "metrics": [
+      "container_processes"
+    ],
+    "lvp": [
+      "container=POD"
+    ],
+    "promql": [
+      "sum(container_processes{container=\"ts-station-service\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "177. Predict the nodes with free space on the tmpfs filesystem that is less than 1 GB in the next hour (using data from the previous 2 hours) and whose disk write rate in the last 5 minutes exceeds 10 MB/s.": {
+    "idx": "177",
+    "question": "Predict the nodes with free space on the tmpfs filesystem that is less than 1 GB in the next hour (using data from the previous 2 hours) and whose disk write rate in the last 5 minutes exceeds 10 MB/s.",
+    "metrics": [
+      "node_filesystem_free_bytes",
+      "node_disk_write_bytes_total"
+    ],
+    "lvp": [
+      "fstype=tmpfs"
+    ],
+    "promql": [
+      "predict_linear(node_filesystem_free_bytes{fstype=\"tmpfs\"}[2h], 3600) < 1e9\nand\nrate(node_disk_write_bytes_total[5m]) > 10e6\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "178. I need the total number of failed requests from the execute service to its downstream services in the last hour.": {
+    "idx": "178",
+    "question": "I need the total number of failed requests from the execute service to its downstream services in the last hour.",
+    "metrics": [
+      "traces_service_graph_request_failed_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(\n  increase(traces_service_graph_request_failed_total{client=\"ts-execute-service\", server=~\"ts-order-other-service|ts-order-service\"}[1h])\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "179. Calculate the average latency of the UserController.registerUser API operation, based on data from the past five minutes.": {
+    "idx": "179",
+    "question": "Calculate the average latency of the UserController.registerUser API operation, based on data from the past five minutes.",
+    "metrics": [
+      "traces_spanmetrics_latency_sum",
+      "traces_spanmetrics_latency_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  rate(traces_spanmetrics_latency_sum{operation=\"UserController.registerUser\"}[5m])\n  /\n  rate(traces_spanmetrics_latency_count{operation=\"UserController.registerUser\"}[5m])\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "180. What percentage of replicas in the ts-voucher-service deployment are currently ready in the cluster?": {
+    "idx": "180",
+    "question": "What percentage of replicas in the ts-voucher-service deployment are currently ready in the cluster?",
+    "metrics": [
+      "kube_deployment_status_replicas_ready",
+      "kube_deployment_spec_replicas"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  kube_deployment_status_replicas_ready{deployment=\"ts-voucher-service\"}\n  /\n  kube_deployment_spec_replicas{deployment=\"ts-voucher-service\"}\n) * 100\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "181. Identify all APIs available in the food service. Calculate the p80 latency for these APIs over a 5-minute window and calculate the difference between the current value and the value from one week ago.": {
+    "idx": "181",
+    "question": "Identify all APIs available in the food service. Calculate the p80 latency for these APIs over a 5-minute window and calculate the difference between the current value and the value from one week ago.",
+    "metrics": [
+      "traces_spanmetrics_latency_bucket"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  histogram_quantile(0.80, sum(rate(traces_spanmetrics_latency_bucket{service=\"ts-food-service\"}[5m])) by (le, span_name))\n  -\n  histogram_quantile(0.80, sum(rate(traces_spanmetrics_latency_bucket{service=\"ts-food-service\"}[5m] offset 1w)) by (le, span_name))\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "182. Check whether the following occurs: during the past five minutes, among different pods of the same service, the longest pod CPU usage time exceeds 1.5 times the shortest pod CPU usage time. Note that only pods with names matching ts-.*-service are considered.": {
+    "idx": "182",
+    "question": "Check whether the following occurs: during the past five minutes, among different pods of the same service, the longest pod CPU usage time exceeds 1.5 times the shortest pod CPU usage time. Note that only pods with names matching ts-.*-service are considered.",
+    "metrics": [
+      "container_cpu_usage_seconds_total"
+    ],
+    "lvp": [
+      "cpu=0"
+    ],
+    "promql": [
+      "topk(1, rate(container_cpu_usage_seconds_total{pod=~\"ts-.*-service\"}[5m]))\n>\n1.5 * bottomk(1, rate(container_cpu_usage_seconds_total{pod=~\"ts-.*-service\"}[5m]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "183. What was the average rate of disk read time per second for the nodes hosting the tsdb-mysql service over the past 5 minutes?": {
+    "idx": "183",
+    "question": "What was the average rate of disk read time per second for the nodes hosting the tsdb-mysql service over the past 5 minutes?",
+    "metrics": [
+      "node_disk_read_time_seconds_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "avg(\n  rate(node_disk_read_time_seconds_total{instance=~\"10.176.122.153:9100|10.176.122.161:9100|10.176.122.162:9100\"}[5m])\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "184. Display the rate per second for all spans recorded by the rebook service over the past five minutes.": {
+    "idx": "184",
+    "question": "Display the rate per second for all spans recorded by the rebook service over the past five minutes.",
+    "metrics": [],
+    "lvp": [],
+    "promql": [
+      "rate(spans_recorded_total{service=\"rebook\"}[5m])\n"
+    ],
+    "metrics_right": "F",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "185. Calculate the difference between the current rate of CPU usage and the rate of CPU usage from the same time one week ago for all containers of the gateway service, using a 5-minute window for the rate calculation.": {
+    "idx": "185",
+    "question": "Calculate the difference between the current rate of CPU usage and the rate of CPU usage from the same time one week ago for all containers of the gateway service, using a 5-minute window for the rate calculation.",
+    "metrics": [
+      "container_cpu_usage_seconds_total"
+    ],
+    "lvp": [
+      "container=POD",
+      "cpu=0"
+    ],
+    "promql": [
+      "rate(container_cpu_usage_seconds_total{container=\"ts-gateway-service\"}[5m])\n-\nrate(container_cpu_usage_seconds_total{container=\"ts-gateway-service\"}[5m] offset 1w)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "186. Calculate p99 requests latency from auth service to its downstream services in last 5 minutes.": {
+    "idx": "186",
+    "question": "Calculate p99 requests latency from auth service to its downstream services in last 5 minutes.",
+    "metrics": [
+      "traces_service_graph_request_server_seconds_bucket",
+      "traces_service_graph_request_server_seconds_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "histogram_quantile(\n  0.99,\n  sum(\n    rate(\n      traces_service_graph_request_server_seconds_bucket{client=\"ts-auth-service\", server=\"ts-verification-code-service\"}[5m]\n    )\n  ) by (le)\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "187. Show the filesystem usage and limits for all containers of the ts-payment-service deployed on node k8s-node2, and calculate the free space left.": {
+    "idx": "187",
+    "question": "Show the filesystem usage and limits for all containers of the ts-payment-service deployed on node k8s-node2, and calculate the free space left.",
+    "metrics": [
+      "container_fs_usage_bytes",
+      "container_fs_limit_bytes",
+      "node_filesystem_free_bytes"
+    ],
+    "lvp": [
+      "container=ts-payment-service",
+      "container=POD",
+      "container=POD"
+    ],
+    "promql": [
+      "container_fs_limit_bytes{container=\"ts-payment-service\", node=\"k8s-node2\"} - container_fs_usage_bytes{container=\"ts-payment-service\", node=\"k8s-node2\"}\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "188. What is the average of the total memory usage per container for the ts-admin-order-service?": {
+    "idx": "188",
+    "question": "What is the average of the total memory usage per container for the ts-admin-order-service?",
+    "metrics": [
+      "container_memory_usage_bytes"
+    ],
+    "lvp": [
+      "container=ts-admin-order-service"
+    ],
+    "promql": [
+      "avg(container_memory_usage_bytes{container=\"ts-admin-order-service\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "189. Show the network receive bytes growth rate for the pod that has the highest network receive bytes growth rate among all pods of the ts-verification-code-service.": {
+    "idx": "189",
+    "question": "Show the network receive bytes growth rate for the pod that has the highest network receive bytes growth rate among all pods of the ts-verification-code-service.",
+    "metrics": [
+      "container_network_receive_bytes_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "topk(1, rate(container_network_receive_bytes_total{pod=~\"ts-verification-code-service-.*\"}[5m]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "190. I need the number of calls in the past five minutes for all APIs invoked by the 'POST /api/v1/travel2service/trips/left' API.": {
+    "idx": "190",
+    "question": "I need the number of calls in the past five minutes for all APIs invoked by the 'POST /api/v1/travel2service/trips/left' API.",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(\n  increase(traces_spanmetrics_calls_total{span_name=~\"POST /api/v1/basicservice/basic/travels|POST /api/v1/seatservice/seats/left_tickets\"}[5m])\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "191. Show the number of network packet receive errors on the eth0 interface for all pods of the ts-order-other-service deployed on node k8s-node3 in the last hour.": {
+    "idx": "191",
+    "question": "Show the number of network packet receive errors on the eth0 interface for all pods of the ts-order-other-service deployed on node k8s-node3 in the last hour.",
+    "metrics": [
+      "container_network_receive_errors_total"
+    ],
+    "lvp": [
+      "interface=eth0"
+    ],
+    "promql": [
+      "sum by (pod) (increase(container_network_receive_errors_total{node=\"k8s-node3\", interface=\"eth0\"}[1h]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "192. Are there any nodes hosting the security service that have less than 5 GB of free space on the sda2 device and an average disk write speed that exceeds 10 MB/s in the last 30 minutes?": {
+    "idx": "192",
+    "question": "Are there any nodes hosting the security service that have less than 5 GB of free space on the sda2 device and an average disk write speed that exceeds 10 MB/s in the last 30 minutes?",
+    "metrics": [
+      "node_filesystem_free_bytes",
+      "node_disk_write_time_seconds_total",
+      "node_disk_writes_completed_total"
+    ],
+    "lvp": [
+      "device=/dev/sda2",
+      "device=/dev/sda2",
+      "device=/dev/sda2"
+    ],
+    "promql": [
+      "(\n  node_filesystem_free_bytes{device=\"/dev/sda2\"} < 5368709120\n) and (\n  rate(node_disk_write_time_seconds_total{device=\"/dev/sda2\"}[30m])\n  /\n  rate(node_disk_writes_completed_total{device=\"/dev/sda2\"}[30m])\n  > 10 * 1024 * 1024\n)\n"
+    ],
+    "metrics_right": "F",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "193. How much time did the containers of the auth service spend on filesystem write operations in the past hour?": {
+    "idx": "193",
+    "question": "How much time did the containers of the auth service spend on filesystem write operations in the past hour?",
+    "metrics": [
+      "container_fs_write_seconds_total"
+    ],
+    "lvp": [
+      "container=ts-auth-service"
+    ],
+    "promql": [
+      "sum(rate(container_fs_write_seconds_total{container=\"ts-auth-service\"}[1h])) * 3600\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "194. Show the total memory cache usage summarized by each pod for the verification code service.": {
+    "idx": "194",
+    "question": "Show the total memory cache usage summarized by each pod for the verification code service.",
+    "metrics": [
+      "container_memory_cache"
+    ],
+    "lvp": [
+      "container=ts-verification-code-service"
+    ],
+    "promql": [
+      "sum(container_memory_cache{container=\"ts-verification-code-service\"}) by (pod)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "195. Monitor the CPU time proportion in different modes of nodes whose ip are in the range of 10.176.122.151~10.176.122.153 during the past 1 minute, excluding nodes that have less than 16 cores.": {
+    "idx": "195",
+    "question": "Monitor the CPU time proportion in different modes of nodes whose ip are in the range of 10.176.122.151~10.176.122.153 during the past 1 minute, excluding nodes that have less than 16 cores.",
+    "metrics": [
+      "node_cpu_seconds_total",
+      "machine_cpu_cores"
+    ],
+    "lvp": [
+      "mode=idle"
+    ],
+    "promql": [
+      "sum by (mode, instance) (\n  rate(node_cpu_seconds_total{instance=~\"10.176.122.15[1-3]:9100\"}[1m])\n)\n* on (instance) group_left (cpu_cores)\nmachine_cpu_cores{instance=~\"10.176.122.15[1-3]:10250\"} >= 16\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "196. Show the average request duration over a 5-minute window from the seat service to the config service.": {
+    "idx": "196",
+    "question": "Show the average request duration over a 5-minute window from the seat service to the config service.",
+    "metrics": [
+      "traces_service_graph_request_server_seconds_sum",
+      "traces_service_graph_request_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "avg_over_time(\n  rate(traces_service_graph_request_server_seconds_sum{client=\"ts-seat-service\", server=\"ts-config-service\"}[5m])\n  /\n  rate(traces_service_graph_request_total{client=\"ts-seat-service\", server=\"ts-config-service\"}[5m])\n[5m])\n"
+    ],
+    "metrics_right": "F",
+    "promql_syntax_valid": "F",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "197. Check whether some average request duration (from the client's perspective) of the ts-auth-service as a client exceeds the threshold 0.003 seconds, or as a server exceeds the threshold 0.2 seconds during the past 5 minutes.": {
+    "idx": "197",
+    "question": "Check whether some average request duration (from the client's perspective) of the ts-auth-service as a client exceeds the threshold 0.003 seconds, or as a server exceeds the threshold 0.2 seconds during the past 5 minutes.",
+    "metrics": [
+      "traces_service_graph_request_client_seconds_sum",
+      "traces_service_graph_request_client_seconds_count",
+      "traces_service_graph_request_server_seconds_sum",
+      "traces_service_graph_request_server_seconds_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  sum(increase(traces_service_graph_request_client_seconds_sum{client=\"ts-auth-service\"}[5m]))\n  /\n  sum(increase(traces_service_graph_request_client_seconds_count{client=\"ts-auth-service\"}[5m]))\n) > 0.003\nor\n(\n  sum(increase(traces_service_graph_request_server_seconds_sum{server=\"ts-auth-service\"}[5m]))\n  /\n  sum(increase(traces_service_graph_request_server_seconds_count{server=\"ts-auth-service\"}[5m]))\n) > 0.2\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "198. Show me average latency for getting all foods API over a 5-minute window.": {
+    "idx": "198",
+    "question": "Show me average latency for getting all foods API over a 5-minute window.",
+    "metrics": [
+      "traces_spanmetrics_latency_sum",
+      "traces_spanmetrics_latency_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "avg_over_time(\n  (\n    rate(traces_spanmetrics_latency_sum{service=\"ts-food-service\", span_name=\"GET /api/v1/foodservice/foods/{date}/{startStation}/{endStation}/{tripId}\"}[5m])\n    /\n    rate(traces_spanmetrics_latency_count{service=\"ts-food-service\", span_name=\"GET /api/v1/foodservice/foods/{date}/{startStation}/{endStation}/{tripId}\"}[5m])\n  )[5m:1s]\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "199. For the nodes hosting the gateway service, what is the rate of CPU idle time for each instance in the past 5 minutes?": {
+    "idx": "199",
+    "question": "For the nodes hosting the gateway service, what is the rate of CPU idle time for each instance in the past 5 minutes?",
+    "metrics": [
+      "node_cpu_seconds_total"
+    ],
+    "lvp": [
+      "mode=idle"
+    ],
+    "promql": [
+      "rate(node_cpu_seconds_total{mode=\"idle\", instance=~\"10.176.122.152:9100|10.176.122.162:9100\"}[5m])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "200. Show me if the packet drop ratio for receiving or transmitting network packets of the containers for the rebook service on the k8s-node4 node exceeded 0.05 in the past 30 minutes.": {
+    "idx": "200",
+    "question": "Show me if the packet drop ratio for receiving or transmitting network packets of the containers for the rebook service on the k8s-node4 node exceeded 0.05 in the past 30 minutes.",
+    "metrics": [
+      "node_network_receive_drop_total",
+      "node_network_transmit_drop_total",
+      "node_network_receive_packets_total",
+      "node_network_transmit_packets_total"
+    ],
+    "lvp": [
+      "container=POD",
+      "container=POD",
+      "container=POD",
+      "container=POD"
+    ],
+    "promql": [
+      "(\n  rate(node_network_receive_drop_total{instance=\"10.176.122.161:9100\"}[30m])\n  /\n  rate(node_network_receive_packets_total{instance=\"10.176.122.161:9100\"}[30m])\n) > 0.05\nor\n(\n  rate(node_network_transmit_drop_total{instance=\"10.176.122.161:9100\"}[30m])\n  /\n  rate(node_network_transmit_packets_total{instance=\"10.176.122.161:9100\"}[30m])\n) > 0.05\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "201. Calculate the average latency for the API used to delete a trip, based on data from the past five minutes. Return the difference between this value and that from the same period a week ago.": {
+    "idx": "201",
+    "question": "Calculate the average latency for the API used to delete a trip, based on data from the past five minutes. Return the difference between this value and that from the same period a week ago.",
+    "metrics": [
+      "traces_spanmetrics_latency_sum",
+      "traces_spanmetrics_latency_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  increase(traces_spanmetrics_latency_sum{service=\"ts-travel-service\", span_name=\"DELETE /api/v1/travelservice/trips/{tripId}\"}[5m])\n  /\n  increase(traces_spanmetrics_latency_count{service=\"ts-travel-service\", span_name=\"DELETE /api/v1/travelservice/trips/{tripId}\"}[5m])\n)\n-\n(\n  increase(traces_spanmetrics_latency_sum{service=\"ts-travel-service\", span_name=\"DELETE /api/v1/travelservice/trips/{tripId}\"}[5m] offset 1w)\n  /\n  increase(traces_spanmetrics_latency_count{service=\"ts-travel-service\", span_name=\"DELETE /api/v1/travelservice/trips/{tripId}\"}[5m] offset 1w)\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "202. Show the total number of network packet receive errors on the eth0 for all pods of the admin user service in the last hour.": {
+    "idx": "202",
+    "question": "Show the total number of network packet receive errors on the eth0 for all pods of the admin user service in the last hour.",
+    "metrics": [
+      "container_network_receive_errors_total"
+    ],
+    "lvp": [
+      "interface=eth0"
+    ],
+    "promql": [
+      "sum(sum(increase(container_network_receive_errors_total{interface=\"eth0\"}[1h])) by (pod))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "203. Show the average ratio of used to allocated TCP sockets on k8s-node1 over the last hour.": {
+    "idx": "203",
+    "question": "Show the average ratio of used to allocated TCP sockets on k8s-node1 over the last hour.",
+    "metrics": [
+      "node_sockstat_TCP_inuse",
+      "node_sockstat_TCP_alloc"
+    ],
+    "lvp": [],
+    "promql": [
+      "avg_over_time(\n  node_sockstat_TCP_inuse{instance=\"10.176.122.151:9100\"}\n  /\n  node_sockstat_TCP_alloc{instance=\"10.176.122.151:9100\"}\n  [1h]\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "F",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "204. Calculate the 80th percentile request duration from the client's perspective for calls from the auth service to the verification code service, using data from the past five minutes.": {
+    "idx": "204",
+    "question": "Calculate the 80th percentile request duration from the client's perspective for calls from the auth service to the verification code service, using data from the past five minutes.",
+    "metrics": [
+      "traces_service_graph_request_client_seconds_bucket"
+    ],
+    "lvp": [],
+    "promql": [
+      "histogram_quantile(\n  0.80,\n  sum(\n    rate(\n      traces_service_graph_request_client_seconds_bucket{client=\"ts-auth-service\", server=\"ts-verification-code-service\"}[5m]\n    )\n  ) by (le)\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "205. Calculate the difference in the rate of memory allocation failures for all containers of the notification service in the last hour compared to the previous hour, using a 5-minute window for the rate calculation.": {
+    "idx": "205",
+    "question": "Calculate the difference in the rate of memory allocation failures for all containers of the notification service in the last hour compared to the previous hour, using a 5-minute window for the rate calculation.",
+    "metrics": [
+      "container_memory_failures_total"
+    ],
+    "lvp": [
+      "container=POD"
+    ],
+    "promql": [
+      "rate(container_memory_failures_total{container=\"ts-notification-service\"}[5m])\n-\nrate(container_memory_failures_total{container=\"ts-notification-service\"}[5m] offset 1h)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "206. Calculate the change in the network receiving packet loss rate of the ts-admin-travel-service container on the k8s-node4 node between the current hour and the previous hour.": {
+    "idx": "206",
+    "question": "Calculate the change in the network receiving packet loss rate of the ts-admin-travel-service container on the k8s-node4 node between the current hour and the previous hour.",
+    "metrics": [
+      "node_network_receive_packets_total",
+      "node_network_receive_drop_total"
+    ],
+    "lvp": [
+      "container=ts-admin-travel-service",
+      "container=ts-admin-travel-service"
+    ],
+    "promql": [
+      "(\n  rate(node_network_receive_drop_total{container=\"ts-admin-travel-service\", instance=\"10.176.122.161:9100\"}[1h])\n  /\n  rate(node_network_receive_packets_total{container=\"ts-admin-travel-service\", instance=\"10.176.122.161:9100\"}[1h])\n) - (\n  rate(node_network_receive_drop_total{container=\"ts-admin-travel-service\", instance=\"10.176.122.161:9100\"}[1h] offset 1h)\n  /\n  rate(node_network_receive_packets_total{container=\"ts-admin-travel-service\", instance=\"10.176.122.161:9100\"}[1h] offset 1h)\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "207. What is the current total I/O in progress on each device of the node hosting the tsdb-mysql service's pods?": {
+    "idx": "207",
+    "question": "What is the current total I/O in progress on each device of the node hosting the tsdb-mysql service's pods?",
+    "metrics": [
+      "node_disk_io_now"
+    ],
+    "lvp": [
+      "device=cni0"
+    ],
+    "promql": [
+      "sum(node_disk_io_now{instance=~\"10.176.122.153:9100|10.176.122.161:9100|10.176.122.162:9100\"}) by (device)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "208. Display the time periods when the per-second call count (calculated in 5 minutes window) for the API used to create new station was below 100.": {
+    "idx": "208",
+    "question": "Display the time periods when the per-second call count (calculated in 5 minutes window) for the API used to create new station was below 100.",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "rate(traces_spanmetrics_calls_total{service=\"ts-station-service\", span_name=\"POST /api/v1/stationservice/stations\"}[5m]) < 100\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "209. Calculate the average latency of the adding route API over a 5-minute window.": {
+    "idx": "209",
+    "question": "Calculate the average latency of the adding route API over a 5-minute window.",
+    "metrics": [
+      "traces_spanmetrics_latency_sum",
+      "traces_spanmetrics_latency_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "avg_over_time(\n  rate(traces_spanmetrics_latency_sum{service=\"ts-execute-service\", span_name=\"GET /api/v1/executeservice/execute/collected/{orderId}\"}[5m])\n  /\n  rate(traces_spanmetrics_latency_count{service=\"ts-execute-service\", span_name=\"GET /api/v1/executeservice/execute/collected/{orderId}\"}[5m])\n[5m]\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "F",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "210. How many times was the POST /api/v1/seatservice/seats API called in the past day? Calculate the increase in the number of calls compared to the same period last week.": {
+    "idx": "210",
+    "question": "How many times was the POST /api/v1/seatservice/seats API called in the past day? Calculate the increase in the number of calls compared to the same period last week.",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "increase(traces_spanmetrics_calls_total{service=\"ts-seat-service\", span_name=\"POST /api/v1/seatservice/seats\"}[1d])\n-\nincrease(traces_spanmetrics_calls_total{service=\"ts-seat-service\", span_name=\"POST /api/v1/seatservice/seats\"}[1d] offset 7d)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "211. Can you show me the failure ratio of requests from the inside payment service to its downstream services over the past 5 minutes, if it's higher than 5%?": {
+    "idx": "211",
+    "question": "Can you show me the failure ratio of requests from the inside payment service to its downstream services over the past 5 minutes, if it's higher than 5%?",
+    "metrics": [
+      "traces_service_graph_request_total",
+      "traces_service_graph_request_failed_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "(\n  rate(traces_service_graph_request_failed_total{client=\"ts-inside-payment-service\"}[5m])\n  /\n  rate(traces_service_graph_request_total{client=\"ts-inside-payment-service\"}[5m])\n) * 100 > 5\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "212. Show the current CPU usage of all containers in the service that provides the API for registering users, calculated over a 5-minute window.": {
+    "idx": "212",
+    "question": "Show the current CPU usage of all containers in the service that provides the API for registering users, calculated over a 5-minute window.",
+    "metrics": [
+      "container_cpu_usage_seconds_total"
+    ],
+    "lvp": [
+      "container=POD"
+    ],
+    "promql": [
+      "irate(container_cpu_usage_seconds_total{container=\"ts-user-service\"}[5m])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "213. I need the total number of network packet receive errors on the eth0 and ens160 for all pods of the execute service deployed on node k8s-node5 in the last hour.": {
+    "idx": "213",
+    "question": "I need the total number of network packet receive errors on the eth0 and ens160 for all pods of the execute service deployed on node k8s-node5 in the last hour.",
+    "metrics": [
+      "container_network_receive_errors_total"
+    ],
+    "lvp": [
+      "interface=eth0",
+      "interface=ens160"
+    ],
+    "promql": [
+      "sum(increase(container_network_receive_errors_total{node=\"k8s-node5\", interface=~\"eth0|ens160\"}[1h]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "214. Using data from the past 30 minutes, perform a linear prediction of the page cache memory currently being used by the containers of the admin user service on k8s-node2 to forecast the next 5 minutes' usage.": {
+    "idx": "214",
+    "question": "Using data from the past 30 minutes, perform a linear prediction of the page cache memory currently being used by the containers of the admin user service on k8s-node2 to forecast the next 5 minutes' usage.",
+    "metrics": [
+      "container_memory_cache"
+    ],
+    "lvp": [
+      "container=ts-admin-user-service"
+    ],
+    "promql": [
+      "predict_linear(\n  rate(container_memory_cache{container=\"ts-admin-user-service\", node=\"k8s-node2\"}[30m])[30m:1m],\n  5*60\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "215. Show the rate of change in allocated TCP socket numbers on k8s-node1 in the last 5 minutes.": {
+    "idx": "215",
+    "question": "Show the rate of change in allocated TCP socket numbers on k8s-node1 in the last 5 minutes.",
+    "metrics": [
+      "node_sockstat_TCP_alloc"
+    ],
+    "lvp": [],
+    "promql": [
+      "rate(node_sockstat_TCP_alloc{instance=\"10.176.122.151:9100\"}[5m])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "216. Show the current 1-minute CPU load average for all nodes where the gateway service is deployed.": {
+    "idx": "216",
+    "question": "Show the current 1-minute CPU load average for all nodes where the gateway service is deployed.",
+    "metrics": [
+      "node_load1"
+    ],
+    "lvp": [],
+    "promql": [
+      "node_load1{instance=~\"10.176.122.152:9100|10.176.122.162:9100\"}\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "217. Calculate the CPU time used by each individual pod in the services that call the ts-auth-service over the last 30 minutes.": {
+    "idx": "217",
+    "question": "Calculate the CPU time used by each individual pod in the services that call the ts-auth-service over the last 30 minutes.",
+    "metrics": [
+      "container_cpu_usage_seconds_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "increase(container_cpu_usage_seconds_total{pod=~\"ts-gateway-service-6f99b4b794-.*|ts-user-service-5fc7759cf4-.*\"}[30m])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "218. What is the current count of TCP sockets in the mem state on nodes hosting the gateway service, and how has this count changed since the same time yesterday? Calculate the difference.": {
+    "idx": "218",
+    "question": "What is the current count of TCP sockets in the mem state on nodes hosting the gateway service, and how has this count changed since the same time yesterday? Calculate the difference.",
+    "metrics": [
+      "node_sockstat_TCP_mem"
+    ],
+    "lvp": [],
+    "promql": [
+      "node_sockstat_TCP_mem{instance=~\"10.176.122.152:9100|10.176.122.162:9100\"}\n-\nnode_sockstat_TCP_mem{instance=~\"10.176.122.152:9100|10.176.122.162:9100\"} offset 1d\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "219. Calculate the p90 latency of the APIs that are related to registering users over the past hour.": {
+    "idx": "219",
+    "question": "Calculate the p90 latency of the APIs that are related to registering users over the past hour.",
+    "metrics": [
+      "traces_spanmetrics_latency_bucket",
+      "traces_spanmetrics_latency_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "histogram_quantile(\n  0.90,\n  sum(rate(traces_spanmetrics_latency_bucket{service=\"ts-user-service\", span_name=\"POST /api/v1/userservice/users/register\"}[1h])) by (le)\n)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "220. How many network receive errors have all pods of the tsdb-mysql statefulset on node k8s-node3 encountered in the past 24 hours?": {
+    "idx": "220",
+    "question": "How many network receive errors have all pods of the tsdb-mysql statefulset on node k8s-node3 encountered in the past 24 hours?",
+    "metrics": [
+      "container_network_receive_errors_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(increase(container_network_receive_errors_total{node=\"k8s-node3\"}[24h]))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "221. Checks whether the 95th percentile of the request duration from ts-basic-service to ts-route-service (from the client's perspective) is greater than 0.09 in the past 60 minutes, and the CPU usage (accounting for limit) of pods of ts-route-service is less than 3%.": {
+    "idx": "221",
+    "question": "Checks whether the 95th percentile of the request duration from ts-basic-service to ts-route-service (from the client's perspective) is greater than 0.09 in the past 60 minutes, and the CPU usage (accounting for limit) of pods of ts-route-service is less than 3%.",
+    "metrics": [
+      "traces_service_graph_request_client_seconds_bucket",
+      "container_cpu_usage_seconds_total",
+      "kube_pod_container_resource_limits"
+    ],
+    "lvp": [
+      "container=ts-route-service",
+      "resource=cpu"
+    ],
+    "promql": [
+      "histogram_quantile(0.95, sum(rate(traces_service_graph_request_client_seconds_bucket{client=\"ts-basic-service\", server=\"ts-route-service\"}[60m])) by (le)) > 0.09\nand\nsum(rate(container_cpu_usage_seconds_total{container=\"ts-route-service\"}[60m])) by (pod) / sum(kube_pod_container_resource_limits{resource=\"cpu\", pod=~\"ts-route-service-.*\"}) by (pod) * 100 < 3\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "222. Could you provide the ratio of total network packet drops to total network packets received on k8s-node1 and k8s-node2 for the past hour?": {
+    "idx": "222",
+    "question": "Could you provide the ratio of total network packet drops to total network packets received on k8s-node1 and k8s-node2 for the past hour?",
+    "metrics": [
+      "node_network_receive_drop_total",
+      "node_network_receive_packets_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "increase(node_network_receive_drop_total{instance=~\"10.176.122.151:9100|10.176.122.152:9100\"}[1h])\n/\nincrease(node_network_receive_packets_total{instance=~\"10.176.122.151:9100|10.176.122.152:9100\"}[1h])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "223. Display the number of calls to the creating user API in the past 5 minutes.": {
+    "idx": "223",
+    "question": "Display the number of calls to the creating user API in the past 5 minutes.",
+    "metrics": [
+      "traces_spanmetrics_calls_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "rate(traces_spanmetrics_calls_total{service=\"ts-auth-service\", span_name=\"POST /api/v1/auth\"}[5m]) * 300\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "224. What are the soft ulimit values for the container root processes of all pods of the tsdb-mysql service on node k8s-node5?": {
+    "idx": "224",
+    "question": "What are the soft ulimit values for the container root processes of all pods of the tsdb-mysql service on node k8s-node5?",
+    "metrics": [
+      "container_ulimits_soft"
+    ],
+    "lvp": [
+      "ulimit=max_open_files"
+    ],
+    "promql": [
+      "container_ulimits_soft{node=\"k8s-node5\", pod=~\"tsdb-mysql-.*\"}\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "225. Show the average latency of the API related to querying train types in the past 5 minutes.": {
+    "idx": "225",
+    "question": "Show the average latency of the API related to querying train types in the past 5 minutes.",
+    "metrics": [
+      "traces_spanmetrics_latency_sum",
+      "traces_spanmetrics_latency_count"
+    ],
+    "lvp": [],
+    "promql": [
+      "avg_over_time(\n  rate(traces_spanmetrics_latency_sum{service=\"ts-train-service\", span_name=\"GET /api/v1/trainservice/trains\"}[5m])\n  /\n  rate(traces_spanmetrics_latency_count{service=\"ts-train-service\", span_name=\"GET /api/v1/trainservice/trains\"}[5m])\n[5m])\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "F",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "226. What was the average rate of disk read time per second for nodes hosting pods of the tsdb-mysql statefulset over the past 5 minutes?": {
+    "idx": "226",
+    "question": "What was the average rate of disk read time per second for nodes hosting pods of the tsdb-mysql statefulset over the past 5 minutes?",
+    "metrics": [
+      "node_disk_read_time_seconds_total"
+    ],
+    "lvp": [],
+    "promql": [
+      "avg(\n  rate(node_disk_read_time_seconds_total{instance=~\"10.176.122.153:9100|10.176.122.161:9100|10.176.122.162:9100\"}[5m])\n) by (instance)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "227. What is the total number of physical CPU cores for the nodes hosting the news service?": {
+    "idx": "227",
+    "question": "What is the total number of physical CPU cores for the nodes hosting the news service?",
+    "metrics": [
+      "machine_cpu_physical_cores"
+    ],
+    "lvp": [],
+    "promql": [
+      "sum(machine_cpu_physical_cores{node=~\"k8s-node1|k8s-node4\"})\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  },
+  "228. What was the failure ratio for the gateway service's requests to the execute service over the past five minutes? Return the difference between this value and that from the same period one day ago.": {
+    "idx": "228",
+    "question": "What was the failure ratio for the gateway service's requests to the execute service over the past five minutes? Return the difference between this value and that from the same period one day ago.",
+    "metrics": [],
+    "lvp": [],
+    "promql": [
+      "(\n  rate(failures_total{service=\"ts-gateway-service\", target_service=\"ts-execute-service\"}[5m])\n  /\n  rate(requests_total{service=\"ts-gateway-service\", target_service=\"ts-execute-service\"}[5m])\n)\n-\n(\n  rate(failures_total{service=\"ts-gateway-service\", target_service=\"ts-execute-service\"}[5m] offset 1d)\n  /\n  rate(requests_total{service=\"ts-gateway-service\", target_service=\"ts-execute-service\"}[5m] offset 1d)\n)\n"
+    ],
+    "metrics_right": "F",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "229. Among all pods of the admin route service, which one has the highest total memory usage summed across all its containers? Show its current total memory usage.": {
+    "idx": "229",
+    "question": "Among all pods of the admin route service, which one has the highest total memory usage summed across all its containers? Show its current total memory usage.",
+    "metrics": [
+      "container_memory_usage_bytes",
+      "container_memory_working_set_bytes"
+    ],
+    "lvp": [
+      "container=POD",
+      "container=POD"
+    ],
+    "promql": [
+      "topk(1, sum by (pod) (container_memory_usage_bytes{container!=\"POD\"}))\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "F",
+    "result_right": "F"
+  },
+  "230. How many bytes have been written to the disk on the sda device by the node hosting the otelcol-opentelemetry-collector deployment in the past 24 hours?": {
+    "idx": "230",
+    "question": "How many bytes have been written to the disk on the sda device by the node hosting the otelcol-opentelemetry-collector deployment in the past 24 hours?",
+    "metrics": [
+      "node_disk_written_bytes_total"
+    ],
+    "lvp": [
+      "device=sda"
+    ],
+    "promql": [
+      "sum(\n  increase(node_disk_written_bytes_total{device=\"sda\", instance=~\"10.176.122.151:9100|10.176.122.152:9100|10.176.122.153:9100|10.176.122.161:9100\"}[24h])\n) by (instance)\n"
+    ],
+    "metrics_right": "T",
+    "promql_syntax_valid": "T",
+    "promql_right": "T",
+    "result_right": "T"
+  }
+}

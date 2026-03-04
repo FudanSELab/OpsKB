@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "CPU usage rate per second",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"CPU usage rate per second\", \"pod\")]"
+}

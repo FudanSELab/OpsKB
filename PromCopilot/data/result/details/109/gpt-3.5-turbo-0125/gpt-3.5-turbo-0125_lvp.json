@@ -1,0 +1,74 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_filesystem_free_bytes",
+        "type": "gauge",
+        "description": "Filesystem free space in bytes."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "device=/dev/sda2",
+        "label": "device",
+        "value": "/dev/sda2"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_filesystem_avail_bytes",
+        "type": "gauge",
+        "description": "Filesystem space available to non-root users in bytes."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "device=/dev/sda2",
+        "label": "device",
+        "value": "/dev/sda2"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_filesystem_device_error",
+        "type": "gauge",
+        "description": "Whether an error occurred while getting statistics for the given device."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "device=/dev/sda2",
+        "label": "device",
+        "value": "/dev/sda2"
+      }
+    }
+  ]
+]

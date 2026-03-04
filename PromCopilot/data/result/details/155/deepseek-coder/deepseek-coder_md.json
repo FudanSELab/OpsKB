@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "TCP sockets in orphan state",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"TCP sockets in orphan state\", \"node\")]"
+}

@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "most free space on filesystem on the /dev/sda2 device",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"most free space on filesystem on the /dev/sda2 device\", \"node\")]"
+}

@@ -1,0 +1,50 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_sockets",
+        "type": "gauge",
+        "description": "Number of open sockets for the container."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "name=k8s_ts-gateway-service_ts-gateway-service-6f99b4b794-m7t6b_default_150d1460-f4e9-4297-b7df-164031b4c7e2_0",
+        "label": "name",
+        "value": "k8s_ts-gateway-service_ts-gateway-service-6f99b4b794-m7t6b_default_150d1460-f4e9-4297-b7df-164031b4c7e2_0"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_sockets",
+        "type": "gauge",
+        "description": "Number of open sockets for the container."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=POD",
+        "label": "container",
+        "value": "POD"
+      }
+    }
+  ]
+]

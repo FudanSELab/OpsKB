@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "number of restarts",
+      "pod"
+    ],
+    [
+      "namespace",
+      "namespace"
+    ]
+  ],
+  "response_text": "[(\"number of restarts\", \"pod\"), (\"namespace\", \"namespace\")]"
+}

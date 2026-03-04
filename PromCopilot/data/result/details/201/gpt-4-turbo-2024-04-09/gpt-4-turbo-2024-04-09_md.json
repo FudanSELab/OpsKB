@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "average latency for the API used to delete a trip",
+      "API"
+    ]
+  ],
+  "response_text": "[(\"average latency for the API used to delete a trip\", \"API\")]"
+}

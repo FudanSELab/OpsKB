@@ -1,0 +1,147 @@
+{
+  "relevant_metrics": [
+    {
+      "name": "container_memory_rss",
+      "type": "gauge",
+      "description": "Size of RSS in bytes."
+    }
+  ],
+  "details": {
+    "extracted_text": "- {\"name\": \"container_memory_rss\", \"type\": \"gauge\", \"description\": \"Size of RSS in bytes.\"}",
+    "response_text": "Step 1. Analyze the question and identify the relevant metrics:\nThe relevant metric for showing the Resident Set Size (RSS) usage, which is the portion of memory occupied by a process that is held in main memory (RAM), for containers on a specific node and namespace is:\n- The metric \"container_memory_rss\" which measures the size of RSS in bytes.\n\nStep 2. Relevant Metrics List:\n```\n- {\"name\": \"container_memory_rss\", \"type\": \"gauge\", \"description\": \"Size of RSS in bytes.\"}\n```",
+    "model": "gpt-4-turbo-2024-04-09",
+    "temperature": 0.3,
+    "messages": [
+      {
+        "role": "system",
+        "content": "Please filter and return the relevant metrics from the provided metrics list that pertains to the given question. These metrics will be used to construct Prometheus Query Language (PromQL) queries corresponding to the question.\nInstructions:\nStep 1. Analyze the question to determine which metrics from the provided Metrics List are related to the query.\nStep 2. Return a list of these relevant metrics. Ensure that the list of returned metrics is enclosed in triple backticks (```).\n"
+      },
+      {
+        "role": "user",
+        "content": "Metrics List:\n- {\"name\": \"container_ulimits_soft\", \"type\": \"gauge\", \"description\": \"Soft ulimit values for the container root process.\"}\n- {\"name\": \"container_fs_usage_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that are consumed by the container on this filesystem.\"}\n- {\"name\": \"container_spec_memory_limit_bytes\", \"type\": \"gauge\", \"description\": \"Memory limit for the container.\"}\n- {\"name\": \"container_fs_limit_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that can be consumed by the container on this filesystem.\"}\n- {\"name\": \"container_memory_usage_bytes\", \"type\": \"gauge\", \"description\": \"Current memory usage in bytes, including all memory regardless of when it was accessed\"}\nQuestion: Show the filesystem usage and limit bytes for all containers of the auth service."
+      },
+      {
+        "role": "assistant",
+        "content": "Step 1. Analyze the question and identify the relevant metrics:\nThe relevant metrics for the filesystem usage and limit bytes for all containers of the auth service are:\n- The metric \"container_fs_usage_bytes\" indicates the number of bytes currently consumed by the container on the filesystem. This measures the actual filesystem usage by the container.\n- The metric \"container_fs_limit_bytes\" denotes the maximum number of bytes that can be consumed by the container on this filesystem. This represents the limit set for filesystem usage by the container.\nStep 2. Relevant Metrics List:\n```\n- {\"name\": \"container_fs_usage_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that are consumed by the container on this filesystem.\"}\n- {\"name\": \"container_fs_limit_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that can be consumed by the container on this filesystem.\"}\n```\n"
+      },
+      {
+        "role": "user",
+        "content": "Metrics List:\n- {\"name\": \"container_memory_rss\", \"type\": \"gauge\", \"description\": \"Size of RSS in bytes.\"}\n- {\"name\": \"container_memory_usage_bytes\", \"type\": \"gauge\", \"description\": \"Current memory usage in bytes, including all memory regardless of when it was accessed\"}\n- {\"name\": \"container_fs_usage_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that are consumed by the container on this filesystem.\"}\n- {\"name\": \"container_memory_max_usage_bytes\", \"type\": \"gauge\", \"description\": \"Maximum memory usage recorded in bytes\"}\n- {\"name\": \"container_cpu_usage_seconds_total\", \"type\": \"counter\", \"description\": \"Cumulative cpu time consumed in seconds.\"}\n- {\"name\": \"container_blkio_device_usage_total\", \"type\": \"counter\", \"description\": \"Blkio Device bytes usage\"}\n- {\"name\": \"container_memory_failcnt\", \"type\": \"counter\", \"description\": \"Number of memory usage hits limits\"}\n- {\"name\": \"kube_pod_container_status_restarts_total\", \"type\": \"counter\", \"description\": \"[STABLE] The number of container restarts per container.\"}\n- {\"name\": \"container_sockets\", \"type\": \"gauge\", \"description\": \"Number of open sockets for the container.\"}\n- {\"name\": \"container_processes\", \"type\": \"gauge\", \"description\": \"Number of processes running inside the container.\"}\nQuestion: Show the three containers with the highest RSS usage on the node k8s-master in the obs namespace.\n"
+      }
+    ],
+    "retrieved_metrics": {
+      "('three containers with the highest RSS usage', 'container')": [
+        {
+          "_index": "metric",
+          "_id": "hNI-048BMiz5NO5fftcG",
+          "_score": 7.5409613,
+          "_source": {
+            "name": "container_memory_rss",
+            "type": "gauge",
+            "description": "Size of RSS in bytes.",
+            "keywords": "container memory rss"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "fNI-048BMiz5NO5fftcG",
+          "_score": 5.4634175,
+          "_source": {
+            "name": "container_fs_usage_bytes",
+            "type": "gauge",
+            "description": "Number of bytes that are consumed by the container on this filesystem.",
+            "keywords": "container filesystem usage bytes"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "hdI-048BMiz5NO5fftcG",
+          "_score": 5.4634175,
+          "_source": {
+            "name": "container_memory_usage_bytes",
+            "type": "gauge",
+            "description": "Current memory usage in bytes, including all memory regardless of when it was accessed",
+            "keywords": "container memory usage bytes"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "ddI-048BMiz5NO5fftcG",
+          "_score": 4.981826,
+          "_source": {
+            "name": "container_cpu_usage_seconds_total",
+            "type": "counter",
+            "description": "Cumulative cpu time consumed in seconds.",
+            "keywords": "container cpu usage seconds total"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "g9I-048BMiz5NO5fftcG",
+          "_score": 4.981826,
+          "_source": {
+            "name": "container_memory_max_usage_bytes",
+            "type": "gauge",
+            "description": "Maximum memory usage recorded in bytes",
+            "keywords": "container memory max usage bytes"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "ctI-048BMiz5NO5fftcG",
+          "_score": 4.5782595,
+          "_source": {
+            "name": "container_blkio_device_usage_total",
+            "type": "counter",
+            "description": "Blkio Device bytes usage",
+            "keywords": "container block io device usage total"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "gdI-048BMiz5NO5fftcG",
+          "_score": 3.7893114,
+          "_source": {
+            "name": "container_memory_failcnt",
+            "type": "counter",
+            "description": "Number of memory usage hits limits",
+            "keywords": "container memory failcnt"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "ndI-048BMiz5NO5fftcG",
+          "_score": 3.4414847,
+          "_source": {
+            "name": "kube_pod_container_status_restarts_total",
+            "type": "counter",
+            "description": "[STABLE] The number of container restarts per container.",
+            "keywords": "kube pod container status restarts total"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "kNI-048BMiz5NO5fftcG",
+          "_score": 2.8756242,
+          "_source": {
+            "name": "container_sockets",
+            "type": "gauge",
+            "description": "Number of open sockets for the container.",
+            "keywords": "container sockets"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "j9I-048BMiz5NO5fftcG",
+          "_score": 2.6355953,
+          "_source": {
+            "name": "container_processes",
+            "type": "gauge",
+            "description": "Number of processes running inside the container.",
+            "keywords": "container processes"
+          }
+        }
+      ]
+    }
+  }
+}

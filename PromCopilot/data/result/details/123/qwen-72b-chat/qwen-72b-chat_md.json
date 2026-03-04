@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "maximum mapped memory usage",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"maximum mapped memory usage\", \"node\")]"
+}

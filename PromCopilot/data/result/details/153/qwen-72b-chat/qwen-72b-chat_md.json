@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "number of UDP sockets in the mem state",
+      "node"
+    ],
+    [
+      "RabbitMQ pods",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"number of UDP sockets in the mem state\", \"node\"), (\"RabbitMQ pods\", \"pod\")]"
+}

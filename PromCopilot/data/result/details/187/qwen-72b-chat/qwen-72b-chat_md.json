@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "filesystem usage",
+      "container"
+    ],
+    [
+      "filesystem limits",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"filesystem usage\", \"container\"), (\"filesystem limits\", \"container\")]"
+}

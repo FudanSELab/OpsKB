@@ -1,0 +1,78 @@
+name,description,ip
+alertmanager-operated,,None
+cert-manager,,10.105.170.225
+cert-manager-webhook,,10.97.109.157
+kube-dns,,10.96.0.10
+kubernetes,,10.96.0.1
+loki,,10.104.174.144
+loki-headless,,None
+loki-memberlist,,None
+nacos,,10.111.35.167
+nacos-headless,,None
+nacosdb-mysql,,None
+nacosdb-mysql-follower,,10.102.248.236
+nacosdb-mysql-leader,,10.100.253.173
+opentelemetry-operator-controller-manager-metrics-service,,10.103.4.107
+opentelemetry-operator-webhook-service,,10.104.119.174
+otelcol-opentelemetry-collector,,10.98.209.81
+prometheus-kube-prometheus-alertmanager,,10.96.58.119
+prometheus-kube-prometheus-coredns,,None
+prometheus-kube-prometheus-kube-controller-manager,,None
+prometheus-kube-prometheus-kube-etcd,,None
+prometheus-kube-prometheus-kube-proxy,,None
+prometheus-kube-prometheus-kube-scheduler,,None
+prometheus-kube-prometheus-kubelet,,None
+prometheus-kube-prometheus-operator,,10.100.153.90
+prometheus-kube-prometheus-prometheus,,10.100.229.239
+prometheus-kube-state-metrics,,10.108.248.249
+prometheus-operated,,None
+prometheus-prometheus-node-exporter,,10.101.191.161
+rabbitmq,,10.101.35.16
+tempo,,10.109.78.160
+ts-admin-basic-info-service,"This service provides CRUD APIs to manage basic information for administrator, include contacts information, station information, train information, config information and price information.",10.99.151.141
+ts-admin-order-service,This service provide CRUD APIs about order management for administrator.,10.102.69.240
+ts-admin-route-service,"This service provide APIs to manage route. The route entity include distances, stations, start station and end station.",10.100.26.187
+ts-admin-travel-service,"This service provide APIs to manage teavel. The travel entity include the type of train, the trip and the start and end time.",10.96.155.244
+ts-admin-user-service,"This service provide APIs to manage users, include get user information, add user, modify user information and delete a user.",10.96.97.56
+ts-assurance-service,"This service provide APIs to manage and buy assurance, include many get APIs to get assurance information by different parameter, delete APIs to cancel assurance order and PATCH API to modify assurance order.",10.105.96.31
+ts-auth-service,This service provide APIs to manage user informations and auth operation.,10.104.71.105
+ts-avatar-service,,10.104.203.162
+ts-basic-service,This service provide APIs to query some basic information: basic travel information and basic station information.,10.111.6.253
+ts-cancel-service,This service provide APIs to calculate refund and cancel ticket.,10.109.124.51
+ts-config-service,"This service provide APIs to manage configs, include query, create, update and delete.",10.97.150.175
+ts-consign-price-service,This service provide APIs to calculate consign price and manage consign config.,10.103.118.87
+ts-consign-service,"This service provide APIs to create, update and query consign order.",10.98.66.161
+ts-contacts-service,"This service provide APIs to get all contacts, create contacts, create contacts in admin, delete contact, modify contact's information, query contacts by accountId adn query contacts by contactId.",10.105.64.250
+ts-delivery-service,,10.101.162.55
+ts-execute-service,This service provide ticket collection and execute related API.,10.101.5.169
+ts-food-service,"This service provide APIs to CRUD foodOrders, get all food order and get all foods in an interval.",10.110.61.113
+ts-gateway-service,,10.108.231.2
+ts-inside-payment-service,"This service provide APIs to do inside payment, query money, top up money into account, query money info, create account.",10.110.137.164
+ts-news-service,,10.101.188.202
+ts-notification-service,"This service provide API to send email when preserve success, order create success, update order success and cancel notification success.",10.100.188.235
+ts-order-other-service,This service provide API to manage other order(means order which train's ID is not start with G or D),10.104.239.56
+ts-order-service,This service provide API to manage order(means order which train's ID IS start with G,10.110.136.202
+ts-payment-service,"This service provide API to create payment, top up money and query payment",10.110.4.236
+ts-preserve-other-service,This service provide API to preserve other train's ticket.,10.102.140.11
+ts-preserve-service,This service provide API to preserve train's ticket.,10.109.71.7
+ts-price-service,This service provide API to calculate tickets' price and manage price configs.,10.105.235.32
+ts-rebook-service,This service provide Train ticket rescheduling API and differential payment API.,10.99.177.83
+ts-route-plan-service,"This service provide APIs to get cheapest Route, quickest Route and min Stop Stations Route.",10.103.115.134
+ts-route-service,This service provide APIs to CRUD route informations.,10.104.158.183
+ts-seat-service,This service provide APIs to allocate seats for users and query left tickets in an interval.,10.111.118.180
+ts-security-service,"This service provide APIs to manage security config files, includes add, delete, query, modify config file and check account id.",10.102.100.200
+ts-station-food-service,This service provide APIs to CRUD station food.,10.111.173.188
+ts-station-service,"This service provide APIs to CRUD station information, and it also provide APIs to get station name by id and get station id by name.",10.96.166.139
+ts-ticket-office-service,This service provide APIs to get ticket office information and manage ticket office information.,10.96.207.22
+ts-train-food-service,This service provide APIs to CRUD train food.,10.110.124.107
+ts-train-service,"This service provide APIs to manage train information, includes create train entity, update train information, get train's information and delete trains information.",10.98.12.220
+ts-travel-plan-service,"This service provide APIs to get travel plan, includes cheapest travel plan, quickest travel plan, min station travel plan.",10.109.146.177
+ts-travel-service,This service provide APIs to manage high speed train's trip.,10.96.52.131
+ts-travel2-service,This service provide APIs to manage normal train's trip.,10.108.8.99
+ts-ui-dashboard,This repository provide all the UI interface to interact with the system.,10.96.217.142
+ts-user-service,"This service provide APIs to manage user information, includes register user, get user by username, get user by userId, and allow administrator to delete a user.",10.105.25.221
+ts-verification-code-service,This service provide APIs to generate verification code pictures and verify code which user send.,10.103.84.42
+ts-voucher-service,This service provide APIs to generate the reimbursement voucher based on the order id.,10.101.165.93
+tsdb-mysql,,None
+tsdb-mysql-follower,,10.98.64.55
+tsdb-mysql-leader,,10.111.152.64

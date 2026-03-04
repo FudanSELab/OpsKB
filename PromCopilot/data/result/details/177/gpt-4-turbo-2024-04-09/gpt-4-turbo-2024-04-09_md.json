@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "free space on the tmpfs filesystem less than 1 GB",
+      "node"
+    ],
+    [
+      "disk write rate exceeds 10 MB/s",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"free space on the tmpfs filesystem less than 1 GB\", \"node\"), (\"disk write rate exceeds 10 MB/s\", \"node\")]"
+}

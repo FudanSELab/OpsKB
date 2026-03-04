@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "current CPU usage",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"current CPU usage\", \"container\")]"
+}

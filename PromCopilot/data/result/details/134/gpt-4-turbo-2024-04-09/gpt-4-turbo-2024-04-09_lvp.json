@@ -1,0 +1,50 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_blkio_device_usage_total",
+        "type": "counter",
+        "description": "Blkio Device bytes usage"
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-auth-service",
+        "label": "container",
+        "value": "ts-auth-service"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_blkio_device_usage_total",
+        "type": "counter",
+        "description": "Blkio Device bytes usage"
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "device=/dev/sda",
+        "label": "device",
+        "value": "/dev/sda"
+      }
+    }
+  ]
+]

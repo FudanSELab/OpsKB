@@ -1,0 +1,26 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_memory_usage_bytes",
+        "type": "gauge",
+        "description": "Current memory usage in bytes, including all memory regardless of when it was accessed"
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "name=k8s_ts-admin-route-service_ts-admin-route-service-5b57ff6d57-kcqr5_default_8bc47606-9862-4f3c-8d57-6ec3f38b70a2_0",
+        "label": "name",
+        "value": "k8s_ts-admin-route-service_ts-admin-route-service-5b57ff6d57-kcqr5_default_8bc47606-9862-4f3c-8d57-6ec3f38b70a2_0"
+      }
+    }
+  ]
+]

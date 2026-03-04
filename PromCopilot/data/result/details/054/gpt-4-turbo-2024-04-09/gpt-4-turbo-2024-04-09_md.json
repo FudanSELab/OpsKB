@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "CPU usage ratio",
+      "pod"
+    ],
+    [
+      "CPU usage exceeding 50%",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"CPU usage ratio\", \"pod\"), (\"CPU usage exceeding 50%\", \"pod\")]"
+}

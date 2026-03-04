@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "percentage of replicaset ready",
+      "deployment"
+    ]
+  ],
+  "response_text": "[(\"percentage of replicaset ready\", \"deployment\")]"
+}

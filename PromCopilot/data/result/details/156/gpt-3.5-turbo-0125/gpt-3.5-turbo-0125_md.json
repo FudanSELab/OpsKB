@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "throttling periods",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"throttling periods\", \"container\")]"
+}

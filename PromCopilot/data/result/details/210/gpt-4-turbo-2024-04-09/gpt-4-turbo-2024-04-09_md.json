@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "number of times the POST /api/v1/seatservice/seats API was called",
+      "API"
+    ],
+    [
+      "increase in the number of calls compared to the same period last week",
+      "API"
+    ]
+  ],
+  "response_text": "[(\"number of times the POST /api/v1/seatservice/seats API was called\", \"API\"), (\"increase in the number of calls compared to the same period last week\", \"API\")]"
+}

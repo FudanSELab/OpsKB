@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "most bytes of cached memory",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"most bytes of cached memory\", \"node\")]"
+}

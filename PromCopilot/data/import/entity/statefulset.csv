@@ -1,0 +1,8 @@
+name
+alertmanager-prometheus-kube-prometheus-alertmanager
+loki
+nacos
+nacosdb-mysql
+prometheus-prometheus-kube-prometheus-prometheus
+tempo
+tsdb-mysql

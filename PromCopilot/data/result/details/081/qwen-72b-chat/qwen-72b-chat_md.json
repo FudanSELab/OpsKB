@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "CPU usage",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"CPU usage\", \"node\")]"
+}

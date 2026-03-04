@@ -1,0 +1,50 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_memory_failures_total",
+        "type": "counter",
+        "description": "Cumulative count of memory allocation failures."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-gateway-service",
+        "label": "container",
+        "value": "ts-gateway-service"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_memory_failures_total",
+        "type": "counter",
+        "description": "Cumulative count of memory allocation failures."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-execute-service",
+        "label": "container",
+        "value": "ts-execute-service"
+      }
+    }
+  ]
+]

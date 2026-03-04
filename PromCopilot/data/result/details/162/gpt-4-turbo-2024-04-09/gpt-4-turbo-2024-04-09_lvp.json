@@ -1,0 +1,50 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_fs_writes_total",
+        "type": "counter",
+        "description": "Cumulative count of writes completed"
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=POD",
+        "label": "container",
+        "value": "POD"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_fs_writes_bytes_total",
+        "type": "counter",
+        "description": "Cumulative count of bytes written"
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-voucher-service",
+        "label": "container",
+        "value": "ts-voucher-service"
+      }
+    }
+  ]
+]

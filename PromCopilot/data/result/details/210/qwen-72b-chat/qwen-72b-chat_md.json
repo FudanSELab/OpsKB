@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "/api/v1/seatservice/seats",
+      "API"
+    ]
+  ],
+  "response_text": "[(\"/api/v1/seatservice/seats\", \"API\")]"
+}

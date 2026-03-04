@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "network receive errors",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"network receive errors\", \"node\")]"
+}

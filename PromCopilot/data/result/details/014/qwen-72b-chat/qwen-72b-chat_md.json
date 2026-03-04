@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "current number of TCP sockets in the mem state",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"current number of TCP sockets in the mem state\", \"node\")]"
+}

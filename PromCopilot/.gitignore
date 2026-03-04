@@ -1,0 +1,7 @@
+log/
+.idea
+__pycache__/
+data/PromCopilotDataSet/
+*.tar.gz
+*.z*
+tmp/

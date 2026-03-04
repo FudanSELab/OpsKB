@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "least amount of memory mapped bytes",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"least amount of memory mapped bytes\", \"node\")]"
+}

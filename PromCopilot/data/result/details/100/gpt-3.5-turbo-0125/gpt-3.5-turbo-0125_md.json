@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "99th percentile of request duration",
+      "pod"
+    ],
+    [
+      "95th percentile of request duration",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"99th percentile of request duration\", \"pod\"), (\"95th percentile of request duration\", \"pod\")]"
+}

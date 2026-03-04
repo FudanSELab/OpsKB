@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "soft ulimit values for the container root processes",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"soft ulimit values for the container root processes\", \"container\")]"
+}

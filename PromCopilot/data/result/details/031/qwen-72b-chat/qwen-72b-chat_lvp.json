@@ -1,0 +1,74 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_sockstat_TCP_tw",
+        "type": "gauge",
+        "description": "Number of TCP sockets in state tw."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "job=node-exporter",
+        "label": "job",
+        "value": "node-exporter"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_sockstat_TCP_alloc",
+        "type": "gauge",
+        "description": "Number of TCP sockets in state alloc."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "endpoint=http-metrics",
+        "label": "endpoint",
+        "value": "http-metrics"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_sockstat_TCP_alloc",
+        "type": "gauge",
+        "description": "Number of TCP sockets in state alloc."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "job=node-exporter",
+        "label": "job",
+        "value": "node-exporter"
+      }
+    }
+  ]
+]

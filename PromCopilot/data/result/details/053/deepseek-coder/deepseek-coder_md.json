@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "current response latency",
+      "API"
+    ],
+    [
+      "response latency from two hours ago",
+      "API"
+    ]
+  ],
+  "response_text": "[(\"current response latency\", \"API\"), (\"response latency from two hours ago\", \"API\")]"
+}

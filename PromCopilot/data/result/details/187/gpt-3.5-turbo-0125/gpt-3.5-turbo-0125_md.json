@@ -1,0 +1,17 @@
+{
+  "metrics_description": [
+    [
+      "filesystem usage",
+      "container"
+    ],
+    [
+      "limits",
+      "container"
+    ],
+    [
+      "free space left",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"filesystem usage\", \"container\"), (\"limits\", \"container\"), (\"free space left\", \"node\")]"
+}

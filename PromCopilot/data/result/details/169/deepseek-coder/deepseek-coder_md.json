@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "total number of TCP sockets in the 'tw' state",
+      "node"
+    ],
+    [
+      "service that provides the API for creating trips",
+      "API"
+    ]
+  ],
+  "response_text": "[(\"total number of TCP sockets in the 'tw' state\", \"node\"), (\"service that provides the API for creating trips\", \"API\")]"
+}

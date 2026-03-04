@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "maximum memory usage",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"maximum memory usage\", \"container\")]"
+}

@@ -1,0 +1,718 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 冲突消解
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/volcengine_maas:0.0.30@0e6b13a721cc8fb7b928787f86ffc57655ace2cbc938c4738c209d70b18a85f8
+    version: null
+kind: app
+version: 0.4.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: knowledge-retrieval
+      id: 1760448502871-source-1760448512485-target
+      selected: false
+      source: '1760448502871'
+      sourceHandle: source
+      target: '1760448512485'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1760449356512-source-1760450039408-target
+      selected: false
+      source: '1760449356512'
+      sourceHandle: source
+      target: '1760450039408'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: if-else
+      id: 1760450039408-source-1760451143682-target
+      selected: false
+      source: '1760450039408'
+      sourceHandle: source
+      target: '1760451143682'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 1760451143682-false-1760451184751-target
+      selected: false
+      source: '1760451143682'
+      sourceHandle: 'false'
+      target: '1760451184751'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1760451143682-true-1760452855599-target
+      selected: false
+      source: '1760451143682'
+      sourceHandle: 'true'
+      target: '1760452855599'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1760452855599-source-1760453751869-target
+      selected: false
+      source: '1760452855599'
+      sourceHandle: source
+      target: '1760453751869'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: variable-aggregator
+      id: 1760448703529-source-1760454239686-target
+      selected: false
+      source: '1760448703529'
+      sourceHandle: source
+      target: '1760454239686'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: variable-aggregator
+      id: 1760451184751-source-1760454239686-target
+      selected: false
+      source: '1760451184751'
+      sourceHandle: source
+      target: '1760454239686'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: variable-aggregator
+      id: 1760453751869-source-1760454239686-target
+      selected: false
+      source: '1760453751869'
+      sourceHandle: source
+      target: '1760454239686'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: variable-aggregator
+        targetType: end
+      id: 1760454239686--1760454327082-target
+      selected: false
+      source: '1760454239686'
+      sourceHandle: source
+      target: '1760454327082'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: if-else
+      id: 1760448512485-source-1760448649180-target
+      selected: false
+      source: '1760448512485'
+      sourceHandle: source
+      target: '1760448649180'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 1760448649180-false-1760448703529-target
+      selected: false
+      source: '1760448649180'
+      sourceHandle: 'false'
+      target: '1760448703529'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 1760448649180-true-17604544754640-target
+      selected: false
+      source: '1760448649180'
+      sourceHandle: 'true'
+      target: '17604544754640'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: 17604544754640-source-1760449356512-target
+      selected: false
+      source: '17604544754640'
+      sourceHandle: source
+      target: '1760449356512'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: target
+          max_length: 1000
+          options: []
+          placeholder: ''
+          required: true
+          type: paragraph
+          variable: target
+      height: 87
+      id: '1760448502871'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        dataset_ids:
+        - TnfsSPl+FLpK7v92QgHL5cmq2IRgwFRkZhaIj1l9bcmmxGDM5Zb3pQuzMzorLdmk
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: weighted_score
+          top_k: 4
+          weights:
+            keyword_setting:
+              keyword_weight: 0
+            vector_setting:
+              embedding_model_name: ' embedding'
+              embedding_provider_name: langgenius/volcengine_maas/volcengine_maas
+              vector_weight: 1
+            weight_type: customized
+        query_variable_selector:
+        - '1760448502871'
+        - target
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索
+        type: knowledge-retrieval
+      height: 89
+      id: '1760448512485'
+      position:
+        x: 382
+        y: 282
+      positionAbsolute:
+        x: 382
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: not empty
+            id: b14b8a12-8c27-46ef-aa6d-5562a5f334bd
+            value: ''
+            varType: array[object]
+            variable_selector:
+            - '1760448512485'
+            - result
+          id: 'true'
+          logical_operator: and
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 123
+      id: '1760448649180'
+      position:
+        x: 742.5167824913578
+        y: 282
+      positionAbsolute:
+        x: 742.5167824913578
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "def main(arg1: str):\n    return {  # 用大括号包裹整个字典\n        \"result\"\
+          : {  # 将result作为键，对应的值是包含code、data、message的子字典\n            \"code\": 201,\n\
+          \            \"data\": {\n                \"target\": arg1,\n          \
+          \      \"similar_target\": None,\n                \"judge\":\"否\",\n   \
+          \             \"judge_reason\":\"不存在相似知识\",\n                \"finalKg\"\
+          :None\n            },\n            \"message\": \"没有相似知识，直接添加节点\"\n    \
+          \    }\n    }\n"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: object
+        selected: false
+        title: 没有相似知识
+        type: code
+        variables:
+        - value_selector:
+          - '1760448502871'
+          - target
+          value_type: string
+          variable: arg1
+      height: 51
+      id: '1760448703529'
+      position:
+        x: 1728.8604151048921
+        y: 530.018646694843
+      positionAbsolute:
+        x: 1728.8604151048921
+        y: 530.018646694843
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1760448512485'
+          - result
+        model:
+          completion_params:
+            temperature: 0.7
+            thinking: disabled
+          mode: chat
+          name: doubao-seed-1-6-250615
+          provider: langgenius/volcengine_maas/volcengine_maas
+        prompt_template:
+        - id: 0c04fc2d-16ee-4096-88e6-09863fb0a2d4
+          role: system
+          text: "你是一个知识图谱专家，负责评估两个知识是否需要融合。知识融合是指将来自不同来源或上下文的相似知识整合成一个统一、一致的知识表示，以提升知识库的质量（例如，消除冗余、解决冲突或补充信息）。\n\
+            \n请根据以下输入进行判断：\n- **目标知识**：{{#1760448502871.target#}}\n- **相似知识**：{{#context#}}\n\
+            \n基于知识融合的标准，请执行以下步骤：\n1. **分析知识内容**：比较目标知识和相似知识，检查它们是否代表相同的实体、概念或关系，或者是否有重叠、冲突或互补的信息。\n\
+            2. **评估融合必要性**：\n   - 如果两个知识代表相同的实体或概念，但存在冗余或轻微不一致，则需要融合。\n   - 如果两个知识有重叠信息但存在冲突（如属性值矛盾），则需要融合以解决不一致。\n\
+            \   - 如果两个知识互补（例如，一个提供基本属性，另一个提供上下文细节），融合后能丰富知识，则需要融合。\n   - 如果两个知识完全无关或代表不同实体，且无重叠或冲突，则不需要融合。\n\
+            3. **输出结果**：\n   - 输出必须严格遵循以下JSON格式，且仅包含此JSON对象，无其他文本：\n     {\n     \
+            \  \"judge\": \"是\" 或 \"否\",\n       \"judge_reason\": \"简要说明理由\"\n  \
+            \   }\n   - 其中：\n     - \"judge\" 字段的值只能是“是”（需要融合）或“否”（不需要融合）。\n     -\
+            \ \"judge_reason\" 字段提供简洁的理由，基于上述分析步骤，确保客观且基于知识图谱融合原则。\n\n请确保输出简洁、客观。"
+        reasoning_format: separated
+        selected: true
+        structured_output_enabled: true
+        title: 冲突判断
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1760449356512'
+      position:
+        x: 1285
+        y: 192
+      positionAbsolute:
+        x: 1285
+        y: 192
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "import json\n\ndef main(arg1: str):\n    try:\n        # 直接解析arg1（已为包含目标字段的JSON字符串）\n\
+          \        judge_info = json.loads(arg1)\n        \n        return {\n   \
+          \         \"judge\": judge_info.get(\"judge\", \"\"),\n            \"judge_reason\"\
+          : judge_info.get(\"judge_reason\", \"\")\n        }\n    except json.JSONDecodeError\
+          \ as e:\n        return {\n            \"judge\": \"\",\n            \"\
+          judge_reason\": f\"JSON解析错误：{str(e)}\"\n        }\n    except Exception\
+          \ as e:\n        return {\n            \"judge\": \"\",\n            \"\
+          judge_reason\": f\"处理错误：{str(e)}\"\n        }\n    "
+        code_language: python3
+        outputs:
+          judge:
+            children: null
+            type: string
+          judge_reason:
+            children: null
+            type: string
+        selected: false
+        title: 结果解析
+        type: code
+        variables:
+        - value_selector:
+          - '1760449356512'
+          - text
+          value_type: string
+          variable: arg1
+      height: 51
+      id: '1760450039408'
+      position:
+        x: 1586
+        y: 192
+      positionAbsolute:
+        x: 1586
+        y: 192
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: dfa8a60b-d213-413e-a20d-dfa553a46caa
+            value: 是
+            varType: string
+            variable_selector:
+            - '1760450039408'
+            - judge
+          id: 'true'
+          logical_operator: and
+        selected: false
+        title: 条件分支 2
+        type: if-else
+      height: 123
+      id: '1760451143682'
+      position:
+        x: 1887
+        y: 192
+      positionAbsolute:
+        x: 1887
+        y: 192
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "\ndef main(judge: str, judge_reason: str, target: str, similar: list[dict]):\n\
+          \    return {  # 用大括号包裹整个字典\n        \"result\": {  # 将result作为键，对应的值是包含code、data、message的子字典\n\
+          \            \"code\": 201,\n            \"data\": {\n                \"\
+          target\": target,\n                \"similar_target\": similar,\n      \
+          \          \"judge\":\"否\",\n                \"judge_reason\":judge_reason,\n\
+          \                \"finalKg\":\"null\"\n            },\n            \"message\"\
+          : \"不需要融合，直接添加节点\"\n        }\n    }\n"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: object
+        selected: false
+        title: 无需融合
+        type: code
+        variables:
+        - value_selector:
+          - '1760450039408'
+          - judge
+          value_type: string
+          variable: judge
+        - value_selector:
+          - '1760450039408'
+          - judge_reason
+          value_type: string
+          variable: judge_reason
+        - value_selector:
+          - '1760448502871'
+          - target
+          value_type: string
+          variable: target
+        - value_selector:
+          - '17604544754640'
+          - similar
+          value_type: object
+          variable: similar
+      height: 51
+      id: '1760451184751'
+      position:
+        x: 2182
+        y: 360
+      positionAbsolute:
+        x: 2182
+        y: 360
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1760448512485'
+          - result
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: doubao-seed-1-6-250615
+          provider: langgenius/volcengine_maas/volcengine_maas
+        prompt_template:
+        - id: 9740f375-f68f-488c-9869-befad635bbb4
+          role: system
+          text: "你是一个知识图谱专家，负责将两个知识融合成一个统一的知识。融合以新增知识（target）为主，相似知识（similar）为辅。当属性冲突时，优先使用新增知识的属性；当属性不冲突时，可以从相似知识中补充缺失属性以丰富知识。\n\
+            \n输入参数：\n- **target**（新增知识）：{{#1760448502871.target#}}\n- **similar**（相似知识）：{{#context#}}\n\
+            - **judge_reason**：{{#1760450039408.judge_reason#}}\n\n融合规则：\n1. **id**：始终使用similar的id。\n\
+            2. **labels**：以target的labels为基础，添加similar中不重复的labels（即合并去重）。\n3. **properties**：\n\
+            \   - 以target的properties为基准。\n   - 对于每个属性，如果target中已存在，则使用target的值（优先解决冲突）。\n\
+            \   - 如果target中不存在某个属性，但similar中存在，则将该属性添加到properties中（补充信息）。\n4. 确保输出格式严格遵循JSON标准，且仅包含融合后的知识对象。\n\
+            \n输出格式：\n融合后的知识必须输出为以下JSON格式，且无其他文本：\n{\n  \"type\": \"node\",\n  \"id\"\
+            : \"similar中的id\",\n  \"labels\": [\"合并后的labels数组\"],\n  \"properties\"\
+            : {\n    \"属性1\": \"值1\",\n    \"属性2\": \"值2\",\n    ... // 基于融合规则生成的属性\n\
+            \  }\n}\n\n请根据输入参数执行融合，并输出结果。"
+        reasoning_format: separated
+        selected: false
+        structured_output_enabled: true
+        title: LLM融合
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1760452855599'
+      position:
+        x: 2191.094299399062
+        y: 224.15823158995101
+      positionAbsolute:
+        x: 2191.094299399062
+        y: 224.15823158995101
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "\ndef main(finalKg: str, judge: str, judge_reason: str, target: str,\
+          \ similar: dict):\n    judge_info = json.loads(finalKg)\n    target_info=json.loads(target)\n\
+          \    return {  # 用大括号包裹整个字典\n        \"result\": {  # 将result作为键，对应的值是包含code、data、message的子字典\n\
+          \            \"code\": 200,\n            \"data\": {\n                \"\
+          target\": target_info,\n                \"similar_target\": similar,\n \
+          \               \"judge\":judge,\n                \"judge_reason\":judge_reason,\n\
+          \                \"finalKg\":judge_info\n            },\n            \"\
+          message\": \"成功融合，现需修改图知识库\"\n        }\n    }\n"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: object
+        selected: false
+        title: 融合
+        type: code
+        variables:
+        - value_selector:
+          - '1760452855599'
+          - text
+          value_type: string
+          variable: finalKg
+        - value_selector:
+          - '1760450039408'
+          - judge
+          value_type: string
+          variable: judge
+        - value_selector:
+          - '1760450039408'
+          - judge_reason
+          value_type: string
+          variable: judge_reason
+        - value_selector:
+          - '1760448502871'
+          - target
+          value_type: string
+          variable: target
+        - value_selector:
+          - '17604544754640'
+          - similar
+          value_type: object
+          variable: similar
+      height: 51
+      id: '1760453751869'
+      position:
+        x: 2495.1257325320826
+        y: 224.15823158995101
+      positionAbsolute:
+        x: 2495.1257325320826
+        y: 224.15823158995101
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        output_type: object
+        selected: false
+        title: 变量聚合器
+        type: variable-aggregator
+        variables:
+        - - '1760453751869'
+          - result
+        - - '1760451184751'
+          - result
+        - - '1760448703529'
+          - result
+      height: 159
+      id: '1760454239686'
+      position:
+        x: 2892.303141449307
+        y: 349.6483752801059
+      positionAbsolute:
+        x: 2892.303141449307
+        y: 349.6483752801059
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        outputs:
+        - value_selector:
+          - '1760454239686'
+          - output
+          value_type: object
+          variable: result
+        selected: false
+        title: 结束
+        type: end
+      height: 87
+      id: '1760454327082'
+      position:
+        x: 3193.303141449307
+        y: 349.6483752801059
+      positionAbsolute:
+        x: 3193.303141449307
+        y: 349.6483752801059
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "\nimport json\n\ndef main(arg1: list[dict]):\n    try:\n        # 从列表第一个元素中获取content字段（这是JSON字符串）\n\
+          \        content_str = arg1[0].get(\"content\", \"{}\")\n        # 解析content中的JSON字符串\n\
+          \        judge_info = json.loads(content_str)\n        return {\n      \
+          \      \"similar\": judge_info  # 直接返回解析后的字典，或根据需要提取特定字段\n        }\n  \
+          \  except IndexError:\n        return {\"similar\": \"列表为空，无数据\"}\n    except\
+          \ json.JSONDecodeError:\n        return {\"similar\": \"content字段不是有效的JSON字符串\"\
+          }\n    except Exception as e:\n        return {\"similar\": f\"处理错误: {str(e)}\"\
+          }\n\n"
+        code_language: python3
+        outputs:
+          similar:
+            children: null
+            type: object
+        selected: false
+        title: '内容提取 '
+        type: code
+        variables:
+        - value_selector:
+          - '1760448512485'
+          - result
+          value_type: array[object]
+          variable: arg1
+      height: 51
+      id: '17604544754640'
+      position:
+        x: 994.2381456635653
+        y: 192
+      positionAbsolute:
+        x: 994.2381456635653
+        y: 192
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    viewport:
+      x: -764.7947299432178
+      y: 212.61880435519447
+      zoom: 0.6597539553864481
+  rag_pipeline_variables: []

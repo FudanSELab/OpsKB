@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "p80 latency",
+      "API"
+    ],
+    [
+      "difference between the current value and the value from one week ago",
+      "API"
+    ]
+  ],
+  "response_text": "[(\"p80 latency\", \"API\"), (\"difference between the current value and the value from one week ago\", \"API\")]"
+}

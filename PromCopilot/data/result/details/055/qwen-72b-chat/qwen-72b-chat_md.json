@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "receiving byte rate",
+      "pod"
+    ],
+    [
+      "transmitting byte rate",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"receiving byte rate\", \"pod\"), (\"transmitting byte rate\", \"pod\")]"
+}

@@ -1,0 +1,26 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_processes",
+        "type": "gauge",
+        "description": "Number of processes running inside the container."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "name=k8s_ts-news-service_ts-news-service-867fc4cb4f-xd62r_default_0f0117eb-8d47-4ff4-b24b-3fe5990a6650_0",
+        "label": "name",
+        "value": "k8s_ts-news-service_ts-news-service-867fc4cb4f-xd62r_default_0f0117eb-8d47-4ff4-b24b-3fe5990a6650_0"
+      }
+    }
+  ]
+]

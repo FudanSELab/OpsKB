@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "total page cache memory",
+      "container"
+    ],
+    [
+      "aggregated by",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"total page cache memory\", \"container\"), (\"aggregated by\", \"node\")]"
+}

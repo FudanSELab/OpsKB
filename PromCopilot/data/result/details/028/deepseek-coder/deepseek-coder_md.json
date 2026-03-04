@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "memory usage limits",
+      "container"
+    ],
+    [
+      "total number of hits",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"memory usage limits\", \"container\"), (\"total number of hits\", \"container\")]"
+}

@@ -1,0 +1,26 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_network_transmit_errors_total",
+        "type": "counter",
+        "description": "Cumulative count of errors encountered while transmitting"
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "interface=eth0",
+        "label": "interface",
+        "value": "eth0"
+      }
+    }
+  ]
+]

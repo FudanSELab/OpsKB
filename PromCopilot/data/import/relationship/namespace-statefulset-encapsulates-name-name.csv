@@ -1,0 +1,8 @@
+namespace,statefulset
+default,nacos
+default,nacosdb-mysql
+default,tsdb-mysql
+obs,alertmanager-prometheus-kube-prometheus-alertmanager
+obs,loki
+obs,prometheus-prometheus-kube-prometheus-prometheus
+obs,tempo

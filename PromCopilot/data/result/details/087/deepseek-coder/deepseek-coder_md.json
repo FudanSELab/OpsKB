@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "total number of dropped packets",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"total number of dropped packets\", \"node\")]"
+}

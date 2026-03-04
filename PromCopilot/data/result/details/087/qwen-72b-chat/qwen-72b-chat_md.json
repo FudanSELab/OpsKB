@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "total number of dropped packets received",
+      "node"
+    ],
+    [
+      "device name",
+      "ens160"
+    ]
+  ],
+  "response_text": "[(\"total number of dropped packets received\", \"node\"), (\"device name\", \"ens160\")]"
+}

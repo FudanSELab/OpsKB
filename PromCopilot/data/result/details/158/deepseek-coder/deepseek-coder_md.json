@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "memory usage greater than 8GB",
+      "pod"
+    ],
+    [
+      "memory usage less than 60% of the requested limit resource",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"memory usage greater than 8GB\", \"pod\"), (\"memory usage less than 60% of the requested limit resource\", \"pod\")]"
+}

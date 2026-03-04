@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "disk usage of the root partition",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"disk usage of the root partition\", \"node\")]"
+}

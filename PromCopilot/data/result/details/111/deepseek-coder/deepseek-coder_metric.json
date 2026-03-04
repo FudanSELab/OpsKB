@@ -1,0 +1,147 @@
+{
+  "relevant_metrics": [
+    {
+      "name": "node_procs_blocked",
+      "type": "gauge",
+      "description": "Number of processes blocked waiting for I/O to complete."
+    }
+  ],
+  "details": {
+    "extracted_text": "- {\"name\": \"node_procs_blocked\", \"type\": \"gauge\", \"description\": \"Number of processes blocked waiting for I/O to complete.\"}",
+    "response_text": "Step 1. Analyze the question and identify the relevant metrics:\nThe relevant metric for the number of processes currently blocked waiting for I/O completion on nodes hosting the tsdb-mysql service is:\n- The metric \"node_procs_blocked\" indicates the number of processes blocked waiting for I/O to complete. This directly answers the question about blocked processes.\n\nStep 2. Relevant Metrics List:\n```\n- {\"name\": \"node_procs_blocked\", \"type\": \"gauge\", \"description\": \"Number of processes blocked waiting for I/O to complete.\"}\n```",
+    "model": "deepseek-coder",
+    "temperature": 0.3,
+    "messages": [
+      {
+        "role": "system",
+        "content": "Please filter and return the relevant metrics from the provided metrics list that pertains to the given question. These metrics will be used to construct Prometheus Query Language (PromQL) queries corresponding to the question.\nInstructions:\nStep 1. Analyze the question to determine which metrics from the provided Metrics List are related to the query.\nStep 2. Return a list of these relevant metrics. Ensure that the list of returned metrics is enclosed in triple backticks (```).\n"
+      },
+      {
+        "role": "user",
+        "content": "Metrics List:\n- {\"name\": \"container_ulimits_soft\", \"type\": \"gauge\", \"description\": \"Soft ulimit values for the container root process.\"}\n- {\"name\": \"container_fs_usage_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that are consumed by the container on this filesystem.\"}\n- {\"name\": \"container_spec_memory_limit_bytes\", \"type\": \"gauge\", \"description\": \"Memory limit for the container.\"}\n- {\"name\": \"container_fs_limit_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that can be consumed by the container on this filesystem.\"}\n- {\"name\": \"container_memory_usage_bytes\", \"type\": \"gauge\", \"description\": \"Current memory usage in bytes, including all memory regardless of when it was accessed\"}\nQuestion: Show the filesystem usage and limit bytes for all containers of the auth service."
+      },
+      {
+        "role": "assistant",
+        "content": "Step 1. Analyze the question and identify the relevant metrics:\nThe relevant metrics for the filesystem usage and limit bytes for all containers of the auth service are:\n- The metric \"container_fs_usage_bytes\" indicates the number of bytes currently consumed by the container on the filesystem. This measures the actual filesystem usage by the container.\n- The metric \"container_fs_limit_bytes\" denotes the maximum number of bytes that can be consumed by the container on this filesystem. This represents the limit set for filesystem usage by the container.\nStep 2. Relevant Metrics List:\n```\n- {\"name\": \"container_fs_usage_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that are consumed by the container on this filesystem.\"}\n- {\"name\": \"container_fs_limit_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that can be consumed by the container on this filesystem.\"}\n```\n"
+      },
+      {
+        "role": "user",
+        "content": "Metrics List:\n- {\"name\": \"node_procs_blocked\", \"type\": \"gauge\", \"description\": \"Number of processes blocked waiting for I/O to complete.\"}\n- {\"name\": \"container_processes\", \"type\": \"gauge\", \"description\": \"Number of processes running inside the container.\"}\n- {\"name\": \"node_softnet_processed_total\", \"type\": \"counter\", \"description\": \"Number of processed packets\"}\n- {\"name\": \"node_disk_io_now\", \"type\": \"gauge\", \"description\": \"The number of I/Os currently in progress.\"}\n- {\"name\": \"node_procs_running\", \"type\": \"gauge\", \"description\": \"Number of processes in runnable state.\"}\n- {\"name\": \"node_disk_writes_completed_total\", \"type\": \"counter\", \"description\": \"The total number of writes completed successfully.\"}\n- {\"name\": \"node_disk_reads_completed_total\", \"type\": \"counter\", \"description\": \"The total number of reads completed successfully.\"}\n- {\"name\": \"container_fs_writes_total\", \"type\": \"counter\", \"description\": \"Cumulative count of writes completed\"}\n- {\"name\": \"container_fs_reads_total\", \"type\": \"counter\", \"description\": \"Cumulative count of reads completed\"}\n- {\"name\": \"container_blkio_device_usage_total\", \"type\": \"counter\", \"description\": \"Blkio Device bytes usage\"}\nQuestion: How many processes are currently blocked waiting for I/O completion on nodes hosting the tsdb-mysql service?\n"
+      }
+    ],
+    "retrieved_metrics": {
+      "('number of processes blocked waiting for I/O completion', 'node')": [
+        {
+          "_index": "metric",
+          "_id": "Yj5Nx5IB_Vubjq2t3ODU",
+          "_score": 22.382053,
+          "_source": {
+            "name": "node_procs_blocked",
+            "type": "gauge",
+            "description": "Number of processes blocked waiting for I/O to complete.",
+            "keywords": "node procs blocked"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "0D5Nx5IB_Vubjq2t3N_S",
+          "_score": 5.70112,
+          "_source": {
+            "name": "container_processes",
+            "type": "gauge",
+            "description": "Number of processes running inside the container.",
+            "keywords": "container processes"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "dD5Nx5IB_Vubjq2t3ODU",
+          "_score": 5.252865,
+          "_source": {
+            "name": "node_softnet_processed_total",
+            "type": "counter",
+            "description": "Number of processed packets",
+            "keywords": "node softnet processed total"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "9z5Nx5IB_Vubjq2t3N_T",
+          "_score": 5.1274366,
+          "_source": {
+            "name": "node_disk_io_now",
+            "type": "gauge",
+            "description": "The number of I/Os currently in progress.",
+            "keywords": "node disk io now"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "Yz5Nx5IB_Vubjq2t3ODU",
+          "_score": 4.774476,
+          "_source": {
+            "name": "node_procs_running",
+            "type": "gauge",
+            "description": "Number of processes in runnable state.",
+            "keywords": "node procs running"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "-z5Nx5IB_Vubjq2t3N_T",
+          "_score": 4.6817694,
+          "_source": {
+            "name": "node_disk_reads_completed_total",
+            "type": "counter",
+            "description": "The total number of reads completed successfully.",
+            "keywords": "node disk reads completed total"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "_j5Nx5IB_Vubjq2t3N_T",
+          "_score": 4.6817694,
+          "_source": {
+            "name": "node_disk_writes_completed_total",
+            "type": "counter",
+            "description": "The total number of writes completed successfully.",
+            "keywords": "node disk writes completed total"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "vD5Nx5IB_Vubjq2t3N_S",
+          "_score": 3.9185257,
+          "_source": {
+            "name": "container_fs_reads_total",
+            "type": "counter",
+            "description": "Cumulative count of reads completed",
+            "keywords": "container filesystem reads total"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "wD5Nx5IB_Vubjq2t3N_S",
+          "_score": 3.9185257,
+          "_source": {
+            "name": "container_fs_writes_total",
+            "type": "counter",
+            "description": "Cumulative count of writes completed",
+            "keywords": "container filesystem writes total"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "sz5Nx5IB_Vubjq2t3N_S",
+          "_score": 3.8537803,
+          "_source": {
+            "name": "container_blkio_device_usage_total",
+            "type": "counter",
+            "description": "Blkio Device bytes usage",
+            "keywords": "container block io device usage total"
+          }
+        }
+      ]
+    }
+  }
+}

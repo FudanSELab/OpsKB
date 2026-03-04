@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "available space (GB)",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"available space (GB)\", \"node\")]"
+}

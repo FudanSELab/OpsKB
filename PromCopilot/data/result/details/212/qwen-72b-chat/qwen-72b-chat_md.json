@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "current CPU usage",
+      "container"
+    ],
+    [
+      "calculated over a 5-minute window",
+      "service"
+    ]
+  ],
+  "response_text": "[(\"current CPU usage\", \"container\"), (\"calculated over a 5-minute window\", \"service\")]"
+}

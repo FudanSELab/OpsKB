@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "error ratio in transmit packets",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"error ratio in transmit packets\", \"pod\")]"
+}

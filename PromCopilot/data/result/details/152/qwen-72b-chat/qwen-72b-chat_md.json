@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "network transmission errors",
+      "pod"
+    ],
+    [
+      "interface used",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"network transmission errors\", \"pod\"), (\"interface used\", \"node\")]"
+}

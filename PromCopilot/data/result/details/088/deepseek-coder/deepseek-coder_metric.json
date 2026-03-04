@@ -1,0 +1,147 @@
+{
+  "relevant_metrics": [
+    {
+      "name": "container_sockets",
+      "type": "gauge",
+      "description": "Number of open sockets for the container."
+    }
+  ],
+  "details": {
+    "extracted_text": "- {\"name\": \"container_sockets\", \"type\": \"gauge\", \"description\": \"Number of open sockets for the container.\"}",
+    "response_text": "Step 1. Analyze the question and identify the relevant metrics:\nThe relevant metric for the total number of current sockets for all pods of the gateway service is:\n- The metric \"container_sockets\" indicates the number of open sockets for the container. This measures the current number of sockets in use by the container.\n\nStep 2. Relevant Metrics List:\n```\n- {\"name\": \"container_sockets\", \"type\": \"gauge\", \"description\": \"Number of open sockets for the container.\"}\n```",
+    "model": "deepseek-coder",
+    "temperature": 0.3,
+    "messages": [
+      {
+        "role": "system",
+        "content": "Please filter and return the relevant metrics from the provided metrics list that pertains to the given question. These metrics will be used to construct Prometheus Query Language (PromQL) queries corresponding to the question.\nInstructions:\nStep 1. Analyze the question to determine which metrics from the provided Metrics List are related to the query.\nStep 2. Return a list of these relevant metrics. Ensure that the list of returned metrics is enclosed in triple backticks (```).\n"
+      },
+      {
+        "role": "user",
+        "content": "Metrics List:\n- {\"name\": \"container_ulimits_soft\", \"type\": \"gauge\", \"description\": \"Soft ulimit values for the container root process.\"}\n- {\"name\": \"container_fs_usage_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that are consumed by the container on this filesystem.\"}\n- {\"name\": \"container_spec_memory_limit_bytes\", \"type\": \"gauge\", \"description\": \"Memory limit for the container.\"}\n- {\"name\": \"container_fs_limit_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that can be consumed by the container on this filesystem.\"}\n- {\"name\": \"container_memory_usage_bytes\", \"type\": \"gauge\", \"description\": \"Current memory usage in bytes, including all memory regardless of when it was accessed\"}\nQuestion: Show the filesystem usage and limit bytes for all containers of the auth service."
+      },
+      {
+        "role": "assistant",
+        "content": "Step 1. Analyze the question and identify the relevant metrics:\nThe relevant metrics for the filesystem usage and limit bytes for all containers of the auth service are:\n- The metric \"container_fs_usage_bytes\" indicates the number of bytes currently consumed by the container on the filesystem. This measures the actual filesystem usage by the container.\n- The metric \"container_fs_limit_bytes\" denotes the maximum number of bytes that can be consumed by the container on this filesystem. This represents the limit set for filesystem usage by the container.\nStep 2. Relevant Metrics List:\n```\n- {\"name\": \"container_fs_usage_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that are consumed by the container on this filesystem.\"}\n- {\"name\": \"container_fs_limit_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that can be consumed by the container on this filesystem.\"}\n```\n"
+      },
+      {
+        "role": "user",
+        "content": "Metrics List:\n- {\"name\": \"container_sockets\", \"type\": \"gauge\", \"description\": \"Number of open sockets for the container.\"}\n- {\"name\": \"kube_statefulset_status_replicas_current\", \"type\": \"gauge\", \"description\": \"[STABLE] The number of current replicas per StatefulSet.\"}\n- {\"name\": \"node_disk_io_now\", \"type\": \"gauge\", \"description\": \"The number of I/Os currently in progress.\"}\n- {\"name\": \"node_sockstat_sockets_used\", \"type\": \"gauge\", \"description\": \"Number of IPv4 sockets in use.\"}\n- {\"name\": \"node_forks_total\", \"type\": \"counter\", \"description\": \"Total number of forks.\"}\n- {\"name\": \"node_disk_reads_merged_total\", \"type\": \"counter\", \"description\": \"The total number of reads merged.\"}\n- {\"name\": \"node_context_switches_total\", \"type\": \"counter\", \"description\": \"Total number of context switches.\"}\n- {\"name\": \"node_sockstat_RAW_inuse\", \"type\": \"gauge\", \"description\": \"Number of RAW sockets in state inuse.\"}\n- {\"name\": \"node_sockstat_FRAG_memory\", \"type\": \"gauge\", \"description\": \"Number of FRAG sockets in state memory.\"}\n- {\"name\": \"node_sockstat_FRAG_inuse\", \"type\": \"gauge\", \"description\": \"Number of FRAG sockets in state inuse.\"}\nQuestion: Show the total number of current sockets for all pods of the gateway service.\n"
+      }
+    ],
+    "retrieved_metrics": {
+      "('total number of current sockets', 'pod')": [
+        {
+          "_index": "metric",
+          "_id": "0T5Nx5IB_Vubjq2t3N_S",
+          "_score": 5.2681823,
+          "_source": {
+            "name": "container_sockets",
+            "type": "gauge",
+            "description": "Number of open sockets for the container.",
+            "keywords": "container sockets"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "7T5Nx5IB_Vubjq2t3N_S",
+          "_score": 4.676949,
+          "_source": {
+            "name": "kube_statefulset_status_replicas_current",
+            "type": "gauge",
+            "description": "[STABLE] The number of current replicas per StatefulSet.",
+            "keywords": "kube statefulset status replicas current"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "9z5Nx5IB_Vubjq2t3N_T",
+          "_score": 4.37595,
+          "_source": {
+            "name": "node_disk_io_now",
+            "type": "gauge",
+            "description": "The number of I/Os currently in progress.",
+            "keywords": "node disk io now"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "cT5Nx5IB_Vubjq2t3ODU",
+          "_score": 4.2496347,
+          "_source": {
+            "name": "node_sockstat_sockets_used",
+            "type": "gauge",
+            "description": "Number of IPv4 sockets in use.",
+            "keywords": "node sockstat sockets used"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "Cj5Nx5IB_Vubjq2t3ODT",
+          "_score": 4.006341,
+          "_source": {
+            "name": "node_forks_total",
+            "type": "counter",
+            "description": "Total number of forks.",
+            "keywords": "node forks total"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "9D5Nx5IB_Vubjq2t3N_T",
+          "_score": 3.6414757,
+          "_source": {
+            "name": "node_context_switches_total",
+            "type": "counter",
+            "description": "Total number of context switches.",
+            "keywords": "node context switches total"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "_D5Nx5IB_Vubjq2t3N_T",
+          "_score": 3.6414757,
+          "_source": {
+            "name": "node_disk_reads_merged_total",
+            "type": "counter",
+            "description": "The total number of reads merged.",
+            "keywords": "node disk reads merged total"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "ZD5Nx5IB_Vubjq2t3ODU",
+          "_score": 3.5985136,
+          "_source": {
+            "name": "node_sockstat_FRAG_inuse",
+            "type": "gauge",
+            "description": "Number of FRAG sockets in state inuse.",
+            "keywords": "node sockstat FRAG inuse"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "ZT5Nx5IB_Vubjq2t3ODU",
+          "_score": 3.5985136,
+          "_source": {
+            "name": "node_sockstat_FRAG_memory",
+            "type": "gauge",
+            "description": "Number of FRAG sockets in state memory.",
+            "keywords": "node sockstat FRAG memory"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "Zj5Nx5IB_Vubjq2t3ODU",
+          "_score": 3.5985136,
+          "_source": {
+            "name": "node_sockstat_RAW_inuse",
+            "type": "gauge",
+            "description": "Number of RAW sockets in state inuse.",
+            "keywords": "node sockstat RAW inuse"
+          }
+        }
+      ]
+    }
+  }
+}

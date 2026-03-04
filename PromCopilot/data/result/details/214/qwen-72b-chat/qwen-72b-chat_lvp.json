@@ -1,0 +1,50 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_memory_cache",
+        "type": "gauge",
+        "description": "Number of bytes of page cache memory."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "name=k8s_ts-admin-user-service_ts-admin-user-service-7d94ff5bc6-66ccv_default_e8f93e1b-e1b7-41b0-9b21-e60946ccb80f_0",
+        "label": "name",
+        "value": "k8s_ts-admin-user-service_ts-admin-user-service-7d94ff5bc6-66ccv_default_e8f93e1b-e1b7-41b0-9b21-e60946ccb80f_0"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_memory_cache",
+        "type": "gauge",
+        "description": "Number of bytes of page cache memory."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-admin-user-service",
+        "label": "container",
+        "value": "ts-admin-user-service"
+      }
+    }
+  ]
+]

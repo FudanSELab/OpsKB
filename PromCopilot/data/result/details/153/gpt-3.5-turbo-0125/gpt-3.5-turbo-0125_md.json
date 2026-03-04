@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "number of UDP sockets",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"number of UDP sockets\", \"node\")]"
+}

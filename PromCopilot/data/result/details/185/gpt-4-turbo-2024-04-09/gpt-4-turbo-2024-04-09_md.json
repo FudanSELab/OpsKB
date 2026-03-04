@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "difference between the current rate of CPU usage and the rate of CPU usage from the same time one week ago",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"difference between the current rate of CPU usage and the rate of CPU usage from the same time one week ago\", \"container\")]"
+}

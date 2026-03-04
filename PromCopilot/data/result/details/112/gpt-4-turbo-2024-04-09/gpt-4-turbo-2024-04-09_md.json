@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "root filesystem with less than 10 GB of free space",
+      "node"
+    ],
+    [
+      "average disk write speed exceeds 60 MB/s",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"root filesystem with less than 10 GB of free space\", \"node\"), (\"average disk write speed exceeds 60 MB/s\", \"node\")]"
+}

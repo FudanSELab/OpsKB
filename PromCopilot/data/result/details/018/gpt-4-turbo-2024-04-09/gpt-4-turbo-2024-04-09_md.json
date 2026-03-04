@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "difference in the total bytes read from the disk for the dm-0 device",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"difference in the total bytes read from the disk for the dm-0 device\", \"node\")]"
+}

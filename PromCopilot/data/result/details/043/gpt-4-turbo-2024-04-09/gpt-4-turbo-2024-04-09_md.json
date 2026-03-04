@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "CPU usage (accounting for limit) trend",
+      "pod"
+    ],
+    [
+      "CPU usage exceeding 80%",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"CPU usage (accounting for limit) trend\", \"pod\"), (\"CPU usage exceeding 80%\", \"pod\")]"
+}

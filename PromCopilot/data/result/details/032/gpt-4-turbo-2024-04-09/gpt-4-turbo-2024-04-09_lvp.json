@@ -1,0 +1,26 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_usage_seconds_total",
+        "type": "counter",
+        "description": "Cumulative cpu time consumed in seconds."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "cpu=0",
+        "label": "cpu",
+        "value": "0"
+      }
+    }
+  ]
+]

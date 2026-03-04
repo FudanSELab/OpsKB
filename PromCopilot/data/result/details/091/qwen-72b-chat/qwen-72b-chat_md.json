@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "number of network receive errors",
+      "node"
+    ],
+    [
+      "on the docker0 device",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"number of network receive errors\", \"node\"), (\"on the docker0 device\", \"node\")]"
+}

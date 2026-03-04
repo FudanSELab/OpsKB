@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "bounce memory in bytes",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"bounce memory in bytes\", \"node\")]"
+}

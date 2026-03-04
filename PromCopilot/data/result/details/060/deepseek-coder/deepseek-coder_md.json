@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "memory usage in bytes",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"memory usage in bytes\", \"container\")]"
+}

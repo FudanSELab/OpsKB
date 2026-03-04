@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "total number of physical CPU cores",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"total number of physical CPU cores\", \"node\")]"
+}

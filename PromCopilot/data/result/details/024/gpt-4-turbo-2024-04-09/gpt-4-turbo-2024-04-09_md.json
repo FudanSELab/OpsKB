@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "number of available replicas",
+      "statefulset"
+    ]
+  ],
+  "response_text": "[(\"number of available replicas\", \"statefulset\")]"
+}

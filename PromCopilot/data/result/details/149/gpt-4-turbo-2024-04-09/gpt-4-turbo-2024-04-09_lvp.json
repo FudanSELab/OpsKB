@@ -1,0 +1,26 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_udp_queues",
+        "type": "gauge",
+        "description": "Number of allocated memory in the kernel for UDP datagrams in bytes."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "queue=tx",
+        "label": "queue",
+        "value": "tx"
+      }
+    }
+  ]
+]

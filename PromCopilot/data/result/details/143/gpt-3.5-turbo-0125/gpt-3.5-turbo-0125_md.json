@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "network packets transmission error rate",
+      "pod"
+    ],
+    [
+      "network bytes receive rate",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"network packets transmission error rate\", \"pod\"), (\"network bytes receive rate\", \"pod\")]"
+}

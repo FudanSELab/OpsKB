@@ -1,0 +1,472 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "description": "从Stack Overflow抽取的Kubernetes故障诊断知识图谱数据",
+    "extraction_date": "2026-02-10",
+    "total_cases": 3
+  },
+  "nodes": {
+    "symptoms": [
+      {
+        "id": "S-POD-001",
+        "name": "Pod频繁重启CrashLoopBackOff",
+        "description": "Pod处于CrashLoopBackOff状态，重启次数持续增加，但kubectl logs无法查看到任何日志输出",
+        "resource_type": "Pod",
+        "severity": "ERROR",
+        "related_metrics": "Pod重启次数>8次，STATUS显示CrashLoopBackOff",
+        "source": "stackoverflow-41604499"
+      },
+      {
+        "id": "S-AUTH-001",
+        "name": "EKS集群认证失败",
+        "description": "使用kubectl访问EKS集群时返回错误：You must be logged in to the server (Unauthorized)",
+        "resource_type": "Node",
+        "severity": "FATAL",
+        "related_metrics": "kubectl命令返回401 Unauthorized错误",
+        "source": "stackoverflow-50791303"
+      },
+      {
+        "id": "S-INGRESS-001",
+        "name": "Ingress配置错误",
+        "description": "将Ingress API从v1beta1升级到v1时出现错误：unknown field serviceName in io.k8s.api.networking.v1.IngressBackend",
+        "resource_type": "Ingress",
+        "severity": "ERROR",
+        "related_metrics": "Ingress配置应用失败",
+        "source": "stackoverflow-64125048"
+      }
+    ],
+    "check_steps": [
+      {
+        "id": "CK-POD-001",
+        "name": "查询Pod状态",
+        "action_type": "COMMAND",
+        "tools": ["kubectl get"],
+        "object": "Pod",
+        "namespace": "default",
+        "description": "通过kubectl get pods命令查看Pod的运行状态、就绪数、重启次数等信息",
+        "output_type": "TEXT"
+      },
+      {
+        "id": "CK-POD-002",
+        "name": "查看Pod详细信息",
+        "action_type": "COMMAND",
+        "tools": ["kubectl describe"],
+        "object": "Pod",
+        "namespace": "default",
+        "description": "通过kubectl describe pods查看Pod的Events、容器状态等详细信息",
+        "output_type": "TEXT"
+      },
+      {
+        "id": "CK-POD-003",
+        "name": "查看Pod日志",
+        "action_type": "COMMAND",
+        "tools": ["kubectl logs"],
+        "object": "Pod",
+        "namespace": "default",
+        "target_resource": "nfs-web-07rxz",
+        "description": "通过kubectl logs查看Pod的容器日志输出",
+        "output_type": "TEXT"
+      },
+      {
+        "id": "CK-POD-004",
+        "name": "检查ReplicationController配置",
+        "action_type": "OPERATION",
+        "tools": ["kubectl get", "yaml"],
+        "object": "Pod",
+        "namespace": "default",
+        "description": "检查ReplicationController的YAML配置，查看容器镜像、命令等配置",
+        "output_type": "TEXT"
+      },
+      {
+        "id": "CK-AUTH-001",
+        "name": "验证kubectl配置",
+        "action_type": "COMMAND",
+        "tools": ["kubectl config"],
+        "object": "Node",
+        "description": "检查kubectl的配置文件，验证集群连接信息和认证配置",
+        "output_type": "TEXT"
+      },
+      {
+        "id": "CK-AUTH-002",
+        "name": "测试IAM认证",
+        "action_type": "COMMAND",
+        "tools": ["heptio-authenticator-aws"],
+        "object": "Node",
+        "description": "使用heptio-authenticator-aws获取token，验证IAM角色认证是否正常",
+        "output_type": "TEXT"
+      },
+      {
+        "id": "CK-AUTH-003",
+        "name": "检查ConfigMap配置",
+        "action_type": "COMMAND",
+        "tools": ["kubectl edit"],
+        "object": "ConfigMap",
+        "namespace": "kube-system",
+        "target_resource": "aws-auth",
+        "description": "检查aws-auth ConfigMap中的IAM用户和角色映射配置",
+        "output_type": "TEXT"
+      },
+      {
+        "id": "CK-INGRESS-001",
+        "name": "验证Ingress配置",
+        "action_type": "COMMAND",
+        "tools": ["kubectl apply"],
+        "object": "Ingress",
+        "description": "尝试应用Ingress配置，查看错误信息",
+        "output_type": "TEXT"
+      },
+      {
+        "id": "CK-INGRESS-002",
+        "name": "检查API版本差异",
+        "action_type": "OPERATION",
+        "tools": ["kubectl explain"],
+        "object": "Ingress",
+        "description": "使用kubectl explain查看不同API版本的字段差异",
+        "output_type": "TEXT"
+      }
+    ],
+    "observations": [
+      {
+        "id": "OB-CK-POD-001-001",
+        "check_step_id": "CK-POD-001",
+        "content": "NAME: nfs-web-07rxz, READY: 0/1, STATUS: CrashLoopBackOff, RESTARTS: 8, AGE: 16m",
+        "result_type": "ABNORMAL",
+        "data_format": "TEXT",
+        "timestamp": "2026-02-10 10:00:00"
+      },
+      {
+        "id": "OB-CK-POD-002-001",
+        "check_step_id": "CK-POD-002",
+        "content": "Events显示: Error syncing pod, skipping: failed to StartContainer for web with CrashLoopBackOff: Back-off 10s restarting failed container",
+        "result_type": "ABNORMAL",
+        "data_format": "TEXT",
+        "timestamp": "2026-02-10 10:01:00"
+      },
+      {
+        "id": "OB-CK-POD-003-001",
+        "check_step_id": "CK-POD-003",
+        "content": "kubectl logs返回空，无任何日志输出",
+        "result_type": "ABNORMAL",
+        "data_format": "TEXT",
+        "timestamp": "2026-02-10 10:02:00"
+      },
+      {
+        "id": "OB-CK-POD-004-001",
+        "check_step_id": "CK-POD-004",
+        "content": "ReplicationController配置中containers部分只定义了image、ports、securityContext，未定义command或CMD",
+        "result_type": "ABNORMAL",
+        "data_format": "TEXT",
+        "timestamp": "2026-02-10 10:03:00"
+      },
+      {
+        "id": "OB-CK-AUTH-001-001",
+        "check_step_id": "CK-AUTH-001",
+        "content": "kubectl配置正确，包含cluster、context、user信息，使用heptio-authenticator-aws进行认证",
+        "result_type": "NORMAL",
+        "data_format": "TEXT",
+        "timestamp": "2026-02-10 10:10:00"
+      },
+      {
+        "id": "OB-CK-AUTH-002-001",
+        "check_step_id": "CK-AUTH-002",
+        "content": "heptio-authenticator-aws token命令可以成功获取token",
+        "result_type": "NORMAL",
+        "data_format": "TEXT",
+        "timestamp": "2026-02-10 10:11:00"
+      },
+      {
+        "id": "OB-CK-AUTH-003-001",
+        "check_step_id": "CK-AUTH-003",
+        "content": "aws-auth ConfigMap中未包含当前IAM用户的映射配置",
+        "result_type": "ABNORMAL",
+        "data_format": "TEXT",
+        "timestamp": "2026-02-10 10:12:00"
+      },
+      {
+        "id": "OB-CK-INGRESS-001-001",
+        "check_step_id": "CK-INGRESS-001",
+        "content": "错误信息：unknown field serviceName in io.k8s.api.networking.v1.IngressBackend",
+        "result_type": "ABNORMAL",
+        "data_format": "TEXT",
+        "timestamp": "2026-02-10 10:20:00"
+      },
+      {
+        "id": "OB-CK-INGRESS-002-001",
+        "check_step_id": "CK-INGRESS-002",
+        "content": "v1beta1使用serviceName和servicePort字段，v1版本改为service.name和service.port结构",
+        "result_type": "ABNORMAL",
+        "data_format": "TEXT",
+        "timestamp": "2026-02-10 10:21:00"
+      }
+    ],
+    "root_causes": [
+      {
+        "id": "RC-POD-001",
+        "name": "容器缺少启动命令",
+        "description": "Dockerfile中未定义CMD指令，且ReplicationController中未指定command，导致容器启动后立即退出，Kubernetes不断重启容器形成CrashLoopBackOff循环",
+        "root_cause_type": "配置错误",
+        "related_symptom": ["S-POD-001"],
+        "related_observations": ["OB-CK-POD-004-001"],
+        "solution": "在Dockerfile中添加CMD指令或在ReplicationController的容器配置中添加command字段"
+      },
+      {
+        "id": "RC-AUTH-001",
+        "name": "IAM用户未添加到EKS RBAC",
+        "description": "创建EKS集群的IAM实体会自动成为管理员，其他IAM用户需要手动添加到aws-auth ConfigMap并配置RBAC权限才能访问集群",
+        "root_cause_type": "配置错误",
+        "related_symptom": ["S-AUTH-001"],
+        "related_observations": ["OB-CK-AUTH-003-001"],
+        "solution": "编辑aws-auth ConfigMap添加IAM用户映射，并创建ClusterRoleBinding授予权限"
+      },
+      {
+        "id": "RC-INGRESS-001",
+        "name": "Ingress API版本字段不兼容",
+        "description": "Kubernetes networking.k8s.io/v1版本的Ingress API对backend字段结构进行了重大调整，v1beta1的serviceName/servicePort字段在v1中不再支持",
+        "root_cause_type": "配置错误",
+        "related_symptom": ["S-INGRESS-001"],
+        "related_observations": ["OB-CK-INGRESS-002-001"],
+        "solution": "将backend配置从serviceName/servicePort格式改为service.name/service.port嵌套结构"
+      }
+    ],
+    "recoveries": [
+      {
+        "id": "RE-POD-001",
+        "name": "添加容器启动命令",
+        "root_cause_id": "RC-POD-001",
+        "recovery_type": "PERMANENT",
+        "description": "在Dockerfile中添加CMD指令或在ReplicationController配置中添加command字段，确保容器启动后有持续运行的进程",
+        "recovery_solution": "方案1：在Dockerfile中添加 CMD [\"nginx\", \"-g\", \"daemon off;\"]\n方案2：在ReplicationController的containers配置中添加:\ncommand: [\"/usr/sbin/nginx\"]\nargs: [\"-g\", \"daemon off;\"]",
+        "action_type": "CODE_FIX",
+        "tools": ["docker build", "kubectl apply"],
+        "estimated_impact": "NO_DOWNTIME",
+        "verification_steps": "kubectl get pods（确认Pod状态变为Running，RESTARTS不再增加）"
+      },
+      {
+        "id": "RE-AUTH-001",
+        "name": "配置IAM用户RBAC权限",
+        "root_cause_id": "RC-AUTH-001",
+        "recovery_type": "PERMANENT",
+        "description": "将IAM用户添加到aws-auth ConfigMap并创建ClusterRoleBinding授予集群访问权限",
+        "recovery_solution": "步骤1：编辑ConfigMap\nkubectl edit -n kube-system configmap/aws-auth\n\n添加mapUsers配置：\nmapUsers: |\n  - userarn: arn:aws:iam::111122223333:user/ops-user\n    username: ops-user\n    groups:\n      - system:masters\n\n步骤2：创建ClusterRoleBinding\nkubectl create clusterrolebinding ops-user-cluster-admin-binding --clusterrole=cluster-admin --user=ops-user",
+        "action_type": "COMMAND",
+        "tools": ["kubectl edit", "kubectl create"],
+        "estimated_impact": "NO_DOWNTIME",
+        "verification_steps": "kubectl get nodes（使用新用户凭证测试，确认可以正常访问集群）"
+      },
+      {
+        "id": "RE-INGRESS-001",
+        "name": "更新Ingress配置为v1 API格式",
+        "root_cause_id": "RC-INGRESS-001",
+        "recovery_type": "PERMANENT",
+        "description": "将Ingress配置从v1beta1格式迁移到v1格式，修改backend字段结构",
+        "recovery_solution": "将以下v1beta1格式：\nbackend:\n  serviceName: my-service\n  servicePort: 8080\n\n改为v1格式：\nbackend:\n  service:\n    name: my-service\n    port:\n      number: 8080\n\n完整示例：\napiVersion: networking.k8s.io/v1\nkind: Ingress\nmetadata:\n  name: test-ingress\nspec:\n  rules:\n  - host: mylocalhost.com\n    http:\n      paths:\n      - path: /\n        pathType: Prefix\n        backend:\n          service:\n            name: my-service\n            port:\n              number: 8080",
+        "action_type": "OPERATION",
+        "tools": ["kubectl apply", "yaml"],
+        "estimated_impact": "NO_DOWNTIME",
+        "verification_steps": "kubectl apply -f ingress.yaml（确认配置应用成功）\nkubectl get ingress（确认Ingress状态正常）"
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "type": "HAS_CHECK_STEP",
+      "from_id": "S-POD-001",
+      "from_label": "Symptom",
+      "to_id": "CK-POD-001",
+      "to_label": "CheckStep",
+      "properties": {"priority": 1, "description": "首先查看Pod状态"}
+    },
+    {
+      "type": "HAS_CHECK_STEP",
+      "from_id": "S-POD-001",
+      "from_label": "Symptom",
+      "to_id": "CK-POD-002",
+      "to_label": "CheckStep",
+      "properties": {"priority": 2, "description": "查看Pod详细信息和Events"}
+    },
+    {
+      "type": "HAS_CHECK_STEP",
+      "from_id": "S-POD-001",
+      "from_label": "Symptom",
+      "to_id": "CK-POD-003",
+      "to_label": "CheckStep",
+      "properties": {"priority": 3, "description": "尝试查看Pod日志"}
+    },
+    {
+      "type": "PRODUCES",
+      "from_id": "CK-POD-001",
+      "from_label": "CheckStep",
+      "to_id": "OB-CK-POD-001-001",
+      "to_label": "Observation",
+      "properties": {}
+    },
+    {
+      "type": "PRODUCES",
+      "from_id": "CK-POD-002",
+      "from_label": "CheckStep",
+      "to_id": "OB-CK-POD-002-001",
+      "to_label": "Observation",
+      "properties": {}
+    },
+    {
+      "type": "PRODUCES",
+      "from_id": "CK-POD-003",
+      "from_label": "CheckStep",
+      "to_id": "OB-CK-POD-003-001",
+      "to_label": "Observation",
+      "properties": {}
+    },
+    {
+      "type": "TRIGGERS_NEXT_STEP",
+      "from_id": "OB-CK-POD-001-001",
+      "from_label": "Observation",
+      "to_id": "CK-POD-002",
+      "to_label": "CheckStep",
+      "properties": {"condition": "发现CrashLoopBackOff状态"}
+    },
+    {
+      "type": "TRIGGERS_NEXT_STEP",
+      "from_id": "OB-CK-POD-003-001",
+      "from_label": "Observation",
+      "to_id": "CK-POD-004",
+      "to_label": "CheckStep",
+      "properties": {"condition": "日志为空，需检查配置"}
+    },
+    {
+      "type": "PRODUCES",
+      "from_id": "CK-POD-004",
+      "from_label": "CheckStep",
+      "to_id": "OB-CK-POD-004-001",
+      "to_label": "Observation",
+      "properties": {}
+    },
+    {
+      "type": "INDICATES",
+      "from_id": "OB-CK-POD-004-001",
+      "from_label": "Observation",
+      "to_id": "RC-POD-001",
+      "to_label": "RootCause",
+      "properties": {"confidence": 0.95}
+    },
+    {
+      "type": "HAS_SOLUTION",
+      "from_id": "RC-POD-001",
+      "from_label": "RootCause",
+      "to_id": "RE-POD-001",
+      "to_label": "Recovery",
+      "properties": {}
+    },
+    {
+      "type": "HAS_CHECK_STEP",
+      "from_id": "S-AUTH-001",
+      "from_label": "Symptom",
+      "to_id": "CK-AUTH-001",
+      "to_label": "CheckStep",
+      "properties": {"priority": 1}
+    },
+    {
+      "type": "HAS_CHECK_STEP",
+      "from_id": "S-AUTH-001",
+      "from_label": "Symptom",
+      "to_id": "CK-AUTH-002",
+      "to_label": "CheckStep",
+      "properties": {"priority": 2}
+    },
+    {
+      "type": "PRODUCES",
+      "from_id": "CK-AUTH-001",
+      "from_label": "CheckStep",
+      "to_id": "OB-CK-AUTH-001-001",
+      "to_label": "Observation",
+      "properties": {}
+    },
+    {
+      "type": "PRODUCES",
+      "from_id": "CK-AUTH-002",
+      "from_label": "CheckStep",
+      "to_id": "OB-CK-AUTH-002-001",
+      "to_label": "Observation",
+      "properties": {}
+    },
+    {
+      "type": "TRIGGERS_NEXT_STEP",
+      "from_id": "OB-CK-AUTH-002-001",
+      "from_label": "Observation",
+      "to_id": "CK-AUTH-003",
+      "to_label": "CheckStep",
+      "properties": {"condition": "token获取成功但仍无法访问，检查RBAC配置"}
+    },
+    {
+      "type": "PRODUCES",
+      "from_id": "CK-AUTH-003",
+      "from_label": "CheckStep",
+      "to_id": "OB-CK-AUTH-003-001",
+      "to_label": "Observation",
+      "properties": {}
+    },
+    {
+      "type": "INDICATES",
+      "from_id": "OB-CK-AUTH-003-001",
+      "from_label": "Observation",
+      "to_id": "RC-AUTH-001",
+      "to_label": "RootCause",
+      "properties": {"confidence": 0.98}
+    },
+    {
+      "type": "HAS_SOLUTION",
+      "from_id": "RC-AUTH-001",
+      "from_label": "RootCause",
+      "to_id": "RE-AUTH-001",
+      "to_label": "Recovery",
+      "properties": {}
+    },
+    {
+      "type": "HAS_CHECK_STEP",
+      "from_id": "S-INGRESS-001",
+      "from_label": "Symptom",
+      "to_id": "CK-INGRESS-001",
+      "to_label": "CheckStep",
+      "properties": {"priority": 1}
+    },
+    {
+      "type": "PRODUCES",
+      "from_id": "CK-INGRESS-001",
+      "from_label": "CheckStep",
+      "to_id": "OB-CK-INGRESS-001-001",
+      "to_label": "Observation",
+      "properties": {}
+    },
+    {
+      "type": "TRIGGERS_NEXT_STEP",
+      "from_id": "OB-CK-INGRESS-001-001",
+      "from_label": "Observation",
+      "to_id": "CK-INGRESS-002",
+      "to_label": "CheckStep",
+      "properties": {"condition": "发现字段错误，检查API版本差异"}
+    },
+    {
+      "type": "PRODUCES",
+      "from_id": "CK-INGRESS-002",
+      "from_label": "CheckStep",
+      "to_id": "OB-CK-INGRESS-002-001",
+      "to_label": "Observation",
+      "properties": {}
+    },
+    {
+      "type": "INDICATES",
+      "from_id": "OB-CK-INGRESS-002-001",
+      "from_label": "Observation",
+      "to_id": "RC-INGRESS-001",
+      "to_label": "RootCause",
+      "properties": {"confidence": 1.0}
+    },
+    {
+      "type": "HAS_SOLUTION",
+      "from_id": "RC-INGRESS-001",
+      "from_label": "RootCause",
+      "to_id": "RE-INGRESS-001",
+      "to_label": "Recovery",
+      "properties": {}
+    }
+  ]
+}

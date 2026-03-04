@@ -1,0 +1,17 @@
+{
+  "metrics_description": [
+    [
+      "receiving byte rate more than 2 times the sending byte rate",
+      "pod"
+    ],
+    [
+      "total file system read and write rate exceeds 200 KB/s",
+      "pod"
+    ],
+    [
+      "total I/O operation time shorter than 1e-8",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"receiving byte rate more than 2 times the sending byte rate\", \"pod\"), (\"total file system read and write rate exceeds 200 KB/s\", \"pod\"), (\"total I/O operation time shorter than 1e-8\", \"pod\")]"
+}

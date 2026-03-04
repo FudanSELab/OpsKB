@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "request count",
+      "service"
+    ],
+    [
+      "access count",
+      "database"
+    ]
+  ],
+  "response_text": "[(\"request count\", \"service\"), (\"access count\", \"database\")]"
+}

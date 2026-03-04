@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "total number of restarts",
+      "pod"
+    ],
+    [
+      "of the seat service",
+      "service"
+    ]
+  ],
+  "response_text": "[(\"total number of restarts\", \"pod\"), (\"of the seat service\", \"service\")]"
+}

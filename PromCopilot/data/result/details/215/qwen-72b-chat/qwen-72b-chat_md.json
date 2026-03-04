@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "rate of change in allocated TCP sockets",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"rate of change in allocated TCP sockets\", \"node\")]"
+}

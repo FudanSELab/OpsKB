@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "per-second call count (calculated in 5 minutes window)",
+      "API"
+    ]
+  ],
+  "response_text": "[(\"per-second call count (calculated in 5 minutes window)\", \"API\")]"
+}

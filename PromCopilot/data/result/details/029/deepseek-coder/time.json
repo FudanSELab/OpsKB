@@ -1,0 +1,10 @@
+{
+  "total": 43.75735521316528,
+  "total_except_api": 0.6877343654632568,
+  "write_json_results_duration": 0.007174968719482422,
+  "path_api_duration": 6.77717399597168,
+  "md_api_duration": 1.2608568668365479,
+  "metric_api_duration": 8.116758108139038,
+  "lvp_api_duration": 5.580296993255615,
+  "promql_api_duration": 21.327359914779663
+}

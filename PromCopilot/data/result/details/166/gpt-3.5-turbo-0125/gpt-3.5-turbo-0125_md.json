@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "filesystem bytes usage ratio",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"filesystem bytes usage ratio\", \"container\")]"
+}

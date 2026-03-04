@@ -1,0 +1,86 @@
+{
+  "relevant_metrics": [
+    {
+      "name": "kube_replicaset_status_ready_replicas",
+      "type": "gauge",
+      "description": "[STABLE] The number of ready replicas per ReplicaSet."
+    },
+    {
+      "name": "kube_replicaset_spec_replicas",
+      "type": "gauge",
+      "description": "[STABLE] Number of desired pods for a ReplicaSet."
+    }
+  ],
+  "details": {
+    "extracted_text": "- {\"name\": \"kube_replicaset_status_ready_replicas\", \"type\": \"gauge\", \"description\": \"[STABLE] The number of ready replicas per ReplicaSet.\"}\n- {\"name\": \"kube_replicaset_spec_replicas\", \"type\": \"gauge\", \"description\": \"[STABLE] Number of desired pods for a ReplicaSet.\"}",
+    "response_text": "Step 1. Analyze the question and identify the relevant metrics:\nThe relevant metrics to determine the percentage of the coredns deployment's replicaset that are currently ready in the cluster are:\n- The metric \"kube_replicaset_status_ready_replicas\" indicates the number of ready replicas per ReplicaSet. This measures the number of replicas that are currently ready.\n- The metric \"kube_replicaset_spec_replicas\" denotes the number of desired pods for a ReplicaSet. This represents the total number of replicas that should be ready.\n\nStep 2. Relevant Metrics List:\n```\n- {\"name\": \"kube_replicaset_status_ready_replicas\", \"type\": \"gauge\", \"description\": \"[STABLE] The number of ready replicas per ReplicaSet.\"}\n- {\"name\": \"kube_replicaset_spec_replicas\", \"type\": \"gauge\", \"description\": \"[STABLE] Number of desired pods for a ReplicaSet.\"}\n```",
+    "model": "deepseek-coder",
+    "temperature": 0.3,
+    "messages": [
+      {
+        "role": "system",
+        "content": "Please filter and return the relevant metrics from the provided metrics list that pertains to the given question. These metrics will be used to construct Prometheus Query Language (PromQL) queries corresponding to the question.\nInstructions:\nStep 1. Analyze the question to determine which metrics from the provided Metrics List are related to the query.\nStep 2. Return a list of these relevant metrics. Ensure that the list of returned metrics is enclosed in triple backticks (```).\n"
+      },
+      {
+        "role": "user",
+        "content": "Metrics List:\n- {\"name\": \"container_ulimits_soft\", \"type\": \"gauge\", \"description\": \"Soft ulimit values for the container root process.\"}\n- {\"name\": \"container_fs_usage_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that are consumed by the container on this filesystem.\"}\n- {\"name\": \"container_spec_memory_limit_bytes\", \"type\": \"gauge\", \"description\": \"Memory limit for the container.\"}\n- {\"name\": \"container_fs_limit_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that can be consumed by the container on this filesystem.\"}\n- {\"name\": \"container_memory_usage_bytes\", \"type\": \"gauge\", \"description\": \"Current memory usage in bytes, including all memory regardless of when it was accessed\"}\nQuestion: Show the filesystem usage and limit bytes for all containers of the auth service."
+      },
+      {
+        "role": "assistant",
+        "content": "Step 1. Analyze the question and identify the relevant metrics:\nThe relevant metrics for the filesystem usage and limit bytes for all containers of the auth service are:\n- The metric \"container_fs_usage_bytes\" indicates the number of bytes currently consumed by the container on the filesystem. This measures the actual filesystem usage by the container.\n- The metric \"container_fs_limit_bytes\" denotes the maximum number of bytes that can be consumed by the container on this filesystem. This represents the limit set for filesystem usage by the container.\nStep 2. Relevant Metrics List:\n```\n- {\"name\": \"container_fs_usage_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that are consumed by the container on this filesystem.\"}\n- {\"name\": \"container_fs_limit_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that can be consumed by the container on this filesystem.\"}\n```\n"
+      },
+      {
+        "role": "user",
+        "content": "Metrics List:\n- {\"name\": \"kube_replicaset_status_ready_replicas\", \"type\": \"gauge\", \"description\": \"[STABLE] The number of ready replicas per ReplicaSet.\"}\n- {\"name\": \"kube_replicaset_created\", \"type\": \"gauge\", \"description\": \"[STABLE] Unix creation timestamp\"}\n- {\"name\": \"kube_replicaset_status_replicas\", \"type\": \"gauge\", \"description\": \"[STABLE] The number of replicas per ReplicaSet.\"}\n- {\"name\": \"kube_replicaset_spec_replicas\", \"type\": \"gauge\", \"description\": \"[STABLE] Number of desired pods for a ReplicaSet.\"}\nQuestion: What percentage of the coredns deployment's replicaset are currently ready in the cluster?\n"
+      }
+    ],
+    "retrieved_metrics": {
+      "('percentage of the replicaset that are currently ready', 'replicaset')": [
+        {
+          "_index": "metric",
+          "_id": "5z5Nx5IB_Vubjq2t3N_S",
+          "_score": 6.7909017,
+          "_source": {
+            "name": "kube_replicaset_status_ready_replicas",
+            "type": "gauge",
+            "description": "[STABLE] The number of ready replicas per ReplicaSet.",
+            "keywords": "kube replicaset status ready replicas"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "5T5Nx5IB_Vubjq2t3N_S",
+          "_score": 4.4156475,
+          "_source": {
+            "name": "kube_replicaset_created",
+            "type": "gauge",
+            "description": "[STABLE] Unix creation timestamp",
+            "keywords": "kube replicaset created"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "5j5Nx5IB_Vubjq2t3N_S",
+          "_score": 4.0371127,
+          "_source": {
+            "name": "kube_replicaset_spec_replicas",
+            "type": "gauge",
+            "description": "[STABLE] Number of desired pods for a ReplicaSet.",
+            "keywords": "kube replicaset spec replicas"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "6D5Nx5IB_Vubjq2t3N_S",
+          "_score": 4.0371127,
+          "_source": {
+            "name": "kube_replicaset_status_replicas",
+            "type": "gauge",
+            "description": "[STABLE] The number of replicas per ReplicaSet.",
+            "keywords": "kube replicaset status replicas"
+          }
+        }
+      ]
+    }
+  }
+}

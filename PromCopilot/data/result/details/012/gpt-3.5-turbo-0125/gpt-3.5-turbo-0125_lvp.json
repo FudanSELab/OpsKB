@@ -1,0 +1,26 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_memory_usage_bytes",
+        "type": "gauge",
+        "description": "Current memory usage in bytes, including all memory regardless of when it was accessed"
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "name=k8s_ts-consign-price-service_ts-consign-price-service-756469f8f9-h5crm_default_792e5547-1169-4653-a782-beaaf129398d_0",
+        "label": "name",
+        "value": "k8s_ts-consign-price-service_ts-consign-price-service-756469f8f9-h5crm_default_792e5547-1169-4653-a782-beaaf129398d_0"
+      }
+    }
+  ]
+]

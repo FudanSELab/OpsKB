@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "average latencies",
+      "service"
+    ]
+  ],
+  "response_text": "[(\"average latencies\", \"service\")]"
+}

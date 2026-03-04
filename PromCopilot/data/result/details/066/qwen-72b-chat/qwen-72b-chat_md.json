@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "CPU time proportion in different modes",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"CPU time proportion in different modes\", \"node\")]"
+}

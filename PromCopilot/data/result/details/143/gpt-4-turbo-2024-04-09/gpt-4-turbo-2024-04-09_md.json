@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "network packets transmission error rate exceeds 0.5%",
+      "pod"
+    ],
+    [
+      "network bytes receive rate above 500 KB/s",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"network packets transmission error rate exceeds 0.5%\", \"pod\"), (\"network bytes receive rate above 500 KB/s\", \"pod\")]"
+}

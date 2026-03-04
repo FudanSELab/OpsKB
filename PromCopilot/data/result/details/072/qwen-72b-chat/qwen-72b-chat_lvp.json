@@ -1,0 +1,98 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_usage_seconds_total",
+        "type": "counter",
+        "description": "Cumulative cpu time consumed in seconds."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "cpu=0",
+        "label": "cpu",
+        "value": "0"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_cfs_periods_total",
+        "type": "counter",
+        "description": "Number of elapsed enforcement period intervals."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-seat-service",
+        "label": "container",
+        "value": "ts-seat-service"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_cfs_periods_total",
+        "type": "counter",
+        "description": "Number of elapsed enforcement period intervals."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "name=k8s_ts-seat-service_ts-seat-service-5b97bc9fb5-fj26r_default_f8c0e3d5-56c7-4b0d-b21c-314d6bc717be_0",
+        "label": "name",
+        "value": "k8s_ts-seat-service_ts-seat-service-5b97bc9fb5-fj26r_default_f8c0e3d5-56c7-4b0d-b21c-314d6bc717be_0"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_cfs_periods_total",
+        "type": "counter",
+        "description": "Number of elapsed enforcement period intervals."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "image=sha256:01cdfa8dd262f793cedbb1561d574a180c0fe09e795ca641445566ca32840830",
+        "label": "image",
+        "value": "sha256:01cdfa8dd262f793cedbb1561d574a180c0fe09e795ca641445566ca32840830"
+      }
+    }
+  ]
+]

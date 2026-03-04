@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "available space (GB) in 7 days",
+      "node"
+    ],
+    [
+      "current root file system usage",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"available space (GB) in 7 days\", \"node\"),\n (\"current root file system usage\", \"node\")]"
+}

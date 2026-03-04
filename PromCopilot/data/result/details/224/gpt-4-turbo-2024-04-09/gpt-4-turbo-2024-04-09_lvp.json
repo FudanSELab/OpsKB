@@ -1,0 +1,50 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_ulimits_soft",
+        "type": "gauge",
+        "description": "Soft ulimit values for the container root process. Unlimited if -1, except priority and nice"
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "ulimit=max_open_files",
+        "label": "ulimit",
+        "value": "max_open_files"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_ulimits_soft",
+        "type": "gauge",
+        "description": "Soft ulimit values for the container root process. Unlimited if -1, except priority and nice"
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=POD",
+        "label": "container",
+        "value": "POD"
+      }
+    }
+  ]
+]

@@ -1,0 +1,21 @@
+{
+  "metrics_description": [
+    [
+      "receiving byte rate",
+      "pod"
+    ],
+    [
+      "sending byte rate",
+      "pod"
+    ],
+    [
+      "total file system read and write rate",
+      "pod"
+    ],
+    [
+      "total I/O operation time",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"receiving byte rate\", \"pod\"), (\"sending byte rate\", \"pod\"), (\"total file system read and write rate\", \"pod\"), (\"total I/O operation time\", \"pod\")]"
+}

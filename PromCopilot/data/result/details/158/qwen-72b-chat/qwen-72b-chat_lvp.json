@@ -1,0 +1,98 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "kube_pod_container_resource_limits",
+        "type": "gauge",
+        "description": "The number of requested limit resource by a container."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=POD",
+        "label": "container",
+        "value": "POD"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "kube_pod_container_resource_limits",
+        "type": "gauge",
+        "description": "The number of requested limit resource by a container."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "resource=memory",
+        "label": "resource",
+        "value": "memory"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "kube_pod_container_resource_limits",
+        "type": "gauge",
+        "description": "The number of requested limit resource by a container."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "unit=byte",
+        "label": "unit",
+        "value": "byte"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "kube_pod_status_ready",
+        "type": "gauge",
+        "description": "[STABLE] Describes whether the pod is ready to serve requests."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "condition=false",
+        "label": "condition",
+        "value": "false"
+      }
+    }
+  ]
+]

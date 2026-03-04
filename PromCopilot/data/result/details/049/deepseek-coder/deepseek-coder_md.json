@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "number of packets dropped during transmission",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"number of packets dropped during transmission\", \"node\")]"
+}

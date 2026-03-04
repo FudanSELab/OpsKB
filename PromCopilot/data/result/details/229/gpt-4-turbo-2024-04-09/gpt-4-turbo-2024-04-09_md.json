@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "highest total memory usage summed across all its containers",
+      "pod"
+    ],
+    [
+      "current total memory usage",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"highest total memory usage summed across all its containers\", \"pod\"), (\"current total memory usage\", \"pod\")]"
+}

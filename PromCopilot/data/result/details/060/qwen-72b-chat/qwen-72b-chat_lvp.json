@@ -1,0 +1,74 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_memory_usage_bytes",
+        "type": "gauge",
+        "description": "Current memory usage in bytes, including all memory regardless of when it was accessed"
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "name=k8s_ts-notification-service_ts-notification-service-54b94867b9-ddfvc_default_7f752df4-3e3e-4559-a6d8-725335b3530a_0",
+        "label": "name",
+        "value": "k8s_ts-notification-service_ts-notification-service-54b94867b9-ddfvc_default_7f752df4-3e3e-4559-a6d8-725335b3530a_0"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_memory_usage_bytes",
+        "type": "gauge",
+        "description": "Current memory usage in bytes, including all memory regardless of when it was accessed"
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-assurance-service",
+        "label": "container",
+        "value": "ts-assurance-service"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_usage_seconds_total",
+        "type": "counter",
+        "description": "Cumulative cpu time consumed in seconds."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-notification-service",
+        "label": "container",
+        "value": "ts-notification-service"
+      }
+    }
+  ]
+]

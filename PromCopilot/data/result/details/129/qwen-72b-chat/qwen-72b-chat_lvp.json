@@ -1,0 +1,50 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_memory_usage_bytes",
+        "type": "gauge",
+        "description": "Current memory usage in bytes, including all memory regardless of when it was accessed"
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "name=k8s_ts-admin-order-service_ts-admin-order-service-68f76f4775-pfq9j_default_d4765f13-8182-41c2-826d-a2571cf06fb2_0",
+        "label": "name",
+        "value": "k8s_ts-admin-order-service_ts-admin-order-service-68f76f4775-pfq9j_default_d4765f13-8182-41c2-826d-a2571cf06fb2_0"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_memory_usage_bytes",
+        "type": "gauge",
+        "description": "Current memory usage in bytes, including all memory regardless of when it was accessed"
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=POD",
+        "label": "container",
+        "value": "POD"
+      }
+    }
+  ]
+]

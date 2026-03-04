@@ -1,0 +1,26 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_cpu_cfs_periods_total",
+        "type": "counter",
+        "description": "Number of elapsed enforcement period intervals."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "name=k8s_ts-inside-payment-service_ts-inside-payment-service-5d897577cc-4zn5m_default_b712c713-ec98-4d7b-85e4-080c537a1845_0",
+        "label": "name",
+        "value": "k8s_ts-inside-payment-service_ts-inside-payment-service-5d897577cc-4zn5m_default_b712c713-ec98-4d7b-85e4-080c537a1845_0"
+      }
+    }
+  ]
+]

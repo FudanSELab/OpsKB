@@ -1,0 +1,122 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_filesystem_size_bytes",
+        "type": "gauge",
+        "description": "Filesystem size in bytes."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "fstype=tmpfs",
+        "label": "fstype",
+        "value": "tmpfs"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_filesystem_size_bytes",
+        "type": "gauge",
+        "description": "Filesystem size in bytes."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "device=tmpfs",
+        "label": "device",
+        "value": "tmpfs"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_filesystem_free_bytes",
+        "type": "gauge",
+        "description": "Filesystem free space in bytes."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "device=tmpfs",
+        "label": "device",
+        "value": "tmpfs"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_filesystem_free_bytes",
+        "type": "gauge",
+        "description": "Filesystem free space in bytes."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "fstype=ext4",
+        "label": "fstype",
+        "value": "ext4"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_fs_writes_bytes_total",
+        "type": "counter",
+        "description": "Cumulative count of bytes written"
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "device=tmpfs",
+        "label": "device",
+        "value": "tmpfs"
+      }
+    }
+  ]
+]

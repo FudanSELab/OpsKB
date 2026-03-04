@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "top 5 containers by memory usage limits hits",
+      "container"
+    ],
+    [
+      "total number of hits",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"top 5 containers by memory usage limits hits\", \"container\"), (\"total number of hits\", \"container\")]"
+}

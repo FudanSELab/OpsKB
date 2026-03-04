@@ -1,0 +1,152 @@
+{
+  "relevant_metrics": [
+    {
+      "name": "node_filefd_allocated",
+      "type": "gauge",
+      "description": "File descriptor statistics: allocated."
+    },
+    {
+      "name": "node_filefd_maximum",
+      "type": "gauge",
+      "description": "File descriptor statistics: maximum."
+    }
+  ],
+  "details": {
+    "extracted_text": "- {\"name\": \"node_filefd_allocated\", \"type\": \"gauge\", \"description\": \"File descriptor statistics: allocated.\"}\n- {\"name\": \"node_filefd_maximum\", \"type\": \"gauge\", \"description\": \"File descriptor statistics: maximum.\"}",
+    "response_text": "Step 1. Analyze the question and identify the relevant metrics:\nThe relevant metrics for performing a linear prediction of the number of open file descriptors on k8s-node1 and k8s-node2 are:\n- The metric \"node_filefd_allocated\" represents the file descriptor statistics: allocated, which is the number of allocated file descriptors on the node.\n- The metric \"node_filefd_maximum\" indicates the file descriptor statistics: maximum, which is the maximum number of file descriptors that can be allocated on the node.\nStep 2. Relevant Metrics List:\n```\n- {\"name\": \"node_filefd_allocated\", \"type\": \"gauge\", \"description\": \"File descriptor statistics: allocated.\"}\n- {\"name\": \"node_filefd_maximum\", \"type\": \"gauge\", \"description\": \"File descriptor statistics: maximum.\"}\n```",
+    "model": "gpt-3.5-turbo-0125",
+    "temperature": 0.3,
+    "messages": [
+      {
+        "role": "system",
+        "content": "Please filter and return the relevant metrics from the provided metrics list that pertains to the given question. These metrics will be used to construct Prometheus Query Language (PromQL) queries corresponding to the question.\nInstructions:\nStep 1. Analyze the question to determine which metrics from the provided Metrics List are related to the query.\nStep 2. Return a list of these relevant metrics. Ensure that the list of returned metrics is enclosed in triple backticks (```).\n"
+      },
+      {
+        "role": "user",
+        "content": "Metrics List:\n- {\"name\": \"container_ulimits_soft\", \"type\": \"gauge\", \"description\": \"Soft ulimit values for the container root process.\"}\n- {\"name\": \"container_fs_usage_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that are consumed by the container on this filesystem.\"}\n- {\"name\": \"container_spec_memory_limit_bytes\", \"type\": \"gauge\", \"description\": \"Memory limit for the container.\"}\n- {\"name\": \"container_fs_limit_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that can be consumed by the container on this filesystem.\"}\n- {\"name\": \"container_memory_usage_bytes\", \"type\": \"gauge\", \"description\": \"Current memory usage in bytes, including all memory regardless of when it was accessed\"}\nQuestion: Show the filesystem usage and limit bytes for all containers of the auth service."
+      },
+      {
+        "role": "assistant",
+        "content": "Step 1. Analyze the question and identify the relevant metrics:\nThe relevant metrics for the filesystem usage and limit bytes for all containers of the auth service are:\n- The metric \"container_fs_usage_bytes\" indicates the number of bytes currently consumed by the container on the filesystem. This measures the actual filesystem usage by the container.\n- The metric \"container_fs_limit_bytes\" denotes the maximum number of bytes that can be consumed by the container on this filesystem. This represents the limit set for filesystem usage by the container.\nStep 2. Relevant Metrics List:\n```\n- {\"name\": \"container_fs_usage_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that are consumed by the container on this filesystem.\"}\n- {\"name\": \"container_fs_limit_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that can be consumed by the container on this filesystem.\"}\n```\n"
+      },
+      {
+        "role": "user",
+        "content": "Metrics List:\n- {\"name\": \"node_filefd_maximum\", \"type\": \"gauge\", \"description\": \"File descriptor statistics: maximum.\"}\n- {\"name\": \"node_filefd_allocated\", \"type\": \"gauge\", \"description\": \"File descriptor statistics: allocated.\"}\n- {\"name\": \"container_sockets\", \"type\": \"gauge\", \"description\": \"Number of open sockets for the container.\"}\n- {\"name\": \"node_filesystem_files\", \"type\": \"gauge\", \"description\": \"Filesystem total file nodes.\"}\n- {\"name\": \"node_filesystem_files_free\", \"type\": \"gauge\", \"description\": \"Filesystem total free file nodes.\"}\n- {\"name\": \"node_memory_Inactive_file_bytes\", \"type\": \"gauge\", \"description\": \"Memory information field Inactive_file_bytes.\"}\n- {\"name\": \"node_memory_Active_file_bytes\", \"type\": \"gauge\", \"description\": \"Memory information field Active_file_bytes.\"}\n- {\"name\": \"container_fs_inodes_total\", \"type\": \"gauge\", \"description\": \"Number of Inodes\"}\n- {\"name\": \"machine_cpu_sockets\", \"type\": \"gauge\", \"description\": \"Number of CPU sockets.\"}\n- {\"name\": \"container_fs_inodes_free\", \"type\": \"gauge\", \"description\": \"Number of available Inodes\"}\nQuestion: Perform a linear prediction of the number of open file descriptors on k8s-node1 and k8s-node2, respectively, based on the last hour's data and predicting forward for the next four hours.\n"
+      }
+    ],
+    "retrieved_metrics": {
+      "('number of open file descriptors', 'node')": [
+        {
+          "_index": "metric",
+          "_id": "wNI-048BMiz5NO5fftcG",
+          "_score": 8.9011755,
+          "_source": {
+            "name": "node_filefd_allocated",
+            "type": "gauge",
+            "description": "File descriptor statistics: allocated.",
+            "keywords": "node filefd allocated"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "wdI-048BMiz5NO5fftcG",
+          "_score": 8.9011755,
+          "_source": {
+            "name": "node_filefd_maximum",
+            "type": "gauge",
+            "description": "File descriptor statistics: maximum.",
+            "keywords": "node filefd maximum"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "kNI-048BMiz5NO5fftcG",
+          "_score": 6.5059423,
+          "_source": {
+            "name": "container_sockets",
+            "type": "gauge",
+            "description": "Number of open sockets for the container.",
+            "keywords": "container sockets"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "xNI-048BMiz5NO5fftcG",
+          "_score": 4.4156475,
+          "_source": {
+            "name": "node_filesystem_files",
+            "type": "gauge",
+            "description": "Filesystem total file nodes.",
+            "keywords": "node filesystem files"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "xdI-048BMiz5NO5fftcG",
+          "_score": 3.9887881,
+          "_source": {
+            "name": "node_filesystem_files_free",
+            "type": "gauge",
+            "description": "Filesystem total free file nodes.",
+            "keywords": "node filesystem files free"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "z9I-048BMiz5NO5fftcG",
+          "_score": 3.6371827,
+          "_source": {
+            "name": "node_memory_Active_file_bytes",
+            "type": "gauge",
+            "description": "Memory information field Active_file_bytes.",
+            "keywords": "node memory Active file bytes"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "5dI-048BMiz5NO5fftcG",
+          "_score": 3.6371827,
+          "_source": {
+            "name": "node_memory_Inactive_file_bytes",
+            "type": "gauge",
+            "description": "Memory information field Inactive_file_bytes.",
+            "keywords": "node memory Inactive file bytes"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "d9I-048BMiz5NO5fftcG",
+          "_score": 1.4545611,
+          "_source": {
+            "name": "container_fs_inodes_total",
+            "type": "gauge",
+            "description": "Number of Inodes",
+            "keywords": "container filesystem inodes total"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "dtI-048BMiz5NO5fftcG",
+          "_score": 1.3088183,
+          "_source": {
+            "name": "container_fs_inodes_free",
+            "type": "gauge",
+            "description": "Number of available Inodes",
+            "keywords": "container filesystem inodes free"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "sdI-048BMiz5NO5fftcG",
+          "_score": 1.3088183,
+          "_source": {
+            "name": "machine_cpu_sockets",
+            "type": "gauge",
+            "description": "Number of CPU sockets.",
+            "keywords": "machine cpu sockets"
+          }
+        }
+      ]
+    }
+  }
+}

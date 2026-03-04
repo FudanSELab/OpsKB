@@ -1,0 +1,50 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_network_receive_packets_total",
+        "type": "counter",
+        "description": "Network device statistic receive_packets."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-admin-travel-service",
+        "label": "container",
+        "value": "ts-admin-travel-service"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_network_receive_drop_total",
+        "type": "counter",
+        "description": "Network device statistic receive_drop."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-admin-travel-service",
+        "label": "container",
+        "value": "ts-admin-travel-service"
+      }
+    }
+  ]
+]

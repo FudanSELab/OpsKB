@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "current rate of CPU usage",
+      "container"
+    ],
+    [
+      "rate of CPU usage from the same time one week ago",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"current rate of CPU usage\", \"container\"), (\"rate of CPU usage from the same time one week ago\", \"container\")]"
+}

@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "top 1 CPU usages",
+      "node"
+    ],
+    [
+      "1m load average",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"top 1 CPU usages\", \"node\"), (\"1m load average\", \"node\")]"
+}

@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "memory usage",
+      "pod"
+    ],
+    [
+      "requested limit resource",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"memory usage\", \"pod\"), (\"requested limit resource\", \"pod\")]"
+}

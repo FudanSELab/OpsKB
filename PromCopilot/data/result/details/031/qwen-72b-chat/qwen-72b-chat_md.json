@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "ratio of TCP sockets (tw state)",
+      "node"
+    ],
+    [
+      "ratio of TCP sockets (alloc state)",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"ratio of TCP sockets (tw state)\", \"node\"), (\"ratio of TCP sockets (alloc state)\", \"node\")]"
+}

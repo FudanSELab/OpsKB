@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "increase rate of write operations",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"increase rate of write operations\", \"container\")]"
+}

@@ -1,0 +1,26 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_disk_written_bytes_total",
+        "type": "counter",
+        "description": "The total number of bytes written successfully."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "device=sda",
+        "label": "device",
+        "value": "sda"
+      }
+    }
+  ]
+]

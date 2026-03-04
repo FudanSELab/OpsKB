@@ -1,0 +1,7 @@
+label_value_pair,namespace
+namespace=cert-manager,cert-manager
+namespace=default,default
+namespace=kube-flannel,kube-flannel
+namespace=kube-system,kube-system
+namespace=obs,obs
+namespace=opentelemetry-operator-system,opentelemetry-operator-system

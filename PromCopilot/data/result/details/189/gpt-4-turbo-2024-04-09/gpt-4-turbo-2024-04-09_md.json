@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "network receive bytes growth rate",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"network receive bytes growth rate\", \"pod\")]"
+}

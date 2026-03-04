@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "write operations",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"write operations\", \"container\")]"
+}

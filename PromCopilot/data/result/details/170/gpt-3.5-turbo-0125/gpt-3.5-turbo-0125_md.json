@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "per-second rate of bytes received",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"per-second rate of bytes received\", \"node\")]"
+}

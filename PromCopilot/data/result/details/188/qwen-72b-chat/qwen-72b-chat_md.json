@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "average of the total memory usage",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"average of the total memory usage\", \"container\")]"
+}

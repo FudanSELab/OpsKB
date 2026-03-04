@@ -1,0 +1,50 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_disk_write_time_seconds_total",
+        "type": "counter",
+        "description": "This is the total number of seconds spent by all writes."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "device=cni0",
+        "label": "device",
+        "value": "cni0"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_fs_usage_bytes",
+        "type": "gauge",
+        "description": "Number of bytes that are consumed by the container on this filesystem."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "device=/dev/mapper/ubuntu--vg-ubuntu--lv",
+        "label": "device",
+        "value": "/dev/mapper/ubuntu--vg-ubuntu--lv"
+      }
+    }
+  ]
+]

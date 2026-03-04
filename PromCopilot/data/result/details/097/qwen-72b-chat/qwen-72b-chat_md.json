@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "bounce memory",
+      "node"
+    ],
+    [
+      "memory usage by pods of statefulset tsdb-mysql",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"bounce memory\", \"node\"), (\"memory usage by pods of statefulset tsdb-mysql\", \"pod\")]"
+}

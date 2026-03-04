@@ -1,0 +1,17 @@
+{
+  "metrics_description": [
+    [
+      "root file system available space",
+      "node"
+    ],
+    [
+      "disk write rate",
+      "node"
+    ],
+    [
+      "current usage rate of root file systems",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"root file system available space\", \"node\"), (\"disk write rate\", \"node\"), (\"current usage rate of root file systems\", \"node\")]"
+}

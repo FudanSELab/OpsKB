@@ -1,0 +1,98 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_network_transmit_drop_total",
+        "type": "counter",
+        "description": "Network device statistic transmit_drop."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-voucher-service",
+        "label": "container",
+        "value": "ts-voucher-service"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_network_transmit_packets_total",
+        "type": "counter",
+        "description": "Network device statistic transmit_packets."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-assurance-service",
+        "label": "container",
+        "value": "ts-assurance-service"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_network_receive_errs_total",
+        "type": "counter",
+        "description": "Network device statistic receive_errs."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-voucher-service",
+        "label": "container",
+        "value": "ts-voucher-service"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_network_receive_packets_total",
+        "type": "counter",
+        "description": "Network device statistic receive_packets."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-assurance-service",
+        "label": "container",
+        "value": "ts-assurance-service"
+      }
+    }
+  ]
+]

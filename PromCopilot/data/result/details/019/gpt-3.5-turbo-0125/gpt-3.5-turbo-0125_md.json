@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "95th percentile of request duration (from the client's perspective)",
+      "service"
+    ],
+    [
+      "average request duration",
+      "service"
+    ]
+  ],
+  "response_text": "[(\"95th percentile of request duration (from the client's perspective)\", \"service\"),\n (\"average request duration\", \"service\")]"
+}

@@ -1,0 +1,26 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_memory_cache",
+        "type": "gauge",
+        "description": "Number of bytes of page cache memory."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "name=k8s_POD_nacosdb-mysql-0_default_03b512c0-0e7c-4609-88e0-9a35daff0dd0_0",
+        "label": "name",
+        "value": "k8s_POD_nacosdb-mysql-0_default_03b512c0-0e7c-4609-88e0-9a35daff0dd0_0"
+      }
+    }
+  ]
+]

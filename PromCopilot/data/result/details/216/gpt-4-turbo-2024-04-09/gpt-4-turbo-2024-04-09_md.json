@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "1-minute CPU load average",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"1-minute CPU load average\", \"node\")]"
+}

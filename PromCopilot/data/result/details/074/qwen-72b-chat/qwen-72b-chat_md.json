@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "MemTotal bytes",
+      "node"
+    ],
+    [
+      "deployed",
+      "service"
+    ]
+  ],
+  "response_text": "[(\"MemTotal bytes\", \"node\"), (\"deployed\", \"service\")]"
+}

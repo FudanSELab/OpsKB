@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "current CPU usage (1m window)",
+      "pod"
+    ],
+    [
+      "predicted CPU usage",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"current CPU usage (1m window)\", \"pod\"), (\"predicted CPU usage\", \"pod\")]"
+}

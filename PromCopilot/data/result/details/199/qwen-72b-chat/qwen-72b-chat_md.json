@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "rate of CPU idle time",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"rate of CPU idle time\", \"node\")]"
+}

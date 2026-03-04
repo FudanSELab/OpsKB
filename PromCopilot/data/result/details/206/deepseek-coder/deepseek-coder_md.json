@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "change in the network receiving packet loss rate",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"change in the network receiving packet loss rate\", \"container\")]"
+}

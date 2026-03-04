@@ -1,0 +1,26 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "traces_service_graph_request_client_seconds_bucket",
+        "type": "histogram",
+        "description": "The distribution of request durations from the client's perspective."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "le=+Inf",
+        "label": "le",
+        "value": "+Inf"
+      }
+    }
+  ]
+]

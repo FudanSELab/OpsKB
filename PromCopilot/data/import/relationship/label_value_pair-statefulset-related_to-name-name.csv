@@ -1,0 +1,8 @@
+label_value_pair,statefulset
+statefulset=alertmanager-prometheus-kube-prometheus-alertmanager,alertmanager-prometheus-kube-prometheus-alertmanager
+statefulset=loki,loki
+statefulset=nacos,nacos
+statefulset=nacosdb-mysql,nacosdb-mysql
+statefulset=prometheus-prometheus-kube-prometheus-prometheus,prometheus-prometheus-kube-prometheus-prometheus
+statefulset=tempo,tempo
+statefulset=tsdb-mysql,tsdb-mysql

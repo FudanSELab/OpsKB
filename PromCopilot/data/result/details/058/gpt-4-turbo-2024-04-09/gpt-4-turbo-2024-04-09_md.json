@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "containers deployed with the tsdb-mysql service",
+      "container"
+    ],
+    [
+      "growth rate of bytes used by block devices",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"containers deployed with the tsdb-mysql service\", \"container\"), (\"growth rate of bytes used by block devices\", \"container\")]"
+}

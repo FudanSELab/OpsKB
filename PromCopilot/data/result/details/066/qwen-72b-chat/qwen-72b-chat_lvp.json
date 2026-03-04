@@ -1,0 +1,50 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_cpu_seconds_total",
+        "type": "counter",
+        "description": "Seconds the CPUs spent in each mode."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "cpu=8",
+        "label": "cpu",
+        "value": "8"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_cpu_seconds_total",
+        "type": "counter",
+        "description": "Seconds the CPUs spent in each mode."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "mode=idle",
+        "label": "mode",
+        "value": "idle"
+      }
+    }
+  ]
+]

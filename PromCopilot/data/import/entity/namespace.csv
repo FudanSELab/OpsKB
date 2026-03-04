@@ -1,0 +1,9 @@
+name
+cert-manager
+default
+kube-flannel
+kube-node-lease
+kube-public
+kube-system
+obs
+opentelemetry-operator-system

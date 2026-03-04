@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "percentage of ready replicas",
+      "deployment"
+    ],
+    [
+      "ready replicas",
+      "replicaset"
+    ]
+  ],
+  "response_text": "[(\"percentage of ready replicas\", \"deployment\"), (\"ready replicas\", \"replicaset\")]"
+}

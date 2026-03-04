@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "number of memory allocation failures",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"number of memory allocation failures\", \"pod\")]"
+}

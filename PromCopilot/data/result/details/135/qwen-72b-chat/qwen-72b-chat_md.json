@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "average filesystem read byte rate",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"average filesystem read byte rate\", \"container\")]"
+}

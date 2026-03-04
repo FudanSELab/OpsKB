@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "current MemTotal bytes",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"current MemTotal bytes\", \"node\")]"
+}

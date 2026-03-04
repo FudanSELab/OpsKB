@@ -1,0 +1,12 @@
+openai==1.23.1
+requests==2.31.0
+py2neo==2021.2.4
+elasticsearch==8.13.0
+pandas==2.2.2
+chromadb==0.4.24
+numpy==1.26.4
+networkx==3.3
+neo4j==5.19.0
+tiktoken==0.7.0
+kubernetes==29.0.0
+tqdm==4.66.4

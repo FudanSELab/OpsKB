@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "network inflow rate",
+      "pod"
+    ],
+    [
+      "average request duration",
+      "service"
+    ]
+  ],
+  "response_text": "[(\"network inflow rate\", \"pod\"), (\"average request duration\", \"service\")]"
+}

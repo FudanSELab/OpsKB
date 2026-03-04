@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "current memory limit sizes",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"current memory limit sizes\", \"container\")]"
+}

@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "average rate of disk read time per second",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"average rate of disk read time per second\", \"node\")]"
+}

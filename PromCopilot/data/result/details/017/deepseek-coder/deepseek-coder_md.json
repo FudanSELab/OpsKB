@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "increase in the per-second rate of spans recorded",
+      "service"
+    ]
+  ],
+  "response_text": "[(\"increase in the per-second rate of spans recorded\", \"service\")]"
+}

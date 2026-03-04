@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "number of processes currently blocked waiting for I/O to complete",
+      "node"
+    ],
+    [
+      "ratio of blocked processes to processes in a runnable state",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"number of processes currently blocked waiting for I/O to complete\", \"node\"),\n (\"ratio of blocked processes to processes in a runnable state\", \"node\")]"
+}

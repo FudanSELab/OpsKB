@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "free space on the /dev/sda2 device",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"free space on the /dev/sda2 device\", \"node\")]"
+}

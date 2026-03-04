@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "average latencies for spans longer than 0.01 seconds",
+      "service"
+    ]
+  ],
+  "response_text": "[(\"average latencies for spans longer than 0.01 seconds\", \"service\")]"
+}

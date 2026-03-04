@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "inactive anonymous memory",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"inactive anonymous memory\", \"node\")]"
+}

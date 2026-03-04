@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "average ratio of used to allocated TCP sockets",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"average ratio of used to allocated TCP sockets\", \"node\")]"
+}

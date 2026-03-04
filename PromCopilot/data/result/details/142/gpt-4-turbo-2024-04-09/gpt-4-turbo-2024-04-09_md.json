@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "bytes written to the filesystem",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"bytes written to the filesystem\", \"container\")]"
+}

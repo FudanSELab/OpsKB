@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "longest pod CPU usage time",
+      "pod"
+    ],
+    [
+      "shortest pod CPU usage time",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"longest pod CPU usage time\", \"pod\"), (\"shortest pod CPU usage time\", \"pod\")]"
+}

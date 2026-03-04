@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "total bytes read from the disk",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"total bytes read from the disk\", \"node\")]"
+}

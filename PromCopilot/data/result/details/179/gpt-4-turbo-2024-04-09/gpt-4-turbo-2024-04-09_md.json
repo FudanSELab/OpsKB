@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "average latency of the UserController.registerUser API operation",
+      "API"
+    ]
+  ],
+  "response_text": "[(\"average latency of the UserController.registerUser API operation\", \"API\")]"
+}

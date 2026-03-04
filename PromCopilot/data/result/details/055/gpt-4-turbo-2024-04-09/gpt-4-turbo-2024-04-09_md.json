@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "receiving byte rate more than twice the transmitting byte rate",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"receiving byte rate more than twice the transmitting byte rate\", \"pod\")]"
+}

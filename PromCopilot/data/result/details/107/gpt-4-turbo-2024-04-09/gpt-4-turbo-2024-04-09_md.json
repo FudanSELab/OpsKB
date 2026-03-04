@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "root partition file system usage",
+      "node"
+    ],
+    [
+      "available space in root file system",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"root partition file system usage\", \"node\"), (\"available space in root file system\", \"node\")]"
+}

@@ -1,0 +1,7 @@
+label_value_pair,node
+node=k8s-master,k8s-master
+node=k8s-node1,k8s-node1
+node=k8s-node2,k8s-node2
+node=k8s-node3,k8s-node3
+node=k8s-node4,k8s-node4
+node=k8s-node5,k8s-node5

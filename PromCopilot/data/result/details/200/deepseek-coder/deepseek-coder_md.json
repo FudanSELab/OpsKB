@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "packet drop ratio for receiving",
+      "container"
+    ],
+    [
+      "packet drop ratio for transmitting",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"packet drop ratio for receiving\", \"container\"), (\"packet drop ratio for transmitting\", \"container\")]"
+}

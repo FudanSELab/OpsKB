@@ -1,0 +1,18 @@
+[
+  {
+    "type": "调用",
+    "start": "Trajectory-KF",
+    "end": "PTZ-09",
+    "properties": {
+      "desc": "轨迹预测模型调用探测设备获取实时位置与速度数据"
+    }
+  },
+  {
+    "type": "参与",
+    "start": "PTZ-09",
+    "end": "机场进近高空闯入",
+    "properties": {
+      "desc": "探测设备参与机场进近高空闯入事件的目标探测与跟踪"
+    }
+  }
+]

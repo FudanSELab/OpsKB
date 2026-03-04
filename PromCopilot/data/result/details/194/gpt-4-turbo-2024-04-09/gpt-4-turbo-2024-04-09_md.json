@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "total memory cache usage",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"total memory cache usage\", \"pod\")]"
+}

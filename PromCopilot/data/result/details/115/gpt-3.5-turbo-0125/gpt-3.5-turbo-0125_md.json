@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "total amount of memory installed",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"total amount of memory installed\", \"node\")]"
+}

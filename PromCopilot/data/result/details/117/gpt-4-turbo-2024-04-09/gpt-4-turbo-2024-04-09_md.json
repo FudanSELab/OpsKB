@@ -1,0 +1,17 @@
+{
+  "metrics_description": [
+    [
+      "root file system available space predicted to be less than 3 GB",
+      "node"
+    ],
+    [
+      "disk write rate exceeds 50 MB/s",
+      "node"
+    ],
+    [
+      "current usage rate of root file systems",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"root file system available space predicted to be less than 3 GB\", \"node\"), (\"disk write rate exceeds 50 MB/s\", \"node\"), (\"current usage rate of root file systems\", \"node\")]"
+}

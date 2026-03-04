@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "ratio of total network packet drops to total network packets received",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"ratio of total network packet drops to total network packets received\", \"node\")]"
+}

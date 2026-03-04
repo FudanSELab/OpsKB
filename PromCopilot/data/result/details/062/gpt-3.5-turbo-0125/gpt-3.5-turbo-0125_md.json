@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "current thread count",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"current thread count\", \"container\")]"
+}

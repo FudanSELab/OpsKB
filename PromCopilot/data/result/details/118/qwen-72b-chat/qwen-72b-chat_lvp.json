@@ -1,0 +1,98 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_network_receive_bytes_total",
+        "type": "counter",
+        "description": "Cumulative count of bytes received"
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "job=kubelet",
+        "label": "job",
+        "value": "kubelet"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_network_transmit_bytes_total",
+        "type": "counter",
+        "description": "Cumulative count of bytes transmitted"
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "interface=cni0",
+        "label": "interface",
+        "value": "cni0"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_fs_writes_bytes_total",
+        "type": "counter",
+        "description": "Cumulative count of bytes written"
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=tempo-query",
+        "label": "container",
+        "value": "tempo-query"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_disk_io_time_seconds_total",
+        "type": "counter",
+        "description": "Total seconds spent doing I/Os."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "device=cni0",
+        "label": "device",
+        "value": "cni0"
+      }
+    }
+  ]
+]

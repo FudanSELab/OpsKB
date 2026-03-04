@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "current memory dirty bytes",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"current memory dirty bytes\", \"node\")]"
+}

@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "allocated memory for UDP datagrams in the kernel's tx queue",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"allocated memory for UDP datagrams in the kernel's tx queue\", \"node\")]"
+}

@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "request duration",
+      "service"
+    ]
+  ],
+  "response_text": "[(\"request duration\", \"service\")]"
+}

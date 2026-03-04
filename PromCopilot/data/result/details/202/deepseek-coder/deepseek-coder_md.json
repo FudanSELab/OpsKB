@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "total number of network packet receive errors",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"total number of network packet receive errors\", \"pod\")]"
+}

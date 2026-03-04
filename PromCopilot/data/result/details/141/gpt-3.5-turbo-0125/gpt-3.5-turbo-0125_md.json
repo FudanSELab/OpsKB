@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "restarts",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"restarts\", \"pod\")]"
+}

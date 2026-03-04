@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "per-second call rate for the API DELETE /api/v1/users/{userId}",
+      "API"
+    ]
+  ],
+  "response_text": "[(\"per-second call rate for the API DELETE /api/v1/users/{userId}\", \"API\")]"
+}

@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "rate of bytes per second written to the filesystem",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"rate of bytes per second written to the filesystem\", \"container\")]"
+}

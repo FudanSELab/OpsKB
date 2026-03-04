@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "current CPU usage greater than 0.002 cores/second",
+      "pod"
+    ],
+    [
+      "predict the CPU usage for the next 10 minutes based on the CPU usage of the past 30 minutes",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"current CPU usage greater than 0.002 cores/second\", \"pod\"), (\"predict the CPU usage for the next 10 minutes based on the CPU usage of the past 30 minutes\", \"pod\")]"
+}

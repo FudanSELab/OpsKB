@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "p99 requests latency",
+      "service"
+    ]
+  ],
+  "response_text": "[(\"p99 requests latency\", \"service\")]"
+}

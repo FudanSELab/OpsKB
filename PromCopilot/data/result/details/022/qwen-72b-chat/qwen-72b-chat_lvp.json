@@ -1,0 +1,74 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_memory_cache",
+        "type": "gauge",
+        "description": "Number of bytes of page cache memory."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=slowlog",
+        "label": "container",
+        "value": "slowlog"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_memory_cache",
+        "type": "gauge",
+        "description": "Number of bytes of page cache memory."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "job=kubelet",
+        "label": "job",
+        "value": "kubelet"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_memory_cache",
+        "type": "gauge",
+        "description": "Number of bytes of page cache memory."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "endpoint=http",
+        "label": "endpoint",
+        "value": "http"
+      }
+    }
+  ]
+]

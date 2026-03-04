@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "ratio of TCP sockets in the 'tw' state to those in the 'alloc' state",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"ratio of TCP sockets in the 'tw' state to those in the 'alloc' state\", \"node\")]"
+}

@@ -1,0 +1,141 @@
+name,method,uri,service,description
+POST /api/v1/adminbasicservice/adminbasic/configs,POST,/api/v1/adminbasicservice/adminbasic/configs,ts-admin-basic-info-service,Add configs
+GET /api/v1/adminbasicservice/adminbasic/configs,GET,/api/v1/adminbasicservice/adminbasic/configs,ts-admin-basic-info-service,Get all configs information
+PUT /api/v1/adminbasicservice/adminbasic/configs,PUT,/api/v1/adminbasicservice/adminbasic/configs,ts-admin-basic-info-service,Modify configs information
+DELETE /api/v1/adminbasicservice/adminbasic/configs/{name},DELETE,/api/v1/adminbasicservice/adminbasic/configs/{name},ts-admin-basic-info-service,Delete configs by Name
+POST /api/v1/adminbasicservice/adminbasic/contacts,POST,/api/v1/adminbasicservice/adminbasic/contacts,ts-admin-basic-info-service,Add contacts
+GET /api/v1/adminbasicservice/adminbasic/contacts,GET,/api/v1/adminbasicservice/adminbasic/contacts,ts-admin-basic-info-service,Get all contacts information
+PUT /api/v1/adminbasicservice/adminbasic/contacts,PUT,/api/v1/adminbasicservice/adminbasic/contacts,ts-admin-basic-info-service,Modify contacts information
+DELETE /api/v1/adminbasicservice/adminbasic/contacts/{contactsId},DELETE,/api/v1/adminbasicservice/adminbasic/contacts/{contactsId},ts-admin-basic-info-service,Delete contacts by Id
+POST /api/v1/adminbasicservice/adminbasic/prices,POST,/api/v1/adminbasicservice/adminbasic/prices,ts-admin-basic-info-service,Add stations
+GET /api/v1/adminbasicservice/adminbasic/prices,GET,/api/v1/adminbasicservice/adminbasic/prices,ts-admin-basic-info-service,Get prices information
+PUT /api/v1/adminbasicservice/adminbasic/prices,PUT,/api/v1/adminbasicservice/adminbasic/prices,ts-admin-basic-info-service,Modify prices information
+DELETE /api/v1/adminbasicservice/adminbasic/prices/{pricesId},DELETE,/api/v1/adminbasicservice/adminbasic/prices/{pricesId},ts-admin-basic-info-service,Delete prices by Id
+POST /api/v1/adminbasicservice/adminbasic/stations,POST,/api/v1/adminbasicservice/adminbasic/stations,ts-admin-basic-info-service,Add stations
+GET /api/v1/adminbasicservice/adminbasic/stations,GET,/api/v1/adminbasicservice/adminbasic/stations,ts-admin-basic-info-service,Get all stations information
+PUT /api/v1/adminbasicservice/adminbasic/stations,PUT,/api/v1/adminbasicservice/adminbasic/stations,ts-admin-basic-info-service,Modify stations information
+DELETE /api/v1/adminbasicservice/adminbasic/stations/{id},DELETE,/api/v1/adminbasicservice/adminbasic/stations/{id},ts-admin-basic-info-service,Delete stations by Id
+GET /api/v1/adminbasicservice/adminbasic/trains,GET,/api/v1/adminbasicservice/adminbasic/trains,ts-admin-basic-info-service,Get all trains information
+GET /api/v1/adminorderservice/adminorder,GET,/api/v1/adminorderservice/adminorder,ts-admin-order-service,Get all orders
+DELETE /api/v1/adminorderservice/adminorder/{orderId}/{trainNumber},DELETE,/api/v1/adminorderservice/adminorder/{orderId}/{trainNumber},ts-admin-order-service,delete one order
+POST /api/v1/adminrouteservice/adminroute,POST,/api/v1/adminrouteservice/adminroute,ts-admin-route-service,add one route
+GET /api/v1/adminrouteservice/adminroute,GET,/api/v1/adminrouteservice/adminroute,ts-admin-route-service,get all routes' information
+DELETE /api/v1/adminrouteservice/adminroute/{routeId},DELETE,/api/v1/adminrouteservice/adminroute/{routeId},ts-admin-route-service,delete one route
+GET /api/v1/admintravelservice/admintravel,GET,/api/v1/admintravelservice/admintravel,ts-admin-travel-service,get all travel information
+PUT /api/v1/admintravelservice/admintravel,PUT,/api/v1/admintravelservice/admintravel,ts-admin-travel-service,update one travel's information
+POST /api/v1/admintravelservice/admintravel,POST,/api/v1/admintravelservice/admintravel,ts-admin-travel-service,add one travel entity
+DELETE /api/v1/admintravelservice/admintravel/{tripId},DELETE,/api/v1/admintravelservice/admintravel/{tripId},ts-admin-travel-service,delete a travel entity
+GET /api/v1/adminuserservice/users,GET,/api/v1/adminuserservice/users,ts-admin-user-service,get all user information
+PUT /api/v1/adminuserservice/users,PUT,/api/v1/adminuserservice/users,ts-admin-user-service,update user information
+POST /api/v1/adminuserservice/users,POST,/api/v1/adminuserservice/users,ts-admin-user-service,add one user entity
+DELETE /api/v1/adminuserservice/users/{userId},DELETE,/api/v1/adminuserservice/users/{userId},ts-admin-user-service,delete one user entity
+GET /api/v1/assuranceservice/assurances/types,GET,/api/v1/assuranceservice/assurances/types,ts-assurance-service,get assurance types
+GET /api/v1/assuranceservice/assurances/{typeIndex}/{orderId},GET,/api/v1/assuranceservice/assurances/{typeIndex}/{orderId},ts-assurance-service,create assurance entity
+POST /api/v1/auth,POST,/api/v1/auth,ts-auth-service,create user
+POST /api/v1/basicservice/basic/travel,POST,/api/v1/basicservice/basic/travel,ts-basic-service,query basic travel information
+POST /api/v1/basicservice/basic/travels,POST,/api/v1/basicservice/basic/travels,ts-basic-service,query basic travel information
+GET /api/v1/cancelservice/cancel/refound/{orderId},GET,/api/v1/cancelservice/cancel/refound/{orderId},ts-cancel-service,calculate refund amount.
+GET /api/v1/cancelservice/cancel/{orderId}/{loginId},GET,/api/v1/cancelservice/cancel/{orderId}/{loginId},ts-cancel-service,cancel ticket
+POST /api/v1/configservice/configs,POST,/api/v1/configservice/configs,ts-config-service,create config entity
+GET /api/v1/configservice/configs,GET,/api/v1/configservice/configs,ts-config-service,query config informations
+PUT /api/v1/configservice/configs,PUT,/api/v1/configservice/configs,ts-config-service,update config informations
+GET /api/v1/configservice/configs/{configName},GET,/api/v1/configservice/configs/{configName},ts-config-service,query config entity by configName
+DELETE /api/v1/configservice/configs/{configName},DELETE,/api/v1/configservice/configs/{configName},ts-config-service,delete config entity
+GET /api/v1/consignpriceservice/consignprice/{weight}/{isWithinRegion},GET,/api/v1/consignpriceservice/consignprice/{weight}/{isWithinRegion},ts-consign-price-service,get confignprice by weight and region
+POST /api/v1/consignservice/consigns,POST,/api/v1/consignservice/consigns,ts-consign-service,create consign
+PUT /api/v1/consignservice/consigns,PUT,/api/v1/consignservice/consigns,ts-consign-service,update consign
+GET /api/v1/consignservice/consigns/account/{id},GET,/api/v1/consignservice/consigns/account/{id},ts-consign-service,query consign by accountId
+GET /api/v1/consignservice/consigns/order/{id},GET,/api/v1/consignservice/consigns/order/{id},ts-consign-service,query consign by OrderId
+GET /api/v1/consignservice/consigns/{consignee},GET,/api/v1/consignservice/consigns/{consignee},ts-consign-service,query consign by consignee
+PUT /api/v1/contactservice/contacts,PUT,/api/v1/contactservice/contacts,ts-contacts-service,modify contacts
+POST /api/v1/contactservice/contacts,POST,/api/v1/contactservice/contacts,ts-contacts-service,create contact
+GET /api/v1/contactservice/contacts,GET,/api/v1/contactservice/contacts,ts-contacts-service,get all contacts
+GET /api/v1/contactservice/contacts/account/{accountId},GET,/api/v1/contactservice/contacts/account/{accountId},ts-contacts-service,query contacts by account Id
+POST /api/v1/contactservice/contacts/admin,POST,/api/v1/contactservice/contacts/admin,ts-contacts-service,create contacts in admin
+DELETE /api/v1/contactservice/contacts/{contactsId},DELETE,/api/v1/contactservice/contacts/{contactsId},ts-contacts-service,delete contacts by contactsId
+GET /api/v1/contactservice/contacts/{id},GET,/api/v1/contactservice/contacts/{id},ts-contacts-service,query contacts by contactId
+GET /api/v1/executeservice/execute/collected/{orderId},GET,/api/v1/executeservice/execute/collected/{orderId},ts-execute-service,ticket collected API
+GET /api/v1/executeservice/execute/execute/{orderId},GET,/api/v1/executeservice/execute/execute/{orderId},ts-execute-service,ticket execute API
+POST /api/v1/foodservice/createOrderBatch,POST,/api/v1/foodservice/createOrderBatch,ts-food-service,create food orders in batch
+GET /api/v1/foodservice/foods/{date}/{startStation}/{endStation}/{tripId},GET,/api/v1/foodservice/foods/{date}/{startStation}/{endStation}/{tripId},ts-food-service,get all foods
+POST /api/v1/inside_pay_service/inside_payment,POST,/api/v1/inside_pay_service/inside_payment,ts-inside-payment-service,pay for the order
+POST /api/v1/inside_pay_service/inside_payment/difference,POST,/api/v1/inside_pay_service/inside_payment/difference,ts-inside-payment-service,pay difference
+GET /api/v1/inside_pay_service/inside_payment/drawback/{userId}/{money},GET,/api/v1/inside_pay_service/inside_payment/drawback/{userId}/{money},ts-inside-payment-service,drawback money to user
+GET /api/v1/inside_pay_service/inside_payment/{userId}/{money},GET,/api/v1/inside_pay_service/inside_payment/{userId}/{money},ts-inside-payment-service,top-up money
+POST /api/v1/orderOtherService/orderOther,POST,/api/v1/orderOtherService/orderOther,ts-order-other-service,create order
+PUT /api/v1/orderOtherService/orderOther,PUT,/api/v1/orderOtherService/orderOther,ts-order-other-service,modify orderothers
+GET /api/v1/orderOtherService/orderOther,GET,/api/v1/orderOtherService/orderOther,ts-order-other-service,find all order
+POST /api/v1/orderOtherService/orderOther/refresh,POST,/api/v1/orderOtherService/orderOther/refresh,ts-order-other-service,query order for refresh
+GET /api/v1/orderOtherService/orderOther/security/{checkDate}/{accountId},GET,/api/v1/orderOtherService/orderOther/security/{checkDate}/{accountId},ts-order-other-service,check order's security
+GET /api/v1/orderOtherService/orderOther/status/{orderId}/{status},GET,/api/v1/orderOtherService/orderOther/status/{orderId}/{status},ts-order-other-service,Modify order
+POST /api/v1/orderOtherService/orderOther/tickets,POST,/api/v1/orderOtherService/orderOther/tickets,ts-order-other-service,get ticket list by date and trip id
+GET /api/v1/orderOtherService/orderOther/{orderId},GET,/api/v1/orderOtherService/orderOther/{orderId},ts-order-other-service,get order by id
+DELETE /api/v1/orderOtherService/orderOther/{orderId},DELETE,/api/v1/orderOtherService/orderOther/{orderId},ts-order-other-service,delete order
+POST /api/v1/orderservice/order,POST,/api/v1/orderservice/order,ts-order-service,create order
+PUT /api/v1/orderservice/order,PUT,/api/v1/orderservice/order,ts-order-service,modify orders
+GET /api/v1/orderservice/order,GET,/api/v1/orderservice/order,ts-order-service,find all order
+POST /api/v1/orderservice/order/refresh,POST,/api/v1/orderservice/order/refresh,ts-order-service,query order for refresh
+GET /api/v1/orderservice/order/security/{checkDate}/{accountId},GET,/api/v1/orderservice/order/security/{checkDate}/{accountId},ts-order-service,check order's security
+GET /api/v1/orderservice/order/status/{orderId}/{status},GET,/api/v1/orderservice/order/status/{orderId}/{status},ts-order-service,Modify order
+POST /api/v1/orderservice/order/tickets,POST,/api/v1/orderservice/order/tickets,ts-order-service,get ticket list by date and trip id
+DELETE /api/v1/orderservice/order/{orderId},DELETE,/api/v1/orderservice/order/{orderId},ts-order-service,delete order
+GET /api/v1/orderservice/order/{orderId},GET,/api/v1/orderservice/order/{orderId},ts-order-service,get order by id
+POST /api/v1/paymentservice/payment,POST,/api/v1/paymentservice/payment,ts-payment-service,create a payment
+POST /api/v1/preserveotherservice/preserveOther,POST,/api/v1/preserveotherservice/preserveOther,ts-preserve-other-service,preserve ticket
+POST /api/v1/preserveservice/preserve,POST,/api/v1/preserveservice/preserve,ts-preserve-service,preserve ticket
+POST /api/v1/priceservice/prices,POST,/api/v1/priceservice/prices,ts-price-service,create price config
+PUT /api/v1/priceservice/prices,PUT,/api/v1/priceservice/prices,ts-price-service,update price config
+GET /api/v1/priceservice/prices,GET,/api/v1/priceservice/prices,ts-price-service,get all price config
+POST /api/v1/priceservice/prices/byRouteIdsAndTrainTypes,POST,/api/v1/priceservice/prices/byRouteIdsAndTrainTypes,ts-price-service,
+DELETE /api/v1/priceservice/prices/{pricesId},DELETE,/api/v1/priceservice/prices/{pricesId},ts-price-service,delete price config
+GET /api/v1/priceservice/prices/{routeId}/{trainType},GET,/api/v1/priceservice/prices/{routeId}/{trainType},ts-price-service,get price by routeid and train type.
+POST /api/v1/rebookservice/rebook,POST,/api/v1/rebookservice/rebook,ts-rebook-service,endorse train ticket
+POST /api/v1/rebookservice/rebook/difference,POST,/api/v1/rebookservice/rebook/difference,ts-rebook-service,pay for the price difference
+POST /api/v1/routeplanservice/routePlan/cheapestRoute,POST,/api/v1/routeplanservice/routePlan/cheapestRoute,ts-route-plan-service,get routes in cheapest order
+POST /api/v1/routeplanservice/routePlan/minStopStations,POST,/api/v1/routeplanservice/routePlan/minStopStations,ts-route-plan-service,get routes in minStops Order
+POST /api/v1/routeplanservice/routePlan/quickestRoute,POST,/api/v1/routeplanservice/routePlan/quickestRoute,ts-route-plan-service,get routes in quickest order
+POST /api/v1/routeservice/routes,POST,/api/v1/routeservice/routes,ts-route-service,create and modify route info
+GET /api/v1/routeservice/routes,GET,/api/v1/routeservice/routes,ts-route-service,GET all routes' info
+POST /api/v1/routeservice/routes/byIds/,POST,/api/v1/routeservice/routes/byIds/,ts-route-service,
+DELETE /api/v1/routeservice/routes/{routeId},DELETE,/api/v1/routeservice/routes/{routeId},ts-route-service,delete route info
+GET /api/v1/routeservice/routes/{routeId},GET,/api/v1/routeservice/routes/{routeId},ts-route-service,GET route info
+GET /api/v1/routeservice/routes/{start}/{end},GET,/api/v1/routeservice/routes/{start}/{end},ts-route-service,get route by start and terminate station
+POST /api/v1/seatservice/seats,POST,/api/v1/seatservice/seats,ts-seat-service,allocate seats for users
+POST /api/v1/seatservice/seats/left_tickets,POST,/api/v1/seatservice/seats/left_tickets,ts-seat-service,get left tickets in an interval
+GET /api/v1/securityservice/securityConfigs/{accountId},GET,/api/v1/securityservice/securityConfigs/{accountId},ts-security-service,check account id
+POST /api/v1/stationservice/stations,POST,/api/v1/stationservice/stations,ts-station-service,create new station
+PUT /api/v1/stationservice/stations,PUT,/api/v1/stationservice/stations,ts-station-service,update station information
+GET /api/v1/stationservice/stations,GET,/api/v1/stationservice/stations,ts-station-service,get stations
+GET /api/v1/stationservice/stations/id/{stationNameForId},GET,/api/v1/stationservice/stations/id/{stationNameForId},ts-station-service,query station id by stationName
+POST /api/v1/stationservice/stations/idlist,POST,/api/v1/stationservice/stations/idlist,ts-station-service,get id list by name list
+DELETE /api/v1/stationservice/stations/{stationsId},DELETE,/api/v1/stationservice/stations/{stationsId},ts-station-service,delete station
+GET /api/v1/trainfoodservice/trainfoods/{tripId},GET,/api/v1/trainfoodservice/trainfoods/{tripId},ts-train-food-service,
+GET /api/v1/trainservice/trains,GET,/api/v1/trainservice/trains,ts-train-service,query train types
+GET /api/v1/trainservice/trains/byName/{name},GET,/api/v1/trainservice/trains/byName/{name},ts-train-service,get train types by name
+POST /api/v1/trainservice/trains/byNames,POST,/api/v1/trainservice/trains/byNames,ts-train-service,add train types by name
+GET /api/v1/travel2service/admin_trip,GET,/api/v1/travel2service/admin_trip,ts-travel2-service,query all trip as an administrator
+GET /api/v1/travel2service/routes/{tripId},GET,/api/v1/travel2service/routes/{tripId},ts-travel2-service,get route by tripId
+POST /api/v1/travel2service/trip_detail,POST,/api/v1/travel2service/trip_detail,ts-travel2-service,get trip info with left tickets
+POST /api/v1/travel2service/trips/left,POST,/api/v1/travel2service/trips/left,ts-travel2-service,get left trip tickets
+POST /api/v1/travel2service/trips/routes,POST,/api/v1/travel2service/trips/routes,ts-travel2-service,get trip by routeId
+POST /api/v1/travelplanservice/travelPlan/cheapest,POST,/api/v1/travelplanservice/travelPlan/cheapest,ts-travel-plan-service,get cheapest travel plan
+POST /api/v1/travelplanservice/travelPlan/minStation,POST,/api/v1/travelplanservice/travelPlan/minStation,ts-travel-plan-service,get min station amount travel plan
+POST /api/v1/travelplanservice/travelPlan/quickest,POST,/api/v1/travelplanservice/travelPlan/quickest,ts-travel-plan-service,get quickest travel plan
+GET /api/v1/travelservice/admin_trip,GET,/api/v1/travelservice/admin_trip,ts-travel-service,query all trip as an administrator
+GET /api/v1/travelservice/routes/{tripId},GET,/api/v1/travelservice/routes/{tripId},ts-travel-service,get route by tripId
+POST /api/v1/travelservice/trip_detail,POST,/api/v1/travelservice/trip_detail,ts-travel-service,get trip info with left tickets
+POST /api/v1/travelservice/trips,POST,/api/v1/travelservice/trips,ts-travel-service,create trip
+PUT /api/v1/travelservice/trips,PUT,/api/v1/travelservice/trips,ts-travel-service,update trip
+POST /api/v1/travelservice/trips/left,POST,/api/v1/travelservice/trips/left,ts-travel-service,get left trip tickets
+POST /api/v1/travelservice/trips/left_parallel,POST,/api/v1/travelservice/trips/left_parallel,ts-travel-service,get trip info with left tickets
+POST /api/v1/travelservice/trips/routes,POST,/api/v1/travelservice/trips/routes,ts-travel-service,get trip by routeId
+DELETE /api/v1/travelservice/trips/{tripId},DELETE,/api/v1/travelservice/trips/{tripId},ts-travel-service,delete a trip
+POST /api/v1/users/login,POST,/api/v1/users/login,ts-auth-service,login check and dispatch token to user
+DELETE /api/v1/users/{userId},DELETE,/api/v1/users/{userId},ts-auth-service,delete one user entity
+PUT /api/v1/userservice/users,PUT,/api/v1/userservice/users,ts-user-service,put all users
+GET /api/v1/userservice/users,GET,/api/v1/userservice/users,ts-user-service,get all users
+GET /api/v1/userservice/users/id/{userId},GET,/api/v1/userservice/users/id/{userId},ts-user-service,get user by id
+POST /api/v1/userservice/users/register,POST,/api/v1/userservice/users/register,ts-user-service,register user
+DELETE /api/v1/userservice/users/{userId},DELETE,/api/v1/userservice/users/{userId},ts-user-service,delete user by id
+GET /api/v1/verifycode/generate,GET,/api/v1/verifycode/generate,ts-verification-code-service,generate verification code
+GET /api/v1/verifycode/verify/{verifyCode},GET,/api/v1/verifycode/verify/{verifyCode},ts-verification-code-service,check verify code which user send

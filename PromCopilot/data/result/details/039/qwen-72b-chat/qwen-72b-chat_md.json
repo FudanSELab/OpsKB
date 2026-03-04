@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "dropped packets while receiving",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"dropped packets while receiving\", \"pod\")]"
+}

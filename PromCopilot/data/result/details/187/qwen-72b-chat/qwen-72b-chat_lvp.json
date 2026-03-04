@@ -1,0 +1,74 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_fs_usage_bytes",
+        "type": "gauge",
+        "description": "Number of bytes that are consumed by the container on this filesystem."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-payment-service",
+        "label": "container",
+        "value": "ts-payment-service"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "container_fs_usage_bytes",
+        "type": "gauge",
+        "description": "Number of bytes that are consumed by the container on this filesystem."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "name=k8s_ts-payment-service_ts-payment-service-bcd86c6d7-h2kfz_default_aa2d1b9c-0366-4a14-9bc5-01fc882186d2_0",
+        "label": "name",
+        "value": "k8s_ts-payment-service_ts-payment-service-bcd86c6d7-h2kfz_default_aa2d1b9c-0366-4a14-9bc5-01fc882186d2_0"
+      }
+    }
+  ],
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_filesystem_free_bytes",
+        "type": "gauge",
+        "description": "Filesystem free space in bytes."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "container=ts-payment-service",
+        "label": "container",
+        "value": "ts-payment-service"
+      }
+    }
+  ]
+]

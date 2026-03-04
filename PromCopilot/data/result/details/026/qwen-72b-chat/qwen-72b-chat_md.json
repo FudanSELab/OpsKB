@@ -1,0 +1,17 @@
+{
+  "metrics_description": [
+    [
+      "packet loss rate for received packets",
+      "pod"
+    ],
+    [
+      "from eth0 interface",
+      "node"
+    ],
+    [
+      "in the namespace obs",
+      "namespace"
+    ]
+  ],
+  "response_text": "[(\"packet loss rate for received packets\", \"pod\"), (\"from eth0 interface\", \"node\"), (\"in the namespace obs\", \"namespace\")]"
+}

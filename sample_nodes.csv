@@ -1,0 +1,5 @@
+labels,name,type,功能描述,模型描述
+entity;探测类,PTZ-09,探测类,光电红外云台探测设备,
+entity;系统类,ATC-Link,空管设备类,空管联络通信设备,
+model;算法模型类,Trajectory-KF,算法模型类,,基于卡尔曼滤波的轨迹预测算法
+event;关键资源失效类,机场进近高空闯入,,,

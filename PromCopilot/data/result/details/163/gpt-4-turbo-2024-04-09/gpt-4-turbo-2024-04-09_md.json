@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "three containers with the highest RSS usage",
+      "container"
+    ]
+  ],
+  "response_text": "[(\"three containers with the highest RSS usage\", \"container\")]"
+}

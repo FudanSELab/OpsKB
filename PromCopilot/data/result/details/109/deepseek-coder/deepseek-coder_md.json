@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "most free space on its filesystem",
+      "node"
+    ]
+  ],
+  "response_text": "[(\"most free space on its filesystem\", \"node\")]"
+}

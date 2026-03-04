@@ -1,0 +1,13 @@
+{
+  "metrics_description": [
+    [
+      "95th percentile of the request duration",
+      "API"
+    ],
+    [
+      "CPU usage",
+      "pod"
+    ]
+  ],
+  "response_text": "[(\"95th percentile of the request duration\", \"API\"), (\"CPU usage\", \"pod\")]"
+}

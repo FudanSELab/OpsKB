@@ -1,0 +1,157 @@
+{
+  "relevant_metrics": [
+    {
+      "name": "traces_service_graph_request_client_seconds_bucket",
+      "type": "histogram",
+      "description": "The distribution of request durations from the client's perspective."
+    },
+    {
+      "name": "traces_service_graph_request_client_seconds_sum",
+      "type": "counter",
+      "description": "The total sum of request durations measured in seconds from the client's perspective"
+    },
+    {
+      "name": "traces_service_graph_request_total",
+      "type": "counter",
+      "description": "The total number of requests."
+    }
+  ],
+  "details": {
+    "extracted_text": "- {\"name\": \"traces_service_graph_request_client_seconds_bucket\", \"type\": \"histogram\", \"description\": \"The distribution of request durations from the client's perspective.\"}\n- {\"name\": \"traces_service_graph_request_client_seconds_sum\", \"type\": \"counter\", \"description\": \"The total sum of request durations measured in seconds from the client's perspective\"}\n- {\"name\": \"traces_service_graph_request_total\", \"type\": \"counter\", \"description\": \"The total number of requests.\"}",
+    "response_text": "Step 1. Analyze the question and identify the relevant metrics:\nThe relevant metrics for calculating the average duration of requests from the seat service to its downstream services over the past 5 minutes, from the client's perspective are:\n- The metric \"traces_service_graph_request_client_seconds_bucket\" provides the distribution of request durations from the client's perspective, which can be used to calculate the average duration.\n- The metric \"traces_service_graph_request_client_seconds_sum\" gives the total sum of request durations measured in seconds from the client's perspective, which is needed to calculate the average duration.\n- The metric \"traces_service_graph_request_total\" represents the total number of requests, which can be used in conjunction with the sum to calculate the average duration.\n\nStep 2. Relevant Metrics List:\n```\n- {\"name\": \"traces_service_graph_request_client_seconds_bucket\", \"type\": \"histogram\", \"description\": \"The distribution of request durations from the client's perspective.\"}\n- {\"name\": \"traces_service_graph_request_client_seconds_sum\", \"type\": \"counter\", \"description\": \"The total sum of request durations measured in seconds from the client's perspective\"}\n- {\"name\": \"traces_service_graph_request_total\", \"type\": \"counter\", \"description\": \"The total number of requests.\"}\n```",
+    "model": "gpt-3.5-turbo-0125",
+    "temperature": 0.3,
+    "messages": [
+      {
+        "role": "system",
+        "content": "Please filter and return the relevant metrics from the provided metrics list that pertains to the given question. These metrics will be used to construct Prometheus Query Language (PromQL) queries corresponding to the question.\nInstructions:\nStep 1. Analyze the question to determine which metrics from the provided Metrics List are related to the query.\nStep 2. Return a list of these relevant metrics. Ensure that the list of returned metrics is enclosed in triple backticks (```).\n"
+      },
+      {
+        "role": "user",
+        "content": "Metrics List:\n- {\"name\": \"container_ulimits_soft\", \"type\": \"gauge\", \"description\": \"Soft ulimit values for the container root process.\"}\n- {\"name\": \"container_fs_usage_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that are consumed by the container on this filesystem.\"}\n- {\"name\": \"container_spec_memory_limit_bytes\", \"type\": \"gauge\", \"description\": \"Memory limit for the container.\"}\n- {\"name\": \"container_fs_limit_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that can be consumed by the container on this filesystem.\"}\n- {\"name\": \"container_memory_usage_bytes\", \"type\": \"gauge\", \"description\": \"Current memory usage in bytes, including all memory regardless of when it was accessed\"}\nQuestion: Show the filesystem usage and limit bytes for all containers of the auth service."
+      },
+      {
+        "role": "assistant",
+        "content": "Step 1. Analyze the question and identify the relevant metrics:\nThe relevant metrics for the filesystem usage and limit bytes for all containers of the auth service are:\n- The metric \"container_fs_usage_bytes\" indicates the number of bytes currently consumed by the container on the filesystem. This measures the actual filesystem usage by the container.\n- The metric \"container_fs_limit_bytes\" denotes the maximum number of bytes that can be consumed by the container on this filesystem. This represents the limit set for filesystem usage by the container.\nStep 2. Relevant Metrics List:\n```\n- {\"name\": \"container_fs_usage_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that are consumed by the container on this filesystem.\"}\n- {\"name\": \"container_fs_limit_bytes\", \"type\": \"gauge\", \"description\": \"Number of bytes that can be consumed by the container on this filesystem.\"}\n```\n"
+      },
+      {
+        "role": "user",
+        "content": "Metrics List:\n- {\"name\": \"traces_service_graph_request_server_seconds_bucket\", \"type\": \"histogram\", \"description\": \"The distribution of request durations from the server\"s perspective.\"}\n- {\"name\": \"traces_service_graph_request_client_seconds_bucket\", \"type\": \"histogram\", \"description\": \"The distribution of request durations from the client\"s perspective.\"}\n- {\"name\": \"node_load5\", \"type\": \"gauge\", \"description\": \"5m load average.\"}\n- {\"name\": \"node_load15\", \"type\": \"gauge\", \"description\": \"15m load average.\"}\n- {\"name\": \"node_load1\", \"type\": \"gauge\", \"description\": \"1m load average.\"}\n- {\"name\": \"traces_service_graph_request_server_seconds_sum\", \"type\": \"counter\", \"description\": \"The total sum of request durations measured in seconds from the server\"s perspective\"}\n- {\"name\": \"traces_service_graph_request_client_seconds_sum\", \"type\": \"counter\", \"description\": \"The total sum of request durations measured in seconds from the client\"s perspective\"}\n- {\"name\": \"traces_service_graph_request_total\", \"type\": \"counter\", \"description\": \"The total number of requests.\"}\n- {\"name\": \"traces_service_graph_request_failed_total\", \"type\": \"counter\", \"description\": \"The total number of failed requests.\"}\n- {\"name\": \"kube_pod_container_resource_requests\", \"type\": \"gauge\", \"description\": \"The number of requested request resource by a container. It is recommended to use the kube_pod_resource_requests metric exposed by kube-scheduler instead, as it is more precise.\"}\nQuestion: What are the downstream services for the seat service? Calculate the average duration of requests from the seat service to all its downstream services over the past 5 minutes, from the client's perspective.\n"
+      }
+    ],
+    "retrieved_metrics": {
+      "('average duration of requests', 'service')": [
+        {
+          "_index": "metric",
+          "_id": "N9I-048BMiz5NO5fftgG",
+          "_score": 5.9582653,
+          "_source": {
+            "name": "traces_service_graph_request_client_seconds_bucket",
+            "type": "histogram",
+            "description": "The distribution of request durations from the client's perspective.",
+            "keywords": "traces service graph request client seconds bucket"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "O9I-048BMiz5NO5fftgG",
+          "_score": 5.9582653,
+          "_source": {
+            "name": "traces_service_graph_request_server_seconds_bucket",
+            "type": "histogram",
+            "description": "The distribution of request durations from the server's perspective.",
+            "keywords": "traces service graph request server seconds bucket"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "ytI-048BMiz5NO5fftcG",
+          "_score": 4.846127,
+          "_source": {
+            "name": "node_load1",
+            "type": "gauge",
+            "description": "1m load average.",
+            "keywords": "node load1"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "y9I-048BMiz5NO5fftcG",
+          "_score": 4.846127,
+          "_source": {
+            "name": "node_load15",
+            "type": "gauge",
+            "description": "15m load average.",
+            "keywords": "node load15"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "zNI-048BMiz5NO5fftcG",
+          "_score": 4.846127,
+          "_source": {
+            "name": "node_load5",
+            "type": "gauge",
+            "description": "5m load average.",
+            "keywords": "node load5"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "OdI-048BMiz5NO5fftgG",
+          "_score": 4.8397155,
+          "_source": {
+            "name": "traces_service_graph_request_client_seconds_sum",
+            "type": "counter",
+            "description": "The total sum of request durations measured in seconds from the client's perspective",
+            "keywords": "traces service graph request client seconds sum"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "PdI-048BMiz5NO5fftgG",
+          "_score": 4.8397155,
+          "_source": {
+            "name": "traces_service_graph_request_server_seconds_sum",
+            "type": "counter",
+            "description": "The total sum of request durations measured in seconds from the server's perspective",
+            "keywords": "traces service graph request server seconds sum"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "PtI-048BMiz5NO5fftgG",
+          "_score": 3.4381175,
+          "_source": {
+            "name": "traces_service_graph_request_total",
+            "type": "counter",
+            "description": "The total number of requests.",
+            "keywords": "traces service graph request total"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "OtI-048BMiz5NO5fftgG",
+          "_score": 3.1250014,
+          "_source": {
+            "name": "traces_service_graph_request_failed_total",
+            "type": "counter",
+            "description": "The total number of failed requests.",
+            "keywords": "traces service graph request failed total"
+          }
+        },
+        {
+          "_index": "metric",
+          "_id": "m9I-048BMiz5NO5fftcG",
+          "_score": 2.929992,
+          "_source": {
+            "name": "kube_pod_container_resource_requests",
+            "type": "gauge",
+            "description": "The number of requested request resource by a container. It is recommended to use the kube_pod_resource_requests metric exposed by kube-scheduler instead, as it is more precise.",
+            "keywords": "kube pod container resource requests"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,26 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "node_network_receive_bytes_total",
+        "type": "counter",
+        "description": "Network device statistic receive_bytes."
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "device=lo",
+        "label": "device",
+        "value": "lo"
+      }
+    }
+  ]
+]

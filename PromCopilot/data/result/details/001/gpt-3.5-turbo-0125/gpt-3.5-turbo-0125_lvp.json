@@ -1,0 +1,26 @@
+[
+  [
+    {
+      "type": "metric",
+      "properties": {
+        "name": "traces_service_graph_request_server_seconds_sum",
+        "type": "counter",
+        "description": "The total sum of request durations measured in seconds from the server's perspective"
+      }
+    },
+    {
+      "type": "has",
+      "start_node_type": "metric",
+      "end_node_type": "label_value_pair",
+      "reverse": false
+    },
+    {
+      "type": "label_value_pair",
+      "properties": {
+        "name": "connection_type=database",
+        "label": "connection_type",
+        "value": "database"
+      }
+    }
+  ]
+]

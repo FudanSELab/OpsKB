@@ -1,0 +1,9 @@
+{
+  "metrics_description": [
+    [
+      "number of times the API GET /api/v1/verifycode/generate has been called",
+      "API"
+    ]
+  ],
+  "response_text": "[(\"number of times the API GET /api/v1/verifycode/generate has been called\", \"API\")]"
+}

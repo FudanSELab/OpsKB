@@ -1,0 +1,582 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 知识抽取
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/volcengine_maas:0.0.30@0e6b13a721cc8fb7b928787f86ffc57655ace2cbc938c4738c209d70b18a85f8
+    version: null
+kind: app
+version: 0.4.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - remote_url
+      - local_file
+      enabled: true
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: end
+      id: 1760003405502-source-1760002435935-target
+      selected: false
+      source: '1760003405502'
+      sourceHandle: source
+      target: '1760002435935'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: if-else
+      id: 1760002130017-source-1760014064999-target
+      selected: false
+      source: '1760002130017'
+      sourceHandle: source
+      target: '1760014064999'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 1760014064999-false-1760003405502-target
+      selected: false
+      source: '1760014064999'
+      sourceHandle: 'false'
+      target: '1760003405502'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1760014064999-dd6aa873-0f44-44a5-ab0a-b296493c1f05-1760004430138-target
+      selected: false
+      source: '1760014064999'
+      sourceHandle: dd6aa873-0f44-44a5-ab0a-b296493c1f05
+      target: '1760004430138'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1760014064999-true-17600155687750-target
+      source: '1760014064999'
+      sourceHandle: 'true'
+      target: '17600155687750'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: 17600155687750-source-1760017152416-target
+      source: '17600155687750'
+      sourceHandle: source
+      target: '1760017152416'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: variable-aggregator
+      id: 1760004430138-source-1760017152416-target
+      source: '1760004430138'
+      sourceHandle: source
+      target: '1760017152416'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: variable-aggregator
+        targetType: code
+      id: 1760017152416-source-1760018141227-target
+      source: '1760017152416'
+      sourceHandle: source
+      target: '1760018141227'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: end
+      id: 1760018141227-source-1760017529327-target
+      source: '1760018141227'
+      sourceHandle: source
+      target: '1760017529327'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: text
+          max_length: 2000
+          options: []
+          placeholder: ''
+          required: false
+          type: paragraph
+          variable: text
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - image
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          default: ''
+          hint: ''
+          label: image
+          max_length: 48
+          options: []
+          placeholder: ''
+          required: false
+          type: file
+          variable: image
+      height: 113
+      id: '1760002130017'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        outputs:
+        - value_selector:
+          - '1760003405502'
+          - result
+          value_type: object
+          variable: result
+        selected: false
+        title: 结束
+        type: end
+      height: 87
+      id: '1760002435935'
+      position:
+        x: 1098.1486983549971
+        y: 557
+      positionAbsolute:
+        x: 1098.1486983549971
+        y: 557
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "\ndef main():\n        return {\n                \"result\": {\n  \
+          \                  \"code\": 500,  # 无数据（null或空列表）的code\n              \
+          \      \"message\": \"输入参数不符合标准，未能经过llm\"\n                }\n         \
+          \   }\n"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: object
+        selected: false
+        title: 代码执行
+        type: code
+        variables: []
+      height: 51
+      id: '1760003405502'
+      position:
+        x: 740
+        y: 557
+      positionAbsolute:
+        x: 740
+        y: 557
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        default_value:
+        - key: text
+          type: string
+          value: llm节点连接有错误
+        error_strategy: default-value
+        model:
+          completion_params:
+            temperature: 0.7
+            thinking: disabled
+          mode: chat
+          name: doubao-seed-1-6-vision-250815
+          provider: langgenius/volcengine_maas/volcengine_maas
+        prompt_template:
+        - id: 59741914-0250-47a0-afd4-7d2631ca3f99
+          role: system
+          text: "请从目标图片中提取关键信息，仅生成**实体类**和**事件类**两类知识图谱节点，节点`id`统一设为“new generate”，具体要求如下：\n\
+             \n 注意：只生成跟无人机反制场景有关的知识，如果全都无关则输出:{\"data\":[]}\n## 一、抽取目标与范围\n### 1.\
+            \ 实体类节点\n- **涵盖对象**：反无人机相关设备（探测类、干扰类、系统类、打击类、识别类、监测类）、无人机类，可根据图片实际内容补充其他相关实体。 \n\
+            - **需提取的关键信息**： \n  - 名称（`name`属性，可模糊表述，若图片中信息不完整，标注“模糊：XXX”即可，如“模糊：TX-XQ系列反制枪”）； \n\
+              - 所属公司（若图片中提及，需提取；未提及可不填）； \n  - 核心技术参数（根据实体类型提取，如探测类提探测距离、干扰类提干扰频段、设备类提重量/尺寸/工作温度、无人机产品提飞行速度/续航等，图片中有则提，无则不强行补充）； \n\
+              - 功能特性（如预警目标、反制效果、监控能力、载荷类型等，结合实体实际功能提取）。\n  - 其它与此实体有关的属性\n### 2. 事件类节点\n\
+            - **涵盖对象**：任务变化类事件（新增目标、目标方位变化、高频干扰源增加等）、系统受损类事件（设备损坏、系统瘫痪、电池耗尽等）、关键资源失效类事件（反制枪失效、雷达设备失效等）。 \n\
+            - **需提取的关键信息**： \n  - 事件名称（`name`属性，可模糊概括，如“模糊：多目标出现导致探测压力增加”）； \n  -\
+            \ 发生时间（图片中有则提，格式不限，如“2023年5月”“2024年6月18日下午”）； \n  - 发生地点（含经纬度+高度，图片中有则提，信息不全可补“模糊”，如“东经115左右；北纬39左右；高度模糊”）； \n\
+              - 产生影响（事件导致的后果，如“探测精度下降”“反制范围缩小”）； \n  - 处置规范流程（应对事件的操作，如“启用备用设备”“更换电池”）； \n\
+              - 处置支撑模型（图片中提及的模型名称，未提及可不填）； \n  - 关联单元（相关设备、单元等，有则提，无则不填）； \n  - 发生条件（事件触发原因，如“物理损坏”“电磁干扰”，有则提，无则不填）。\n\
+              - 其它与此事件有关的属性\n \n## 二、知识图谱节点格式规范\n每个节点需包含以下字段，无固定格式要求，确保信息清晰即可：\n-\
+            \ `type`：固定为“node”； \n- `id`：固定为“new generate”； \n- `labels`：实体类节点标注为[\"\
+            entity\", 细分类型]（如[\"entity\",\"探测类\"]），事件类节点标注为[\"event\", 细分类型]（如[\"\
+            event\",\"任务变化类\"]）； \n- `properties`：包含上述需提取的关键信息，`name`属性需包含在内，其他信息按图片实际内容补充，无顺序要求。\n\
+             \n### 格式示例\n1. 实体类（干扰类设备）示例： \n{\"type\":\"node\",\"id\":\"new generate\"\
+            ,\"labels\":[\"entity\",\"干扰类\"],\"properties\":{\"name\":\"模糊：TX-FPV系列干扰器\"\
+            ,\"公司\":\"深圳特信电子有限公司\",\"重量\":\"约1.6kg\",\"干扰频段\":\"2.4G、5.8G\",\"功能特性\"\
+            :\"手提式，可屏蔽无人机信号\"}}\n \n2. 事件类（系统受损类）示例： \n{\"type\":\"node\",\"id\":\"\
+            new generate\",\"labels\":[\"event\",\"系统受损类\"],\"properties\":{\"name\"\
+            :\"反制枪受损\",\"发生时间\":\"2023年4月12日早上\",\"发生地点\":\"东经116.28；北纬39.68；高度0\"\
+            ,\"产生影响\":\"单一目标识别能力下降\",\"处置规范流程\":\"启用备用反制枪\",\"处置支撑模型\":\"损伤控制模型\"\
+            ,\"发生条件\":\"物理损坏\",\"关联单元\":\"作战单元B\"}}\n \n \n## 三、抽取注意事项\n1. 无需追求格式绝对统一，时间、地点、参数等表述以图片实际信息为准，模糊信息标注“模糊”即可； \n\
+            2. 仅生成实体类、事件类节点，不涉及任何模型类节点； \n3. `properties`中必须包含`name`属性，其他信息按需提取，不强行补充图片中没有的内容； \n\
+            4. 属性与节点类型匹配，如“探测距离”仅用于探测类实体，“发生条件”仅用于事件类节点。\n5.若是无人机以外的知识直接输出:{\"data\"\
+            :[]}\n##四、输出要求\n节点顺序：按 “实体类→事件类” 的顺序排列（先提取所有实体类节点，再提取所有事件类节点），每个节点为独立\
+            \ JSON 对象。\n格式校验：输出前需检查三点：①是否仅含实体类、事件类节点；②所有节点id是否为 “new generate”；③所有节点是否包含name属性。\n\
+            最终格式：以 JSON 数组形式输出，确保可直接导入知识图谱工具使用，示例如下：\n成功抽取格式：\n{\n  \"data\": [\n\
+            \    {\n      \"type\": \"node\",\n      \"id\": \"new generate\",\n \
+            \     \"labels\": [\"entity\", \"探测类\"],\n      \"properties\": {\n  \
+            \      \"name\": \"ZY-R2000 低空目标监测预警打击系统\",\n        \"公司\": \"知语云智能科技\"\
+            ,\n        \"type\": \"探测类\",\n        \"预警目标\": \"无人机、轻型飞机、滑翔机等\",\n\
+            \        \"监控时长\": \"24 小时\"\n      }\n    },\n    {\n      \"type\":\
+            \ \"node\",\n      \"id\": \"new generate\",\n      \"labels\": [\"event\"\
+            , \"任务变化类\"],\n      \"properties\": {\n        \"name\": \"新增目标在监测范围外\"\
+            ,\n        \"发生时间\": \"2024 年 3 月 20 日 08:45\",\n        \"发生地点\": \"\
+            东经：120.38; 北纬：36.06; 高度：0\",\n        \"产生影响\": \"探测覆盖范围不足，覆盖率下降至 70%-50%\"\
+            ,\n        \"处置规范流程\": \"部署 TX-TC-01 探测设备并启用无人机屏蔽器\",\n        \"处置支撑模型\"\
+            : \"多目标优化搜索模型\",\n        \"关联单元\": \"CD-WRJ02 探测反制一体设备\",\n        \"\
+            type\": \"任务变化类\"\n      }\n    },\n...\n  ]\n}\n若是无关的知识：\n{\"data\":[]}"
+        selected: true
+        structured_output:
+          schema:
+            additionalProperties: false
+            properties: {}
+            required: []
+            type: object
+        structured_output_enabled: true
+        title: 图片抽取
+        type: llm
+        vision:
+          configs:
+            detail: high
+            variable_selector:
+            - '1760002130017'
+            - image
+          enabled: true
+      height: 123
+      id: '1760004430138'
+      position:
+        x: 746.8921901299823
+        y: 382.7026032900059
+      positionAbsolute:
+        x: 746.8921901299823
+        y: 382.7026032900059
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: not empty
+            id: d1b3b1ed-e85b-46f0-a34e-9ab9137999f4
+            value: ''
+            varType: string
+            variable_selector:
+            - '1760002130017'
+            - text
+          - comparison_operator: not exists
+            id: 13e5c291-d222-43f9-8553-f4edf8b86e25
+            value: ''
+            varType: file
+            variable_selector:
+            - '1760002130017'
+            - image
+          id: 'true'
+          logical_operator: and
+        - case_id: dd6aa873-0f44-44a5-ab0a-b296493c1f05
+          conditions:
+          - comparison_operator: empty
+            id: 5fa50720-3446-46c0-864a-b9ed9bb53b02
+            value: ''
+            varType: string
+            variable_selector:
+            - '1760002130017'
+            - text
+          - comparison_operator: exists
+            id: da16a4a7-548b-4fdf-91aa-3571e1109de7
+            value: ''
+            varType: file
+            variable_selector:
+            - '1760002130017'
+            - image
+          logical_operator: and
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 223
+      id: '1760014064999'
+      position:
+        x: 382
+        y: 282
+      positionAbsolute:
+        x: 382
+        y: 282
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        default_value:
+        - key: text
+          type: string
+          value: llm节点连接有错误
+        error_strategy: default-value
+        model:
+          completion_params:
+            temperature: 0.7
+            thinking: disabled
+          mode: chat
+          name: doubao-seed-1-6-250615
+          provider: langgenius/volcengine_maas/volcengine_maas
+        prompt_template:
+        - id: 59741914-0250-47a0-afd4-7d2631ca3f99
+          role: system
+          text: "你是一个知识图谱构建专家，请从给定的自然语言文本中抽取出实体、事件和模型节点，并基于抽取的节点推断它们之间的关系（如调用、触发、涉及等），将关系和节点一起输出。\n\
+            \n## 抽取要求：\n\n### 1. 节点抽取格式：\n\n- **事件节点**：\n  - type: \"node\"\n  - labels:\
+            \ [\"event\", \"事件类别\"]（事件类别从标签分类体系中选择）\n  - properties: 必须包含name属性，以及其他属性如time、geo、detect、classify、legal、risk、entities、models、relations等（属性值需从文本中提取或合理推断）\n\
+            \n- **实体节点**：\n  - type: \"node\"\n  - labels: [\"entity\", \"实体类别\"]（实体类别从标签分类体系中选择）\n\
+            \  - properties: 必须包含name属性和type属性（type值为实体类别），以及其他相关技术属性（从文本中提取或合理推断）\n\
+            \n- **模型节点**：\n  - type: \"node\"\n  - labels: [\"model\", \"模型类别\"]（模型类别从标签分类体系中选择）\n\
+            \  - properties: 必须包含name属性和type属性（type值为模型类别），以及其他相关技术参数（从文本中提取或合理推断）\n\
+            \n### 2. 关系抽取格式：\n\n- 基于抽取的节点，推断节点之间的关系（如调用、触发、涉及等），并创建关系节点。\n- 关系节点格式：\n\
+            \  - type: \"relationship\"\n  - label: 关系类型（如\"调用\"、\"触发\"、\"使用\"等）\n\
+            \  - properties: 必须包含desc属性，描述关系内容（从文本中推断）\n  - start: 必须包含name和labels，name必须与某个已抽取节点的name完全一致，labels必须与该节点的labels一致\n\
+            \  - end: 必须包含name和labels，name必须与某个已抽取节点的name完全一致，labels必须与该节点的labels一致\n\
+            - 注意：关系节点中不包含id字段，id将由数据库自动生成。\n\n## 标签分类体系：\n\n- **实体类标签**：探测类、识别类、系统类、干扰类、打击类、无人机、监测类\n\
+            - **事件类标签**：关键资源失效类、任务变化类、系统受损类\n- **模型类标签**：策略规则类、经验预案类、算法模型类\n\n## 特别注意：\n\
+            \n- 所有节点（事件、实体、模型）必须包含name属性。\n- 实体节点必须包含type属性，值为对应的实体类别。\n- 模型节点必须包含type属性，值为对应的模型类别。\n\
+            - 节点和关系节点中均不包含id字段，id将由数据库自动生成。\n- 关系节点中的start和end的name必须与已抽取节点的name完全一致，labels必须一致。\n\
+            - 关系的推断应基于文本内容，确保合理性和逻辑性。\n\n## 输出格式要求：\n\n最终输出必须严格按照以下JSON格式：\n\n```json\n\
+            {\n  \"data\": [\n    {抽取或推断的节点1},\n    {抽取或推断的节点2},\n    ...,\n    {关系节点1},\n\
+            \    {关系节点2},\n    ...\n  ]\n}\n```\n\n节点和关系节点均放在\"data\"数组中，顺序不限。\n\n\
+            如果文本内容不涉及无人机相关领域知识，直接返回：\n\n```json\n{\"data\":[]}\n```\n\n请基于以上规范，仔细分析输入文本，抽取出所有相关的事件、实体和模型节点，并推断它们之间的关系，确保所有节点和关系符合格式要求。关系的desc属性应简洁描述关系内容（如\"\
+            调用\"、\"触发\"等）。"
+        - id: c845d4af-d266-4c1d-9ef5-19f185805cac
+          role: user
+          text: '被抽取文本：
+
+            {{#1760002130017.text#}}'
+        selected: false
+        structured_output:
+          schema:
+            additionalProperties: false
+            properties: {}
+            required: []
+            type: object
+        structured_output_enabled: true
+        title: 文本抽取
+        type: llm
+        vision:
+          configs:
+            detail: high
+            variable_selector: []
+          enabled: false
+      height: 123
+      id: '17600155687750'
+      position:
+        x: 746.8921901299823
+        y: 198.48514441508016
+      positionAbsolute:
+        x: 746.8921901299823
+        y: 198.48514441508016
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        advanced_settings:
+          group_enabled: false
+          groups:
+          - groupId: 27e0cf06-8199-480a-ba34-f3cb8f611ff6
+            group_name: Group1
+            output_type: string
+            variables:
+            - - '17600155687750'
+              - text
+            - - '1760004430138'
+              - text
+        output_type: string
+        selected: false
+        title: 变量聚合器
+        type: variable-aggregator
+        variables:
+        - - '17600155687750'
+          - text
+        - - '1760004430138'
+          - text
+      height: 133
+      id: '1760017152416'
+      position:
+        x: 1098.1486983549971
+        y: 198.48514441508016
+      positionAbsolute:
+        x: 1098.1486983549971
+        y: 198.48514441508016
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        outputs:
+        - value_selector:
+          - '1760018141227'
+          - result
+          value_type: string
+          variable: output
+        selected: false
+        title: 结束 2
+        type: end
+      height: 87
+      id: '1760017529327'
+      position:
+        x: 1777.2490091796558
+        y: 335.1802486597272
+      positionAbsolute:
+        x: 1777.2490091796558
+        y: 335.1802486597272
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "def main(arg1: str) -> dict:\n    try:\n        obj = json.loads(arg1)\n\
+          \        \n        # 提取data\n        if isinstance(obj, dict):\n       \
+          \     data = obj.get(\"data\", None)\n        elif isinstance(obj, list):\n\
+          \            data = obj\n        else:\n            data = obj\n       \
+          \ \n        # 判断data是否为“无数据”情况：null（None）或空列表\n        if data is None or\
+          \ (isinstance(data, list) and len(data) == 0):\n            return {\n \
+          \               \"result\": {\n                    \"code\": 501,  # 无数据（null或空列表）的code\n\
+          \                    \"message\": \"数据为空（null或空列表）\"\n                }\n\
+          \            }\n        \n        # 正常有数据的情况\n        return {\n       \
+          \     \"result\": {\n                \"code\": 200,\n                \"\
+          data\": data\n            }\n        }\n    \n    except json.JSONDecodeError:\n\
+          \        return {\n            \"result\": {\n                \"code\":\
+          \ 509,  # JSON解析错误\n                \"message\": \"无效的JSON格式\"\n       \
+          \     }\n        }\n    except Exception as e:\n        return {\n     \
+          \       \"result\": {\n                \"code\": 503,  # 其他错误\n        \
+          \        \"message\": f\"处理错误: {str(e)}\"\n            }\n        }"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: object
+        selected: false
+        title: 代码执行 2
+        type: code
+        variables:
+        - value_selector:
+          - '1760017152416'
+          - output
+          value_type: string
+          variable: arg1
+      height: 51
+      id: '1760018141227'
+      position:
+        x: 1425.5575832047894
+        y: 298.42190129982214
+      positionAbsolute:
+        x: 1425.5575832047894
+        y: 298.42190129982214
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    viewport:
+      x: -450.5864689360118
+      y: 1.3396962201579754
+      zoom: 0.8705505632961246
+  rag_pipeline_variables: []
