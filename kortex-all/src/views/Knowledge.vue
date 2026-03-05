@@ -278,7 +278,7 @@
                       </div>
                     </div>
                     <div class="text-sm text-gray-600">
-                      当前显示 {{ catalogDisplayNodes.length }} / 总计 {{ state.allNodes.length }}
+                      当前显示 {{ catalogDisplayNodes.length }}
                     </div>
                   </div>
                   <div class="max-h-[calc(100vh-260px)] overflow-auto border rounded-lg">
