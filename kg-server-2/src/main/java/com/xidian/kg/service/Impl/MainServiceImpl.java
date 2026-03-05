@@ -80,22 +80,17 @@ MainServiceImpl implements MainService {
      * @return
      * @throws Exception
      */
-    public Result loadFromCSV(MultipartFile file, String type) throws Exception {
-        // 存放上传及转化后文件的位置，设置在neo4j安装目录下的import/csv和import/json中
-//        String csvFolder = "D:\\Tools\\Package\\neo4j-community-3.5.31\\import\\csv\\";
-//        String jsonFolder = "D:\\Tools\\Package\\neo4j-community-3.5.31\\import\\json\\";
-//        String csvFolder = "/home/benin/neo4j/import/csv/";
-//        String jsonFolder = "/home/benin/neo4j/import/json/";
+    public Result loadFromCSV(MultipartFile file, String type, String kbId) throws Exception {
         // 清空csv和json文件夹
         DeleteFile.deleteFile(new File(csvFolder));
         DeleteFile.deleteFile(new File(jsonFolder));
-        // 首先将文件写入到D:\neo4j\neo4j-community-3.5.31\import\csv下
+        // 首先将文件写入到neo4j import/csv下
         String fileName = file.getOriginalFilename();
         String csvPath = csvFolder+fileName;
         File dest = new File(csvPath);
         file.transferTo(dest);
         System.out.println("csv文件已保存到:"+dest.getAbsolutePath());
-        // 将此文件转化为json, 并存储到D:\neo4j\neo4j-community-3.5.31\import\json下
+        // 将此文件转化为json
         String jsonPath = jsonFolder+fileName+".json";
         if(type.equals("node")){
             NodeCsvToJson.NodeConvertToJson(new FileInputStream(csvPath),new FileOutputStream(jsonPath));
@@ -110,6 +105,10 @@ MainServiceImpl implements MainService {
         String result = "";
         if(type.equals("node")){
             infoCount = nodeDao.loadNodeFromJson("file:///json/"+fileName+".json");
+            // 导入节点后，给没有 kb_id 的节点打上标记，确保数据隔离
+            if (kbId != null && !kbId.trim().isEmpty()) {
+                nodeDao.setKbIdForUntaggedNodes(kbId.trim());
+            }
             result = "导入成功，共导入了"+infoCount+"个节点";
         }else if(type.equals("relation")){
             infoCount = relationDao.loadRelationFromJson("file:///json/"+fileName+".json");

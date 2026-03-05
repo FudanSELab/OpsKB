@@ -135,6 +135,12 @@ public interface NodeDao {
     public Long loadNodeFromJson(String filePath);
 
     /**
+     * 给所有没有 kb_id 属性的节点设置 kb_id，用于数据隔离
+     * @param kbId 知识库ID
+     */
+    public void setKbIdForUntaggedNodes(String kbId);
+
+    /**
      * 根据节点ID更新节点属性（完全替换模式）
      * 注意：此方法会完全替换节点的所有属性，未提供的属性将被删除
      * @param nodeId 节点ID

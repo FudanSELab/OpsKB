@@ -174,7 +174,7 @@ export const getTreeCountByCategory = async () => {
  * @returns {Promise} API响应
  */
 export const createNode = async (nodeData) => {
-  return await request('/node/create', {
+  return await request(appendKbId('/node/create'), {
     method: 'POST',
     body: JSON.stringify(nodeData),
   });
@@ -346,7 +346,7 @@ export const loadFromCSV = async (file, type) => {
   formData.append('file', file);
   formData.append('type', type);
 
-  return await request('/main/loadFromCSV', {
+  return await request(appendKbId('/main/loadFromCSV'), {
     method: 'POST',
     headers: {}, // FormData 不需要 Content-Type
     body: formData,

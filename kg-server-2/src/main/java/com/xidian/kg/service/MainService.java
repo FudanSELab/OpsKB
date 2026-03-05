@@ -20,5 +20,5 @@ public interface MainService {
      * @param file 前端上传的文件
      * @return
      */
-    public Result loadFromCSV(MultipartFile file, String type) throws Exception;
+    public Result loadFromCSV(MultipartFile file, String type, String kbId) throws Exception;
 }

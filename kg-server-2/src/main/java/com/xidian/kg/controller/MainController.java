@@ -48,9 +48,10 @@ public class MainController {
      * @throws Exception
      */
     @RequestMapping("/loadFromCSV")
-    public String loadNodeFromCSV(@RequestParam MultipartFile file, @RequestParam String type) throws Exception {
-        log.info("从CSV文件加载数据，文件名: {}, 类型: {}", file != null ? file.getOriginalFilename() : "null", type);
-        
+    public String loadNodeFromCSV(@RequestParam MultipartFile file, @RequestParam String type,
+                                  @RequestParam(required = false) String kbId) throws Exception {
+        log.info("从CSV文件加载数据，文件名: {}, 类型: {}, kbId: {}", file != null ? file.getOriginalFilename() : "null", type, kbId);
+
         if (file == null || ObjectUtils.isEmpty(file) || file.getSize() <= 0) {
             log.warn("文件为空，加载失败");
             return mapper.writeValueAsString(new Result(false,"文件为空，请重新上传"));
@@ -65,7 +66,7 @@ public class MainController {
             log.warn("数据类型错误: {}", type);
             return mapper.writeValueAsString(new Result(false,"数据访问错误"));
         }
-        Result result = mainService.loadFromCSV(file,type);
+        Result result = mainService.loadFromCSV(file,type,kbId);
         // 新增节点后执行数据导出
         if (result.isFlag()) {
             log.info("CSV数据加载成功，开始导出数据");

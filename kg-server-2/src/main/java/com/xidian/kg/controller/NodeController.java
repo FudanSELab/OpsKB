@@ -64,8 +64,16 @@ public class NodeController {
      * @return
      */
     @RequestMapping("/create")
-    public String createNode(@RequestBody BasicNode node) throws JsonProcessingException {
-        log.info("创建节点，节点信息: {}", node != null && node.getProperties() != null ? node.getProperties().get("name") : "null");
+    public String createNode(@RequestBody BasicNode node,
+                             @RequestParam(required = false) String kbId) throws JsonProcessingException {
+        log.info("创建节点，节点信息: {}, kbId: {}", node != null && node.getProperties() != null ? node.getProperties().get("name") : "null", kbId);
+        // 自动将 kb_id 注入节点属性，确保数据隔离
+        if (kbId != null && !kbId.trim().isEmpty() && node != null) {
+            if (node.getProperties() == null) {
+                node.setProperties(new HashMap<>());
+            }
+            node.getProperties().put("kb_id", kbId.trim());
+        }
         Result result = nodeService.createNode(node);
         // 新增节点后执行数据导出
         if (result.isFlag()) {

@@ -129,6 +129,7 @@ public class KnowledgeBaseAdminServiceImpl implements KnowledgeBaseAdminService 
 
                         Map<String, Object> props = objectMapper.convertValue(n, Map.class);
                         props.put("kg_id", kgId);
+                        props.put("kb_id", "fault-kb");
                         props.put("category", group);
                         props.put("type", CATEGORY_LABEL_MAP.getOrDefault(group, group));
                         node.setProperties(props);

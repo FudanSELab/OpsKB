@@ -649,6 +649,18 @@ public class NodeDaoImpl implements NodeDao {
     }
 
     /**
+     * 给所有没有 kb_id 属性的节点设置 kb_id，用于数据隔离
+     */
+    @Override
+    public void setKbIdForUntaggedNodes(String kbId) {
+        String cypherSql = "MATCH (n) WHERE n.kb_id IS NULL SET n.kb_id = $kbId";
+        Map<String, Object> params = new HashMap<>();
+        params.put("kbId", kbId);
+        session.query(cypherSql, params);
+        session.clear();
+    }
+
+    /**
      * 根据节点ID更新节点属性（完全替换模式）
      * @param nodeId 节点ID
      * @param properties 要更新的属性键值对，必须包含name属性

@@ -572,7 +572,7 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
 
     private boolean nodeBelongsToKb(String kbId, BasicNode node) {
         if (node == null || node.getProperties() == null) {
-            return DEFAULT_KB_ID.equals(kbId);
+            return false;
         }
         Map<String, Object> props = node.getProperties();
         String marker = firstNonBlank(
@@ -593,8 +593,8 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
                     }
                 }
             }
-            // 未标注且不命中兜底规则时，归入故障知识库
-            return DEFAULT_KB_ID.equals(kbId);
+            // 未标注 kb_id 的节点不归入任何知识库，避免数据错乱
+            return false;
         }
 
         String normalized = marker.trim().toLowerCase(Locale.ROOT);
