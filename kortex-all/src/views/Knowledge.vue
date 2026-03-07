@@ -133,9 +133,9 @@
               />
             </div>
             <!-- 知识详情（总览模式下隐藏） -->
-            <div v-if="!state.isOverviewMode" class="flex gap-4 mt-4">
-              <div class="w-1/2 bg-gray-100 rounded-lg p-4 flex flex-col">
-                <div class="flex items-center justify-between mb-4">
+            <div v-if="!state.isOverviewMode" class="flex gap-4 mt-4 h-[420px]">
+              <div class="w-1/2 bg-gray-100 rounded-lg p-4 flex flex-col min-h-0">
+                <div class="flex items-center justify-between mb-4 flex-shrink-0">
                   <span class="font-bold text-lg">节点详情</span>
                   <div v-if="state.selectedNodeDetails" class="flex gap-2">
                     <button
@@ -154,60 +154,63 @@
                     </button>
                   </div>
                 </div>
-                <div v-if="!state.selectedNodeDetails" class="text-center py-8 text-gray-500">
-                  请选择一个节点查看详情
+                <div class="overflow-y-auto flex-1 min-h-0">
+                  <div v-if="!state.selectedNodeDetails" class="text-center py-8 text-gray-500">
+                    请选择一个节点查看详情
+                  </div>
+                  <table
+                    v-else
+                    class="table table-fixed w-full text-sm bg-white rounded shadow border border-gray-300"
+                  >
+                    <tbody>
+                      <tr class="border-b border-gray-300">
+                        <td class="font-semibold py-1 px-2 border-r border-gray-300 w-28 align-top">节点ID</td>
+                        <td class="py-1 px-2 break-all">
+                          {{ state.selectedNodeDetails.id || '未知' }}
+                        </td>
+                      </tr>
+                      <tr
+                        v-for="(value, key) in state.selectedNodeDetails.properties"
+                        :key="key"
+                        class="border-b border-gray-300"
+                      >
+                        <td class="font-semibold py-1 px-2 border-r border-gray-300 w-28 align-top">
+                          {{ key }}
+                        </td>
+                        <td class="py-1 px-2">
+                          <div
+                            class="break-all whitespace-pre-wrap"
+                            v-html="
+                              state.searchResult
+                                ? highlightSearchTerm(String(value), state.searchResult.query)
+                                : value
+                            "
+                          ></div>
+                        </td>
+                      </tr>
+                      <tr class="border-b border-gray-300">
+                        <td class="font-semibold py-1 px-2 border-r border-gray-300 align-top">标签</td>
+                        <td class="py-1 px-2">
+                          <div class="flex flex-wrap gap-1">
+                            <span
+                              v-for="label in state.selectedNodeDetails.labels"
+                              :key="label"
+                              class="badge badge-sm"
+                            >
+                              {{ label }}
+                            </span>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-                <table
-                  v-else
-                  class="table table-fixed w-full text-sm bg-white rounded shadow border border-gray-300"
-                >
-                  <tbody>
-                    <tr class="border-b border-gray-300">
-                      <td class="font-semibold py-1 px-2 border-r border-gray-300 w-28">节点ID</td>
-                      <td class="py-1 px-2 break-all">
-                        {{ state.selectedNodeDetails.id || '未知' }}
-                      </td>
-                    </tr>
-                    <tr
-                      v-for="(value, key) in state.selectedNodeDetails.properties"
-                      :key="key"
-                      class="border-b border-gray-300"
-                    >
-                      <td class="font-semibold py-1 px-2 border-r border-gray-300 w-28">
-                        {{ key }}
-                      </td>
-                      <td class="py-1 px-2">
-                        <div
-                          class="break-all overflow-hidden line-clamp-6"
-                          v-html="
-                            state.searchResult
-                              ? highlightSearchTerm(String(value), state.searchResult.query)
-                              : value
-                          "
-                        ></div>
-                      </td>
-                    </tr>
-                    <tr class="border-b border-gray-300">
-                      <td class="font-semibold py-1 px-2 border-r border-gray-300">标签</td>
-                      <td class="py-1 px-2">
-                        <div class="flex flex-wrap gap-1">
-                          <span
-                            v-for="label in state.selectedNodeDetails.labels"
-                            :key="label"
-                            class="badge badge-sm"
-                          >
-                            {{ label }}
-                          </span>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
               </div>
-              <div class="w-1/2 bg-gray-100 rounded-lg p-4 flex flex-col">
+              <div class="w-1/2 bg-gray-100 rounded-lg p-4 flex flex-col min-h-0">
                 <div class="flex items-center justify-between mb-4">
                   <span class="font-bold text-lg">关系详情</span>
                 </div>
+                <div class="overflow-y-auto flex-1 min-h-0">
                 <div
                   v-if="!state.selectedNodeRelations.length"
                   class="text-center py-8 text-gray-500"
@@ -261,6 +264,7 @@
                 <div v-if="state.selectedNodeRelations.length" class="text-xs text-gray-500 mt-2">
                   鼠标悬停每条关系可查看详细字段
                 </div>
+                </div>
               </div>
             </div>
             </template>
@@ -312,7 +316,7 @@
                   </div>
                 </div>
 
-                <div class="bg-gray-100 rounded-lg p-4">
+                <div class="bg-gray-100 rounded-lg p-4 max-h-[calc(100vh-260px)] overflow-y-auto">
                   <div class="font-bold text-lg mb-3">实体详情</div>
                   <div v-if="!state.selectedNodeDetails" class="text-sm text-gray-500 py-6 text-center">
                     请选择一条数据查看详情
