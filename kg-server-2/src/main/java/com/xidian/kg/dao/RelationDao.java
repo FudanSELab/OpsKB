@@ -15,6 +15,12 @@ public interface RelationDao {
     public List<BasicRelationReturnVO> getAllRelations();
 
     /**
+     * 查询两端节点 ID 均在给定集合内的关系（配合限量节点查询使用）
+     * @param nodeIds 节点 ID 集合
+     */
+    public List<BasicRelationReturnVO> getRelationsBetweenNodes(Set<Long> nodeIds);
+
+    /**
      * 获取所有的关系名称
      * @return
      */

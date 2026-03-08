@@ -100,6 +100,26 @@ public class RelationDaoImpl implements RelationDao {
         return returnList;
     }
 
+    @Override
+    public List<BasicRelationReturnVO> getRelationsBetweenNodes(Set<Long> nodeIds) {
+        if (nodeIds == null || nodeIds.isEmpty()) {
+            return new ArrayList<>();
+        }
+        String cypherSql = "MATCH p=(a)-[r]->(b) WHERE id(a) IN $nodeIds AND id(b) IN $nodeIds RETURN p";
+        Map<String, Object> params = new HashMap<>();
+        params.put("nodeIds", nodeIds);
+        Result query = session.query(cypherSql, params);
+        ArrayList<BasicRelationReturnVO> returnList = new ArrayList<>();
+        for (Map<String, Object> map : query.queryResults()) {
+            List<Path.Segment> ps = extractSegments(map.get("p"));
+            for (Path.Segment p : ps) {
+                returnList.add(changeToNeo4jBasicRelationReturnVO(p));
+            }
+        }
+        session.clear();
+        return returnList;
+    }
+
     /**
      * 获取所有的关系名称
      * @return 所有关系名称组成的列表

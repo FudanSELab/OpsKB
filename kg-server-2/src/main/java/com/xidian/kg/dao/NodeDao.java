@@ -15,6 +15,14 @@ public interface NodeDao {
     public List<BasicNode> getAllNodes();
 
     /**
+     * 按 kb_id 别名或标签集合限量查询节点（用于总览等不需要全量的场景）
+     * @param kbAliases kb_id 的可能值列表（如 ['fault-kb','fault']）
+     * @param labelFallbacks 无 kb_id 时用标签兜底匹配的标签集合（如 promcopilot 的实体标签）
+     * @param limit 最多返回节点数
+     */
+    public List<BasicNode> getNodesForKbWithLimit(List<String> kbAliases, List<String> labelFallbacks, int limit);
+
+    /**
      * 获取所有节点的标签名称
      */
     public Set<String> getAllLabelName();

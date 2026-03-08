@@ -1,6 +1,8 @@
 package com.xidian.kg.service.Impl;
 
 import com.xidian.kg.controller.util.Result;
+import com.xidian.kg.dao.NodeDao;
+import com.xidian.kg.dao.RelationDao;
 import com.xidian.kg.entity.BasicNode;
 import com.xidian.kg.entity.BasicRelationReturnVO;
 import com.xidian.kg.service.KnowledgeBaseReadService;
@@ -100,6 +102,12 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
 
     @Autowired
     private MainService mainService;
+
+    @Autowired
+    private NodeDao nodeDao;
+
+    @Autowired
+    private RelationDao relationDao;
 
     @Autowired(required = false)
     private RestHighLevelClient esClient;
@@ -556,38 +564,51 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
     }
 
     private Result buildNeo4jAllResult(KnowledgeBaseDef kb, Integer limit) {
-        Result raw = mainService.getAllNodesAndRelations();
-        if (raw == null || !raw.isFlag()) {
-            return new Result(false, raw == null ? "Neo4j 数据读取失败" : raw.getData());
+        try {
+            List<BasicNode> nodes;
+            List<BasicRelationReturnVO> relations;
+
+            if (limit != null && limit > 0) {
+                // 限量模式：直接在 Neo4j 层做 KB 过滤 + LIMIT，避免拉取全量数据
+                List<String> aliases = new ArrayList<>(kbAliases(kb.id));
+                List<String> labelFallbacks = kbLabelFallbacks(kb.id);
+                nodes = nodeDao.getNodesForKbWithLimit(aliases, labelFallbacks, limit);
+                Set<Long> nodeIds = nodes.stream()
+                        .map(BasicNode::getId)
+                        .filter(Objects::nonNull)
+                        .collect(Collectors.toSet());
+                relations = relationDao.getRelationsBetweenNodes(nodeIds);
+            } else {
+                // 全量模式（用于分类统计等需要完整数据的场景）
+                Result raw = mainService.getAllNodesAndRelations();
+                if (raw == null || !raw.isFlag()) {
+                    return new Result(false, raw == null ? "Neo4j 数据读取失败" : raw.getData());
+                }
+                GraphData graphData = extractGraphData(raw);
+                if (graphData == null) {
+                    return new Result(false, "Neo4j 数据格式错误");
+                }
+                nodes = graphData.nodes.stream()
+                        .filter(node -> nodeBelongsToKb(kb.id, node))
+                        .collect(Collectors.toList());
+                Set<Long> nodeIds = nodes.stream()
+                        .map(BasicNode::getId)
+                        .filter(Objects::nonNull)
+                        .collect(Collectors.toSet());
+                relations = graphData.relations.stream()
+                        .filter(rel -> rel != null && rel.getStart() != null && rel.getEnd() != null)
+                        .filter(rel -> nodeIds.contains(rel.getStart().getId()) && nodeIds.contains(rel.getEnd().getId()))
+                        .collect(Collectors.toList());
+            }
+
+            List<List> payload = new ArrayList<>();
+            payload.add(nodes);
+            payload.add(relations);
+            return new Result(true, payload);
+        } catch (Exception e) {
+            log.error("Neo4j 数据读取失败: kbId={}", kb.id, e);
+            return new Result(false, "Neo4j 数据读取失败（" + e.getMessage() + "）");
         }
-
-        GraphData graphData = extractGraphData(raw);
-        if (graphData == null) {
-            return new Result(false, "Neo4j 数据格式错误");
-        }
-
-        List<BasicNode> filteredNodes = graphData.nodes.stream()
-                .filter(node -> nodeBelongsToKb(kb.id, node))
-                .collect(Collectors.toList());
-
-        if (limit != null && limit > 0 && filteredNodes.size() > limit) {
-            filteredNodes = filteredNodes.subList(0, limit);
-        }
-
-        Set<Long> nodeIds = filteredNodes.stream()
-                .map(BasicNode::getId)
-                .filter(Objects::nonNull)
-                .collect(Collectors.toSet());
-
-        List<BasicRelationReturnVO> filteredRelations = graphData.relations.stream()
-                .filter(rel -> rel != null && rel.getStart() != null && rel.getEnd() != null)
-                .filter(rel -> nodeIds.contains(rel.getStart().getId()) && nodeIds.contains(rel.getEnd().getId()))
-                .collect(Collectors.toList());
-
-        List<List> payload = new ArrayList<>();
-        payload.add(filteredNodes);
-        payload.add(filteredRelations);
-        return new Result(true, payload);
     }
 
     private GraphData extractGraphData(Result result) {
@@ -715,6 +736,17 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
             aliases.add("日志知识库");
         }
         return aliases.stream().map(s -> s.toLowerCase(Locale.ROOT)).collect(Collectors.toSet());
+    }
+
+    /**
+     * 返回该 KB 中用于兜底匹配（无 kb_id 属性时）的标签列表。
+     * promcopilot 的节点历史上未设 kb_id，以实体标签区分。
+     */
+    private List<String> kbLabelFallbacks(String kbId) {
+        if ("promcopilot".equals(kbId)) {
+            return new ArrayList<>(PROMCOPILOT_ENTITY_LABELS);
+        }
+        return Collections.emptyList();
     }
 
     private KnowledgeBaseDef resolveKnowledgeBase(String kbId) {

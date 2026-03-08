@@ -41,6 +41,42 @@ public class NodeDaoImpl implements NodeDao {
         return this.session;
     }
 
+    @Override
+    public List<BasicNode> getNodesForKbWithLimit(List<String> kbAliases, List<String> labelFallbacks, int limit) {
+        // MATCH (n)
+        // WHERE n.kb_id IN $kbAliases
+        //    OR (n.kb_id IS NULL AND any(l IN labels(n) WHERE l IN $labels))
+        // RETURN n LIMIT $limit
+        String cypher;
+        Map<String, Object> params = new HashMap<>();
+        params.put("kbAliases", kbAliases);
+        params.put("limit", limit);
+        if (labelFallbacks != null && !labelFallbacks.isEmpty()) {
+            params.put("labels", labelFallbacks);
+            cypher = "MATCH (n) WHERE n.kb_id IN $kbAliases " +
+                    "OR (n.kb_id IS NULL AND any(l IN labels(n) WHERE l IN $labels)) " +
+                    "RETURN n LIMIT $limit";
+        } else {
+            cypher = "MATCH (n) WHERE n.kb_id IN $kbAliases RETURN n LIMIT $limit";
+        }
+        Result query = session.query(cypher, params);
+        List<BasicNode> nodeList = new ArrayList<>();
+        for (Map<String, Object> map : query.queryResults()) {
+            NodeModel queryNode = (NodeModel) map.get("n");
+            BasicNode node = new BasicNode();
+            node.setId(queryNode.getId());
+            node.setLabels(Arrays.asList(queryNode.getLabels()));
+            HashMap<String, Object> proMap = new HashMap<>();
+            for (Property<String, Object> prop : queryNode.getPropertyList()) {
+                proMap.put(prop.getKey(), prop.getValue());
+            }
+            node.setProperties(proMap);
+            nodeList.add(node);
+        }
+        session.clear();
+        return nodeList;
+    }
+
     /**
      * 获取知识库中所有的节点信息
      * @return
