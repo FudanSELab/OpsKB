@@ -221,18 +221,29 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
             return new Result(true, filtered);
         }
 
-        // ES 使用原生 from/size 分页，只返回当前页数据
+        // ES：先拉全量数据，用 Java matchCategory 过滤（保证与侧边栏分类一致），再分页返回给前端
         try {
             int pageNum = (page != null && page > 0) ? page : 1;
             int pageSize = (size != null && size > 0) ? size : 10;
-            int from = (pageNum - 1) * pageSize;
 
-            QueryBuilder query = buildEsCategoryQuery(categoryMain, categoryDetail);
-            EsPageResult esResult = fetchEsNodesPaged(source, query, from, pageSize);
+            List<BasicNode> allNodes = fetchEsNodes(source, null, null, ES_DEFAULT_LIMIT);
+            List<BasicNode> filtered = new ArrayList<>();
+            for (BasicNode node : allNodes) {
+                if (matchCategory(node, categoryMain, categoryDetail)) {
+                    filtered.add(node);
+                }
+            }
+
+            long total = filtered.size();
+            int from = (pageNum - 1) * pageSize;
+            List<BasicNode> pageNodes = filtered.subList(
+                    Math.min(from, filtered.size()),
+                    Math.min(from + pageSize, filtered.size())
+            );
 
             Map<String, Object> data = new HashMap<>();
-            data.put("nodes", esResult.nodes);
-            data.put("total", esResult.total);
+            data.put("nodes", pageNodes);
+            data.put("total", total);
             data.put("page", pageNum);
             data.put("size", pageSize);
             return new Result(true, data);
