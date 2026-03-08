@@ -56,6 +56,16 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
         }
     }
 
+    private static class EsPageResult {
+        final List<BasicNode> nodes;
+        final long total;
+
+        EsPageResult(List<BasicNode> nodes, long total) {
+            this.nodes = nodes;
+            this.total = total;
+        }
+    }
+
     private static class KnowledgeBaseDef {
         private final String id;
         private final String name;
@@ -134,16 +144,17 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
     }
 
     @Override
-    public Result getAll(String kbId, String storageType) {
+    public Result getAll(String kbId, String storageType, Integer limit) {
         KnowledgeBaseDef kb = resolveKnowledgeBase(kbId);
         SourceDef source = resolveSource(kb, storageType);
 
         if (source.type == SourceType.NEO4J) {
-            return buildNeo4jAllResult(kb);
+            return buildNeo4jAllResult(kb, limit);
         }
 
         try {
-            List<BasicNode> nodes = fetchEsNodes(source, null, null, ES_DEFAULT_LIMIT);
+            int esLimit = (limit != null && limit > 0) ? limit : ES_DEFAULT_LIMIT;
+            List<BasicNode> nodes = fetchEsNodes(source, null, null, esLimit);
             List<List> payload = new ArrayList<>();
             payload.add(nodes);
             payload.add(new ArrayList<>());
@@ -189,7 +200,7 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
     }
 
     @Override
-    public Result queryNodeByCategory(String kbId, String storageType, String categoryMain, String categoryDetail) {
+    public Result queryNodeByCategory(String kbId, String storageType, String categoryMain, String categoryDetail, Integer page, Integer size) {
         KnowledgeBaseDef kb = resolveKnowledgeBase(kbId);
         SourceDef source = resolveSource(kb, storageType);
 
@@ -212,14 +223,19 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
         }
 
         try {
-            List<BasicNode> allNodes = fetchEsNodes(source, null, null, ES_DEFAULT_LIMIT);
-            List<BasicNode> filtered = new ArrayList<>();
-            for (BasicNode node : allNodes) {
-                if (matchCategory(node, categoryMain, categoryDetail)) {
-                    filtered.add(node);
-                }
-            }
-            return new Result(true, filtered);
+            int pageNum = (page != null && page > 0) ? page : 1;
+            int pageSize = (size != null && size > 0) ? size : 10;
+            int from = (pageNum - 1) * pageSize;
+
+            QueryBuilder query = buildEsCategoryQuery(categoryMain, categoryDetail);
+            EsPageResult esResult = fetchEsNodesPaged(source, query, from, pageSize);
+
+            Map<String, Object> data = new HashMap<>();
+            data.put("nodes", esResult.nodes);
+            data.put("total", esResult.total);
+            data.put("page", pageNum);
+            data.put("size", pageSize);
+            return new Result(true, data);
         } catch (Exception e) {
             return esError(kb, source, "ES 分类查询失败", e);
         }
@@ -503,6 +519,10 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
     }
 
     private Result buildNeo4jAllResult(KnowledgeBaseDef kb) {
+        return buildNeo4jAllResult(kb, null);
+    }
+
+    private Result buildNeo4jAllResult(KnowledgeBaseDef kb, Integer limit) {
         Result raw = mainService.getAllNodesAndRelations();
         if (raw == null || !raw.isFlag()) {
             return new Result(false, raw == null ? "Neo4j 数据读取失败" : raw.getData());
@@ -516,6 +536,11 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
         List<BasicNode> filteredNodes = graphData.nodes.stream()
                 .filter(node -> nodeBelongsToKb(kb.id, node))
                 .collect(Collectors.toList());
+
+        // 应用 limit，在过滤后截断，减少网络传输量
+        if (limit != null && limit > 0 && filteredNodes.size() > limit) {
+            filteredNodes = filteredNodes.subList(0, limit);
+        }
 
         Set<Long> nodeIds = filteredNodes.stream()
                 .map(BasicNode::getId)
@@ -747,6 +772,57 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
             nodes.add(toBasicNode(hit));
         }
         return nodes;
+    }
+
+    private EsPageResult fetchEsNodesPaged(SourceDef source, QueryBuilder query, int from, int size) throws IOException {
+        if (esClient == null) {
+            throw new IllegalStateException("Elasticsearch 客户端未配置");
+        }
+
+        SearchRequest request = new SearchRequest(parseEsIndices(source.esIndex));
+        request.indicesOptions(IndicesOptions.lenientExpandOpen());
+        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+        sourceBuilder.from(from);
+        sourceBuilder.size(size);
+        sourceBuilder.trackTotalHits(true);
+        sourceBuilder.query(query != null ? query : QueryBuilders.matchAllQuery());
+        request.source(sourceBuilder);
+
+        SearchResponse response = esClient.search(request, RequestOptions.DEFAULT);
+        long total = response.getHits().getTotalHits() == null ? 0L : response.getHits().getTotalHits().value;
+        List<BasicNode> nodes = new ArrayList<>();
+        for (SearchHit hit : response.getHits().getHits()) {
+            nodes.add(toBasicNode(hit));
+        }
+        return new EsPageResult(nodes, total);
+    }
+
+    private QueryBuilder buildEsCategoryQuery(@Nullable String categoryMain, @Nullable String categoryDetail) {
+        boolean hasMain = categoryMain != null && !categoryMain.trim().isEmpty();
+        boolean hasDetail = categoryDetail != null && !categoryDetail.trim().isEmpty();
+
+        if (!hasMain && !hasDetail) {
+            return QueryBuilders.matchAllQuery();
+        }
+
+        BoolQueryBuilder outer = QueryBuilders.boolQuery();
+        if (hasMain) {
+            String cat = categoryMain.trim().toLowerCase(Locale.ROOT);
+            BoolQueryBuilder labelFilter = QueryBuilders.boolQuery();
+            labelFilter.should(QueryBuilders.termQuery("labels", cat));
+            labelFilter.should(QueryBuilders.termQuery("labels.keyword", cat));
+            labelFilter.minimumShouldMatch(1);
+            outer.must(labelFilter);
+        }
+        if (hasDetail) {
+            String cat = categoryDetail.trim().toLowerCase(Locale.ROOT);
+            BoolQueryBuilder labelFilter = QueryBuilders.boolQuery();
+            labelFilter.should(QueryBuilders.termQuery("labels", cat));
+            labelFilter.should(QueryBuilders.termQuery("labels.keyword", cat));
+            labelFilter.minimumShouldMatch(1);
+            outer.must(labelFilter);
+        }
+        return outer;
     }
 
     private QueryBuilder buildEsQuery(@Nullable String keyword, @Nullable Boolean exactMatch) {

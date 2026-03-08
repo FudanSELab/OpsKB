@@ -287,7 +287,7 @@
                         <select
                           v-model="catalogPageSize"
                           class="select select-xs select-bordered w-14"
-                          @change="catalogPage = 1"
+                          @change="onCatalogPageSizeChange"
                         >
                           <option :value="10">10</option>
                           <option :value="20">20</option>
@@ -295,7 +295,7 @@
                         <span>条</span>
                       </div>
                       <div class="text-sm text-gray-600">
-                        共 {{ catalogDisplayNodes.length }} 条
+                        共 {{ isEsPaginated ? catalogTotal : catalogDisplayNodes.length }} 条
                       </div>
                     </div>
                   </div>
@@ -320,7 +320,7 @@
                           <td>{{ node.properties?.entity_type || node.properties?.type || '-' }}</td>
                           <td class="max-w-[260px] truncate">{{ (node.labels || []).join(' · ') }}</td>
                         </tr>
-                        <tr v-if="catalogDisplayNodes.length === 0">
+                        <tr v-if="(isEsPaginated ? catalogTotal : catalogDisplayNodes.length) === 0">
                           <td colspan="3" class="text-center text-gray-400 py-8">
                             {{ state.searchResult ? '未找到匹配数据' : '请选择分类或搜索内容' }}
                           </td>
@@ -711,15 +711,65 @@ const catalogDisplayNodes = computed(() => {
 // ES 目录分页
 const catalogPageSize = ref(10);
 const catalogPage = ref(1);
-const catalogTotalPages = computed(() =>
-  Math.max(1, Math.ceil(catalogDisplayNodes.value.length / catalogPageSize.value))
-);
+const catalogTotal = ref(0);       // 服务端返回的总条数（ES 分页模式下使用）
+const isEsPaginated = ref(false);  // 是否使用 ES 服务端分页
+
+const catalogTotalPages = computed(() => {
+  if (isEsPaginated.value) {
+    return Math.max(1, Math.ceil(catalogTotal.value / catalogPageSize.value));
+  }
+  return Math.max(1, Math.ceil(catalogDisplayNodes.value.length / catalogPageSize.value));
+});
 const catalogPagedNodes = computed(() => {
+  if (isEsPaginated.value) {
+    // ES 模式下 state.knowledgeList 已经是当前页数据
+    return state.knowledgeList || [];
+  }
   const start = (catalogPage.value - 1) * catalogPageSize.value;
   return catalogDisplayNodes.value.slice(start, start + catalogPageSize.value);
 });
-// 列表切换时重置页码
-watch(catalogDisplayNodes, () => { catalogPage.value = 1; });
+// 列表切换时重置页码（非 ES 分页模式）
+watch(catalogDisplayNodes, () => {
+  if (!isEsPaginated.value) {
+    catalogPage.value = 1;
+  }
+});
+// ES 分页模式下，翻页时重新请求后端
+watch(catalogPage, async (newPage) => {
+  if (isEsPaginated.value && state.selectedCategory) {
+    await fetchCatalogPage(newPage);
+  }
+});
+
+const fetchCatalogPage = async (page) => {
+  if (!state.selectedCategory) return;
+  const { main, detail } = state.selectedCategory;
+  const result = await api.queryNodeByCategory(main, detail, page, catalogPageSize.value);
+  if (result.flag) {
+    if (result.data && result.data.nodes !== undefined) {
+      state.knowledgeList = result.data.nodes;
+      catalogTotal.value = Number(result.data.total) || 0;
+      isEsPaginated.value = true;
+    } else {
+      state.knowledgeList = Array.isArray(result.data) ? result.data : [];
+      catalogTotal.value = state.knowledgeList.length;
+      isEsPaginated.value = false;
+    }
+  }
+};
+
+const onCatalogPageSizeChange = async () => {
+  if (isEsPaginated.value && state.selectedCategory) {
+    if (catalogPage.value === 1) {
+      // 页码未变，watch 不会触发，手动请求
+      await fetchCatalogPage(1);
+    } else {
+      catalogPage.value = 1; // 触发 watch 重新请求
+    }
+  } else {
+    catalogPage.value = 1;
+  }
+};
 
 const goKnowledgeBaseHome = async () => {
   clearSearch();
@@ -918,6 +968,9 @@ const clearSearch = () => {
 const clearCategory = () => {
   state.selectedCategory = null;
   state.knowledgeList = [];
+  isEsPaginated.value = false;
+  catalogTotal.value = 0;
+  catalogPage.value = 1;
   state.selectedNodeDetails = null;
   state.selectedNodeRelations = [];
   state.selectedNode = null;
@@ -940,45 +993,27 @@ const handleOverviewClick = async () => {
   state.selectedCategory = null;
   state.selectedNodeDetails = null;
   state.selectedNodeRelations = [];
-  state.isTreeGraphMode = false; // 清除tree图谱模式
+  state.isTreeGraphMode = false;
   state.treeGraphNodes = [];
   state.treeGraphRelations = [];
 
   // 进入总览模式
   state.isOverviewMode = true;
 
-  // 获取所有数据
-  const allData = await api.getAll();
+  // 由后端限制返回条数，避免大数据量传输导致卡顿
+  const allData = await api.getAll(OVERVIEW_NODE_LIMIT);
   if (allData.flag && allData.data) {
     const rawNodes = allData.data[0] || [];
     const rawRelations = allData.data[1] || [];
-    // 总览抽样展示，默认最多200个节点
-    state.allNodes = rawNodes.slice(0, OVERVIEW_NODE_LIMIT);
-    const visibleNodeIds = new Set(state.allNodes.map((node) => node.id));
-    state.allRelations = rawRelations.filter((rel) => {
-      const sid = rel?.start?.id;
-      const tid = rel?.end?.id;
-      return visibleNodeIds.has(sid) && visibleNodeIds.has(tid);
-    });
+    state.allNodes = rawNodes;
+    state.allRelations = rawRelations;
     state.treeKnowledgeList = state.allNodes;
-
-    // 总览模式下不默认选择节点，让用户从右侧列表中选择
     state.selectedNode = null;
 
-    console.log('总览模式数据:', {
-      总节点数: rawNodes.length,
-      总关系数: rawRelations.length,
-      总览列表数量: state.treeKnowledgeList.length,
-    });
-
-    if (rawNodes.length > OVERVIEW_NODE_LIMIT) {
-      showToast(`总览仅抽样展示前 ${OVERVIEW_NODE_LIMIT} 个节点（总计 ${rawNodes.length}）`, 'info');
-    } else {
-      showToast(
-        `已加载 ${state.allNodes.length} 个节点, ${state.allRelations.length} 个关系`,
-        'success',
-      );
-    }
+    showToast(
+      `已加载 ${state.allNodes.length} 个节点, ${state.allRelations.length} 个关系`,
+      'success',
+    );
   } else {
     showToast('获取数据失败', 'error');
   }
@@ -1013,12 +1048,26 @@ const selectCategory = async (categoryType, categoryMain, categoryDetail = null)
   state.treeGraphRelations = [];
 
   state.selectedCategory = { type: categoryType, main: categoryMain, detail: categoryDetail };
+  catalogPage.value = 1;
+  isEsPaginated.value = false;
 
-  const result = await api.queryNodeByCategory(categoryMain, categoryDetail);
+  const result = await api.queryNodeByCategory(categoryMain, categoryDetail, 1, catalogPageSize.value);
   if (result.flag) {
-    state.knowledgeList = result.data;
+    if (result.data && result.data.nodes !== undefined) {
+      // ES 服务端分页
+      state.knowledgeList = result.data.nodes;
+      catalogTotal.value = Number(result.data.total) || 0;
+      isEsPaginated.value = true;
+    } else {
+      // Neo4j 客户端分页
+      state.knowledgeList = Array.isArray(result.data) ? result.data : [];
+      catalogTotal.value = state.knowledgeList.length;
+      isEsPaginated.value = false;
+    }
   } else {
     state.knowledgeList = [];
+    catalogTotal.value = 0;
+    isEsPaginated.value = false;
   }
 };
 
