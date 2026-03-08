@@ -33,8 +33,9 @@ public class KnowledgeBaseController {
 
     @RequestMapping("/getAll")
     public String getAll(@RequestParam(required = false) String kbId,
-                         @RequestParam(required = false) String storage) throws JsonProcessingException {
-        return mapper.writeValueAsString(knowledgeBaseReadService.getAll(kbId, storage));
+                         @RequestParam(required = false) String storage,
+                         @RequestParam(required = false) Integer limit) throws JsonProcessingException {
+        return mapper.writeValueAsString(knowledgeBaseReadService.getAll(kbId, storage, limit));
     }
 
     @RequestMapping("/queryByName")
@@ -49,8 +50,10 @@ public class KnowledgeBaseController {
     public String queryNodeByCategory(@RequestParam(name = "category_main", required = false) String categoryMain,
                                       @RequestParam(name = "category_detail", required = false) String categoryDetail,
                                       @RequestParam(required = false) String kbId,
-                                      @RequestParam(required = false) String storage) throws JsonProcessingException {
-        return mapper.writeValueAsString(knowledgeBaseReadService.queryNodeByCategory(kbId, storage, categoryMain, categoryDetail));
+                                      @RequestParam(required = false) String storage,
+                                      @RequestParam(required = false) Integer page,
+                                      @RequestParam(required = false) Integer size) throws JsonProcessingException {
+        return mapper.writeValueAsString(knowledgeBaseReadService.queryNodeByCategory(kbId, storage, categoryMain, categoryDetail, page, size));
     }
 
     @RequestMapping("/queryGraph")

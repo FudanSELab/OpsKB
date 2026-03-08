@@ -71,11 +71,13 @@ export const queryNodeByName = async (name, exactMatch = false) => {
  * @param {string} categoryDetail 详细分类（可选）
  * @returns {Promise} API响应
  */
-export const queryNodeByCategory = async (categoryMain, categoryDetail) => {
+export const queryNodeByCategory = async (categoryMain, categoryDetail, page = null, size = null) => {
   let url = `/knowledgebase/queryNodeByCategory?category_main=${encodeURIComponent(categoryMain)}`;
   if (categoryDetail) {
     url += `&category_detail=${encodeURIComponent(categoryDetail)}`;
   }
+  if (page !== null) url += `&page=${page}`;
+  if (size !== null) url += `&size=${size}`;
   return await request(appendKbId(url));
 };
 
@@ -309,8 +311,9 @@ export const updateRelationProperties = async (relationData) => {
  * 获取所有数据
  * @returns {Promise} API响应
  */
-export const getAll = async () => {
-  return await request(appendKbId('/knowledgebase/getAll'));
+export const getAll = async (limit) => {
+  const url = limit ? appendKbId(`/knowledgebase/getAll?limit=${limit}`) : appendKbId('/knowledgebase/getAll');
+  return await request(url);
 };
 
 export const listKnowledgeBases = async () => {
