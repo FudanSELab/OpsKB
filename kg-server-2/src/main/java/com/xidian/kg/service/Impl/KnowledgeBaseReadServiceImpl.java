@@ -414,14 +414,24 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
         SourceDef source = resolveSource(kb, storageType);
 
         try {
-            List<BasicNode> allNodes = source.type == SourceType.NEO4J
-                    ? getNeo4jNodes(kb)
-                    : fetchEsNodes(source, null, null, ES_DEFAULT_LIMIT);
             Map<String, Long> counts = new HashMap<>();
-            counts.put("entity", countNodesInBaseCategory(kb, allNodes, "entity"));
-            counts.put("event", countNodesInBaseCategory(kb, allNodes, "event"));
-            counts.put("model", countNodesInBaseCategory(kb, allNodes, "model"));
-            counts.put("tree", countNodesInBaseCategory(kb, allNodes, "tree"));
+            if (source.type == SourceType.ES) {
+                // ES：所有文档均为 entity，按索引统计总数
+                long entityTotal = 0L;
+                for (long c : buildEsCountFromIndices(source).values()) {
+                    entityTotal += c;
+                }
+                counts.put("entity", entityTotal);
+                counts.put("event", 0L);
+                counts.put("model", 0L);
+                counts.put("tree", 0L);
+            } else {
+                List<BasicNode> allNodes = getNeo4jNodes(kb);
+                counts.put("entity", countNodesInBaseCategory(kb, allNodes, "entity"));
+                counts.put("event", countNodesInBaseCategory(kb, allNodes, "event"));
+                counts.put("model", countNodesInBaseCategory(kb, allNodes, "model"));
+                counts.put("tree", countNodesInBaseCategory(kb, allNodes, "tree"));
+            }
             return new Result(true, counts);
         } catch (Exception e) {
             if (source.type == SourceType.ES) {
@@ -470,10 +480,17 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
         SourceDef source = resolveSource(kb, storageType);
 
         try {
-            List<BasicNode> allNodes = source.type == SourceType.NEO4J
-                    ? getNeo4jNodes(kb)
-                    : fetchEsNodes(source, null, null, ES_DEFAULT_LIMIT);
+            if (source.type == SourceType.ES) {
+                // ES：分类直接由索引名决定（每个索引 = 一个 detail 分类），全部归在 "entity" 下
+                // 避免 ES_DEFAULT_LIMIT 截断导致部分索引漏掉
+                if (!"entity".equalsIgnoreCase(baseLabel)) {
+                    return new Result(true, defaultValue); // ES 只有 entity 分类
+                }
+                Map<String, Set<String>> categories = buildEsCategoriesFromIndices(source);
+                return new Result(true, categories.isEmpty() ? defaultValue : categories);
+            }
 
+            List<BasicNode> allNodes = getNeo4jNodes(kb);
             Map<String, Set<String>> categories = new HashMap<>();
             for (BasicNode node : allNodes) {
                 if (!isNodeInBaseCategory(kb, node, baseLabel)) {
@@ -504,10 +521,15 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
         SourceDef source = resolveSource(kb, storageType);
 
         try {
-            List<BasicNode> allNodes = source.type == SourceType.NEO4J
-                    ? getNeo4jNodes(kb)
-                    : fetchEsNodes(source, null, null, ES_DEFAULT_LIMIT);
+            if (source.type == SourceType.ES) {
+                if (!"entity".equalsIgnoreCase(baseLabel)) {
+                    return new Result(true, new HashMap<>()); // ES 只有 entity 分类
+                }
+                Map<String, Long> counts = buildEsCountFromIndices(source);
+                return new Result(true, counts);
+            }
 
+            List<BasicNode> allNodes = getNeo4jNodes(kb);
             Map<String, Long> counts = new HashMap<>();
             for (BasicNode node : allNodes) {
                 if (!isNodeInBaseCategory(kb, node, baseLabel)) {
@@ -762,6 +784,74 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
     private Result esError(KnowledgeBaseDef kb, SourceDef source, String message, Exception e) {
         log.error("{}: kbId={}, index={}", message, kb.id, source.esIndex, e);
         return new Result(false, message + "（" + e.getMessage() + "）");
+    }
+
+    /**
+     * ES 分类列表：每个索引名 = 一个 entity 子分类，采样获取 type 子项
+     */
+    private Map<String, Set<String>> buildEsCategoriesFromIndices(SourceDef source) throws IOException {
+        if (esClient == null) {
+            throw new IllegalStateException("Elasticsearch 客户端未配置");
+        }
+        String[] indices = parseEsIndices(source.esIndex);
+        Map<String, Set<String>> categories = new LinkedHashMap<>();
+        for (String index : indices) {
+            Set<String> details = new LinkedHashSet<>();
+            SearchRequest req = new SearchRequest(index);
+            req.indicesOptions(IndicesOptions.lenientExpandOpen());
+            SearchSourceBuilder sb = new SearchSourceBuilder();
+            sb.size(500);
+            sb.trackTotalHits(true);
+            sb.query(QueryBuilders.matchAllQuery());
+            req.source(sb);
+            try {
+                SearchResponse resp = esClient.search(req, RequestOptions.DEFAULT);
+                long total = resp.getHits().getTotalHits() == null ? 0L : resp.getHits().getTotalHits().value;
+                if (total == 0) {
+                    continue; // 空索引跳过
+                }
+                for (SearchHit hit : resp.getHits().getHits()) {
+                    Object type = hit.getSourceAsMap().get("type");
+                    if (type != null && !String.valueOf(type).trim().isEmpty()) {
+                        details.add(String.valueOf(type));
+                    }
+                }
+                categories.put(index, details);
+            } catch (Exception e) {
+                log.warn("ES 索引 {} 分类采样失败，跳过: {}", index, e.getMessage());
+            }
+        }
+        return categories;
+    }
+
+    /**
+     * ES 分类计数：每个索引单独统计文档数
+     */
+    private Map<String, Long> buildEsCountFromIndices(SourceDef source) throws IOException {
+        if (esClient == null) {
+            throw new IllegalStateException("Elasticsearch 客户端未配置");
+        }
+        String[] indices = parseEsIndices(source.esIndex);
+        Map<String, Long> counts = new LinkedHashMap<>();
+        for (String index : indices) {
+            SearchRequest req = new SearchRequest(index);
+            req.indicesOptions(IndicesOptions.lenientExpandOpen());
+            SearchSourceBuilder sb = new SearchSourceBuilder();
+            sb.size(0);
+            sb.trackTotalHits(true);
+            sb.query(QueryBuilders.matchAllQuery());
+            req.source(sb);
+            try {
+                SearchResponse resp = esClient.search(req, RequestOptions.DEFAULT);
+                long total = resp.getHits().getTotalHits() == null ? 0L : resp.getHits().getTotalHits().value;
+                if (total > 0) {
+                    counts.put(index, total);
+                }
+            } catch (Exception e) {
+                log.warn("ES 索引 {} 计数失败，跳过: {}", index, e.getMessage());
+            }
+        }
+        return counts;
     }
 
     private EsPageResult fetchEsNodesPaged(SourceDef source, QueryBuilder query, int from, int size) throws IOException {
