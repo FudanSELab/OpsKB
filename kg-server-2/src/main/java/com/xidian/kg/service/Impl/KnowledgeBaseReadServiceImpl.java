@@ -152,6 +152,7 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
 
     @Override
     public Result getAll(String kbId, String storageType, Integer limit) {
+        log.info(">>> getAll 被调用: kbId={}, storage={}, limit={}", kbId, storageType, limit);
         KnowledgeBaseDef kb = resolveKnowledgeBase(kbId);
         SourceDef source = resolveSource(kb, storageType);
 
@@ -544,47 +545,18 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
         }
     }
 
-    private Result buildNeo4jAllResult(KnowledgeBaseDef kb) {
-        return buildNeo4jAllResult(kb, null);
-    }
-
     private Result buildNeo4jAllResult(KnowledgeBaseDef kb, Integer limit) {
         try {
-            List<BasicNode> nodes;
-            List<BasicRelationReturnVO> relations;
-
-            if (limit != null && limit > 0) {
-                // 限量模式：直接在 Neo4j 层做 KB 过滤 + LIMIT，避免拉取全量数据
-                List<String> aliases = new ArrayList<>(kbAliases(kb.id));
-                List<String> labelFallbacks = kbLabelFallbacks(kb.id);
-                nodes = nodeDao.getNodesForKbWithLimit(aliases, labelFallbacks, limit);
-                Set<Long> nodeIds = nodes.stream()
-                        .map(BasicNode::getId)
-                        .filter(Objects::nonNull)
-                        .collect(Collectors.toSet());
-                relations = relationDao.getRelationsBetweenNodes(nodeIds);
-            } else {
-                // 全量模式（用于分类统计等需要完整数据的场景）
-                Result raw = mainService.getAllNodesAndRelations();
-                if (raw == null || !raw.isFlag()) {
-                    return new Result(false, raw == null ? "Neo4j 数据读取失败" : raw.getData());
-                }
-                GraphData graphData = extractGraphData(raw);
-                if (graphData == null) {
-                    return new Result(false, "Neo4j 数据格式错误");
-                }
-                nodes = graphData.nodes.stream()
-                        .filter(node -> nodeBelongsToKb(kb.id, node))
-                        .collect(Collectors.toList());
-                Set<Long> nodeIds = nodes.stream()
-                        .map(BasicNode::getId)
-                        .filter(Objects::nonNull)
-                        .collect(Collectors.toSet());
-                relations = graphData.relations.stream()
-                        .filter(rel -> rel != null && rel.getStart() != null && rel.getEnd() != null)
-                        .filter(rel -> nodeIds.contains(rel.getStart().getId()) && nodeIds.contains(rel.getEnd().getId()))
-                        .collect(Collectors.toList());
-            }
+            // 统一使用 KB 过滤 Cypher 查询，彻底避免 mainService.getAllNodesAndRelations() 全量拉取
+            int effectiveLimit = (limit != null && limit > 0) ? limit : 10000;
+            List<String> aliases = new ArrayList<>(kbAliases(kb.id));
+            List<String> labelFallbacks = kbLabelFallbacks(kb.id);
+            List<BasicNode> nodes = nodeDao.getNodesForKbWithLimit(aliases, labelFallbacks, effectiveLimit);
+            Set<Long> nodeIds = nodes.stream()
+                    .map(BasicNode::getId)
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toSet());
+            List<BasicRelationReturnVO> relations = relationDao.getRelationsBetweenNodes(nodeIds);
 
             List<List> payload = new ArrayList<>();
             payload.add(nodes);
