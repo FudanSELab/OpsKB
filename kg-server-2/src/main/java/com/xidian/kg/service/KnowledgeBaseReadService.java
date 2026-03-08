@@ -7,11 +7,11 @@ public interface KnowledgeBaseReadService {
 
     Result listKnowledgeBases();
 
-    Result getAll(String kbId, String storageType, Integer limit);
+    Result getAll(String kbId, String storageType);
 
     Result queryNodeByName(String kbId, String storageType, String name, Boolean exactMatch);
 
-    Result queryNodeByCategory(String kbId, String storageType, String categoryMain, String categoryDetail, Integer page, Integer size);
+    Result queryNodeByCategory(String kbId, String storageType, String categoryMain, String categoryDetail);
 
     Result queryGraph(String kbId, String storageType, String name, Integer type);
 
