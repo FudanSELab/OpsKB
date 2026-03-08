@@ -786,6 +786,12 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
             BoolQueryBuilder f = QueryBuilders.boolQuery();
             f.should(QueryBuilders.termQuery("labels", cat));
             f.should(QueryBuilders.termQuery("labels.keyword", cat));
+            // 兼容：ES 文档无 labels 字段时，Java 层默认将其归为 entity
+            if ("entity".equals(cat)) {
+                BoolQueryBuilder noLabels = QueryBuilders.boolQuery();
+                noLabels.mustNot(QueryBuilders.existsQuery("labels"));
+                f.should(noLabels);
+            }
             f.minimumShouldMatch(1);
             outer.must(f);
         }
@@ -794,6 +800,8 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
             BoolQueryBuilder f = QueryBuilders.boolQuery();
             f.should(QueryBuilders.termQuery("labels", cat));
             f.should(QueryBuilders.termQuery("labels.keyword", cat));
+            // 兼容：Java 层以索引名作为 detail 标签（如 openstack_templates）
+            f.should(QueryBuilders.termQuery("_index", cat));
             f.minimumShouldMatch(1);
             outer.must(f);
         }
