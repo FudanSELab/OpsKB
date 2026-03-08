@@ -127,8 +127,8 @@ export function useKnowledgeApi() {
     },
 
     // 主要功能API
-    async getAll() {
-      return await wrapRequest(() => knowledgeAPI.getAll());
+    async getAll(limit) {
+      return await wrapRequest(() => knowledgeAPI.getAll(limit));
     },
 
     async listKnowledgeBases() {
