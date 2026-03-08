@@ -34,7 +34,7 @@
       <ul
         class="menu menu-xs bg-base-200 rounded-lg w-full max-w-xs flex-1 flex-nowrap overflow-y-auto"
       >
-        <p class="font-bold mb-6 pl-2 text-left w-full">
+        <p class="font-bold mb-2 pl-2 text-left w-full">
           <!-- 搜索状态下的标题 -->
           <template v-if="searchResult">
             搜索结果
@@ -48,17 +48,33 @@
           <!-- Tree类型节点显示策略列表 -->
           <template v-else-if="isOverviewMode || isStrategyTree(selectedNode)"> 节点列表 </template>
           <template v-else>知识列表</template>
-          <!-- 默认状态 -->
         </p>
+
+        <!-- 每页条数选择 -->
+        <li v-if="knowledgeList.length > 0" class="px-2 mb-2">
+          <div class="flex items-center gap-1 text-xs text-gray-500">
+            <span>每页</span>
+            <select
+              v-model="pageSize"
+              class="select select-xs select-bordered w-14"
+              @change="currentPage = 1"
+            >
+              <option :value="10">10</option>
+              <option :value="20">20</option>
+            </select>
+            <span>条，共 {{ knowledgeList.length }} 条</span>
+          </div>
+        </li>
+
         <li v-if="!knowledgeList.length" class="text-gray-500 text-left py-4 px-4">
           <template v-if="searchResult && searchResult.count === 0"> 未找到匹配的节点 </template>
           <template v-else-if="selectedCategory"> 该分类下暂无数据 </template>
           <template v-else> 请选择分类或搜索节点 </template>
         </li>
-        <!-- 普通知识列表 -->
+        <!-- 当前页知识列表 -->
         <li
           v-else
-          v-for="node in knowledgeList"
+          v-for="node in pagedList"
           :key="node.id"
           @click="handleNodeClick(node)"
           class="cursor-pointer w-full"
@@ -90,6 +106,21 @@
         </li>
       </ul>
 
+      <!-- 分页控制 -->
+      <div v-if="totalPages > 1" class="flex items-center justify-between mt-2 px-1">
+        <button
+          class="btn btn-xs btn-ghost"
+          :disabled="currentPage === 1"
+          @click="currentPage--"
+        >«</button>
+        <span class="text-xs text-gray-500">{{ currentPage }} / {{ totalPages }}</span>
+        <button
+          class="btn btn-xs btn-ghost"
+          :disabled="currentPage === totalPages"
+          @click="currentPage++"
+        >»</button>
+      </div>
+
       <div v-if="isOverviewMode" class="mt-3 bg-white rounded-lg border border-gray-200 p-3 overflow-y-auto max-h-64">
         <div class="text-sm font-semibold mb-2">节点信息</div>
         <div v-if="!selectedNodeDetails" class="text-xs text-gray-500">点击图中的节点后在这里显示详情</div>
@@ -118,6 +149,7 @@
 </template>
 
 <script setup>
+import { ref, computed, watch } from 'vue';
 import { Book2, GitMerge } from '@vicons/tabler';
 import { highlightSearchTerm } from '../../utils/knowledgeUtils';
 
@@ -154,12 +186,23 @@ const props = defineProps({
 
 const emit = defineEmits(['select-node', 'open-generation', 'open-conflict-resolution']);
 
-// 判断节点是否为策略树
+const pageSize = ref(10);
+const currentPage = ref(1);
+
+// 列表变化时重置到第一页
+watch(() => props.knowledgeList, () => { currentPage.value = 1; });
+
+const totalPages = computed(() => Math.max(1, Math.ceil(props.knowledgeList.length / pageSize.value)));
+
+const pagedList = computed(() => {
+  const start = (currentPage.value - 1) * pageSize.value;
+  return props.knowledgeList.slice(start, start + pageSize.value);
+});
+
 const isStrategyTree = (node) => {
   return node?.labels?.some((label) => label.toLowerCase() === 'tree') || false;
 };
 
-// 处理节点点击事件，根据类型选择不同的处理方式
 const handleNodeClick = (node) => {
   emit('select-node', node);
 };

@@ -281,11 +281,25 @@
                         该知识库以实体检索为主，不展示关系图谱
                       </div>
                     </div>
-                    <div class="text-sm text-gray-600">
-                      当前显示 {{ catalogDisplayNodes.length }}
+                    <div class="flex items-center gap-3">
+                      <div class="flex items-center gap-1 text-xs text-gray-500">
+                        <span>每页</span>
+                        <select
+                          v-model="catalogPageSize"
+                          class="select select-xs select-bordered w-14"
+                          @change="catalogPage = 1"
+                        >
+                          <option :value="10">10</option>
+                          <option :value="20">20</option>
+                        </select>
+                        <span>条</span>
+                      </div>
+                      <div class="text-sm text-gray-600">
+                        共 {{ catalogDisplayNodes.length }} 条
+                      </div>
                     </div>
                   </div>
-                  <div class="max-h-[calc(100vh-260px)] overflow-auto border rounded-lg">
+                  <div class="max-h-[calc(100vh-300px)] overflow-auto border rounded-lg">
                     <table class="table table-pin-rows table-sm w-full">
                       <thead>
                         <tr>
@@ -296,7 +310,7 @@
                       </thead>
                       <tbody>
                         <tr
-                          v-for="node in catalogDisplayNodes"
+                          v-for="node in catalogPagedNodes"
                           :key="node.id"
                           class="cursor-pointer hover:bg-base-200"
                           :class="{ 'bg-primary/10': state.selectedNode?.id === node.id }"
@@ -313,6 +327,30 @@
                         </tr>
                       </tbody>
                     </table>
+                  </div>
+                  <!-- 分页控制 -->
+                  <div v-if="catalogTotalPages > 1" class="flex items-center justify-center gap-2 mt-3">
+                    <button
+                      class="btn btn-xs btn-ghost"
+                      :disabled="catalogPage === 1"
+                      @click="catalogPage = 1"
+                    >«</button>
+                    <button
+                      class="btn btn-xs btn-ghost"
+                      :disabled="catalogPage === 1"
+                      @click="catalogPage--"
+                    >‹</button>
+                    <span class="text-xs text-gray-600">{{ catalogPage }} / {{ catalogTotalPages }}</span>
+                    <button
+                      class="btn btn-xs btn-ghost"
+                      :disabled="catalogPage === catalogTotalPages"
+                      @click="catalogPage++"
+                    >›</button>
+                    <button
+                      class="btn btn-xs btn-ghost"
+                      :disabled="catalogPage === catalogTotalPages"
+                      @click="catalogPage = catalogTotalPages"
+                    >»</button>
                   </div>
                 </div>
 
@@ -488,7 +526,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, reactive, nextTick, computed } from 'vue';
+import { ref, onMounted, reactive, nextTick, computed, watch } from 'vue';
 import KnowledgeGraph from '../components/knowledge/KnowledgeGraph.vue';
 import Toast from '../components/common/Toast.vue';
 import ConfirmModal from '../components/common/ConfirmModal.vue';
@@ -669,6 +707,19 @@ const catalogDisplayNodes = computed(() => {
   if (state.selectedCategory) return state.knowledgeList || [];
   return state.allNodes || [];
 });
+
+// ES 目录分页
+const catalogPageSize = ref(10);
+const catalogPage = ref(1);
+const catalogTotalPages = computed(() =>
+  Math.max(1, Math.ceil(catalogDisplayNodes.value.length / catalogPageSize.value))
+);
+const catalogPagedNodes = computed(() => {
+  const start = (catalogPage.value - 1) * catalogPageSize.value;
+  return catalogDisplayNodes.value.slice(start, start + catalogPageSize.value);
+});
+// 列表切换时重置页码
+watch(catalogDisplayNodes, () => { catalogPage.value = 1; });
 
 const goKnowledgeBaseHome = async () => {
   clearSearch();
