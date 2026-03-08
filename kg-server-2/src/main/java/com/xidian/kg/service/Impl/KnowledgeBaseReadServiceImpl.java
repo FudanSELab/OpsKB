@@ -177,16 +177,9 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
         SourceDef source = resolveSource(kb, storageType);
 
         if (source.type == SourceType.NEO4J) {
-            Result result = buildNeo4jAllResult(kb);
-            if (!result.isFlag()) {
-                return result;
-            }
-            GraphData graphData = extractGraphData(result);
-            if (graphData == null) {
-                return new Result(false, "Neo4j 数据格式错误");
-            }
+            List<BasicNode> allNodes = getNeo4jNodes(kb);
             List<BasicNode> matched = new ArrayList<>();
-            for (BasicNode node : graphData.nodes) {
+            for (BasicNode node : allNodes) {
                 String nodeName = getNodeName(node);
                 if (nodeName == null) {
                     continue;
@@ -212,16 +205,9 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
         SourceDef source = resolveSource(kb, storageType);
 
         if (source.type == SourceType.NEO4J) {
-            Result result = buildNeo4jAllResult(kb);
-            if (!result.isFlag()) {
-                return result;
-            }
-            GraphData graphData = extractGraphData(result);
-            if (graphData == null) {
-                return new Result(false, "Neo4j 数据格式错误");
-            }
+            List<BasicNode> allNodes = getNeo4jNodes(kb);
             List<BasicNode> filtered = new ArrayList<>();
-            for (BasicNode node : graphData.nodes) {
+            for (BasicNode node : allNodes) {
                 if (matchCategory(node, categoryMain, categoryDetail)) {
                     filtered.add(node);
                 }
@@ -266,20 +252,12 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
         SourceDef source = resolveSource(kb, storageType);
 
         if (source.type == SourceType.NEO4J) {
-            Result allResult = buildNeo4jAllResult(kb);
-            if (!allResult.isFlag()) {
-                return allResult;
-            }
-            GraphData graphData = extractGraphData(allResult);
-            if (graphData == null) {
-                return new Result(false, "Neo4j 数据格式错误");
-            }
-
+            List<BasicNode> allNodes = getNeo4jNodes(kb);
             BasicNode target = null;
-            for (BasicNode node : graphData.nodes) {
-                String nodeName = getNodeName(node);
+            for (BasicNode n : allNodes) {
+                String nodeName = getNodeName(n);
                 if (matchName(nodeName, name, false)) {
-                    target = node;
+                    target = n;
                     break;
                 }
             }
@@ -291,10 +269,20 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
                 return new Result(true, empty);
             }
 
+            // 用目标节点 ID 查关系，收集相关节点
+            Set<Long> seedIds = new HashSet<>();
+            seedIds.add(target.getId());
+            List<BasicRelationReturnVO> rels = relationDao.getRelationsBetweenNodes(seedIds);
+            // getRelationsBetweenNodes 要求两端都在集合内，但这里只有一个节点
+            // 需要一个查"包含该节点"的关系的方法 → 退回到用 allNodes 的 id 集合查关系
+            Set<Long> allNodeIds = allNodes.stream()
+                    .map(BasicNode::getId).filter(Objects::nonNull).collect(Collectors.toSet());
+            List<BasicRelationReturnVO> kbRelations = relationDao.getRelationsBetweenNodes(allNodeIds);
+
             Set<Long> nodeIds = new HashSet<>();
             nodeIds.add(target.getId());
             List<Map<String, Object>> relationPayload = new ArrayList<>();
-            for (BasicRelationReturnVO rel : graphData.relations) {
+            for (BasicRelationReturnVO rel : kbRelations) {
                 if (rel == null || rel.getStart() == null || rel.getEnd() == null) {
                     continue;
                 }
@@ -315,8 +303,8 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
                 relationPayload.add(item);
             }
 
-            List<BasicNode> relatedNodes = graphData.nodes.stream()
-                    .filter(node -> node.getId() != null && nodeIds.contains(node.getId()))
+            List<BasicNode> relatedNodes = allNodes.stream()
+                    .filter(n -> n.getId() != null && nodeIds.contains(n.getId()))
                     .collect(Collectors.toList());
 
             Map<String, Object> graph = new HashMap<>();
@@ -347,19 +335,16 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
             return new Result(true, new ArrayList<>());
         }
 
-        Result allResult = buildNeo4jAllResult(kb);
-        if (!allResult.isFlag()) {
-            return allResult;
-        }
-        GraphData graphData = extractGraphData(allResult);
-        if (graphData == null) {
-            return new Result(false, "Neo4j 数据格式错误");
-        }
+        // 用 KB 内所有节点 ID 查关系，再按目标节点过滤
+        List<BasicNode> allNodes = getNeo4jNodes(kb);
+        Set<Long> allNodeIds = allNodes.stream()
+                .map(BasicNode::getId).filter(Objects::nonNull).collect(Collectors.toSet());
+        List<BasicRelationReturnVO> kbRelations = relationDao.getRelationsBetweenNodes(allNodeIds);
 
         Long targetId = node == null ? null : node.getId();
         String targetName = node == null ? null : getNodeName(node);
         List<BasicRelationReturnVO> matched = new ArrayList<>();
-        for (BasicRelationReturnVO rel : graphData.relations) {
+        for (BasicRelationReturnVO rel : kbRelations) {
             if (rel == null || rel.getStart() == null || rel.getEnd() == null) {
                 continue;
             }
@@ -640,12 +625,11 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
     }
 
     private List<BasicNode> getNeo4jNodes(KnowledgeBaseDef kb) {
-        Result result = buildNeo4jAllResult(kb);
-        if (!result.isFlag()) {
-            return new ArrayList<>();
-        }
-        GraphData data = extractGraphData(result);
-        return data == null ? new ArrayList<>() : data.nodes;
+        // 直接用 KB 过滤的 Cypher 查询，避免拉取全量 3590+ 节点
+        List<String> aliases = new ArrayList<>(kbAliases(kb.id));
+        List<String> labelFallbacks = kbLabelFallbacks(kb.id);
+        int maxNodes = 10000; // 分类统计需要所有该 KB 的节点，给一个足够大的上限
+        return nodeDao.getNodesForKbWithLimit(aliases, labelFallbacks, maxNodes);
     }
 
     private boolean nodeBelongsToKb(String kbId, BasicNode node) {
