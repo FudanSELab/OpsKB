@@ -560,6 +560,7 @@ const { toasts, showToast, removeToast } = useToast();
 const { confirmModal, showConfirm, handleConfirm, handleCancel } = useConfirm();
 
 // API
+const OVERVIEW_NODE_LIMIT = 200; // 总览模式最多加载的节点数
 const { loading, api } = useKnowledgeApi();
 const knowledgeBases = ref([]);
 const activeKnowledgeBaseId = ref(api.getActiveKnowledgeBase());
@@ -975,7 +976,6 @@ const clearSearchInput = () => {
 
 // 总览模式处理
 const handleOverviewClick = async () => {
-  const OVERVIEW_NODE_LIMIT = 200;
   // 清除其他状态
   state.searchResult = null;
   state.searchQuery = '';
@@ -1105,8 +1105,8 @@ const selectNode = async (node) => {
         (n) => n.labels && n.labels.some((label) => label.toLowerCase() === 'tree'),
       );
     } else if (state.treeKnowledgeList.length === 0) {
-      // 如果allNodes也为空，尝试加载所有数据
-      const allData = await api.getAll();
+      // 如果allNodes也为空，尝试加载所有数据（限制200条）
+      const allData = await api.getAll(OVERVIEW_NODE_LIMIT);
       if (allData.flag && allData.data) {
         state.allNodes = allData.data[0] || [];
         state.allRelations = allData.data[1] || [];
