@@ -1124,8 +1124,21 @@ const selectNode = async (node) => {
 
     if (graphResult.flag && graphResult.data) {
       // queryGraph返回的数据格式包含nodes和relations
-      const relations = graphResult.data.relations || [];
-      const nodes = graphResult.data.nodes || [];
+      let relations = graphResult.data.relations || [];
+      let nodes = graphResult.data.nodes || [];
+
+      // 限制邻居数量，防止高度数节点导致渲染爆炸
+      const NEIGHBOR_LIMIT = 10;
+      if (relations.length > NEIGHBOR_LIMIT) {
+        relations = relations.slice(0, NEIGHBOR_LIMIT);
+        // 重新计算需要保留的节点
+        const neededNodeIds = new Set();
+        relations.forEach(rel => {
+          neededNodeIds.add(rel.startNodeId);
+          neededNodeIds.add(rel.endNodeId);
+        });
+        nodes = nodes.filter(n => neededNodeIds.has(n.id));
+      }
 
       console.log(`Tree图谱数据: ${nodes.length} 个节点, ${relations.length} 个关系`);
 
@@ -1172,7 +1185,10 @@ const selectNode = async (node) => {
     // 普通节点使用原有的getNodeRelation接口
     const relationResult = await api.getNodeRelation(node);
     if (relationResult.flag && relationResult.data && relationResult.data.length > 0) {
-      state.selectedNodeRelations = relationResult.data[0] || [];
+      const relations = relationResult.data[0] || [];
+      // 限制邻居数量，防止高度数节点导致渲染爆炸
+      const NEIGHBOR_LIMIT = 10;
+      state.selectedNodeRelations = relations.length > NEIGHBOR_LIMIT ? relations.slice(0, NEIGHBOR_LIMIT) : relations;
     } else {
       state.selectedNodeRelations = [];
     }

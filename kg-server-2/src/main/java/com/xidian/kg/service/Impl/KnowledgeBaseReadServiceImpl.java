@@ -161,10 +161,22 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
         }
 
         try {
-            int esSize = (limit != null && limit > 0) ? limit : ES_DEFAULT_LIMIT;
-            List<BasicNode> nodes = fetchEsNodes(source, null, null, esSize);
+            int totalLimit = (limit != null && limit > 0) ? limit : ES_DEFAULT_LIMIT;
+            // 逐索引查询，避免跨索引 size 截断导致部分索引数据丢失
+            String[] indices = parseEsIndices(source.esIndex);
+            int perIndexLimit = Math.max(1, totalLimit / Math.max(indices.length, 1));
+            List<BasicNode> allNodes = new ArrayList<>();
+            for (String index : indices) {
+                SourceDef singleSource = new SourceDef(SourceType.ES, index, true);
+                try {
+                    List<BasicNode> indexNodes = fetchEsNodes(singleSource, null, null, perIndexLimit);
+                    allNodes.addAll(indexNodes);
+                } catch (Exception ignored) {
+                    // 索引不存在时跳过（如 kb_nodes_2）
+                }
+            }
             List<List> payload = new ArrayList<>();
-            payload.add(nodes);
+            payload.add(allNodes);
             payload.add(new ArrayList<>());
             return new Result(true, payload);
         } catch (Exception e) {
@@ -216,12 +228,35 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
             return new Result(true, filtered);
         }
 
-        // ES：先拉全量数据，用 Java matchCategory 过滤（保证与侧边栏分类一致），再分页返回给前端
+        // ES：根据分类查询策略选择查询方式
         try {
             int pageNum = (page != null && page > 0) ? page : 1;
             int pageSize = (size != null && size > 0) ? size : 10;
 
-            List<BasicNode> allNodes = fetchEsNodes(source, null, null, ES_DEFAULT_LIMIT);
+            List<BasicNode> allNodes;
+            if (categoryMain != null && !categoryMain.trim().isEmpty()) {
+                // 判断 categoryMain 是否与某个配置的 ES 索引名匹配
+                String targetIndex = categoryMain.trim().toLowerCase(Locale.ROOT);
+                String[] configuredIndices = parseEsIndices(source.esIndex);
+                boolean isIndexName = false;
+                for (String idx : configuredIndices) {
+                    if (idx.equalsIgnoreCase(targetIndex)) {
+                        isIndexName = true;
+                        break;
+                    }
+                }
+                if (isIndexName) {
+                    // categoryMain 就是索引名（如 promcopilot 的 pod/metric 等），直接查该索引
+                    SourceDef targetSource = new SourceDef(SourceType.ES, targetIndex, true);
+                    allNodes = fetchEsNodes(targetSource, null, null, ES_DEFAULT_LIMIT);
+                } else {
+                    // categoryMain 是文档 labels 中的分类（如 fault-kb 的 Symptom/RootCause 等），查全部索引再按 label 过滤
+                    allNodes = fetchEsNodes(source, null, null, ES_DEFAULT_LIMIT);
+                }
+            } else {
+                allNodes = fetchEsNodes(source, null, null, ES_DEFAULT_LIMIT);
+            }
+
             List<BasicNode> filtered = new ArrayList<>();
             for (BasicNode node : allNodes) {
                 if (matchCategory(node, categoryMain, categoryDetail)) {
@@ -304,6 +339,19 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
                 relationPayload.add(item);
             }
 
+            // 限制邻居数量，防止高度数节点导致前端渲染爆炸
+            int NEIGHBOR_LIMIT = 10;
+            if (relationPayload.size() > NEIGHBOR_LIMIT) {
+                relationPayload = relationPayload.subList(0, NEIGHBOR_LIMIT);
+                // 重新计算需要的节点ID
+                nodeIds.clear();
+                nodeIds.add(target.getId());
+                for (Map<String, Object> item : relationPayload) {
+                    nodeIds.add((Long) item.get("startNodeId"));
+                    nodeIds.add((Long) item.get("endNodeId"));
+                }
+            }
+
             List<BasicNode> relatedNodes = allNodes.stream()
                     .filter(n -> n.getId() != null && nodeIds.contains(n.getId()))
                     .collect(Collectors.toList());
@@ -356,6 +404,11 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
             if (idMatched || nameMatched) {
                 matched.add(rel);
             }
+        }
+        // 限制邻居数量，防止高度数节点导致前端渲染爆炸
+        int NEIGHBOR_LIMIT = 10;
+        if (matched.size() > NEIGHBOR_LIMIT) {
+            matched = matched.subList(0, NEIGHBOR_LIMIT);
         }
         List<List<BasicRelationReturnVO>> wrapped = new ArrayList<>();
         wrapped.add(matched);
@@ -775,7 +828,7 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
     }
 
     /**
-     * ES 分类列表：每个索引名 = 一个 entity 子分类，采样获取 type 子项
+     * ES 分类列表：优先从文档 labels 字段提取分类（如 fault-kb），否则以索引名作为分类（如 promcopilot）
      */
     private Map<String, Set<String>> buildEsCategoriesFromIndices(SourceDef source) throws IOException {
         if (esClient == null) {
@@ -784,7 +837,6 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
         String[] indices = parseEsIndices(source.esIndex);
         Map<String, Set<String>> categories = new LinkedHashMap<>();
         for (String index : indices) {
-            Set<String> details = new LinkedHashSet<>();
             SearchRequest req = new SearchRequest(index);
             req.indicesOptions(IndicesOptions.lenientExpandOpen());
             SearchSourceBuilder sb = new SearchSourceBuilder();
@@ -798,13 +850,39 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
                 if (total == 0) {
                     continue; // 空索引跳过
                 }
+                // 检查文档是否包含 labels 字段，如果有则用 labels 做分类，否则用索引名
+                boolean hasDocLabels = false;
                 for (SearchHit hit : resp.getHits().getHits()) {
-                    Object type = hit.getSourceAsMap().get("type");
-                    if (type != null && !String.valueOf(type).trim().isEmpty()) {
-                        details.add(String.valueOf(type));
+                    if (hit.getSourceAsMap().get("labels") != null) {
+                        hasDocLabels = true;
+                        break;
                     }
                 }
-                categories.put(index, details);
+                if (hasDocLabels) {
+                    // 从文档 labels 提取分类（适用于 fault-kb 等单索引多分类场景）
+                    for (SearchHit hit : resp.getHits().getHits()) {
+                        BasicNode node = toBasicNode(hit);
+                        String bucket = firstNonBaseLabel(node, "entity");
+                        if (bucket == null) {
+                            bucket = "default";
+                        }
+                        Set<String> details = categories.computeIfAbsent(bucket, k -> new LinkedHashSet<>());
+                        Object type = node.getProperties() == null ? null : node.getProperties().get("type");
+                        if (type != null && !String.valueOf(type).trim().isEmpty()) {
+                            details.add(String.valueOf(type));
+                        }
+                    }
+                } else {
+                    // 以索引名作为分类（适用于 promcopilot 等每个索引=一个分类的场景）
+                    Set<String> details = new LinkedHashSet<>();
+                    for (SearchHit hit : resp.getHits().getHits()) {
+                        Object type = hit.getSourceAsMap().get("type");
+                        if (type != null && !String.valueOf(type).trim().isEmpty()) {
+                            details.add(String.valueOf(type));
+                        }
+                    }
+                    categories.put(index, details);
+                }
             } catch (Exception e) {
                 log.warn("ES 索引 {} 分类采样失败，跳过: {}", index, e.getMessage());
             }

@@ -750,8 +750,8 @@ public class NodeDaoImpl implements NodeDao {
         Map<Long, Map<String, Object>> relationMap = new HashMap<>();
         
         if (type == 1) {
-            // 类型1：返回该节点为起始节点的所有直接关系和终止节点（一跳出边）
-            String cypherSql = "MATCH path = (start {name: $name})-[r]->(end) RETURN path";
+            // 类型1：返回该节点为起始节点的直接关系和终止节点（一跳出边，限制10条防止渲染爆炸）
+            String cypherSql = "MATCH path = (start {name: $name})-[r]->(end) RETURN path LIMIT 10";
             System.out.println("执行Cypher语句: " + cypherSql);
             System.out.println("参数: " + params);
             

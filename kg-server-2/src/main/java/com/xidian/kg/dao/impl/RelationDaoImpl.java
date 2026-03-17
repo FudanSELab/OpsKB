@@ -343,7 +343,7 @@ public class RelationDaoImpl implements RelationDao {
     @Override
     public List<BasicRelationReturnVO> getNodeRelationForward(BasicNode basicNode) {
         Map<String,Object> basicNodeProperties = basicNode.getProperties();
-        String cypherSql = String.format("match p=(n{name:\"%s\"})-[r]->(m) return p",basicNodeProperties.get("name"));
+        String cypherSql = String.format("match p=(n{name:\"%s\"})-[r]->(m) return p LIMIT 10",basicNodeProperties.get("name"));
         System.out.println(cypherSql);
         Result query = session.query(cypherSql, new HashMap<>());
         Iterable<Map<String, Object>> maps = query.queryResults();
@@ -361,7 +361,7 @@ public class RelationDaoImpl implements RelationDao {
     @Override
     public List<BasicRelationReturnVO> getNodeRelationOpposite(BasicNode basicNode) {
         Map<String,Object> basicNodeProperties = basicNode.getProperties();
-        String cypherSql = String.format("match p=(n)-[r]->(m{name:\"%s\"}) return p",basicNodeProperties.get("name"));
+        String cypherSql = String.format("match p=(n)-[r]->(m{name:\"%s\"}) return p LIMIT 10",basicNodeProperties.get("name"));
         System.out.println(cypherSql);
         Result query = session.query(cypherSql, new HashMap<>());
         Iterable<Map<String, Object>> maps = query.queryResults();
