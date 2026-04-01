@@ -893,6 +893,9 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
     /**
      * ES 分类计数：每个索引单独统计文档数
      */
+    /**
+     * ES 分类计数：优先从文档 labels 字段分组统计（如 fault-kb），否则按索引名统计（如 promcopilot）
+     */
     private Map<String, Long> buildEsCountFromIndices(SourceDef source) throws IOException {
         if (esClient == null) {
             throw new IllegalStateException("Elasticsearch 客户端未配置");
@@ -903,14 +906,42 @@ public class KnowledgeBaseReadServiceImpl implements KnowledgeBaseReadService {
             SearchRequest req = new SearchRequest(index);
             req.indicesOptions(IndicesOptions.lenientExpandOpen());
             SearchSourceBuilder sb = new SearchSourceBuilder();
-            sb.size(0);
             sb.trackTotalHits(true);
             sb.query(QueryBuilders.matchAllQuery());
-            req.source(sb);
             try {
-                SearchResponse resp = esClient.search(req, RequestOptions.DEFAULT);
-                long total = resp.getHits().getTotalHits() == null ? 0L : resp.getHits().getTotalHits().value;
-                if (total > 0) {
+                // 先检查文档是否包含 labels 字段
+                sb.size(1);
+                req.source(sb);
+                SearchResponse probe = esClient.search(req, RequestOptions.DEFAULT);
+                long total = probe.getHits().getTotalHits() == null ? 0L : probe.getHits().getTotalHits().value;
+                if (total == 0) continue;
+
+                boolean hasDocLabels = false;
+                for (SearchHit hit : probe.getHits().getHits()) {
+                    if (hit.getSourceAsMap().get("labels") != null) {
+                        hasDocLabels = true;
+                        break;
+                    }
+                }
+
+                if (hasDocLabels) {
+                    // 从文档 labels 分组统计（适用于 fault-kb 等单索引多分类场景）
+                    SearchRequest fullReq = new SearchRequest(index);
+                    fullReq.indicesOptions(IndicesOptions.lenientExpandOpen());
+                    SearchSourceBuilder fullSb = new SearchSourceBuilder();
+                    fullSb.size(10000);
+                    fullSb.trackTotalHits(true);
+                    fullSb.query(QueryBuilders.matchAllQuery());
+                    fullReq.source(fullSb);
+                    SearchResponse fullResp = esClient.search(fullReq, RequestOptions.DEFAULT);
+                    for (SearchHit hit : fullResp.getHits().getHits()) {
+                        BasicNode node = toBasicNode(hit);
+                        String bucket = firstNonBaseLabel(node, "entity");
+                        if (bucket == null) bucket = "default";
+                        counts.put(bucket, counts.getOrDefault(bucket, 0L) + 1L);
+                    }
+                } else {
+                    // 按索引名统计（适用于 promcopilot 等每个索引=一个分类的场景）
                     counts.put(index, total);
                 }
             } catch (Exception e) {
