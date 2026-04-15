@@ -1,0 +1,52 @@
+# macOS / Windows system files
+.DS_Store
+Thumbs.db
+
+# AppleDouble metadata files
+._*
+
+# Temporary Office files
+~$*
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+log/
+
+# Python cache / virtual env
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Java / Maven / Gradle build outputs
+target/
+build/
+out/
+
+# Common temporary directories/files
+tmp/
+temp/
+*.tmp
+*.bak
+*.orig
+
+# Local cache directories in this repo
+.pycache/
+.m2repo/
